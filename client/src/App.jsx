@@ -3,6 +3,9 @@ import './App.css'
 
 import { Route, Routes, Navigate } from "react-router-dom";
 import Login from './shared/Login';
+// Buyer import 
+import Buyer from './buyer/Buyer';
+import BuyerAbout from './buyer/pages/about/BuyerAbout';
 
 function App() {
 
@@ -13,6 +16,9 @@ function App() {
     <div>
       <Routes>
         <Route path='/login' element={<Login/>}></Route>
+        <Route path='/buyer' element={<Buyer/>}>
+          <Route path='about' element={<BuyerAbout/>}></Route>
+        </Route>
         {/* set it to this so that i can code change it once we decide on the initial landing page*/}
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>

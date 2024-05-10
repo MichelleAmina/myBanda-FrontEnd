@@ -1,0 +1,154 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css");
+
+
+.homeSlider{
+    padding: 30px 0px;
+    padding-bottom: 0px;
+
+}
+
+.home_slider_main{
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+
+/* Arrows*/
+
+.slick-arrow{
+    position: absolute;
+    top: 47%;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    background: #F2F3F4 !important;
+    z-index: 1000;
+    transition: all 0.2s ease-in-out;
+    
+}
+
+.slick-arrow.slick-next{
+    right: 2% !important;
+}
+.slick-arrow.slick-next:before{
+    content: '\f105' !important;
+    font-family: FontAwesome !important;
+    font-size: 30px !important;
+    color: black !important;
+}
+
+.slick-arrow.slick-prev{
+    left: 2% !important;
+}
+.slick-arrow.slick-prev:before{
+    content: '\f104' !important;
+    font-family: FontAwesome !important;
+    font-size: 30px !important;
+    color: black !important;
+}
+
+.slick-arrow:hover{
+    background: rgba(255, 255, 0, 0.557)!important;
+}
+
+.slick-arrow:hover::before{
+    color: #fff !important;
+}
+
+/* Bottom dots*/
+
+.home_slider_main .slick-dots{
+    position: absolute;
+    bottom: 30px !important;
+}
+
+.home_slider_main .slick-dots button:before{
+    width: 10px !important;
+    height: 10px !important;
+    font-size: 16px !important;
+}
+
+.slick-active button::before{
+    color: rgba(255, 255, 0, 0.557)!important;
+}
+
+
+/* text */
+.home_slider_main .sliderItem{
+    position: relative;
+}
+
+.home_slider_main .sliderItem .sliderInfo{
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    z-index: 100;
+}
+
+.home_slider_main .sliderItem .sliderInfo h2{
+    font-size: 60px;
+    /*font-weight: lighter;*/
+    font-weight: 400;
+    color: rgba(0,0,0,0.8);
+}
+
+.home_slider_main .sliderItem .sliderInfo p{
+    font-size: 30px;
+    /*font-weight: lighter;*/
+    font-weight: 300;
+    /*color: rgba(0,0,0,0.5);*/
+    color: #7E7E7E;
+}
+
+/* news letter*/
+.homeSlider .newsLetterBanner{
+    width: 500px;
+    height: 60px; /*60*/
+    position: absolute;
+    bottom: 150px;
+    left: 10%;
+    z-index: 10;
+    position: relative;
+
+}
+
+.homeSlider .newsLetterBanner input{
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 30px;
+    border: 0px;
+    outline: none !important;
+    padding-left: 70px;
+    padding-right: 200px;
+    font-size: 18px;
+
+}
+
+.homeSlider .newsLetterBanner button{
+    padding: 10px 40px !important;
+    border-radius: 30px !important;
+    color: #fff !important;
+    position: absolute;
+    top: 0px;
+    right: 0px; 
+    height: 60px !important;
+    background:#1912e6;
+    font-size: 18px !important;
+    text-transform: capitalize !important;
+    font-weight: 400 !important;
+}
+
+.homeSlider .newsLetterBanner svg{
+    position: absolute;
+    top: 15px;
+    left: 30px;
+    z-index: 10;
+    font-size: 25px !important;
+    transform: rotate(-30deg);
+    opacity: 0.5;
+}
+
+
