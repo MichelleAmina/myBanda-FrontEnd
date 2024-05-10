@@ -15,6 +15,9 @@ import DeliveryDriverAnalytics from './DeliveryPerson/Pages/DeliveryAnalytics';
 import AvailableDeliveries from './DeliveryPerson/Pages/AvailableDeliveries';
 import PendingDeliveries from './DeliveryPerson/Pages/PendingDeliveries';
 import ViewDetails from './DeliveryPerson/Pages/ViewDetails';
+// Buyer import 
+import Buyer from './buyer/Buyer';
+import BuyerAbout from './buyer/pages/about/BuyerAbout';
 
 function App() {
   return (
@@ -23,6 +26,10 @@ function App() {
     <div>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path='/login' element={<Login/>}></Route>
+        <Route path='/buyer' element={<Buyer/>}>
+          <Route path='about' element={<BuyerAbout/>}></Route>
+        </Route>
         {/* set it to this so that i can code change it once we decide on the initial landing page*/}
         <Route path="*" element={<Navigate to="/login" />} />
         <Route path="/sellerdash" element={<Sellerdash />} />
