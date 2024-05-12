@@ -6,6 +6,8 @@ import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
 import HeadsetMicOutlinedIcon from '@mui/icons-material/HeadsetMicOutlined';
 import AddIcCallOutlinedIcon from '@mui/icons-material/AddIcCallOutlined';
 
+
+
 function Nav() {
     return(
         <div className="buyerNav d-flex align-items-center">
@@ -27,7 +29,10 @@ function Nav() {
                                     <Button className='navButton'><NavLink to='/buyer'>Home</NavLink></Button>
                                 </li>
                                 <li className='list-inline-item'>
-                                    <Button className='navButton'><NavLink>About</NavLink></Button>
+                                    <Button className='navButton'><NavLink to='about'>About</NavLink></Button>
+                                </li>
+                                <li className='list-inline-item'>
+                                    <Button className='navButton'><NavLink to='products'>Products</NavLink></Button>
                                 </li>
                                 <li className='list-inline-item'>
                                     <Button className='navButton'><NavLink>Shops</NavLink></Button>

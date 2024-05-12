@@ -1,7 +1,8 @@
 import './slider.css'
 import Slider from 'react-slick'
 import Button from '@mui/material/Button';
-import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
+
+import Newsletter from '../../../components/newsletter/Newsletter';
 
 function HomeSlider(){
     var settings = {
@@ -42,12 +43,7 @@ function HomeSlider(){
                 
             </Slider>
 
-            <div className="newsLetterBanner">
-                <SendOutlinedIcon/>
-                <input type="text" placeholder='Your email address' />
-                <Button>Subscribe</Button>
-
-            </div>
+            <Newsletter/>
 
             </div>
         </section>

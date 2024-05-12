@@ -1,0 +1,15 @@
+
+/*
+.listingPage .rightContent .productRow{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}*/
+
+.listingPage .rightContent .productRow .item{
+    width: 20%; /*18%*/
+    /* height: 280px; 300px*/
+    /* background: #ccc;
+     margin-left: 20px;*/
+    padding: 0px 10px 20px 10px;
+}

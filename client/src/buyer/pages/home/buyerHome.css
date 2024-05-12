@@ -39,6 +39,73 @@
    /* background: #ccc;
     margin-left: 20px;*/
     padding: 15px 10px;
-    
-
 }
+
+
+.homeProductsRow2 .productSlider .item{
+   /* padding: 0px 10px !important; 0px 15px*/
+  /* padding-right: 20px !important;*/
+   padding: 10px 5px;
+   padding-right: 20px !important;
+}
+/*
+.homeProductsRow2 .productSlider .slick-current .productThumb{
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+}*/
+
+
+.topProductsSection{
+    padding: 35px 0px;
+}
+
+/* News Letter */
+
+.newsLetterSection{
+    width: 100%;
+    height: auto;
+}
+
+.newsLetterSection .box{
+   /* background: url(./bluebanner2.webp);*/
+    background: url(./yellobanner.jpg);
+    width: 100%;
+    height: auto;
+    padding: 20px 80px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.newsLetterSection .box .info{
+    width: 60%;
+}
+
+.newsLetterSection .box .info  h2{
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 60px;
+    opacity: 0.9;
+}
+
+.newsLetterSection .box .info  p{
+    font-size: 20px;
+    font-weight: 300;
+    opacity: 0.8;
+}
+
+.newsLetterSection .box .img{
+    width: 40%;
+    
+}
+
+.newsLetterSection .box .img img{
+   height: 350px;
+   position: relative;
+   bottom: 0px;
+}
+
+.newsLetterSection .box .newsLetterBanner{
+    position: relative !important;
+    left: 0px !important;
+    bottom: inherit !important;
+}
+
