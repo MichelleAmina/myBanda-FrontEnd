@@ -132,7 +132,7 @@
 
 .productThumb .brand a{
     text-decoration: none;
-    color: blue;
+    color: #0A205A;
     font-size: 13px;
 }
 
@@ -153,13 +153,13 @@
 .productThumb button{
     font-size: 10px !important;
     color: #fff !important;
-    background: #5072A7;
+    background: #0A205A;
     padding: 5px 10px !important;
     text-transform: capitalize;  
 }
 
 .productThumb button:hover{
-    background: #1921e6;
+    background: #1338a1;;
     color: #fff !important;
 }
 

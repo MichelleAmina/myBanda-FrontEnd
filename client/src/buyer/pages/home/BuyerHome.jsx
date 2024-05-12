@@ -3,8 +3,24 @@ import HomeSlider from './slider/Slider'
 import Carousel from '../../components/carousel/Carousel'
 import Banners from '../../components/banners/Banners'
 import HomeProduct from '../../components/product/HomeProduct'
+import Slider from 'react-slick'
+import TopProducts from './topProducts/TopProducts'
+import Newsletter from '../../components/newsletter/Newsletter'
 
 function BuyerHome(){
+
+    var settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1, 
+        fade: false,
+        arrows: true,
+        autoplay: 3000,
+       
+    };
+
     return(
         <div>
             <HomeSlider/>
@@ -82,7 +98,7 @@ function BuyerHome(){
 
 
             {/* second product displays start here*/}
-            <section className='homeProducts pt-0'>
+            <section className='homeProducts homeProductsRow2 pt-0'>
                 <div className="container-fluid">
                     <div className="d-flex align-items-center">
                      <h2 className='hd mb-0 mt-0'>Daily Best Sales</h2>
@@ -100,9 +116,36 @@ function BuyerHome(){
                         
                      </ul>
                     </div>
+                    {/*remove second br*/}
+                    <br /><br />
                     <div className="row">
-                        <div className="col-md-4">
+                        <div className="col-md-3 pr-5">
                             <img src="/sale2.jpeg" alt="" className='w-100'/>
+                        </div>
+
+                        <div className="col-md-9">
+                        <Slider {...settings} className='productSlider'>
+                            <div className="item">
+                                <HomeProduct tag="sale"/>
+                            </div>
+                            <div className="item">
+                                <HomeProduct tag="new"/>
+                            </div>
+                            <div className="item">
+                                <HomeProduct />
+                            </div>
+                            <div className="item">
+                                <HomeProduct tag="hot"/>
+                            </div>
+                            <div className="item">
+                                <HomeProduct tag="hot"/>
+                            </div>
+                            <div className="item">
+                                <HomeProduct tag="sale"/>
+                            </div>
+                            
+                            
+                        </Slider>
                         </div>
                     </div>
 
@@ -111,6 +154,52 @@ function BuyerHome(){
                 </div>
             </section>
 
+            <section className='topProductsSection'>
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col">
+                            <TopProducts title="Top Selling"/>
+
+                        </div>
+
+                        <div className="col">
+                            <TopProducts title="Trending Products"/>
+                            
+                        </div>
+
+                        <div className="col">
+                            <TopProducts title="Recently Added"/>
+                            
+                        </div>
+
+                        <div className="col">
+                            <TopProducts title="Top Rated"/>
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+                {/*choose if i want to move this to footer section*/}
+            <section className='newsLetterSection'>
+                <div className="container-fluid">
+                    <div className="box d-flex align-items-center">
+                        <div className="info">
+                            <h2>Lorem ipsum dolor sit amet <br/>
+                            consectetur adipis</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur.</p>
+                            <br />
+                            <Newsletter/>
+                        </div>
+
+                        <div className="img">
+                            <img src="./deliveryman.png" alt="" className='w-100'/>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+                {/*insert footer section in Buyer.jsx file*/}
             <br /> <br /> <br /> <br /> <br /> <br /> <br />
 
 

@@ -6,20 +6,36 @@ header{
     background: #fff;
 }
 
+/*
 .headerWrapper{
     position: sticky;
     top: 0px;
     z-index: 1000;
     background: #fff;
 }
+*/
 
-.headerWrapper.fixed{
+.headerWrapper{
+    transition: all 0.3s ease-in-out;
+    background: #fff;
+    /*box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.05);*/
     position: fixed;
     top: 0px;
     left: 0px;
     width: 100%;
     z-index: 1000;
-    background: #fff;
+}
+
+.headerWrapper.fixed{
+    top: -90px;
+    /*position: fixed;
+    left: 0px;
+    width: 100%;
+    z-index: 1000;  */
+}
+
+.afterHeader{
+    margin-top: 150px;
 }
 
 header .headerSearch {
@@ -133,8 +149,8 @@ header .headerTabs li span .badge{
 
     /*color: black;
     background: rgba(255, 255, 0, 0.557);*/
-    color: #fff;
-    background: rgba(0, 0, 255, 0.9);
+    color: black;
+    background:  #EBC606;
     position: absolute;
     top: -8px;
     left: 13px;

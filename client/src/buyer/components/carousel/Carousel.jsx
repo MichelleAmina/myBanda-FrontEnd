@@ -32,7 +32,9 @@ function Carousel(){
         slidesToShow: 10,
         slidesToScroll: 1, 
         fade: false,
-        arrows: true
+        arrows: true,
+        autoplay: 2000,
+        centerMode: true
     };
 
     return(
