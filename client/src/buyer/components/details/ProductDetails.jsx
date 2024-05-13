@@ -2,6 +2,8 @@ import './productDetails.css'
 import {NavLink} from 'react-router-dom'
 import { useRef, useState} from 'react';
 import Sidebar from '../sidebar/Sidebar'
+import HomeProduct from '../product/HomeProduct';
+
 
 
 import Slider from 'react-slick'
@@ -45,6 +47,18 @@ function ProductDetails(){
       
     };
 
+    var related = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1, 
+        fade: false,
+        arrows: true,
+        autoplay: 3000,
+       
+    };
+
     const goto=(url, index)=>{
         setZoomImage(url)
         zoomSlider.current.slickGoto(index)
@@ -81,8 +95,6 @@ function ProductDetails(){
             </div>
             <div className="container detailsContainer pt-1 pb-3">
                 <div className="row">
-
-
             {/*Product Zoom code starts here*/}
             <div className="col-md-5">
                 <div className="productZoom">
@@ -178,16 +190,16 @@ function ProductDetails(){
                     <div className="customTabs">
                         <ul className='list list-inline'>
                             <li className='list-inline-item'>
-                                <Button onClick={() => setActiveTabs(0)}>Description</Button>
+                                <Button className={`${activeTabs === 0 && 'active'}`} onClick={() => setActiveTabs(0)}>Description</Button>
                             </li>
                             <li className='list-inline-item'>
-                                <Button onClick={() => setActiveTabs(1)}>Additional Info</Button>
+                                <Button className={`${activeTabs === 1 && 'active'}`} onClick={() => setActiveTabs(1)}>Additional Info</Button>
                             </li>
                             <li className='list-inline-item'>
-                                <Button onClick={() => setActiveTabs(2)}>Vendor</Button>
+                                <Button className={`${activeTabs === 2 && 'active'}`} onClick={() => setActiveTabs(2)}>Vendor</Button>
                             </li>
                             <li className='list-inline-item'>
-                                <Button onClick={() => setActiveTabs(3)}>Reviews (3)</Button>
+                                <Button className={`${activeTabs === 3 && 'active'}`} onClick={() => setActiveTabs(3)}>Reviews (3)</Button>
                             </li>
                         </ul>
                         
@@ -325,14 +337,14 @@ function ProductDetails(){
                             <div className="tabContent pt-2">
                                 <div className="row">
                                     <div className="col-md-8">
-                                        <h4>Customer Reviews</h4>
+                                        <h4 className='mb-4'>Customer Reviews</h4>
 
                                         <div className="card p-3 reviewsCard flex-row">
                                             <div className="image">
                                                 <div className="rounded-circle">
-                                                    <img src="/userAvatar.jpg" alt="" />
+                                                    <img src="/userAvatar3.png" alt="" />
                                                 </div>
-                                                <span className='text-b d-block text-center font-weight-bold'>Anna</span>
+                                                <span className='text-y d-block text-center font-weight-bold'>Anna</span>
                                             </div>
 
                                             <div className="info ps-4">
@@ -351,9 +363,9 @@ function ProductDetails(){
                                         <div className="card p-3 reviewsCard flex-row">
                                             <div className="image">
                                                 <div className="rounded-circle">
-                                                    <img src="/userAvatar.jpg" alt="" />
+                                                    <img src="/userAvatar3.png" alt="" />
                                                 </div>
-                                                <span className='text-b d-block text-center font-weight-bold'>Anna</span>
+                                                <span className='text-y d-block text-center font-weight-bold'>Anna</span>
                                             </div>
 
                                             <div className="info ps-4">
@@ -372,9 +384,9 @@ function ProductDetails(){
                                         <div className="card p-3 reviewsCard flex-row">
                                             <div className="image">
                                                 <div className="rounded-circle">
-                                                    <img src="/userAvatar.jpg" alt="" />
+                                                    <img src="/userAvatar3.png" alt="" />
                                                 </div>
-                                                <span className='text-b d-block text-center font-weight-bold'>Anna</span>
+                                                <span className='text-y d-block text-center font-weight-bold'>Anna</span>
                                             </div>
 
                                             <div className="info ps-4">
@@ -430,7 +442,50 @@ function ProductDetails(){
                                     </div>
 
 
-                                    <div className="col-md-4">
+                                    <div className="col-md-4 ps-3">
+                                        <h4>Average Reviews</h4>
+                                        <div className="d-flex align-items-center mt-3 mb-3">
+                                            <Rating name="half-rating-read" defaultValue={4.0} precision={0.5} readOnly />
+                                            <strong className='ms-3'>4.8 out of 5</strong>
+                                    
+                                        </div>
+
+
+                                        <div className="progressBarBox d-flex align-items-center">
+                                            <span className='me-3'>5 stars:</span>
+                                            <div class="progress" style={{width:'75%', height:'15px'}}>
+                                                <div class="progress-bar" style={{width:"70%"}}>70%</div>
+                                            </div>
+                                        </div>
+                                    
+                                        <div className="progressBarBox d-flex align-items-center">
+                                            <span className='me-3'>4 stars:</span>
+                                            <div class="progress" style={{width:'75%', height:'15px'}}>
+                                                <div class="progress-bar" style={{width:"60%"}}>60%</div>
+                                            </div>
+                                        </div>
+
+                                        <div className="progressBarBox d-flex align-items-center">
+                                            <span className='me-3'>3 stars:</span>
+                                            <div class="progress" style={{width:'75%', height:'15px'}}>
+                                                <div class="progress-bar" style={{width:"30%"}}>30%</div>
+                                            </div>
+                                        </div>
+
+                                        <div className="progressBarBox d-flex align-items-center">
+                                            <span className='me-3'>2 stars:</span>
+                                            <div class="progress" style={{width:'75%', height:'15px'}}>
+                                                <div class="progress-bar" style={{width:"80%"}}>80%</div>
+                                            </div>
+                                        </div>
+
+                                        <div className="progressBarBox d-flex align-items-center">
+                                            <span className='me-3'>1 stars:</span>
+                                            <div class="progress" style={{width:'75%', height:'15px'}}>
+                                                <div class="progress-bar" style={{width:"50%"}}>50%</div>
+                                            </div>
+                                        </div>
+                                       
 
                                     </div>
                                 </div>
@@ -440,6 +495,32 @@ function ProductDetails(){
                         
                         
                     </div>
+                </div>
+
+                <div className="relatedProducts pt-5 pb-4">
+                    <h2 className='mb-4 mt-0'>Similar Products</h2>
+                    <Slider {...related} className='productSlider'>
+                        <div className="item">
+                            <HomeProduct tag="sale"/>
+                        </div>
+                        <div className="item">
+                            <HomeProduct tag="new"/>
+                        </div>
+                        <div className="item">
+                            <HomeProduct />
+                        </div>
+                        <div className="item">
+                            <HomeProduct tag="hot"/>
+                        </div>
+                        <div className="item">
+                            <HomeProduct tag="hot"/>
+                        </div>
+                        <div className="item">
+                            <HomeProduct tag="sale"/>
+                        </div>
+                        
+                            
+                    </Slider>
                 </div>
 
 
