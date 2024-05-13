@@ -17,6 +17,16 @@
   color: #EBC606;
 }
 
+
+
+
+.button-b{
+  background: #0A205A;
+  color: white;
+  text-transform: capitalize;
+  font-size: 16px;
+}
+
   
 .container-fluid{
     padding: 0px 45px;
@@ -452,13 +462,14 @@ ul.breadcrumb li a:hover{
 
 /* DETAILS PAGE*/
 .detailsContainer{
-  max-width: 95%;
+  max-width: 75%;
   padding: 10px 0px;
+  margin: auto;
 
 }
 
 .detailsPage .productInfo{
-  padding-left: 20px;
+  padding-left: 30px;
 }
 
 
@@ -493,6 +504,10 @@ ul.breadcrumb li a:hover{
   padding: 0px;
   overflow: hidden;
   border-radius: 10px;
+}
+
+.zoomSlider *{
+  outline: none !important;
 }
 
 .zoomSlider{
@@ -536,6 +551,221 @@ ul.breadcrumb li a:hover{
   left: -10px !important;
 }
 
+.productSize{
+  width: 100%;
+  height: auto;
+  padding: 10px 0px;
+}
+
+.productSize ul li{
+  margin-right: 10px !important;
+}
+
+.productSize ul li a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px !important;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000 !important;
+  width: 60px;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+.productSize ul li a.active{
+  background: #EBC606  !important;
+}
+
+.addCartSection{
+  width: 100%;
+  height: auto;
+}
+
+
+.addCartSection .counterSec{
+  width: 100px;
+  height: 45px; /*50px*/
+  border-radius: 10px;
+  border: 1px solid #0A205A;;
+  overflow: hidden;
+  padding: 10px;
+  position: relative;
+}
+
+.addCartSection .counterSec input{
+  width: 60px;
+  height: 25px; /*30px*/
+  padding: 5px;
+  border: 0px;
+  outline: none;
+  text-align: center;
+}
+
+/* HIDE APPEARANCE OF INCREASE & DECREASE INPUT BUTTONS*/
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number]{
+  -moz-appearance: textfield;
+}
+
+.addCartSection .counterSec .arrow{
+  position: absolute;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.addCartSection .counterSec .arrow.plus{
+  top: 0px;
+  right: 10px;
+}
+
+.addCartSection .counterSec .arrow.minus{
+  bottom: 0px;
+  right: 10px;
+}
+
+.addCartSection .addToCartBtn{
+  background: #0A205A;
+  color: white;
+  text-transform: capitalize;
+  font-size: 16px;
+  padding: 10px 25px;
+  border-radius: 10px;
+}
+
+.addCartSection button{
+  height: 45px;
+  min-width: inherit !important;
+}
+
+.addCartSection button:hover{
+  transform: translateY(-2px);
+}
+
+.addCartSection button.move{
+  position: relative;
+}
+
+.addCartSection .addToCartBtn:hover{
+  background: #1338a1
+}
+
+.addCartSection .addToCartBtn svg{
+  margin-right: 10px;
+}
+
+.addCartSection .favoriteBtn{
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 10px 15px;
+
+}
+
+.addCartSection .favoriteBtn:hover{
+  background: #0A205A;
+}
+
+.addCartSection .favoriteBtn:hover svg{
+  color: white;
+}
+
+.addCartSection .favoriteBtn svg{
+  color: #0A205A;
+  opacity: 0.5;
+}
+
+
+/* Details page tabs*/
+
+.detailsPageTabs{
+  border-radius: 10px;
+}
+
+.detailsPage .customTabs ul li{
+  margin-right: 20px;
+}
+
+.detailsPage .customTabs ul li button{
+  padding: 5px 20px !important;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  font-size: 14px;
+  text-transform: capitalize !important;
+  color: #000;
+}
+
+.card{
+  border-radius: 10px !important;
+}
+
+.reviewsCard{
+  margin-bottom: 10px;
+}
+
+.reviewsCard .image{
+  width: 50px;
+}
+
+.reviewsCard .rounded-circle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  border-radius: 1px solid black;
+
+}
+
+.reviewsCard .rounded-circle img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+}
+
+.reviewsCard .info h5{
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.reviewsCard .info p{
+  opacity: 0.8;
+}
+
+.reviewForm .form-group{
+  margin-bottom: 20px;
+}
+
+.reviewForm .form-group .form-control{
+  height: 40px;
+  font-size: 16px;
+  border-radius: 4px !important;
+  padding: 10px;
+}
+
+.reviewForm .form-group textarea.form-control{
+  height: 150px;
+  padding: 10px 20px;
+}
+
+.reviewForm .form-group button{
+  background:  #EBC606;
+  color: white;
+  text-transform: capitalize;
+  font-size: 16px;
+  padding: 10px 25px;
+  border-radius: 4px;
+
+}
 
   
   
