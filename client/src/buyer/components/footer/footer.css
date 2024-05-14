@@ -1,0 +1,131 @@
+.footerWrapper{
+    padding: 15px 0px;
+    width: 100%;
+}
+
+.footerWrapper .footerBoxes .box{
+    background: #F4F6FA;
+    padding: 15px 20px;
+    border-radius: 10px;
+}
+
+.footerWrapper .footerBoxes .box img{
+    height: 50px;
+    width: 50px;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+ 
+}
+
+.footerWrapper .footerBoxes .box:hover img{
+    transform: translateY(-8px);
+}
+
+.footerWrapper .footerBoxes .box .info{
+    padding-left: 15px;
+}
+
+.footerWrapper .footerBoxes .box .info h4{
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 10px;
+    /*margin-top: 20px;*/
+    
+}
+
+.footerWrapper .footerBoxes .box .info p{
+    font-size: 14px;
+    margin-bottom: 0px;
+    opacity: 0.7;
+}
+
+footer{
+    padding: 40px 0px;
+    padding-bottom: 0px;
+}
+
+footer .part1 svg{
+    color:  #0A205A;
+    margin-right: 5px;
+}
+
+footer h3{
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+footer .part2 ul{
+    padding-left: 0px;
+}
+
+footer .part2 ul li{
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+footer .part2 ul li a{
+    color: #000;
+    opacity: 0.8;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+footer .part2 ul li a:hover{
+    text-decoration: none;
+    color: #EBC606;
+    opacity: 1;
+    padding-left: 5px;
+}
+
+footer .lastStrip{
+    padding: 10px 0px;
+}
+
+.phNo svg{
+    font-size: 40px !important;
+    opacity: 0.8;
+    margin-right: 10px;
+}
+
+.phNo h4{
+    color: #0A205A !important;
+    font-size: 25px;
+    line-height: 35px;  
+}
+
+.phNo p{
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+footer .lastStrip .part3 h5{
+    margin-bottom: 0px;
+}
+
+footer .lastStrip .part3 ul{
+    margin-bottom: 0px;
+    padding-left: 10px;
+}
+
+footer .lastStrip .part3 ul li a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    background: #0A205A;
+    border-radius: 50%;
+    transition: all 0.2s ease-in-out !important;
+}
+
+footer .lastStrip .part3 ul li a svg{
+    color: #fff !important;
+    font-size: 20px;
+
+}
+
+footer .lastStrip .part3 ul li a:hover{
+    background: rgb(0, 106, 255);
+}

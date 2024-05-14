@@ -200,7 +200,7 @@ function BuyerHome(){
             </section>
 
                 {/*insert footer section in Buyer.jsx file*/}
-            <br /> <br /> <br /> <br /> <br /> <br /> <br />
+            <br /> 
 
 
 

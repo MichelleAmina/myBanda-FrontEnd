@@ -66,7 +66,7 @@ function Nav() {
                     </div>
 
                     <div className="col-sm-2 part3 d-flex align-items-center">
-                        <div className="phNo d-flex align-items-center ml-auto">
+                        <div className="phNo d-flex align-items-center ms-auto">
                             <AddIcCallOutlinedIcon/>
                             <div className="info ml-3">
                                 <h4 className='mb-0'>1234-567</h4>
