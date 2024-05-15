@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.seller-products-container {
+  display: flex;
+}
+
+.seller-products-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.header-icons {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: flex-end;
+}
+
+.seller-products-heading h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.seller-products-heading h4 {
+  font-size: 15px;
+  color: #646262;
+  margin-bottom: 20px;
+}
+
+.setup-guide-container {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.subheading h2 {
+  font-size: 20px;
+}
+
+.white-container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  flex: 1; 
+}
+
+.divider {
+  margin: 20px -20px; 
+  border-bottom: 1px solid #ccc;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.search-icon {
+  margin-right: 0px; 
+ 
+}
+
+
+
+
+.add-products h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.button-container {
+  display: flex;
+  align-items: flex-start !important;
+  margin-left: 0; 
+}
+
+.add-product-button,
+.import-button {
+  background-color: #334eac;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 20px; 
+  margin-top: 10px;
+
+}
+
+.add-product-button svg,
+.import-button svg {
+  margin-right: 5px;
+}
+
+
+.button-spacing {
+  margin-left: 10px;
+}
+
+.tip-heading {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.lightbulb-icon {
+  margin-right: 10px;
+  font-size: 40px;
+}
+.tip h2{
+  margin-top: 10px;
+  font-size: 25px;
+}
+.tip h3{
+  font-size: 15px
+}
