@@ -18,9 +18,9 @@
    
 }
 
-.filterTab li:hover a{
+.filterTab li:hover a, .filterTab li a.active{
     color: blue !important;
-    transform: translateY(-20px);
+    transform: translateY(-10px);
     cursor: pointer;
     
 }

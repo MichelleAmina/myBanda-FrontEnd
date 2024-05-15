@@ -20,6 +20,13 @@ import Buyer from './buyer/Buyer';
 import BuyerAbout from './buyer/pages/about/BuyerAbout';
 import Listing from './buyer/pages/listing/Listing';
 import ProductDetails from './buyer/components/details/ProductDetails';
+// Banda Admin
+import Admin from './admin/Admin';
+import List from './admin/pages/list/List'
+import Single from './admin/pages/single/Single'
+
+
+
 function App() {
   return (
     // Please add your routes and nested routes to this page.
@@ -33,6 +40,17 @@ function App() {
           <Route path='productDetails' element={<ProductDetails/>}></Route>
           <Route path='about' element={<BuyerAbout/>}></Route>
         </Route>
+        {/*Banda Admin routes start here*/}
+        <Route path='/banda_admin' element={<Admin/>}>
+          <Route path='customers'></Route>
+          <Route path='delivery'></Route>
+          <Route path='vendors'>
+            <Route index element={<List/>}></Route>
+            <Route path=':sellerId' element={<Single/>}></Route>
+          </Route>
+
+        </Route>
+      
         {/* set it to this so that i can code change it once we decide on the initial landing page*/}
         <Route path="*" element={<Navigate to="/login" />} />
         <Route path="/sellerdash" element={<Sellerdash />} />
