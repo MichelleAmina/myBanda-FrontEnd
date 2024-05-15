@@ -4,8 +4,6 @@
     margin: auto;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-
-
 }
 
 .buyerNav .browseButton{
@@ -17,6 +15,27 @@
     background: #0A205A;
     color: white !important;
     
+}
+
+.buyerNav .browseButton:hover{
+    background: #EBC606;
+    border: 1px solid #EBC606;
+}
+
+.buyerNav .part1{
+    position: relative;
+}
+
+.buyerNav .part1 .dropdown_Menu{
+    position: absolute;
+    background: #fff;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+    padding: 10px 0px;
+    z-index: 100;
+    top: 100%;
+    width: 400px;
+    left: 20px;
+
 }
 
 .buyerNav nav ul li{
@@ -52,6 +71,7 @@
     font-size: 12px;
     opacity: 0.7;
 }
+
 
 .buyerNav nav .dropdown_menu{
     position: absolute;

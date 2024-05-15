@@ -6,8 +6,18 @@ import HomeProduct from '../../components/product/HomeProduct'
 import Slider from 'react-slick'
 import TopProducts from './topProducts/TopProducts'
 import Newsletter from '../../components/newsletter/Newsletter'
+import { useEffect, useState } from 'react'
 
-function BuyerHome(){
+function BuyerHome(props){
+
+    // All the data 
+    const [prodData, setProdData] = useState(props.data)
+    // All the categories appearing only a once 
+    const [categories, setCategories] = useState([])
+    const [activeCategory, setActiveCategory] = useState()
+    // Highlight index of active tab/category 
+    const [activeCategoryIndex, setActiveCategoryIndex] = useState(0)
+    const [activeCategoryData, setActiveCategoryData] = useState([])
 
     var settings = {
         dots: false,
@@ -21,6 +31,66 @@ function BuyerHome(){
        
     };
 
+    /*
+    const catArr = []
+    
+    // To get the filtered list of categories 
+    useEffect(() => {
+        prodData.length !== 0 &&
+        prodData.map((item, index) => {
+            //console.log(item.category)
+            catArr.push(item.category)
+        })
+        const filterList = catArr.filter((item, index) => catArr.indexOf(item) === index)
+        setCategories(filterList)
+        //console.log("filtered list", filterList)
+        //console.log("catArr", catArr)
+
+        setActiveCategory(filterList[0])
+        
+    }, [])
+
+    /*
+    useEffect(() => {
+        let arr = []
+        setActiveCategoryData(arr)
+        prodData.length !== 0 &&
+        prodData.map((item, index) => {
+            //console.log(item)
+            if(item.category === activeCategory){
+                setActiveCategoryData(item)
+            }
+        })
+
+       
+    }, [activeCategory, activeCategoryData])
+
+    console.log("category data",activeCategoryData)*/
+
+    useEffect(() => {
+        if (prodData.length !== 0) {
+            const uniqueCategories = new Set(prodData.map(item => item.category));
+            setCategories([...uniqueCategories]);
+            setActiveCategory([...uniqueCategories][0]);
+        }
+    }, [prodData]);
+    
+
+    useEffect(() => {
+        if (activeCategory) {
+            const filteredData = prodData.filter(item => item.category === activeCategory);
+            setActiveCategoryData(filteredData);
+        }
+    }, [activeCategory, prodData]);
+
+    console.log("category data", activeCategoryData)
+
+    
+
+    
+
+
+
     return(
         <div>
             <HomeSlider/>
@@ -33,40 +103,52 @@ function BuyerHome(){
                      <h2 className='hd mb-0 mt-0'>Popular Products</h2>
                      {/*ml-auto switched to ms-auto*/}
                      <ul className='list list-inline ms-auto filterTab mb-0'>
-                        <li className='list-inline-item'>
-                            <a className='cursor'>All</a>
-                        </li>
-                        <li className='list-inline-item'>
-                            <a className='cursor'>Electronics</a>
-                        </li>
-                        <li className='list-inline-item'>
-                            <a className='cursor'>Clothing</a>
-                        </li>
-                        <li className='list-inline-item'>
-                            <a className='cursor'>Beauty</a>
-                        </li>
-                        <li className='list-inline-item'>
-                            <a className='cursor'>Home Goods</a>
-                        </li>
-                        <li className='list-inline-item'>
-                            <a className='cursor'>Outdoor</a>
-                        </li>
+                        {
+                            categories.length !== 0 &&
+                            categories.slice(3,10).map((category, index) => {
+                                return(
+                                    <li className='list list-inline-item'>
+                                        <a className={`cursor text-capitalize ${activeCategoryIndex === index ? 'active' : ''}`}
+                                        onClick={() => {
+                                            setActiveCategoryIndex(index);
+                                            setActiveCategory(categories[index]);
+                                        }}
+                                        >
+                                            {category}
+                                        </a>
+                                    </li>
+                                )
+                            })
+                        }
+                        
                      </ul>
                     </div>
 
                     {/*product displays start here*/}
                     <div className="productRow">
+                        {
+                            activeCategoryData.length !== 0 &&
+                            activeCategoryData.map((item, index) => {
+                                return(
+                                    <div className="item" key={index}>
+                                        <HomeProduct item={item}/>
+                                        {console.log("this is the item", item)}
+                                    </div>
+                                )
+                            })
+                        }
+                        {/*
                         <div className="item">
-                            <HomeProduct tag="sale"/>
+                            <HomeProduct/>
                         </div>
                         <div className="item">
-                            <HomeProduct  tag="hot"/>
+                            <HomeProduct  />
                         </div>
                         <div className="item">
                             <HomeProduct  tag="new"/>
                         </div>
                         <div className="item">
-                            <HomeProduct  tag="hot"/>
+                            <HomeProduct  />
                         </div>
                         <div className="item">
                             <HomeProduct />
@@ -78,7 +160,7 @@ function BuyerHome(){
                             <HomeProduct  tag="best"/>
                         </div>
                         <div className="item">
-                            <HomeProduct  tag="hot"/>
+                            <HomeProduct  />
                         </div>
                         <div className="item">
                             <HomeProduct/>
@@ -89,9 +171,10 @@ function BuyerHome(){
                         <div className="item">
                             <HomeProduct  tag="best"/>
                         </div>
-                        <div className="item"  tag="hot">
+                        <div className="item"  >
                             <HomeProduct/>
                         </div>
+                    */}
                     </div>
                 </div>
             </section>
@@ -126,22 +209,22 @@ function BuyerHome(){
                         <div className="col-md-9">
                         <Slider {...settings} className='productSlider'>
                             <div className="item">
-                                <HomeProduct tag="sale"/>
-                            </div>
-                            <div className="item">
-                                <HomeProduct tag="new"/>
+                                <HomeProduct />
                             </div>
                             <div className="item">
                                 <HomeProduct />
                             </div>
                             <div className="item">
-                                <HomeProduct tag="hot"/>
+                                <HomeProduct />
                             </div>
                             <div className="item">
-                                <HomeProduct tag="hot"/>
+                                <HomeProduct />
                             </div>
                             <div className="item">
-                                <HomeProduct tag="sale"/>
+                                <HomeProduct />
+                            </div>
+                            <div className="item">
+                                <HomeProduct />
                             </div>
                             
                             

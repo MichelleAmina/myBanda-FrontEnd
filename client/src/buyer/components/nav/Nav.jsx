@@ -5,20 +5,65 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
 import HeadsetMicOutlinedIcon from '@mui/icons-material/HeadsetMicOutlined';
 import AddIcCallOutlinedIcon from '@mui/icons-material/AddIcCallOutlined';
+import { useEffect, useState } from 'react';
 
 
 
-function Nav() {
+function Nav(data) {
+    //console.log(data)
+
+    const [isOpenDropDown, setIsOpenDropDown] = useState(false)
+  
+
+    
+
     return(
         <div className="buyerNav d-flex align-items-center">
             <div className="container-fluid">
                 <div className="row position-relative" >
                     <div className="col-sm-3 part1 d-flex align-items-center">
-                        <Button className='browseButton'>
-                            <GridViewOutlinedIcon/> &nbsp;
-                            Browse All Categories
-                            <KeyboardArrowDownIcon/>
+                        <Button className='browseButton' onClick={()=>setIsOpenDropDown(!isOpenDropDown)}>
+                            <GridViewOutlinedIcon/> &nbsp;Browse All Categories<KeyboardArrowDownIcon/>
                         </Button>
+                        {isOpenDropDown !== false &&
+                        <div className="row dropdown_Menu">
+                            <div className="col">
+                            <ul className=''>
+                                <li>Home Decor</li>
+                                <li>Appliances</li>
+                                <li>Tools & Hardware</li>
+                                <li>Clothing</li>
+                                <li>Accessories</li>
+                                <li>Beauty & Skincare</li>
+                            </ul>
+
+                            </div>
+                            <div className="col">
+                                <ul className=''>
+                                    <li>Outdoor</li>
+                                    <li>Elctronics</li>
+                                    <li>Health & Wellness</li>
+                                    <li>Toys & Games</li>
+                                    <li>Books & Stationary</li>
+                                    <li>Food & Beverages</li>
+                                </ul>
+
+                            </div>
+                        </div>
+                            
+                                
+
+                    
+                        }
+
+                        
+                        
+                        
+                        {/*{
+                            navData.length !== 0 && navData.map((item, index) => {
+                                //console.log(item.category)
+                            })
+                        }*/}
 
                     </div>
 
@@ -42,7 +87,6 @@ function Nav() {
                                     <Button className='navButton'>
                                         <NavLink>Pages <KeyboardArrowDownIcon/></NavLink>
                                     </Button>
-
                                     <div className="dropdown_menu">
                                         <ul style={{paddingLeft:'0px'}}>
                                             <li><Button><NavLink to='/buyer/about'>Login/Register</NavLink></Button></li>
@@ -51,10 +95,12 @@ function Nav() {
                                             <li><Button><NavLink to='/buyer/about'>Wishlist</NavLink></Button></li>
                                             <li><Button><NavLink to='/buyer/about'>About Us</NavLink></Button></li>
                                             <li><Button><NavLink to='/buyer/about'>Contact</NavLink></Button></li> 
-                                            
+
                                         </ul>
 
                                     </div>
+
+                              
                                 </li>
                                 <li className='list-inline-item'>
                                     <Button className='navButton'><NavLink>Contact</NavLink></Button>

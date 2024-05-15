@@ -16,7 +16,8 @@ import { useEffect, useState, useRef } from 'react';
 import axios from 'axios'
 
 
-function Header(){
+function Header(props){
+    //console.log("from header,",props)
 
     const [isOpenDropdown, setIsOpenDropdown] = useState(false)
     const headerRef = useRef()
@@ -29,7 +30,6 @@ function Header(){
         'Accessories',
         'Beauty & Skincare',
         'Outdoor Gear',
-        'Office Supplies',
         'Electronics',
         'Health & Wellness',
         'Toys & Games',
@@ -43,6 +43,7 @@ function Header(){
     useEffect(() => {
         getCountry('https://countriesnow.space/api/v0.1/countries/')
     },[])
+
     const getCountry = async(url) => {
         try{
             await axios.get(url).then((res) => {
@@ -65,7 +66,7 @@ function Header(){
     useEffect(() => {
         window.addEventListener("scroll", () => {
             let position = window.pageYOffset;
-            console.log(position)
+            //console.log(position)
             if(position> 100){
                 headerRef.current.classList.add('fixed')
             }else{
@@ -149,7 +150,7 @@ function Header(){
             </div>
             </header>
 
-            <Nav/>
+            <Nav data={categories}/>
         </div>
 
         <div className="afterHeader">

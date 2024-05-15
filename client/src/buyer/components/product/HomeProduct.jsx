@@ -8,14 +8,21 @@ import Tooltip from '@mui/material/Tooltip';
 
 import './homeProduct.css'
 import { NavLink } from "react-router-dom"
+import { useState, useEffect } from 'react';
 
-function HomeProduct(props){
-    return(
-        <div className="productThumb">
-            {
+
+ /* {
                 props.tag!==null && props.tag!==undefined &&
                 <span className={`badge ${props.tag}`}>{props.tag}</span>
-            }
+            }*/
+
+function HomeProduct({product}){
+
+    console.log("home products", product)
+
+    return(
+        <div className="productThumb">
+          
             
             <NavLink>
                 <div className="imgWrapper">
@@ -23,9 +30,7 @@ function HomeProduct(props){
                     <div className="overlay transition">
                         <ul className='list list-inline mb-0'>
                             <li className='list-inline-item'>
-                                
-                                    <NavLink className='cursor' tooltip="Add to Wishlist!"><FavoriteBorderOutlinedIcon/></NavLink>
-                                
+                                <NavLink className='cursor' tooltip="Add to Wishlist!"><FavoriteBorderOutlinedIcon/></NavLink>   
                             </li>
                             <li className='list-inline-item'>
                                 <NavLink className='cursor' tooltip="Compare"><CompareArrowsOutlinedIcon/></NavLink>
@@ -41,7 +46,7 @@ function HomeProduct(props){
             </NavLink>
             
             <div className="info">
-                <span className='d-block catName'>Shoes</span>
+                <span className='d-block catName'>shoe</span>
                 <h4 className='title'>Nike Sneaker Shoe, Outdoor Running </h4>
                 <Rating name="half-rating-read" defaultValue={3.5} precision={0.5} readOnly />
                 <span className='d-block brand'>By <NavLink href="">Lorem</NavLink></span>
