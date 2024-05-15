@@ -71,7 +71,7 @@ function Nav(data) {
                         <nav>
                             <ul className='list list-inline mb-0'>
                                 <li className='list-inline-item'>
-                                    <Button className='navButton'><NavLink to='/buyer'>Home</NavLink></Button>
+                                    <Button className='navButton'><NavLink to='/my_banda'>Home</NavLink></Button>
                                 </li>
                                 <li className='list-inline-item'>
                                     <Button className='navButton'><NavLink to='about'>About</NavLink></Button>

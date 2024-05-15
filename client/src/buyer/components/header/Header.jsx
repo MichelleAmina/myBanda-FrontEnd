@@ -13,6 +13,7 @@ import Select from '../selectDrop/select';
 import Nav from '../nav/Nav'
 
 import { useEffect, useState, useRef } from 'react';
+import {NavLink} from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -84,7 +85,8 @@ function Header(props){
                 <div className="row">
                     <div className="col-sm-2">
                         {/*<img src="logo2.svg" alt="Logo" className='header-logo'/>*/}
-                        <h1>Logo</h1>
+                        <NavLink className='header-logo' to='/my_banda'><h1>MyBanda</h1></NavLink>
+                        
                     </div>
                     {/* header Search starts here */}
                     <div className="col-sm-5 d-flex align-items-center">

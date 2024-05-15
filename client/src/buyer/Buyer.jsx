@@ -9,7 +9,7 @@ import axios from 'axios'
 function Buyer(){
     const location = useLocation()
 
-    const renderHomePage = location.pathname === '/buyer';
+    const renderHomePage = location.pathname === '/my_banda';
 
     const [productData, setProductData] = useState([]);
     

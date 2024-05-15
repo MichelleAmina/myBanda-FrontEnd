@@ -19,7 +19,7 @@ const DeliverySidebar = () => {
                 {DeliverySidebarData.map((item, index) => {
                     return (
                         <Link to={item.path} key={index} style={{textDecoration: 'none'}}>
-                            <div className={selected === index ? "delivery-menu-item active" : "delivery-menu-item" }
+                            <div className={selected === index ? "delivery-menu-item " : "delivery-menu-item" }
                                 onClick={() => setSelected(index)}
                             >
                                 <item.icon />

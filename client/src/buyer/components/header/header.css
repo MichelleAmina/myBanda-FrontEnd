@@ -26,6 +26,11 @@ header{
     z-index: 1000;
 }
 
+.headerWrapper .header-logo{
+    text-decoration: none;
+    color: black;
+}
+
 .headerWrapper.fixed{
     top: -90px;
     /*position: fixed;
