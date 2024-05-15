@@ -1,0 +1,8 @@
+.pending-deliveries {
+    display: flex;
+    width: 100%;
+}
+
+.pending-deliveries-container {
+    flex: 6;
+}

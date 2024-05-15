@@ -1,0 +1,55 @@
+.delivery-sidebar {
+    flex: 1;
+    border-right: 0.5px solid black;
+    min-height: 100vh;
+    background-color: #0A205A;
+}
+
+.delivery-sidebar .logo {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.logo h3 {
+    color: white;
+    margin-top: 10px;
+}
+
+hr {
+    height: 0;
+    border: 0.5px solid black
+}
+
+.delivery-menu {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.delivery-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.delivery-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 2.5rem;
+    /* margin-left: 1rem; */
+    position: relative;
+    color: white;
+    transition: all 300mws ease;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+.active {
+    background: #7d9ae9;
+}

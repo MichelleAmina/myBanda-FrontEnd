@@ -1,0 +1,19 @@
+.driver-analytics {
+    display: flex;
+    width: 100%;
+}
+
+.driver-analytics-content {
+    flex: 6;
+}
+
+.widgets {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+}
+
+.driver-analytics-chart {
+    margin-bottom: 40px;
+}
+

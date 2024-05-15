@@ -1,0 +1,8 @@
+.completed-deliveries {
+    display: flex;
+    width: 100%;
+}
+
+.completed-deliveries-container {
+    flex: 6;
+}

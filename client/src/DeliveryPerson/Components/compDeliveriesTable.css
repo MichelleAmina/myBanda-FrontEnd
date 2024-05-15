@@ -1,0 +1,12 @@
+.comp-deliveries-table {
+    text-align: center;
+    width: 100%;
+}
+
+.deliveries-table {
+    width: 90%;
+    align-items: center;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+

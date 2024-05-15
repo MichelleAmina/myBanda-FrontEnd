@@ -1,0 +1,7 @@
+.order-details {
+    display: flex;
+}
+
+.order-details-container {
+    flex: 6;
+}
