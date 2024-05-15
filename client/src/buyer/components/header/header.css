@@ -1,0 +1,196 @@
+header{
+    width: 100%;
+    height: auto; /* 80px */
+    margin: auto;
+    padding: 15px 0px; /*30px 0px*/
+    background: #fff;
+}
+
+/*
+.headerWrapper{
+    position: sticky;
+    top: 0px;
+    z-index: 1000;
+    background: #fff;
+}
+*/
+
+.headerWrapper{
+    transition: all 0.3s ease-in-out;
+    background: #fff;
+    /*box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.05);*/
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 1000;
+}
+
+.headerWrapper.fixed{
+    top: -90px;
+    /*position: fixed;
+    left: 0px;
+    width: 100%;
+    z-index: 1000;  */
+}
+
+.afterHeader{
+    margin-top: 150px;
+}
+
+header .headerSearch {
+    /*display: flex;
+    align-items: center;*/
+    width: 100%;
+    height: 50px; /*60*/
+    border: 1px solid rgba(0, 0, 0, 0.2); /* change it to something lighter*/
+    padding: 10px 20px;
+    border-radius: 2px;
+    
+}
+
+header .headerSearch .selectDropWrapper{
+    /* 18% or 28*/
+    width: 28%;
+    font-size: 16px;
+    font-weight: 500;
+    position: relative;
+}
+
+header .headerSearch .selectDropWrapper:after{
+    content: '';
+    width: 1px;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 5px;
+    right: 0px;
+}
+
+header .headerSearch .productSearch{
+    width: 72%;
+    padding-left: 30px;
+    position: relative;
+}
+
+header .headerSearch .productSearch input{
+    width: 100%;
+    height: 40px;/*50*/
+    border: 0px;
+    outline: none !important;
+    font-size: 16px;
+
+}
+
+header .headerSearch .productSearch .searchIcon {
+    position: absolute;
+    top: 8px;
+    right: 0px;
+    opacity: 0.7;
+    font-size: 25px !important; /*25px*/
+}
+
+
+header .countryWrapper .selectDropWrapper{
+    width: 180px !important;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding-left: 10px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 1px 2px rgb(0 0 0 /20%);
+    /* 
+    border: 1px solid #ececec;
+    -webkit-box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.05);*/
+
+}
+
+header .countryWrapper .selectDropWrapper .openSelect{
+    width: 100%;
+}
+
+header .countryWrapper .selectDropWrapper .selectDrop{
+    left: 0px !important;
+    width: 200px !important;
+}
+
+/*
+header .countryWrapper .openSelect{
+    color: yellow;
+}
+*/
+
+
+header .headerTabs{
+    padding-left: 20px;
+}
+
+header .headerTabs li{
+    position: relative;
+    margin-left: 20px;
+    
+}
+
+header .headerTabs li span{
+    font-size: 16px;
+    cursor: pointer;
+}
+
+header .headerTabs li span .listIcon{
+    margin-right: 10px;
+}
+
+header .headerTabs li span .badge{
+    width: 20px; /*30*/
+    height: 20px; /*30*/
+    font-size: 12px; /*not there*/
+    border-radius: 50%;
+
+    /*color: black;
+    background: rgba(255, 255, 0, 0.557);*/
+    color: black;
+    background:  #EBC606;
+    position: absolute;
+    top: -8px;
+    left: 13px;
+}
+
+.dropdownMenu{
+    position: absolute;
+    top: 40px; /*120%*/
+    right: 0px;
+    width: 200px;
+    height: auto;
+    background:#fff;
+    /*box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);*/
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+    padding: 10px 0px;
+    z-index: 100;
+   
+}
+
+.dropdownMenu li{
+    width: 100%;
+    list-style: none;
+    margin: 0px !important;
+}
+
+.dropdownMenu li button{
+    width: 100% !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+    color: rgba(0, 0, 0, 0.7) !important;
+    font-size: 16px;
+    padding:8px 15px !important ;
+    text-transform: capitalize !important;
+    
+}
+.dropdownMenu li button svg{
+    opacity: 0.7;
+    margin-right: 8px;
+}
+
+.dropdownMenu li button:hover{
+    background: rgba(255, 255, 0, 0.209) !important ;
+}

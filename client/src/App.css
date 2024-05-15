@@ -1,0 +1,824 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+/*
+#root{
+  zoom: 80%;
+}
+*/
+
+.text-b{
+  color: #0A205A;
+  /*color: #0e6efb;*/
+}
+
+.text-y{
+  color: #EBC606;
+}
+
+
+
+
+.button-b{
+  background: #0A205A;
+  color: white;
+  text-transform: capitalize;
+  font-size: 16px;
+}
+
+  
+.container-fluid{
+    padding: 0px 45px;
+}
+  
+.cursor{
+    cursor: pointer;
+}
+
+.hd{
+    font-size: 30px;
+    font-weight: 600 ;
+    margin-bottom: 25px;
+}
+
+.transition{
+    transition: all 0.3s ease-in-out;
+}
+
+/* START TOOLTIP STYLES */
+[tooltip] {
+    position: relative; /* opinion 1 */
+  }
+  
+  /* Applies to all tooltips */
+  [tooltip]::before,
+  [tooltip]::after {
+    text-transform: none; /* opinion 2 */
+    font-size: 12px; /* opinion 3 */
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+    position: absolute;
+    display: none;
+    opacity: 0;
+  }
+  [tooltip]::before {
+    content: '';
+    border: 5px solid transparent; /* opinion 4 */
+    z-index: 1001; /* absurdity 1 */
+  }
+  [tooltip]::after {
+    content: attr(tooltip); /* magic! */
+    
+    /* most of the rest of this is opinion */
+    font-family: Helvetica, sans-serif;
+    text-align: center;
+    
+    /* 
+      Let the content set the size of the tooltips 
+      but this will also keep them from being obnoxious
+      */
+    min-width: 3em;
+    max-width: 21em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 1ch 1.5ch;
+    border-radius: .3ch;
+    box-shadow: 0 1em 2em -.5em rgba(0, 0, 0, 0.35);
+    background: #1921e6;
+    color: #fff;
+    z-index: 1000; /* absurdity 2 */
+  }
+  
+  /* Make the tooltips respond to hover */
+  [tooltip]:hover::before,
+  [tooltip]:hover::after {
+    display: block;
+  }
+  
+  /* don't show empty tooltips */
+  [tooltip='']::before,
+  [tooltip='']::after {
+    display: none !important;
+  }
+  
+  /* FLOW: UP */
+  [tooltip]:not([flow])::before,
+  [tooltip][flow^="up"]::before {
+    bottom: 100%;
+    border-bottom-width: 0;
+    border-top-color: #5072A7;
+  }
+  [tooltip]:not([flow])::after,
+  [tooltip][flow^="up"]::after {
+    bottom: calc(100% + 5px);
+  }
+  [tooltip]:not([flow])::before,
+  [tooltip]:not([flow])::after,
+  [tooltip][flow^="up"]::before,
+  [tooltip][flow^="up"]::after {
+    left: 50%;
+    transform: translate(-50%, -.5em);
+  }
+  
+  /* FLOW: DOWN */
+  [tooltip][flow^="down"]::before {
+    top: 100%;
+    border-top-width: 0;
+    border-bottom-color: #333;
+  }
+  [tooltip][flow^="down"]::after {
+    top: calc(100% + 5px);
+  }
+  [tooltip][flow^="down"]::before,
+  [tooltip][flow^="down"]::after {
+    left: 50%;
+    transform: translate(-50%, .5em);
+  }
+  
+  /* FLOW: LEFT */
+  [tooltip][flow^="left"]::before {
+    top: 50%;
+    border-right-width: 0;
+    border-left-color:#5072A7;
+    left: calc(0em - 5px);
+    transform: translate(-.5em, -50%);
+  }
+  [tooltip][flow^="left"]::after {
+    top: 50%;
+    right: calc(100% + 5px);
+    transform: translate(-.5em, -50%);
+  }
+  
+  /* FLOW: RIGHT */
+  [tooltip][flow^="right"]::before {
+    top: 50%;
+    border-left-width: 0;
+    border-right-color:#5072A7;
+    right: calc(0em - 5px);
+    transform: translate(.5em, -50%);
+  }
+  [tooltip][flow^="right"]::after {
+    top: 50%;
+    left: calc(100% + 5px);
+    transform: translate(.5em, -50%);
+  }
+  
+  /* KEYFRAMES */
+  @keyframes tooltips-vert {
+    to {
+      opacity: .9;
+      transform: translate(-50%, 0);
+    }
+  }
+  
+  @keyframes tooltips-horz {
+    to {
+      opacity: .9;
+      transform: translate(0, -50%);
+    }
+  }
+  
+  /* FX All The Things */ 
+  [tooltip]:not([flow]):hover::before,
+  [tooltip]:not([flow]):hover::after,
+  [tooltip][flow^="up"]:hover::before,
+  [tooltip][flow^="up"]:hover::after,
+  [tooltip][flow^="down"]:hover::before,
+  [tooltip][flow^="down"]:hover::after {
+    animation: tooltips-vert 300ms ease-out forwards;
+  }
+  
+  [tooltip][flow^="left"]:hover::before,
+  [tooltip][flow^="left"]:hover::after,
+  [tooltip][flow^="right"]:hover::before,
+  [tooltip][flow^="right"]:hover::after {
+    animation: tooltips-horz 300ms ease-out forwards;
+  }
+
+/* Add preset for price and old price*/
+
+/* LISTING PAGE*/
+
+.listingPage{
+  width: 100%;
+  height: auto;
+  padding: 30px 0px; /*45px 0px*/
+}
+
+
+.breadcrumb{
+  width: 100%;
+  height: auto;
+  padding: 10px 25px; /*45px 25px*/
+  background: #0A205A;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.breadcrumb h1{
+  color: #fff;
+  opacity: 0.8;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.breadcrumb ul li{
+  margin-right: 20px !important;
+}
+
+.breadcrumb ul li a{
+  /*color: #000;*/
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.sidebarWrapper{
+  max-width: 23%; /*change width the sidebar takes*/
+  flex: 0 0 30%; /*is this really necessary*/
+}
+
+.rightContent{
+  max-width: 77%;
+  flex: 0 0 75%; /*is this really necessary*/
+}
+
+.sidebarWrapper h3{
+  font-size: 22px;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.sidebarWrapper h3:after{
+  content: '';
+  width: 100%;
+  height: 3px;
+  background: #ccc;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
+.sidebarWrapper h3:before{
+  content: '';
+  width: 25%;
+  height: 3px;
+  background: #0A205A;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  z-index: 10; 
+}
+
+.sidebarWrapper .sidebar {
+  position: sticky;
+  top: 85px;
+
+
+}
+
+.sidebarWrapper .sidebar .card{
+  padding: 15px; /*25px*/
+  border-radius: 10px !important;
+  margin-bottom: 30px;
+  /* adjust height of card as necessary 
+  max-height: 400px !important;
+  overflow-y: scroll;
+  */
+}
+
+.sidebarWrapper .sidebar .card .catList {
+  max-height: 400px !important;
+  overflow-y: scroll;
+
+}
+
+.sidebarWrapper .sidebar .card .catList .catItem{
+  padding: 2px 5px; /*10pc*/
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  margin: 10px 0px;
+  border-radius: 4px;
+  transition: all 0.3 ease-in-out;
+}
+
+.sidebarWrapper .sidebar .card .catList .catItem:hover{
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.sidebarWrapper .sidebar .card .catList .catItem h4{
+  color: #000;
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+.sidebarWrapper .sidebar .card .catList .catItem .rounded-circle{
+  background: #0A205A;
+  color: white;
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.priceRange span{
+  font-size: 14px;
+ 
+}
+
+
+.filters{
+  padding: 8px 0px 
+}
+
+
+.filters h5{
+  font-size: 16px;
+}
+
+.filters ul{
+  max-height: 100px;
+  overflow-y: scroll;
+  margin-left: -40px;
+}
+
+.filters ul li{
+  width:100%;
+  list-style: none;
+  font-size: 14px;
+  margin-bottom: 0px;
+}
+
+.filters ul li svg{
+  font-size: 16px;
+}
+
+/*
+.rightContent .topStrip{
+  padding: 0px 10px;
+}
+*/
+
+.rightContent .topStrip p{
+  font-size: 16px;
+  color: #000;
+  opacity: 0.8;
+  padding-left: 20px;
+}
+
+.rightContent .topStrip .tab_{
+  width: 150px;
+}
+
+.rightContent .topStrip .tab_ .btn_{
+  background: none !important;
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  text-transform: capitalize;
+  padding: 5px 10px;
+  color: #000 !important;
+  opacity: 0.8;
+  border-radius: 4px;
+  width: 100% !important;
+  justify-content: center;
+  
+}
+
+.rightContent .topStrip .tab_ .btn_ svg{
+  font-size: 16px;
+  opacity: 0.8;
+  margin-right: 10px;
+}
+
+.rightContent .topStrip .tab_ .dropdownMenu{
+  top: 100% !important;
+  width: 150px !important;
+}
+
+/* Product Details*/
+.breadcrumbWrapper{
+  width: 100%;
+  height: auto;
+  padding: 10px 0px;
+  /*border-top: 1px solid rgba(0, 0, 0, 0.1) !important ;*/
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important ;
+
+}
+
+.breadcrumb2{
+  background: none !important;
+  padding: 0px;
+  padding-top: 20px;
+}
+/*
+.breadcrumb2 li{
+  margin-right: 10px !important;
+  color: #000;
+}
+
+.breadcrumb2 li a{
+  color: #000 !important;
+  font-size: 16px;
+  text-decoration: none !important;
+  padding: 0px 15px 0px 0px !important;
+  display: block;
+}
+*/
+
+ul.breadcrumb{
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+}
+
+ul.breadcrumb li{
+  display: inline;
+  font-size: 18px;
+}
+
+ul.breadcrumb li+li:before{
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+
+ul.breadcrumb li a{
+  /*color: #0275d8;*/
+  color: rgb(0, 0, 141);
+  text-decoration: none !important;
+}
+
+ul.breadcrumb li a:hover{
+ /* color: #01447e;*/
+  color: #000;
+  text-decoration: underline;
+}
+
+
+/* DETAILS PAGE*/
+.detailsContainer{
+  max-width: 75%;
+  padding: 10px 0px;
+  margin: auto;
+
+}
+
+.detailsPage .productInfo{
+  padding-left: 30px;
+}
+
+
+.detailsPage .productInfo h1{
+  font-size: 40px;
+  font-weight: 400;
+  opacity: 0.8;
+
+}
+.detailsPage .productInfo .priceSec .priceLarge{
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.detailsPage .productInfo .priceSec .text-y{
+  font-size: 12px !important;
+  font-weight: 600;
+}
+
+.detailsPage .productInfo .priceSec .text-light{
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.603) !important;
+  text-decoration: line-through;
+
+}
+
+.productZoom {
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  /*padding: 20px;*/
+  padding: 0px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.zoomSlider *{
+  outline: none !important;
+}
+
+.zoomSlider{
+  padding-top: 20px;
+}
+
+.zoomSlider .slick-slide{
+  /*overflow: hidden;
+  border-radius: 10px;*/
+  padding-right: 10px !important;
+}
+
+.zoomSlider .item{
+  border: 1px solid #EBC606 !important;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.zoomSlider .slick-current .item{
+  border: 1px solid #EBC606 !important;
+ 
+}
+/*
+.zoomSlider .slick-slide .item{
+  margin-right: 15px !important;
+}
+
+.zoomSlider .slick-current .item{
+  border: 1px solid #EBC606;
+}*/
+
+.zoomSlider .slick-arrow{
+  top: 55% !important;
+  zoom: 80% !important;
+}
+
+.zoomSlider .slick-arrow.slick-next{
+  right: -10px !important;
+}
+.zoomSlider .slick-arrow.slick-prev{
+  left: -10px !important;
+}
+
+.productSize{
+  width: 100%;
+  height: auto;
+  padding: 10px 0px;
+}
+
+.productSize ul li{
+  margin-right: 10px !important;
+}
+
+.productSize ul li a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px !important;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000 !important;
+  width: 60px;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+.productSize ul li a.active{
+  background: #EBC606  !important;
+}
+
+.addCartSection{
+  width: 100%;
+  height: auto;
+}
+
+
+.addCartSection .counterSec{
+  width: 100px;
+  height: 45px; /*50px*/
+  border-radius: 10px;
+  border: 1px solid #0A205A;;
+  overflow: hidden;
+  padding: 10px;
+  position: relative;
+}
+
+.addCartSection .counterSec input{
+  width: 60px;
+  height: 25px; /*30px*/
+  padding: 5px;
+  border: 0px;
+  outline: none;
+  text-align: center;
+}
+
+/* HIDE APPEARANCE OF INCREASE & DECREASE INPUT BUTTONS*/
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number]{
+  -moz-appearance: textfield;
+}
+
+.addCartSection .counterSec .arrow{
+  position: absolute;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.addCartSection .counterSec .arrow.plus{
+  top: 0px;
+  right: 10px;
+}
+
+.addCartSection .counterSec .arrow.minus{
+  bottom: 0px;
+  right: 10px;
+}
+
+.addCartSection .addToCartBtn{
+  /*background: #0e6efb;*/
+  background: #0A205A;
+  color: white;
+  text-transform: capitalize;
+  font-size: 16px;
+  padding: 10px 25px;
+  border-radius: 10px;
+}
+
+.addCartSection button{
+  height: 45px;
+  min-width: inherit !important;
+}
+
+.addCartSection button:hover{
+  transform: translateY(-2px);
+}
+
+.addCartSection button.move{
+  position: relative;
+}
+
+.addCartSection .addToCartBtn:hover{
+  background: #1338a1
+}
+
+.addCartSection .addToCartBtn svg{
+  margin-right: 10px;
+}
+
+.addCartSection .favoriteBtn{
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 10px 15px;
+
+}
+
+.addCartSection .favoriteBtn:hover{
+  background: #0A205A;
+}
+
+.addCartSection .favoriteBtn:hover svg{
+  color: white;
+}
+
+.addCartSection .favoriteBtn svg{
+  color: #0A205A;
+  opacity: 0.5;
+}
+
+
+/* Details page tabs*/
+
+.detailsPageTabs{
+  border-radius: 10px;
+}
+
+.detailsPage .customTabs ul li{
+  margin-right: 20px;
+}
+
+.detailsPage .customTabs ul li button{
+  padding: 5px 20px !important;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  font-size: 14px;
+  text-transform: capitalize !important;
+  color: #000;
+}
+
+.detailsPage .customTabs ul li button.active{
+  color: #0e6efb ;
+}
+
+.card{
+  border-radius: 10px !important;
+}
+
+.reviewsCard{
+  margin-bottom: 10px;
+}
+
+.reviewsCard .image{
+  width: 50px;
+}
+
+.reviewsCard .rounded-circle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  border-radius: 1px solid black;
+
+}
+
+.reviewsCard .rounded-circle img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+}
+
+.reviewsCard .info h5{
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.reviewsCard .info p{
+  opacity: 0.8;
+}
+
+.reviewForm .form-group{
+  margin-bottom: 20px;
+}
+
+.reviewForm .form-group .form-control{
+  height: 40px;
+  font-size: 16px;
+  border-radius: 4px !important;
+  padding: 10px;
+}
+
+.reviewForm .form-group textarea.form-control{
+  height: 150px;
+  padding: 10px 20px;
+}
+
+.reviewForm .form-group button{
+  background:  #EBC606;
+  color: white;
+  text-transform: capitalize;
+  font-size: 16px;
+  padding: 10px 25px;
+  border-radius: 4px;
+
+}
+
+.progressBarBox{
+  margin-bottom: 5px;
+}
+
+.relatedProducts .item{
+  padding: 10px 5px;
+  padding-right: 20px !important;
+}
+
+.relatedProducts h2{
+  font-size: 22px;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.relatedProducts h2:after{
+  content: '';
+  width: 100%;
+  height: 3px;
+  background: #ccc;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
+.relatedProducts h2:before{
+  content: '';
+  width: 25%;
+  height: 3px;
+  background: rgb(84, 133, 201);
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  z-index: 10; 
+}
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ 

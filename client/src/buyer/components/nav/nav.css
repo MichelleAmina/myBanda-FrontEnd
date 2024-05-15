@@ -1,0 +1,126 @@
+.buyerNav{
+    width: 100%;
+    height: 70px;
+    margin: auto;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.buyerNav .browseButton{
+    /*color: black !important;*/
+    font-size: 16px;
+    text-transform: capitalize !important;
+    padding: 8px 20px !important;
+    border: 1px solid black;
+    background: #0A205A;
+    color: white !important;
+    
+}
+
+.buyerNav .browseButton:hover{
+    background: #EBC606;
+    border: 1px solid #EBC606;
+}
+
+.buyerNav .part1{
+    position: relative;
+}
+
+.buyerNav .part1 .dropdown_Menu{
+    position: absolute;
+    background: #fff;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+    padding: 10px 0px;
+    z-index: 100;
+    top: 100%;
+    width: 400px;
+    left: 20px;
+
+}
+
+.buyerNav nav ul li{
+    /*margin: 0px 10px;*/
+    position: relative;
+}
+
+.buyerNav nav ul li .navButton{
+    text-transform: capitalize !important;
+    padding: 21px 25px !important;
+    color: green; /*change this to remove color*/ 
+}
+
+.buyerNav nav ul li .navButton a{
+    text-decoration: none;
+    color: black !important;
+    font-size: 16px !important;
+}
+
+.buyerNav .part3 .phNo svg{
+    font-size: 40px !important;
+    opacity: 0.8;
+    margin-right: 10px;
+}
+
+.buyerNav .part3 .phNo .info h4{
+    color: #0A205A !important;
+    font-size: 25px;
+    line-height: 35px;  
+}
+
+.buyerNav .part3 .phNo .info p{
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+
+.buyerNav nav .dropdown_menu{
+    position: absolute;
+    top: 100%;
+    /*right: 0px;*/
+    left: 0px;
+    width: 200px;
+    height: auto;
+    background: #fff;
+    /*box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);*/
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+    padding: 10px 0px;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.1s ease-in-out;
+}
+
+.buyerNav nav .dropdown_menu li{
+    list-style: none;
+    width: 100% !important;
+    margin: 0px !important;
+}
+
+.buyerNav nav .dropdown_menu li button{
+    width: 100% !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+    color: rgba(0, 0, 0, 0.7) !important;
+    text-transform: capitalize !important;
+    font-size: 16px;
+    padding:8px 15px !important ; /*12 px 15px*/
+    
+}
+
+nav .dropdown_menu li button:hover{
+    /*background-color: #f1f1f1 !important;*/
+    background: rgba(255, 255, 0, 0.209) !important ;
+}
+
+
+nav .dropdown_menu li button a{
+    color: rgba(0, 0, 0, 0.7) !important;
+    text-decoration: none;
+    font-size: 16px !important;
+}
+
+.buyerNav nav li:hover .dropdown_menu {
+    top: 100%;
+    opacity: 1;
+    visibility: inherit;
+}
