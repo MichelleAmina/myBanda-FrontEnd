@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.sidebar-container {
+  position: fixed;
+  height: 100%;
+  width: 240px !important;
+  background: #334eac;
+  transition: all 0.5s ease;
+  padding-top: 20px;
+}
+
+.sidebar-logo-details {
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-logo-details .icon {
+  font-size: 24px; 
+  font-weight: 500;
+  color: #fff;
+  min-width: 60px;
+  text-align: center;
+}
+
+.logo-name {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.sidebar-nav-links {
+  margin-top: 10px;
+  width: 120% !important;
+
+}
+
+.sidebar-nav-links li {
+  position: relative;
+  list-style: none;
+  height: 50px;
+
+
+}
+
+.sidebar-nav-links li a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.sidebar-nav-links li a.active {
+  background: #7096d1;
+  height: 100%;
+  width: 120%;
+
+}
+
+.sidebar-nav-links li a:hover {
+  background: #7096d1;
+}
+
+.sidebar-nav-links li .icon {
+  min-width: 60px;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+
+}
+
+.links-name {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+}
