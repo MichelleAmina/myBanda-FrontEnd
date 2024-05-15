@@ -1,0 +1,11 @@
+.pending-deliveries-table {
+    text-align: center;
+    width: 100%;
+}
+
+.pending-deliveries-table-container {
+    width: 90%;
+    align-items: center;
+    margin-left: 50px;
+    margin-top: 20px;
+}

@@ -1,0 +1,23 @@
+.available-deliveries {
+    height: 600px;
+    width: 80%;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.cellAction {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.acceptButton {
+    padding: 0px 10px;
+    border-radius: 5px;
+    color: #EBC606;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+}

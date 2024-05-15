@@ -1,0 +1,12 @@
+.driver-dashboard{
+    display: flex;
+}
+
+.driver-dashboard-container{
+    flex: 6;
+}
+
+.pending-title {
+    font-size: 20px;
+    font-weight: 600;
+}

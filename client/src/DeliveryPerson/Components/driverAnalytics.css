@@ -1,0 +1,22 @@
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+    width: 80%;
+}
+
+.charts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px; 
+    padding: 20px;
+
+}
+
+.charts h2 {
+    font-size: 20px;
+    margin-top: 40px;
+}
