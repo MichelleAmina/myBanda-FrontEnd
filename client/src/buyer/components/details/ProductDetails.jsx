@@ -414,7 +414,7 @@ function ProductDetails(){
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <input type="text" className='form-control' placeholder='Name'/>
+                                                        <input type="text" className='form-control' placeholder='Username'/>
                                                     </div>
                                                 </div>
 
@@ -425,9 +425,7 @@ function ProductDetails(){
                                                 </div>
                                             </div>
 
-                                            <div className="form-group">
-                                                        <input type="text" className='form-control' placeholder='Website'/>
-                                            </div>
+                                            
                                              
 
                                             <div className="form-group mt-4">
@@ -501,22 +499,22 @@ function ProductDetails(){
                     <h2 className='mb-4 mt-0'>Similar Products</h2>
                     <Slider {...related} className='productSlider'>
                         <div className="item">
-                            <HomeProduct tag="sale"/>
-                        </div>
-                        <div className="item">
-                            <HomeProduct tag="new"/>
+                            <HomeProduct />
                         </div>
                         <div className="item">
                             <HomeProduct />
                         </div>
                         <div className="item">
-                            <HomeProduct tag="hot"/>
+                            <HomeProduct />
                         </div>
                         <div className="item">
-                            <HomeProduct tag="hot"/>
+                            <HomeProduct/>
                         </div>
                         <div className="item">
-                            <HomeProduct tag="sale"/>
+                            <HomeProduct />
+                        </div>
+                        <div className="item">
+                            <HomeProduct />
                         </div>
                         
                             

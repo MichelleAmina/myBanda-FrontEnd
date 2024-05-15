@@ -13,6 +13,7 @@ function Buyer(){
 
     const [productData, setProductData] = useState([]);
     
+    /*
     useEffect(() => {
         getData('https://mybanda-backend-4.onrender.com/products')
     },[])
@@ -26,8 +27,8 @@ function Buyer(){
         }catch(error){
             console.log(error.message)
         }
-    }
-/*
+    }*/
+
     useEffect(() => {
         fetch("https://mybanda-backend-4.onrender.com/products")
           .then(resp => resp.json())
@@ -38,7 +39,9 @@ function Buyer(){
           .catch(error => {
             console.error('Error fetching products data:', error);
           });
-    }, []);*/
+    }, []);
+
+    console.log("setProductData", productData)
 
     return(
         productData.length !== 0 &&

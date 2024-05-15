@@ -46,7 +46,7 @@ function Carousel(){
                     {
                         itemBg.length!== 0 && itemBg.map((item, index) => {
                             return(
-                                <div className="item">
+                                <div className="item" key={index}>
                                     <div className="info"  style={{background:item}}>
                                         <img src="/phone.png" alt="" style={{height:'80px', width:'80px'}}/>
                                         <h5>Electronics</h5>

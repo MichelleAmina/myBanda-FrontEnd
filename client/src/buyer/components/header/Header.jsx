@@ -17,7 +17,7 @@ import axios from 'axios'
 
 
 function Header(props){
-    //console.log("from header,",props)
+    console.log("from header,",props)
 
     const [isOpenDropdown, setIsOpenDropdown] = useState(false)
     const headerRef = useRef()
