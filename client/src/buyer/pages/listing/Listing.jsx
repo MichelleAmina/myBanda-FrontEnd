@@ -80,10 +80,10 @@ function Listing(){
 
                                 <div className="productRow ps-4">
                                     <div className="item">
-                                        <HomeProduct tag="best"/>
+                                        <HomeProduct />
                                     </div>
                                     <div className="item">
-                                        <HomeProduct tag="best"/>
+                                        <HomeProduct/>
                                     </div>
                                     <div className="item">
                                         <HomeProduct />
@@ -95,34 +95,31 @@ function Listing(){
                                         <HomeProduct/>
                                     </div>
                                     <div className="item">
-                                        <HomeProduct tag="hot"/>
+                                        <HomeProduct/>
                                     </div>
                                     <div className="item">
                                         <HomeProduct/>
                                     </div>
                                     <div className="item">
-                                        <HomeProduct tag="new"/>
+                                        <HomeProduct/>
                                     </div>
                                     <div className="item">
                                         <HomeProduct/>
                                     </div>
                                     <div className="item">
-                                        <HomeProduct  tag="sale"/>
+                                        <HomeProduct />
                                     </div>
                                     <div className="item ">
-                                        <HomeProduct tag="hot"/>
+                                        <HomeProduct/>
                                     </div>
                                     <div className="item">
                                         <HomeProduct/>
                                     </div>
                                     <div className="item">
-                                        <HomeProduct  tag="sale"/>
+                                        <HomeProduct  />
                                     </div>
                                     <div className="item ">
-                                        <HomeProduct tag="new"/>
-                                    </div>
-                                    <div className="item">
-                                        <HomeProduct tag="new"/>
+                                        <HomeProduct />
                                     </div>
                                     <div className="item">
                                         <HomeProduct/>
@@ -134,7 +131,10 @@ function Listing(){
                                         <HomeProduct/>
                                     </div>
                                     <div className="item">
-                                        <HomeProduct tag="sale"/>
+                                        <HomeProduct/>
+                                    </div>
+                                    <div className="item">
+                                        <HomeProduct />
                                     </div>
                                     <div className="item">
                                         <HomeProduct/>

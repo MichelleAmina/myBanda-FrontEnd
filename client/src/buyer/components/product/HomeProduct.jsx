@@ -11,14 +11,12 @@ import { NavLink } from "react-router-dom"
 import { useState, useEffect } from 'react';
 
 
- /* {
-                props.tag!==null && props.tag!==undefined &&
-                <span className={`badge ${props.tag}`}>{props.tag}</span>
-            }*/
 
-function HomeProduct({product}){
+function HomeProduct(props){
+    //console.log("props item", props.item)
 
-    console.log("home products", product)
+    //const [products, setProducts] = useState(props.item)
+    
 
     return(
         <div className="productThumb">

@@ -83,7 +83,8 @@ function BuyerHome(props){
         }
     }, [activeCategory, prodData]);
 
-    console.log("category data", activeCategoryData)
+    //console.log("activeCategoryData", activeCategoryData)
+    //console.log("category data", activeCategoryData)
 
     
 
@@ -105,9 +106,9 @@ function BuyerHome(props){
                      <ul className='list list-inline ms-auto filterTab mb-0'>
                         {
                             categories.length !== 0 &&
-                            categories.slice(3,10).map((category, index) => {
+                            categories.slice(0,6).map((category, index) => {
                                 return(
-                                    <li className='list list-inline-item'>
+                                    <li className='list list-inline-item' key={index}>
                                         <a className={`cursor text-capitalize ${activeCategoryIndex === index ? 'active' : ''}`}
                                         onClick={() => {
                                             setActiveCategoryIndex(index);
@@ -145,7 +146,7 @@ function BuyerHome(props){
                             <HomeProduct  />
                         </div>
                         <div className="item">
-                            <HomeProduct  tag="new"/>
+                            <HomeProduct />
                         </div>
                         <div className="item">
                             <HomeProduct  />
@@ -154,10 +155,10 @@ function BuyerHome(props){
                             <HomeProduct />
                         </div>
                         <div className="item">
-                            <HomeProduct  tag="new"/>
+                            <HomeProduct />
                         </div>
                         <div className="item">
-                            <HomeProduct  tag="best"/>
+                            <HomeProduct  />
                         </div>
                         <div className="item">
                             <HomeProduct  />
@@ -169,7 +170,7 @@ function BuyerHome(props){
                             <HomeProduct/>
                         </div>
                         <div className="item">
-                            <HomeProduct  tag="best"/>
+                            <HomeProduct/>
                         </div>
                         <div className="item"  >
                             <HomeProduct/>
