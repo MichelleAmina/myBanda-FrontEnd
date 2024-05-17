@@ -80,7 +80,7 @@ function driverAnalytics() {
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        <Line type="monotone" dataKey="earnings" stroke="#0A205A" activeDot={{ r: 8 }} />
+                        <Line type="monotone" dataKey="earnings" stroke="#EBC606" activeDot={{ r: 8 }} />
                     </LineChart>
                 </ResponsiveContainer>
 

@@ -63,7 +63,7 @@ function Login(){
             });
             const data = await response.json();
             console.log('Successful');
-            navigate('/login');
+            navigate('/driverhomepage');
         } catch (error) {
             console.error('Signup failed:', error);
         }

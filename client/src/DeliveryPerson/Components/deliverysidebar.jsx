@@ -3,6 +3,7 @@ import './deliverySidebar.css'
 import { DeliverySidebarData } from './DeliverySidebarData';
 import { Link } from 'react-router-dom';
 
+
 const DeliverySidebar = () => {
     const [selected, setSelected] = useState(0)
 
@@ -10,22 +11,22 @@ const DeliverySidebar = () => {
         <div className='delivery-sidebar'>
             {/* {LOGO} */}
             <div className="logo">
-                <Link to='/' style={{textDecoration: 'none'}}>
-                    <h3>My Banda</h3>
+                <Link to='/driverAnalytics' style={{textDecoration: 'none'}}>
+                    <h3>MyBanda</h3>
                 </Link>
             </div>
-            <hr />
             <div className="delivery-menu">
                 {DeliverySidebarData.map((item, index) => {
                     return (
                         <Link to={item.path} key={index} style={{textDecoration: 'none'}}>
-                            <div className={selected === index ? "delivery-menu-item " : "delivery-menu-item" }
+                            <div className={selected === index ? "delivery-menu-item delivery-active" : "delivery-menu-item" }
+                                key={index}
                                 onClick={() => setSelected(index)}
                             >
                                 <item.icon />
                                 <span>{item.title}</span>
                             </div>
-                        </Link>
+                        </Link> 
                     )
                 })}
             </div>
