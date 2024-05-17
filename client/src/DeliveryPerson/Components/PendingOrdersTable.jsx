@@ -51,7 +51,7 @@ const AvailableOrders = () => {
                         <TableHead>
                             <TableRow>
                                 {columns.map((column)=> (
-                                    <TableCell style={{backgroundColor:'#334eac', color:'white'}} key={column.id}>{column.label}</TableCell>
+                                    <TableCell style={{backgroundColor:'#FFD700', color:'#000'}} key={column.id}>{column.label}</TableCell>
                                 ))}
                             </TableRow>
                         </TableHead>

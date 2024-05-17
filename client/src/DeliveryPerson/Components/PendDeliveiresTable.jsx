@@ -46,7 +46,7 @@ const PendDeliveriesTable = () => {
                         <TableHead>
                             <TableRow>
                                 {columns.map((column)=> (
-                                    <TableCell style={{backgroundColor:'#FFD700', color:'white'}} key={column.id}>{column.label}</TableCell>
+                                    <TableCell style={{backgroundColor:'#FFD700', color:'#000'}} key={column.id}>{column.label}</TableCell>
                                 ))}
                             </TableRow>
                         </TableHead>

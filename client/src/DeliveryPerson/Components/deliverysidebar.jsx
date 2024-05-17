@@ -2,31 +2,34 @@ import { useState } from 'react';
 import './deliverySidebar.css'
 import { DeliverySidebarData } from './DeliverySidebarData';
 import { Link } from 'react-router-dom';
+import HomeIcon from '@mui/icons-material/Home';
 
 
 const DeliverySidebar = () => {
-    const [selected, setSelected] = useState(0)
+    const [selected, setSelected] = useState(null)
 
     return ( 
         <div className='delivery-sidebar'>
             {/* {LOGO} */}
             <div className="logo">
                 <Link to='/driverAnalytics' style={{textDecoration: 'none'}}>
-                    <h3>MyBanda</h3>
+                    
+                    <span><HomeIcon/>My Banda</span>
                 </Link>
             </div>
             <div className="delivery-menu">
                 {DeliverySidebarData.map((item, index) => {
-                    return (
-                        <Link to={item.path} key={index} style={{textDecoration: 'none'}}>
-                            <div className={selected === index ? "delivery-menu-item delivery-active" : "delivery-menu-item" }
-                                key={index}
-                                onClick={() => setSelected(index)}
+                    return (                      
+                        <div key={index} onClick={() => setSelected(index)}>
+                            <Link 
+                                to={item.path} 
+                                style={{textDecoration: 'none'}} 
+                                className={`delivery-menu-item ${selected === index ? 'delivery-active' : ''}`}
                             >
                                 <item.icon />
                                 <span>{item.title}</span>
-                            </div>
-                        </Link> 
+                            </Link> 
+                        </div>                
                     )
                 })}
             </div>
