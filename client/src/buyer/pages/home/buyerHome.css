@@ -19,7 +19,7 @@
 }
 
 .filterTab li:hover a, .filterTab li a.active{
-    color: blue !important;
+    color: #EBC606;
     transform: translateY(-10px);
     cursor: pointer;
     
@@ -35,6 +35,7 @@
 /* adjust size of each item*/
 .homeProducts .productRow .item{
     width: 16%; /*18%*/
+
    /* height: 280px; 300px*/
    /* background: #ccc;
     margin-left: 20px;*/

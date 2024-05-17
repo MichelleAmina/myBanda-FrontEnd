@@ -90,14 +90,14 @@ function Header(props){
                     </div>
                     {/* header Search starts here */}
                     <div className="col-sm-5 d-flex align-items-center">
-                        <div className="headerSearch d-flex align-items-center">
-                            <Select data={categories} placeholder={'All Categories'} icon={false}/>
+                        {/*<div className="headerSearch d-flex align-items-center">
+                            <Select data={categories} placeholder={'All Categories'} icon={false}/>*/}
 
-                            <div className="productSearch">
+                            <div className="productSearch d-flex align-items-center">
                                 <input type="text" placeholder='Search for products...' />
                                 <SearchIcon className='searchIcon cursor'/>
                             </div>
-                        </div>
+                        
                     </div>
                     {/* header Search ends here */}
 

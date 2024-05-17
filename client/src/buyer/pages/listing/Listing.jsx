@@ -80,67 +80,67 @@ function Listing(){
 
                                 <div className="productRow ps-4">
                                     <div className="item">
-                                        <HomeProduct />
+                                       {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item">
-                                        <HomeProduct/>
+                                        {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item">
-                                        <HomeProduct />
+                                        {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item">
-                                        <HomeProduct />
+                                        {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item">
-                                        <HomeProduct/>
+                                        {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item">
-                                        <HomeProduct/>
+                                        {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item">
-                                        <HomeProduct/>
+                                        {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item">
-                                        <HomeProduct/>
+                                        {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item">
-                                        <HomeProduct/>
+                                        {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item">
-                                        <HomeProduct />
+                                       {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item ">
-                                        <HomeProduct/>
+                                        {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item">
-                                        <HomeProduct/>
+                                        {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item">
-                                        <HomeProduct  />
+                                        {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item ">
-                                        <HomeProduct />
+                                        {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item">
-                                        <HomeProduct/>
+                                        {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item">
-                                        <HomeProduct/>
+                                        {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item">
-                                        <HomeProduct/>
+                                        {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item">
-                                        <HomeProduct/>
+                                        {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item">
-                                        <HomeProduct />
+                                        {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item">
-                                        <HomeProduct/>
+                                        {/*<HomeProduct />*/}
                                     </div>
                                     <div className="item">
-                                        <HomeProduct/>
+                                        {/*<HomeProduct />*/}
                                     </div>
 
                                 </div>

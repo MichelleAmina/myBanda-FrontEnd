@@ -8,6 +8,14 @@
     border-radius: 15px;
     cursor: pointer;
     position: relative;
+    height: 200px;
+}
+
+.bannerSection .box img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
+    opacity: 0.8;
 }
 
 .bannerSection .box img:hover{

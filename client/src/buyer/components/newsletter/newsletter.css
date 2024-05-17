@@ -26,15 +26,20 @@
 .newsLetterBanner button{
     padding: 10px 40px !important;
     border-radius: 30px !important;
-    color: #fff !important;
+    /*color: #fff !important;*/
+    color: #000 !important;
     position: absolute;
     top: 0px;
     right: 0px; 
     height: 60px !important;
-    background:  #0A205A;
+    background: #EBC606;
     font-size: 18px !important;
     text-transform: capitalize !important;
     font-weight: 400 !important;
+}
+
+.newsLetterBanner button:hover{
+    background: #ebc50695;
 }
 
 .newsLetterBanner svg{

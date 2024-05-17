@@ -96,7 +96,7 @@ function BuyerHome(props){
         <div>
             <HomeSlider/>
             <Carousel/>
-            <Banners/>
+            <Banners data={prodData}/>
 
             <section className='homeProducts'>
                 <div className="container-fluid">
@@ -126,14 +126,15 @@ function BuyerHome(props){
                     </div>
 
                     {/*product displays start here*/}
-                    <div className="productRow">
+                    <div className="productRow" >
                         {
                             activeCategoryData.length !== 0 &&
+                            
                             activeCategoryData.map((item, index) => {
                                 return(
-                                    <div className="item" key={index}>
+                                    <div className="item" key={item.id} >
                                         <HomeProduct item={item}/>
-                                        {console.log("this is the item", item)}
+                                        {/*console.log("passing to homeproduct", item)*/}
                                     </div>
                                 )
                             })
@@ -142,39 +143,8 @@ function BuyerHome(props){
                         <div className="item">
                             <HomeProduct/>
                         </div>
-                        <div className="item">
-                            <HomeProduct  />
-                        </div>
-                        <div className="item">
-                            <HomeProduct />
-                        </div>
-                        <div className="item">
-                            <HomeProduct  />
-                        </div>
-                        <div className="item">
-                            <HomeProduct />
-                        </div>
-                        <div className="item">
-                            <HomeProduct />
-                        </div>
-                        <div className="item">
-                            <HomeProduct  />
-                        </div>
-                        <div className="item">
-                            <HomeProduct  />
-                        </div>
-                        <div className="item">
-                            <HomeProduct/>
-                        </div>
-                        <div className="item">
-                            <HomeProduct/>
-                        </div>
-                        <div className="item">
-                            <HomeProduct/>
-                        </div>
-                        <div className="item"  >
-                            <HomeProduct/>
-                        </div>
+                        
+                        
                     */}
                     </div>
                 </div>
@@ -208,24 +178,25 @@ function BuyerHome(props){
                         </div>
 
                         <div className="col-md-9">
+
                         <Slider {...settings} className='productSlider'>
                             <div className="item">
-                                <HomeProduct />
+                              {/*<HomeProduct />*/}  
                             </div>
                             <div className="item">
-                                <HomeProduct />
+                                {/*<HomeProduct />*/} 
                             </div>
                             <div className="item">
-                                <HomeProduct />
+                                {/*<HomeProduct />*/} 
                             </div>
                             <div className="item">
-                                <HomeProduct />
+                                {/*<HomeProduct />*/} 
                             </div>
                             <div className="item">
-                                <HomeProduct />
+                                {/*<HomeProduct />*/} 
                             </div>
                             <div className="item">
-                                <HomeProduct />
+                                {/*<HomeProduct />*/} 
                             </div>
                             
                             

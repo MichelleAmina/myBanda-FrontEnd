@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Button, PopoverPaper } from '@mui/material';
 import Rating from '@mui/material/Rating';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
@@ -10,52 +10,79 @@ import './homeProduct.css'
 import { NavLink } from "react-router-dom"
 import { useState, useEffect } from 'react';
 
+/*
+{
+                props.tag !== null && props.tag !== undefined &&
+                <span className={`badge ${props.tag}`}>{props.tag}</span>
+            }
+            */
+
+function HomeProduct({item}){
+    //console.log("props item image_url", props.item.images[0]?.image_url)
+
+    const [products, setProducts] = useState()
+
+    useEffect(() => {
+        setProducts(item)
+    })
+
+    // Shorted length of product description
+    function truncateText(text, maxLength) {
+        if (text.length <= maxLength) {
+            return text;
+        }
+        return text.substring(0, maxLength) + '...';
+    }
+
+    const imageUrl = item.images[0].image_url;
 
 
-function HomeProduct(props){
-    //console.log("props item", props.item)
-
-    //const [products, setProducts] = useState(props.item)
     
 
     return(
-        <div className="productThumb">
-          
+        <div className="productThumb" style={{minHeight:'350px'}}>
             
-            <NavLink>
-                <div className="imgWrapper">
-                    <img src="/shoes2.png" alt="" className='w-100'/>
-                    <div className="overlay transition">
-                        <ul className='list list-inline mb-0'>
-                            <li className='list-inline-item'>
-                                <NavLink className='cursor' tooltip="Add to Wishlist!"><FavoriteBorderOutlinedIcon/></NavLink>   
-                            </li>
-                            <li className='list-inline-item'>
-                                <NavLink className='cursor' tooltip="Compare"><CompareArrowsOutlinedIcon/></NavLink>
-                            </li>
-                            <li className='list-inline-item'>
-                                <NavLink className='cursor' tooltip="Quick View"><RemoveRedEyeOutlinedIcon/></NavLink>
-                            </li>
-                        </ul>
+            {
+                products !== undefined &&
+                <>
+                <NavLink>
+                    <div className="imgWrapper">
+                        <img src={imageUrl} alt="" className='w-100'/>
+                        <div className="overlay transition">
+                            <ul className='list list-inline mb-0'>
+                                <li className='list-inline-item'>
+                                    <NavLink className='cursor' tooltip="Add to Wishlist!"><FavoriteBorderOutlinedIcon/></NavLink>   
+                                </li>
+                                <li className='list-inline-item'>
+                                    <NavLink className='cursor' tooltip="Compare"><CompareArrowsOutlinedIcon/></NavLink>
+                                </li>
+                                <li className='list-inline-item'>
+                                    <NavLink className='cursor' tooltip="Quick View"><RemoveRedEyeOutlinedIcon/></NavLink>
+                                </li>
+                            </ul>
 
+                        </div>
                     </div>
-                </div>
                
-            </NavLink>
+                </NavLink>
             
-            <div className="info">
-                <span className='d-block catName'>shoe</span>
-                <h4 className='title'>Nike Sneaker Shoe, Outdoor Running </h4>
-                <Rating name="half-rating-read" defaultValue={3.5} precision={0.5} readOnly />
-                <span className='d-block brand'>By <NavLink href="">Lorem</NavLink></span>
+                <div className="info">
+                    <span className='d-block catName'>{item.category}</span>
+                    <h4 className='title'>{truncateText(item.description, 50)}</h4>
+                    <Rating name="half-rating-read" defaultValue={3.5} precision={0.5} readOnly />
+                    <span className='d-block brand'>By <NavLink href="">{item.shop.name}</NavLink></span>
 
-                <div className="d-flex align-items-center">
                     <div className="d-flex align-items-center">
-                        <span className='price'>$80</span><span className='oldPrice'>$150</span>
+                        <div className="d-flex align-items-center">
+                            <span className='price'>{item.price}</span><span className='oldPrice'>$150</span>
+                        </div>
+                        <Button className='ms-auto transition'><ShoppingCartOutlinedIcon/>Add</Button>
                     </div>
-                    <Button className='ms-auto transition'><ShoppingCartOutlinedIcon/>Add</Button>
                 </div>
-            </div>
+                </>
+            }
+            
+            
         </div>
     )
 }

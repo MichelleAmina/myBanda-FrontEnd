@@ -420,7 +420,7 @@ function ProductDetails(){
 
                                                 <div className="col-md-6">
                                                     <div className="form-group">
-                                                        <input type="text" className='form-control' placeholder='Email'/>
+                                                        <input type="date" className='form-control'/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -494,32 +494,32 @@ function ProductDetails(){
                         
                     </div>
                 </div>
-
+                {/*
                 <div className="relatedProducts pt-5 pb-4">
                     <h2 className='mb-4 mt-0'>Similar Products</h2>
                     <Slider {...related} className='productSlider'>
                         <div className="item">
-                            <HomeProduct />
+                            {/*<HomeProduct />*}
                         </div>
                         <div className="item">
-                            <HomeProduct />
+                            {/*<HomeProduct />*}
                         </div>
                         <div className="item">
-                            <HomeProduct />
+                            {/*<HomeProduct />*}
                         </div>
                         <div className="item">
-                            <HomeProduct/>
+                            {/*<HomeProduct />*}
                         </div>
                         <div className="item">
-                            <HomeProduct />
+                            {/*<HomeProduct />*}
                         </div>
                         <div className="item">
-                            <HomeProduct />
+                            {/*<HomeProduct />*}
                         </div>
                         
                             
                     </Slider>
-                </div>
+                </div>*/}
 
 
             </div>

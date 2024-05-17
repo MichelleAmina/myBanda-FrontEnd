@@ -17,19 +17,14 @@ function Carousel(){
         '#fffceb',
         '#ecffec',
         '#feefea',
-        '#fff3eb',
-        '#fff3ff',
-        '#f2fce4',
-        '#feefea',
-        '#fffceb',
-        '#ecffec'
+       
     ])
 
     var settings = {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 10,
+        slidesToShow: 8,
         slidesToScroll: 1, 
         fade: false,
         arrows: true,
