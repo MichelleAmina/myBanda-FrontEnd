@@ -12,11 +12,11 @@ const DeliveryDriverAnalytics = () => {
             <div className='driver-analytics-content'>
                 <DeliveryNavbar />
                 <div className='widgets'>
-                    {/* <Widget type="Hours worked"/> */}
+                    <Widget type="Available deliveries"/>
                     <Widget type="Completed deliveries"/>
                     <Widget type="Pending deliveries"/>
                     <Widget type="Earnings"/>
-                    <Widget type="Wallet"/>
+                    {/* <Widget type="Wallet"/> */}
                 </div>
                 <div className='driver-analytics-chart'>
                     <DriverAnalytics />

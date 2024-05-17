@@ -13,6 +13,7 @@ const DeliveryNavbar = () => {
                     <SearchIcon />
                 </div>
                 <div className="delivery-navbar-items">
+        
                     <div className="delivery-navbar-item">
                         <LanguageIcon />
                         English

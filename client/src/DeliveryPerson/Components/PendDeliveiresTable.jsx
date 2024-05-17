@@ -10,8 +10,8 @@ const PendDeliveriesTable = () => {
         { id: 'SellerLocation', label: 'Seller Location'},
         { id: 'Status', label: 'Status'},
         { id: 'Action', label: 'Action', renderCell: (row) => (
-            <Link to={{ pathname: "/viewDetails/:id", state: { orderId: row.id } }}>
-                <Button className='table-button' style={{ backgroundColor: '#EBC606', color: '#fff', borderRadius: "7px", fontWeight: 'bold' }}>
+            <Link to={`/viewDetails/${row.id}`}>
+                <Button className='table-button' style={{ color: '#418107', borderRadius: "10px", fontWeight: 'bold', padding: '2px' }}>
                     {row.Action}
                 </Button>
             </Link>
@@ -38,7 +38,6 @@ const PendDeliveriesTable = () => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
-
     return ( 
         <div className='pending-deliveries-table'>
             <Paper className='pending-deliveries-table-container'>
@@ -47,7 +46,7 @@ const PendDeliveriesTable = () => {
                         <TableHead>
                             <TableRow>
                                 {columns.map((column)=> (
-                                    <TableCell style={{backgroundColor:'#0A205A', color:'white'}} key={column.id}>{column.label}</TableCell>
+                                    <TableCell style={{backgroundColor:'#FFD700', color:'white'}} key={column.id}>{column.label}</TableCell>
                                 ))}
                             </TableRow>
                         </TableHead>
@@ -74,9 +73,7 @@ const PendDeliveriesTable = () => {
                 component='div'
                 onPageChange={handlechangepage}
                 onRowsPerPageChange={handleRowsPerPage}
-                >
-
-                </TablePagination>
+                />
             </Paper>
         </div>
     );

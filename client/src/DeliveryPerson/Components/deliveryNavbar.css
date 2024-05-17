@@ -1,5 +1,5 @@
 .delivery-navbar {
-    height: 50px;
+    height: 60px;
     border-bottom: 0.5px solid rgb(231, 228, 228);
     display: flex;
     align-items: center;
@@ -18,9 +18,10 @@
 .delivery-search {
     display: flex;
     align-items: center;
-    border: 1px solid rgb(231, 228, 228);
+    border: 1px solid black;
     padding: 3px;
-    margin-left: 20px;
+    margin-left: 50px;
+    border-radius: 5px;
 }
 
 ::placeholder {

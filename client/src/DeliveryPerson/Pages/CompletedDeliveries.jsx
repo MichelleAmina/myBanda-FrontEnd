@@ -9,6 +9,7 @@ const CompletedDeliveries = () => {
             <DeliverySidebar />
             <div className="completed-deliveries-container">
                 <DeliveryNavbar />
+                <div className="pending-title">Completed Deliveries</div>
                 <CompDeliveriesTable />
             </div>
         </div>

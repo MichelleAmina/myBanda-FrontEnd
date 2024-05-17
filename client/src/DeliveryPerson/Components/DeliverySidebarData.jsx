@@ -13,12 +13,12 @@ export const DeliverySidebarData = [
     },
     {
         icon:   PendingActionsIcon,
-        title: "Pending Deliveries",
+        title: "Pending",
         path:"/pendingDeliveries"
     },
     {
         icon: TaskIcon,
-        title: "Completed deliveries",
+        title: "Completed",
         path: "/completedDeliveries"
     },
     {

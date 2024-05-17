@@ -66,7 +66,7 @@ function App() {
         <Route path="/completedDeliveries" element={<CompletedDeliveries />} />
         <Route path="/driverAnalytics" element={<DeliveryDriverAnalytics />} />
         <Route path='/pendingDeliveries' element={<PendingDeliveries />} />
-        <Route path='/viewDetails/:id' element={<ViewDetails />} />
+        <Route path='/viewDetails/:orderId' element={<ViewDetails />} />
 
         {/*Seller routes */}
         <Route path="/sellerdash" element={<Sellerdash />} />
@@ -75,7 +75,6 @@ function App() {
         <Route path="/sellerproducts" element={<Sellerproducts />} />
         <Route path="/newsellercustomers" element={<Newsellercustomers />} />
         <Route path="/newsellerorders" element={<Newsellerorders />} />
-        
       </Routes>
     </div>
   )

@@ -11,8 +11,8 @@ const CompDeliveriesTable = () => {
         { id: 'Earnings', label: 'Earnings'},
         { id: 'Status', label: 'Status'},
         { id: 'Action', label: 'Action', renderCell: (row) => (
-            <Link to={{ pathname: "/viewDetails/:id", state: { orderId: row.id } }}>
-                <Button className='table-button' style={{ backgroundColor: '#EBC606', color: '#fff', borderRadius: "7px", fontWeight: 'bold' }}>
+            <Link to= {`/viewDetails/${row.id}`} >
+                <Button className='table-button' style={{ color: '#334eac', borderRadius: "10px", fontWeight: 'bold', padding: '2px' }}>
                     {row.Action}
                 </Button>
             </Link>
@@ -47,7 +47,7 @@ const CompDeliveriesTable = () => {
                         <TableHead>
                             <TableRow>
                                 {columns.map((column) => (
-                                    <TableCell style={{ backgroundColor: '#0A205A', color: 'white' }} key={column.id}>{column.label}</TableCell>
+                                    <TableCell style={{ backgroundColor: '#334eac', color: 'white' }} key={column.id}>{column.label}</TableCell>
                                 ))}
                             </TableRow>
                         </TableHead>
