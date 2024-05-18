@@ -2,7 +2,7 @@ import './adminHome.scss'
 import AdminWidget from '../../components/widget/AdminWidget'
 import AdminFeatured from '../../components/featured/AdminFeatured'
 import AdminChart from '../../components/charts/AdminChart'
-
+import AdminTable from '../../components/table/AdminTable'
 
 function AdminHome(){
     return(
@@ -16,7 +16,13 @@ function AdminHome(){
             </div>
             <div className="admin-charts">
                 <AdminFeatured/>
-                <AdminChart/>
+                <AdminChart aspect={2 / 1} title="Total Users (Last 6 Months)"/>
+            </div>
+            <div className="listContainer">
+                <div className="listTitle">
+                    <h4>New Users</h4>
+                    <AdminTable/>
+                </div>
             </div>
         </div>
             

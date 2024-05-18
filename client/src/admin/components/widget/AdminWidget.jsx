@@ -1,4 +1,6 @@
 import './adminWidget.scss'
+import {NavLink} from 'react-router-dom'
+
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
@@ -11,9 +13,9 @@ function AdminWidget({type}){
     switch (type) {
         case "Seller":
             data = {
-                title: "Sellers",
+                title: "Shops",
                 count: 100,
-                link: "See all Sellers",
+                link: <NavLink to='/banda_admin/shops' style={{textDecoration:"none", color:"#000"}}>See All Shops</NavLink>,
                 icon: <StoreIcon className='icon'/>
             };
             break;
@@ -21,7 +23,7 @@ function AdminWidget({type}){
             data = {
                 title: "Customers",
                 count: 5000,
-                link: "See all Customers",
+                link: <NavLink to='/banda_admin/customers' style={{textDecoration:"none", color:"#000"}}>See All Customers</NavLink>,
                 icon: <GroupsIcon className='icon'/>
             };
             break;
@@ -29,7 +31,7 @@ function AdminWidget({type}){
             data = {
                 title: "Delivery Providers",
                 count: 100,
-                link: "See all Delivery Providers",
+                link: <NavLink to='/banda_admin/delivery' style={{textDecoration:"none",color:'#000'}} >See All Delivery Providers</NavLink>,
                 icon: <LocalShippingOutlinedIcon className='icon'/>
             };
             break;
@@ -37,7 +39,7 @@ function AdminWidget({type}){
             data = {
                 title: "Banda Admin",
                 count: 20,
-                link: "See all Admin",
+                link: <NavLink to=''style={{textDecoration:"none",color:'#000'}} >See All Admin</NavLink>,
                 icon: <PersonOutlineIcon className='icon'/>
             };
             break;

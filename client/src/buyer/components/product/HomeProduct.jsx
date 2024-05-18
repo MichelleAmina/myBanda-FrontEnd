@@ -34,7 +34,7 @@ function HomeProduct({item}){
         return text.substring(0, maxLength) + '...';
     }
 
-    const imageUrl = item.images[0].image_url;
+    //const imageUrl = item.images[0].image_url;
 
 
     
@@ -47,7 +47,7 @@ function HomeProduct({item}){
                 <>
                 <NavLink>
                     <div className="imgWrapper">
-                        <img src={imageUrl} alt="" className='w-100'/>
+                        <img  alt="" className='w-100'/>
                         <div className="overlay transition">
                             <ul className='list list-inline mb-0'>
                                 <li className='list-inline-item'>

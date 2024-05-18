@@ -52,9 +52,9 @@ function App() {
         <Route path='/banda_admin' element={<Admin/>}>
           <Route path='customers'></Route>
           <Route path='delivery'></Route>
-          <Route path='vendors'>
+          <Route path='shops'>
             <Route index element={<List/>}></Route>
-            <Route path=':sellerId' element={<Single/>}></Route>
+            <Route path=':shopId' element={<Single/>}></Route>
           </Route>
 
         </Route>
