@@ -90,7 +90,7 @@ function Nav(data) {
                                     <div className="dropdown_menu">
                                         <ul style={{paddingLeft:'0px'}}>
                                             <li><Button><NavLink to='/buyer/about'>Login/Register</NavLink></Button></li>
-                                            <li><Button><NavLink to='/buyer/about'>Cart</NavLink></Button></li>
+                                            <li><Button><NavLink to='/my_banda/cart'>Cart</NavLink></Button></li>
                                             <li><Button><NavLink to='/buyer/about'>Orders</NavLink></Button></li>
                                             <li><Button><NavLink to='/buyer/about'>Wishlist</NavLink></Button></li>
                                             <li><Button><NavLink to='/buyer/about'>About Us</NavLink></Button></li>

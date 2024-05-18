@@ -8,7 +8,8 @@ import Tooltip from '@mui/material/Tooltip';
 
 import './homeProduct.css'
 import { NavLink } from "react-router-dom"
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+
 
 /*
 {
@@ -36,7 +37,10 @@ function HomeProduct({item}){
 
     const imageUrl = item.images[0].image_url;
 
-
+    // added
+    const addToCart=(item) => {
+        useContext.addToCart(item)
+    }
     
 
     return(
@@ -76,7 +80,8 @@ function HomeProduct({item}){
                         <div className="d-flex align-items-center">
                             <span className='price'>{item.price}</span><span className='oldPrice'>$150</span>
                         </div>
-                        <Button className='ms-auto transition'><ShoppingCartOutlinedIcon/>Add</Button>
+                        {/* ADDED */}
+                        <Button className='ms-auto transition' onClick={() => addToCart(item)}><ShoppingCartOutlinedIcon/>Add</Button>
                     </div>
                 </div>
                 </>

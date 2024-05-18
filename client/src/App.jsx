@@ -14,6 +14,8 @@ import Buyer from './buyer/Buyer';
 import BuyerAbout from './buyer/pages/about/BuyerAbout';
 import Listing from './buyer/pages/listing/Listing';
 import ProductDetails from './buyer/components/details/ProductDetails';
+import BuyersCart from './buyer/pages/carts/BuyersCart';
+import OrderProduct from './buyer/pages/order/Order';
 // Banda Admin
 import Admin from './admin/Admin';
 import List from './admin/pages/list/List'
@@ -26,6 +28,7 @@ import Customers from "./shared/Customers";
 import Sellerproducts from "./shared/Sellerproducts";
 import Newsellercustomers  from "./shared/Newsellercustomers";
 import Newsellerorders from "./shared/Newsellerorders";
+
 
 
 
@@ -44,10 +47,14 @@ function App() {
           <Route index element={<Listing/>}></Route>
           <Route path=':productId' element={<ProductDetails/>}></Route>
         </Route>
-          
+
+        <Route path='cart' element={<BuyersCart />}></Route>
+        <Route path='checkout' element={<OrderProduct />}></Route>
           
           <Route path='about' element={<BuyerAbout/>}></Route>
         </Route>
+
+        
         {/*Banda Admin routes start here*/}
         <Route path='/banda_admin' element={<Admin/>}>
           <Route path='customers'></Route>
@@ -55,6 +62,7 @@ function App() {
           <Route path='vendors'>
             <Route index element={<List/>}></Route>
             <Route path=':sellerId' element={<Single/>}></Route>
+
           </Route>
 
         </Route>
@@ -67,6 +75,8 @@ function App() {
         <Route path="/driverAnalytics" element={<DeliveryDriverAnalytics />} />
         <Route path='/pendingDeliveries' element={<PendingDeliveries />} />
         <Route path='/viewDetails/:orderId' element={<ViewDetails />} />
+
+        
 
         {/*Seller routes */}
         <Route path="/sellerdash" element={<Sellerdash />} />
