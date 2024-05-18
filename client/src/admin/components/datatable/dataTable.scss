@@ -1,0 +1,37 @@
+.dataTable{
+    height: 600px;
+    padding: 20px 40px;
+
+
+    .dataTableTitle{
+        h1{
+            font-size: 20px;
+            margin-bottom: 20px;
+
+        }
+    }
+
+    .cellAction{
+        display: flex;
+        align-items: center;
+        border: none;
+    
+
+        .viewButton{
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: darkgreen;
+            background: rgb(194, 251, 194);
+            font-weight: 600;
+            align-items: center;
+            justify-content: center;
+            height: auto; 
+            line-height: normal;
+            margin-top: 10px;
+            cursor: pointer;
+
+            
+        }
+    }
+
+}

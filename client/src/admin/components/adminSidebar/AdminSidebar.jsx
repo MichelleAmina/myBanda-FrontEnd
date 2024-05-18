@@ -23,16 +23,16 @@ function AdminSidebar(){
 
             <div className="center">
                 <ul>
-                    <li><DashboardIcon/><span>Dashboard</span></li>
+                    <li><DashboardIcon/><NavLink to='/banda_admin' style={{textDecoration:"none"}}><span>Dashboard</span></NavLink></li>
                     <p className="title">Pages</p>
-                    <li><StoreIcon/><span>Sellers</span></li>
-                    <li><GroupsIcon/><span>Customers</span></li>
-                    <li><LocalShippingOutlinedIcon/><span>Delivery</span></li>
+                    <li><StoreIcon/><NavLink to='/banda_admin/shops' style={{textDecoration:"none"}}><span>Shops</span></NavLink></li>
+                    <li><GroupsIcon/><NavLink to='/banda_admin/customers' style={{textDecoration:"none"}}><span>Customers</span></NavLink></li>
+                    <li><LocalShippingOutlinedIcon/><NavLink to='/banda_admin/delivery' style={{textDecoration:"none"}}><span>Delivery</span></NavLink></li>
                     <p className="title">Apps</p>
                     <li><CalendarMonthIcon/><span>Calender</span></li>
                     <li><InboxIcon/><span>Chats</span></li>
-                    <p className="title">Stats</p>
-                    <li><InsertChartIcon/><span>Analytics</span></li>
+                    {/*<p className="title">Stats</p>
+                    <li><InsertChartIcon/><span>Analytics</span></li>*/}
                     <p className="title">User</p>
                     <li><AccountCircleIcon/><span>Profile</span></li>
                     <li><LogoutIcon/><span>Logout</span></li>
@@ -43,6 +43,7 @@ function AdminSidebar(){
             <div className="bottom">
                 <div className="colorOption"></div>
                 <div className="colorOption"></div>
+                
             </div>
         </div>
     )
