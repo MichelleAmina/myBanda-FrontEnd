@@ -1,5 +1,5 @@
 import './productDetails.css'
-import {NavLink, useParams} from 'react-router-dom'
+import {NavLink, useParams, useLocation} from 'react-router-dom'
 import { useRef, useState, useEffect} from 'react';
 import Sidebar from '../sidebar/Sidebar'
 import HomeProduct from '../product/HomeProduct';
@@ -21,33 +21,40 @@ import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
 function ProductDetails(){
 
     const { productId } = useParams();
-    const [product, setProduct] = useState(null);
+    const location = useLocation();
+    const [product, setProduct] = useState(location.state?.product || null);
+    const [zoomImage, setZoomImage] = useState(product?.images[0]?.image_url || "/shoes.png");
 
-    const [zoomImage, setZoomImage] = useState("/shoes.png" )
-    //const [zoomImage, setZoomImage] = useState("")
     const [bigImageSize, setBigImageSize] = useState([1500, 1500])
     const [smlImageSize, setSmlImageSize] = useState([150, 150])
 
     const [activeSize, setActiveSize] = useState(0)
     const [inputValue, setInputValue] = useState(1)
-
     const [activeTabs, setActiveTabs] = useState(0)
 
     const zoomSlider = useRef()
-    /*
+    
+    // If unable to get data using useLocation, fetch it directly from the database 
     useEffect(() => {
-        fetch(`https://mybanda-backend-88l2.onrender.com/product/${productId}`)
-            .then(resp => resp.json())
-            .then(data => {
-                setProduct(data);
-                setZoomImage(data.images[0].image_url);
-            })
-            .catch(error => {
-                console.error('Error fetching product data:', error);
-            });
-    }, [productId]);
+        if (!product) {
+            fetch(`https://mybanda-backend-88l2.onrender.com/product/${productId}`)
+                .then(resp => resp.json())
+                .then(data => {
+                    setProduct(data);
+                    if (data.images && data.images.length > 0) {
+                        setZoomImage(data.images[0].image_url);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching product data:', error);
+                });
+        }
+    }, [product, productId]);
 
-    console.log("from productDetails",product)*/
+
+    if (!product) {
+        return <div>Loading...</div>;
+    }
 
     var settings = {
         dots: false,
@@ -112,16 +119,29 @@ function ProductDetails(){
             {/*Product Zoom code starts here*/}
             <div className="col-md-5">
                 <div className="productZoom">
-                    <InnerImageZoom 
+                <InnerImageZoom src={zoomImage} zoomSrc={zoomImage} zoomScale={2} zoomType='hover'  className="productZoomImage" />
+                    {/*<InnerImageZoom 
                     zoomScale={2}
                     zoomType='hover'
-                    src={`${zoomImage}?im=Resize=(${bigImageSize[0]}, ${bigImageSize[1]})`} />
+                    src={`${zoomImage}?im=Resize=(${bigImageSize[0]}, ${bigImageSize[1]})`} />*/}
                 </div>
-                
+                <Slider ref={zoomSlider} {...settings}>
+                        {product.images.map((img, index) => (
+                            <img
+                                key={index}
+                                src={img.image_url}
+                                alt={product.name}
+                                onClick={() => setZoomImage(img.image_url)}
+                                className="zoomSliderImage"
+                        
+                            />
+                        ))}
+                    </Slider>
+                {/*
                 <Slider {...settings} className='zoomSlider' ref={zoomSlider}>
                   
                     <div className="item">
-                        {/*this works in terms of changing the display image*/}
+                        {/*this works in terms of changing the display image*
                         <img src={`/shoes2.png?im=Resize=(${smlImageSize[0]}, ${smlImageSize[1]})`} alt="" className='w-100' 
                         onClick={() => goto("/shoes2.png",0)}/>
                     </div>
@@ -144,6 +164,7 @@ function ProductDetails(){
 
 
                 </Slider>
+    */}
             </div>
             {/*Product Zoom code ends here*/}
 
@@ -151,9 +172,9 @@ function ProductDetails(){
 
             {/*Product info code starts here*/}
             <div className="col-md-7 productInfo">
-                <h1>Addidas Shoes, Sneakers Women's Shoe</h1>
+                <h1>{product.name}</h1>
                 <div className="productseller d-flex align-items-center mb-2">
-                    <span>Sold By: <span className='text-b'>Lorem</span></span>
+                    <span>Sold By: <span className='text-b'>{product.shop.name}</span></span>
                 </div>
                 <div className="d-flex align-items center">
                     <Rating name="half-rating-read" defaultValue={3.5} precision={0.5} readOnly />
@@ -161,14 +182,14 @@ function ProductDetails(){
                 </div>
 
                 <div className="priceSec d-flex align-items-center mb-3">
-                    <span className='text-b priceLarge'>$70</span>
+                    <span className='text-b priceLarge'>{product.price}</span>
                     <div className="ms-2 d-flex flex-column">
                         <span className='text-y'>20$ off</span>
                         <span className='text-light oldPrice'>$120</span>
                     </div>
                 </div>
 
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In consequatur obcaecati mollitia placeat enim quidem magnam! Molestias dicta veniam architecto!</p>
+                <p>{product.description}</p>
 
                 <div className="productSize d-flex align-items-center">
                     <span>Size / Weight:</span>

@@ -517,12 +517,22 @@ ul.breadcrumb li a.active{
 
 .productZoom {
   width: 100%;
-  height: auto;
+  /*height: auto;*/
+  height: 300px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   /*padding: 20px;*/
   padding: 0px;
   overflow: hidden;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detailsPage .zoomSliderImage{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .zoomSlider *{
