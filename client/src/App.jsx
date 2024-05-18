@@ -14,6 +14,8 @@ import Buyer from './buyer/Buyer';
 import BuyerAbout from './buyer/pages/about/BuyerAbout';
 import Listing from './buyer/pages/listing/Listing';
 import ProductDetails from './buyer/components/details/ProductDetails';
+import BuyersCart from './buyer/pages/carts/BuyersCart';
+import OrderProduct from './buyer/pages/order/Order';
 // Banda Admin
 import Admin from './admin/Admin';
 import List from './admin/pages/list/List'
@@ -29,6 +31,7 @@ import Newsellerorders from "./shared/Newsellerorders";
 
 
 
+
 function App() {
 
 
@@ -41,19 +44,29 @@ function App() {
         <Route path='/login' element={<Login/>}></Route>
         {/* buyer pages */}
         <Route path='/my_banda' element={<Buyer/>}>
+        <Route path='products'>
+          <Route index element={<Listing/>}></Route>
+          <Route path=':productId' element={<ProductDetails/>}></Route>
+        </Route>
+
+        <Route path='cart' element={<BuyersCart />}></Route>
+        <Route path='checkout' element={<OrderProduct />}></Route>
+          
           <Route path='products'>
             <Route index element={<Listing/>}></Route>
             <Route path=':productId' element={<ProductDetails/>}></Route>
           </Route>
           <Route path='about' element={<BuyerAbout/>}></Route>
         </Route>
+
+        
         {/*Banda Admin routes start here*/}
         <Route path='/banda_admin' element={<Admin/>}>
           <Route path='customers'></Route>
           <Route path='delivery'></Route>
           <Route path='shops'>
             <Route index element={<List/>}></Route>
-            <Route path=':shopId' element={<Single/>}></Route>
+            <Route path=':sellerId' element={<Single/>}></Route>
           </Route>
 
         </Route>
@@ -66,6 +79,8 @@ function App() {
         <Route path="/driverAnalytics" element={<DeliveryDriverAnalytics />} />
         <Route path='/pendingDeliveries' element={<PendingDeliveries />} />
         <Route path='/viewDetails/:orderId' element={<ViewDetails />} />
+
+        
 
         {/*Seller routes */}
         <Route path="/sellerdash" element={<Sellerdash />} />
