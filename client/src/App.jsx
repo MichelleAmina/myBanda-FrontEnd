@@ -39,13 +39,12 @@ function App() {
     <div>
       <Routes>
         <Route path='/login' element={<Login/>}></Route>
+        {/* buyer pages */}
         <Route path='/my_banda' element={<Buyer/>}>
-        <Route path='products'>
-          <Route index element={<Listing/>}></Route>
-          <Route path=':productId' element={<ProductDetails/>}></Route>
-        </Route>
-          
-          
+          <Route path='products'>
+            <Route index element={<Listing/>}></Route>
+            <Route path=':productId' element={<ProductDetails/>}></Route>
+          </Route>
           <Route path='about' element={<BuyerAbout/>}></Route>
         </Route>
         {/*Banda Admin routes start here*/}

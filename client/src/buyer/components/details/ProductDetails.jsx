@@ -1,10 +1,8 @@
 import './productDetails.css'
-import {NavLink} from 'react-router-dom'
-import { useRef, useState} from 'react';
+import {NavLink, useParams} from 'react-router-dom'
+import { useRef, useState, useEffect} from 'react';
 import Sidebar from '../sidebar/Sidebar'
 import HomeProduct from '../product/HomeProduct';
-
-
 
 import Slider from 'react-slick'
 import Rating from '@mui/material/Rating';
@@ -22,18 +20,34 @@ import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
 
 function ProductDetails(){
 
-    const [zoomImage, setZoomImage] = useState("/shoes.png" )
+    const { productId } = useParams();
+    const [product, setProduct] = useState(null);
 
+    const [zoomImage, setZoomImage] = useState("/shoes.png" )
+    //const [zoomImage, setZoomImage] = useState("")
     const [bigImageSize, setBigImageSize] = useState([1500, 1500])
     const [smlImageSize, setSmlImageSize] = useState([150, 150])
 
     const [activeSize, setActiveSize] = useState(0)
-
     const [inputValue, setInputValue] = useState(1)
 
     const [activeTabs, setActiveTabs] = useState(0)
 
     const zoomSlider = useRef()
+    /*
+    useEffect(() => {
+        fetch(`https://mybanda-backend-88l2.onrender.com/product/${productId}`)
+            .then(resp => resp.json())
+            .then(data => {
+                setProduct(data);
+                setZoomImage(data.images[0].image_url);
+            })
+            .catch(error => {
+                console.error('Error fetching product data:', error);
+            });
+    }, [productId]);
+
+    console.log("from productDetails",product)*/
 
     var settings = {
         dots: false,
@@ -86,8 +100,8 @@ function ProductDetails(){
             <div className="breadcrumbWrapper mb-4">
                 <div className="container-fluid">
                     <ul className='breadcrumb breadcrumb2 mb-0'>
-                        <li><NavLink to='/buyer'>Home</NavLink></li>
-                        <li><NavLink to='/buyer/products'>Products</NavLink></li>
+                        <li><NavLink to='/my_banda'>Home</NavLink></li>
+                        <li><NavLink to='/my_banda/products'>Products</NavLink></li>
                         <li>Product Details</li>
                     </ul>
 
@@ -103,8 +117,9 @@ function ProductDetails(){
                     zoomType='hover'
                     src={`${zoomImage}?im=Resize=(${bigImageSize[0]}, ${bigImageSize[1]})`} />
                 </div>
-
+                
                 <Slider {...settings} className='zoomSlider' ref={zoomSlider}>
+                  
                     <div className="item">
                         {/*this works in terms of changing the display image*/}
                         <img src={`/shoes2.png?im=Resize=(${smlImageSize[0]}, ${smlImageSize[1]})`} alt="" className='w-100' 
@@ -184,7 +199,7 @@ function ProductDetails(){
 
 
             </div>
-                </div>
+        </div>
 
                 <div className="card mt-3 p-4 detailsPageTabs">
                     <div className="customTabs">

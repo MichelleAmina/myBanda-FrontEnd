@@ -1,4 +1,4 @@
-import { Button, PopoverPaper } from '@mui/material';
+import { Button, PopoverPaper, dividerClasses } from '@mui/material';
 import Rating from '@mui/material/Rating';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
@@ -34,20 +34,21 @@ function HomeProduct({item}){
         return text.substring(0, maxLength) + '...';
     }
 
-    //const imageUrl = item.images[0].image_url;
+    const imageUrl = item.images[0].image_url;
 
 
     
 
     return(
-        <div className="productThumb" style={{minHeight:'350px'}}>
+        <div className='productContainer'>
+             <div className="productThumb" style={{minHeight:'350px'}}>
             
             {
                 products !== undefined &&
                 <>
-                <NavLink>
+                <NavLink to={`/my_banda/products/${item.id}`}>
                     <div className="imgWrapper">
-                        <img  alt="" className='w-100'/>
+                        <img src={imageUrl} alt="" className='w-100'/>
                         <div className="overlay transition">
                             <ul className='list list-inline mb-0'>
                                 <li className='list-inline-item'>
@@ -57,7 +58,7 @@ function HomeProduct({item}){
                                     <NavLink className='cursor' tooltip="Compare"><CompareArrowsOutlinedIcon/></NavLink>
                                 </li>
                                 <li className='list-inline-item'>
-                                    <NavLink className='cursor' tooltip="Quick View"><RemoveRedEyeOutlinedIcon/></NavLink>
+                                    <NavLink to={`/my_banda/products/${item.id}`} className='cursor' tooltip="Quick View"><RemoveRedEyeOutlinedIcon/></NavLink>
                                 </li>
                             </ul>
 
@@ -84,6 +85,10 @@ function HomeProduct({item}){
             
             
         </div>
+
+        </div>
+
+       
     )
 }
 

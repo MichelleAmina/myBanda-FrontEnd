@@ -30,7 +30,7 @@ function Buyer(){
     }*/
 
     useEffect(() => {
-        fetch("https://mybanda-backend-3.onrender.com/products")
+        fetch("https://mybanda-backend-88l2.onrender.com/products")
           .then(resp => resp.json())
           .then((data) => {
             console.log("from buyer",data)
@@ -41,7 +41,7 @@ function Buyer(){
           });
     }, []);
 
-    console.log("setProductData", productData)
+    //console.log("setProductData", productData)
 
     return(
         productData.length !== 0 &&

@@ -31,41 +31,6 @@ function BuyerHome(props){
        
     };
 
-    /*
-    const catArr = []
-    
-    // To get the filtered list of categories 
-    useEffect(() => {
-        prodData.length !== 0 &&
-        prodData.map((item, index) => {
-            //console.log(item.category)
-            catArr.push(item.category)
-        })
-        const filterList = catArr.filter((item, index) => catArr.indexOf(item) === index)
-        setCategories(filterList)
-        //console.log("filtered list", filterList)
-        //console.log("catArr", catArr)
-
-        setActiveCategory(filterList[0])
-        
-    }, [])
-
-    /*
-    useEffect(() => {
-        let arr = []
-        setActiveCategoryData(arr)
-        prodData.length !== 0 &&
-        prodData.map((item, index) => {
-            //console.log(item)
-            if(item.category === activeCategory){
-                setActiveCategoryData(item)
-            }
-        })
-
-       
-    }, [activeCategory, activeCategoryData])
-
-    console.log("category data",activeCategoryData)*/
 
     useEffect(() => {
         if (prodData.length !== 0) {
@@ -139,13 +104,7 @@ function BuyerHome(props){
                                 )
                             })
                         }
-                        {/*
-                        <div className="item">
-                            <HomeProduct/>
-                        </div>
                         
-                        
-                    */}
                     </div>
                 </div>
             </section>

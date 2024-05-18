@@ -9,10 +9,19 @@ import { useEffect, useState } from 'react';
 
 
 
-function Nav(data) {
-    //console.log(data)
+function Nav({data}) {
+    //console.log("from nav",data)
 
     const [isOpenDropDown, setIsOpenDropDown] = useState(false)
+    const [navData, setNavData] = useState([]);
+
+    useEffect(() => {
+        setNavData(data);
+    }, [])
+
+    //console.log("this is navData", navData)
+
+    
   
 
     
@@ -27,43 +36,23 @@ function Nav(data) {
                         </Button>
                         {isOpenDropDown !== false &&
                         <div className="row dropdown_Menu">
-                            <div className="col">
-                            <ul className=''>
-                                <li>Home Decor</li>
-                                <li>Appliances</li>
-                                <li>Tools & Hardware</li>
-                                <li>Clothing</li>
-                                <li>Accessories</li>
-                                <li>Beauty & Skincare</li>
-                            </ul>
-
-                            </div>
-                            <div className="col">
-                                <ul className=''>
-                                    <li>Outdoor</li>
-                                    <li>Elctronics</li>
-                                    <li>Health & Wellness</li>
-                                    <li>Toys & Games</li>
-                                    <li>Books & Stationary</li>
-                                    <li>Food & Beverages</li>
-                                </ul>
-
-                            </div>
-                        </div>
                             
-                                
+                                {
+                                    navData.map((item, index) => {
+                                        return(
+                                            <div className="catItem d-flex align-items-center" key={index}>
+                                                <span className='img pe-3'><img src="/spa.png" alt="" width={35} /></span>
+                                                <p className='mb-0 ml-3 mr-3'>{item}</p>
+    
+                                            </div>
+                                        )
+                                    })
+                                }
 
-                    
+                            </div>
+                                   
                         }
 
-                        
-                        
-                        
-                        {/*{
-                            navData.length !== 0 && navData.map((item, index) => {
-                                //console.log(item.category)
-                            })
-                        }*/}
 
                     </div>
 

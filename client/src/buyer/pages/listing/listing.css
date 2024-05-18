@@ -7,7 +7,7 @@
 }*/
 
 .listingPage .rightContent .productRow .item{
-    width: 20%; /*18%*/
+    width: 20% !important; /*18%*/
     /* height: 280px; 300px*/
     /* background: #ccc;
      margin-left: 20px;*/

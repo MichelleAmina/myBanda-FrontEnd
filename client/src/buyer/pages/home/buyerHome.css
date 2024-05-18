@@ -34,8 +34,7 @@
 
 /* adjust size of each item*/
 .homeProducts .productRow .item{
-    width: 16%; /*18%*/
-
+    width: 20%; /*18%*/
    /* height: 280px; 300px*/
    /* background: #ccc;
     margin-left: 20px;*/
