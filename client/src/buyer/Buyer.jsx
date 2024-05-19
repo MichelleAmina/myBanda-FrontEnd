@@ -41,7 +41,7 @@ function Buyer(){
           });
     }, []);
 
-    //console.log("setProductData", productData)
+    console.log("setProductData", productData)
 
     return(
         productData.length !== 0 &&
