@@ -34,7 +34,7 @@ function Listing() {
                 console.error('Error fetching products data:', error);
             });
     }, []);
-    console.log("price Range",priceRange)
+    //console.log("price Range",priceRange)
     
 
     // Store list of categories without repetition

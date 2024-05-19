@@ -11,7 +11,8 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-
+import AddIcCallOutlinedIcon from '@mui/icons-material/AddIcCallOutlined';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 
 /*import ReactImageZoom from 'react-image-zoom';*/
 import InnerImageZoom from 'react-inner-image-zoom';
@@ -50,6 +51,7 @@ function ProductDetails(){
                 });
         }
     }, [product, productId]);
+
 
 
     if (!product) {
@@ -182,7 +184,7 @@ function ProductDetails(){
                 </div>
 
                 <div className="priceSec d-flex align-items-center mb-3">
-                    <span className='text-b priceLarge'>{product.price}</span>
+                    <span className='text-b priceLarge'>${product.price}</span>
                     <div className="ms-2 d-flex flex-column">
                         <span className='text-y'>20$ off</span>
                         <span className='text-light oldPrice'>$120</span>
@@ -361,9 +363,45 @@ function ProductDetails(){
                         {/* Vendors */}
                         {
                             activeTabs===2 &&
-                            <div className="tabContent">
-                                <h1>Hey im a vendor </h1>
+                            <div className="tabContent pt-2">
+                                <div className="row">
+                                    <div className="col">
+                                        <h4 className='mb-4'>About The Vendor</h4>
+                                        <div className="card vendorsCard">
+                                            <div className="vendorTop mb-5 ">
+                                                <div className="rounded">
+                                                    <img src={product.shop.logo_image_url} alt="" className='vendorImg' />
+                                                </div>
+                                                <div className="vendorTitle">
+                                                    <NavLink><h3>{product.shop.name}</h3></NavLink>
+                                                    <div className="vendorRating d-flex align-items-center">
+                                                        <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly style={{fontSize:'18px'}}/>
+                                                        <span className='rating'>(32 reviews)</span>
+                                                        
+                                                    </div>
+                                                    <NavLink>Go To Vendor Page</NavLink>
+                                                    
+                                                    
+                                                </div>
 
+                                            </div>
+
+                                            <div className="vendorBottom">
+                                                <div className="detailItem mb-2">
+                                                    <span className='itemKey' style={{marginRight:"10px", fontWeight:"600"}}><AddIcCallOutlinedIcon style={{marginRight:"10px"}}/> Phone / Email: </span>
+                                                    <span className='itemValue'>{product.shop.contact},  {product.shop.seller.email}</span>
+                                                </div>
+                                                <div className="detailItem">
+                                                    <span className='itemKey' style={{marginRight:"10px", fontWeight:"600"}}><LocationOnOutlinedIcon style={{marginRight:"10px"}}/> Location:</span>
+                                                    <span className='itemValue'>{product.shop.location}</span>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                
                             </div>
                         }
 
@@ -375,6 +413,30 @@ function ProductDetails(){
                                     <div className="col-md-8">
                                         <h4 className='mb-4'>Customer Reviews</h4>
 
+                                        {
+                                            product.reviews.map((review, index) => (
+                                                <div className="card p-3 reviewsCard flex-row" key={index}>
+                                                    <div className="image">
+                                                        <div className="rounded-circle">
+                                                            <img src="/userAvatar3.png" alt="" />
+                                                        </div>
+
+                                                    </div>
+                                                    <div className="info ps-4">
+                                                        <div className="d-flex align-items-center">
+                                                            <h5>{new Date(review.date).toLocaleString()}</h5>
+                                                            <div className="ms-auto">
+                                                                <Rating name="half-rating-read" defaultValue={review.rating} precision={0.5} readOnly style={{ fontSize: '17px' }} />
+                                                            </div>
+                                                        </div>
+                                                        <span className='text-y font-weight-bold'>{review.buyer.email}</span>
+                                                        <p>{review.content}</p>
+                                                    </div>
+                                                </div>
+                                             ))
+                                        }
+
+                                        {/*
                                         <div className="card p-3 reviewsCard flex-row">
                                             <div className="image">
                                                 <div className="rounded-circle">
@@ -395,50 +457,12 @@ function ProductDetails(){
                                             </div>
                                             
                                         </div>
+                                    
+                                        
+                                        */}
 
-                                        <div className="card p-3 reviewsCard flex-row">
-                                            <div className="image">
-                                                <div className="rounded-circle">
-                                                    <img src="/userAvatar3.png" alt="" />
-                                                </div>
-                                                <span className='text-y d-block text-center font-weight-bold'>Anna</span>
-                                            </div>
-
-                                            <div className="info ps-4">
-                                                <div className="d-flex align-items-center">
-                                                    <h5>February 15, 2024 at 3:30 pm</h5>
-                                                    <div className="ms-auto">
-                                                        <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly style={{fontSize:'17px'}}/>
-                                                    </div>
-                                                </div>
-                                                
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius inventore ab, quis possimus laborum omnis velit id atque soluta expedita cum eaque nobis alias saepe animi odio aliquam ipsam delectus.</p>
-                                            </div>
-                                            
-                                        </div>
-
-                                        <div className="card p-3 reviewsCard flex-row">
-                                            <div className="image">
-                                                <div className="rounded-circle">
-                                                    <img src="/userAvatar3.png" alt="" />
-                                                </div>
-                                                <span className='text-y d-block text-center font-weight-bold'>Anna</span>
-                                            </div>
-
-                                            <div className="info ps-4">
-                                                <div className="d-flex align-items-center">
-                                                    <h5>February 15, 2024 at 3:30 pm</h5>
-                                                    <div className="ms-auto">
-                                                        <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly style={{fontSize:'17px'}}/>
-                                                    </div>
-                                                </div>
-                                                
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius inventore ab, quis possimus laborum omnis velit id atque soluta expedita cum eaque nobis alias saepe animi odio aliquam ipsam delectus.</p>
-                                            </div>
-                                            
-                                        </div>
-
-                                        <br />
+                                    <br />
+                        
 
                                         <form action="" className='reviewForm'>
                                             <h4>Add A Review</h4>
