@@ -65,7 +65,6 @@ const BuyersCart = () => {
                                                 <th>Unit Price</th>
                                                 <th>Quantity</th>
                                                 <th>Subtotal</th>
-                                                <th>Remove</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -78,6 +77,7 @@ const BuyersCart = () => {
                                                             </div>
                                                             <div className="product-name">
                                                                 <Link><h4>{cartItem.name}</h4></Link>
+                                                                <span className="cursor" onClick={() => handleRemoveItem(cartItem)}>Remove</span>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -94,9 +94,7 @@ const BuyersCart = () => {
                                                     <td>
                                                         <span className="cart-product-price">Ksh. {cartItem.price * cartItem.cartQuantity}</span>
                                                     </td>
-                                                    <td>
-                                                        <span className="cursor" onClick={() => handleRemoveItem(cartItem)}><DeleteOutlinedIcon /></span>
-                                                    </td>
+                                                    
                                                 </tr>
                                             ))}
                                         </tbody>
@@ -120,7 +118,7 @@ const BuyersCart = () => {
                                 <div className="d-flex align-items-center mb-4">
                                     <h5 className="cart-summary-title">Shipping</h5>
                                     <h3 className="cart-summary-details">
-                                        <span className="cart-product-unit-price">Ksh. {shippingFee}</span>
+                                        <span className="cart-product-shipping-price">Ksh. {shippingFee}</span>
                                     </h3>
                                 </div>
                                 <div className="d-flex align-items-center mb-4">
