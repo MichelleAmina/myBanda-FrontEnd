@@ -1,8 +1,10 @@
 import './productDetails.css'
 import {NavLink, useParams, useLocation} from 'react-router-dom'
 import { useRef, useState, useEffect} from 'react';
+import { useDispatch } from 'react-redux'
 import Sidebar from '../sidebar/Sidebar'
 import HomeProduct from '../product/HomeProduct';
+import { addToCart, decreaseCart } from '../../../redux/cartSlice';
 
 import Slider from 'react-slick'
 import Rating from '@mui/material/Rating';
@@ -20,6 +22,7 @@ import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.min.css';
 
 function ProductDetails(){
+    const dispatch = useDispatch();
 
     const { productId } = useParams();
     const location = useLocation();
@@ -103,6 +106,11 @@ function ProductDetails(){
         }
         
     }
+
+    const handleAddToCart = (product) => {
+        const productWithQuantity = { ...product, cartQuantity: inputValue };
+        dispatch(addToCart(productWithQuantity));
+    };
 
     return(
         <section className='detailsPage mb-5'>
@@ -214,7 +222,7 @@ function ProductDetails(){
 
                     </div>
 
-                    <Button className='addToCartBtn' onClick={()=> handleAddToCart(item)}>
+                    <Button className='addToCartBtn' onClick={()=> handleAddToCart(product)}>
                         <ShoppingCartOutlinedIcon/>Add to Cart</Button>
                     <Button className='favoriteBtn ms-4'><FavoriteBorderOutlinedIcon/></Button>
 
