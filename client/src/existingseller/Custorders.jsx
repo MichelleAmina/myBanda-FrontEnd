@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faBell, faUser } from "@fortawesome/free-solid-svg-icons";
-import "../custorders.css";
-import Sidebar from "./Sidebar";
+import "./custorders.css";
+import OldSidebar from "./oldside"; 
+
 
 const CustOrders = () => {
-  // Dummy data for orders
+
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredOrders, setFilteredOrders] = useState([]);
 
@@ -50,7 +51,6 @@ const CustOrders = () => {
       amount: "KES.8600",
       status: "Delivered",
     },
-
   ];
 
   // Function to handle search
@@ -63,12 +63,12 @@ const CustOrders = () => {
     setFilteredOrders(filtered);
   };
 
-  // mapping to search 
+  // mapping to search
   const dataToMap = searchTerm ? filteredOrders : orders;
 
   return (
     <div className="dashboard-container">
-      <Sidebar activePage="orders" />
+      <OldSidebar activePage="orders"/>
       <div className="content-container">
         <div className="header">
           <h1>Orders</h1>
@@ -103,7 +103,6 @@ const CustOrders = () => {
             </tr>
           </thead>
           <tbody>
-
             {dataToMap.map((order) => (
               <tr key={order.id}>
                 <td>{order.orderId}</td>

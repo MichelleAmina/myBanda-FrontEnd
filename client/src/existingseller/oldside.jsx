@@ -1,4 +1,3 @@
-//this is the sidebar that is imported in every page on the seller's end 
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,9 +11,9 @@ import {
   faSignal,
   faCog,
 } from "@fortawesome/free-solid-svg-icons";
-import "../Sidebar.css";
+import "./oldside.css";
 
-function Sidebar() {
+function OldSidebar() {
   const location = useLocation();
 
   return (
@@ -92,4 +91,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default OldSidebar;
