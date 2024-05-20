@@ -9,7 +9,7 @@ const DeliveryNavbar = () => {
         <div className="delivery-navbar">
             <div className="delivery-wrapper">
                 <div className="delivery-search">
-                    <input type="text" placeholder="Search..." />
+                    <input type="text" placeholder="Search..." className="delivery-search-input"/>
                     <SearchIcon />
                 </div>
                 <div className="delivery-navbar-items">
