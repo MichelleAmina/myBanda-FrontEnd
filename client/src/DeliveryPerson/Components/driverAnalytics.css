@@ -1,22 +1,52 @@
-.main-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 50px;
-    width: 80%;
-}
-
-.charts {
+.deliveryAnalytics-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 80%;
+    margin-left: 50px;
+}
+
+.chart-row {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
-    max-width: 1200px; 
-    padding: 20px;
+    margin-bottom: 40px;
+}
+
+.deliverytable-container {
+    flex: 1 1 45%;
+    margin: 20px;
+}
+
+.chart-container, .single-chart-container {
+    flex: 1 1 45%;
+    margin-left: 25px;
+    margin-top: 40px;
 
 }
 
 .charts h2 {
     font-size: 20px;
-    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.charts p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.driver-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.driver-table th, .driver-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.driver-table th {
+    background-color: #FFD700;
 }
