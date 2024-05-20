@@ -20,7 +20,7 @@
     "@mui/styled-engine": "^5.15.14",
     "@mui/x-data-grid": "^7.5.0",
     "@reduxjs/toolkit": "^2.2.5",
-    "axios": "^1.6.8",
+    "axios": "^1.7.0",
     "bootstrap": "^5.3.3",
     "react": "^18.2.0",
     "react-circular-progressbar": "^2.1.0",

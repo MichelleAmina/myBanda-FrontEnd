@@ -7,12 +7,8 @@ import "./App.css";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-import Sellerdash from "./shared/Sellerdash";
-import Custorders from "./shared/Custorders";
-import Customers from "./shared/Customers";
-import Sellerproducts from "./shared/Sellerproducts";
-import Newsellercustomers  from "./shared/Newsellercustomers";
-import Newsellerorders from "./shared/Newsellerorders";
+
+
 import Login from './shared/Login';
 import DeliveryDashboard from './DeliveryPerson/Pages/DeliveryDashboard';
 import CompletedDeliveries from './DeliveryPerson/Pages/CompletedDeliveries';
@@ -34,12 +30,16 @@ import List from './admin/pages/list/List'
 import Single from './admin/pages/single/Single'
 
 // Seller Import 
-import Sellerdash from "./shared/Sellerdash";
-import Custorders from "./shared/Custorders";
-import Customers from "./shared/Customers";
-import Sellerproducts from "./shared/Sellerproducts";
-import Newsellercustomers  from "./shared/Newsellercustomers";
-import Newsellerorders from "./shared/Newsellerorders";
+// Seller Import
+import Sellerdash from "./newseller/Sellerdash";
+import Custorders from "./existingseller/Custorders";
+import Customers from "./existingseller/Customers";
+import Sellerproducts from "./newseller/Sellerproducts";
+import Newsellercustomers from "./newseller/Newsellercustomers";
+import Newsellerorders from "./newseller/Newsellerorders";
+import ShopSetup from "./newseller/shopsetup";
+import AddProduct from "./newseller/addproduct"; 
+import ProductHome from "./newseller/producthome"; 
 
 
 
@@ -103,6 +103,9 @@ function App() {
         <Route path="/sellerproducts" element={<Sellerproducts />} />
         <Route path="/newsellercustomers" element={<Newsellercustomers />} />
         <Route path="/newsellerorders" element={<Newsellerorders />} />
+        <Route path="/shopsetup" element={<ShopSetup />} />
+        <Route path="/addprod" element={<AddProduct />} />
+        <Route path="/producthome" element={<ProductHome />} />
 
 
         <Route path='/driverhomepage' element={<DeliveryDashboard/>} />
