@@ -55,25 +55,16 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         {/* buyer pages */}
-        <Route path='/my_banda' element={<Buyer/>}/>
-        <Route path='products'>
-          <Route index element={<Listing/>}></Route>
-          <Route path=':productId' element={<ProductDetails/>}></Route>
-        </Route>
-
-        <Route path='cart' element={<BuyersCart />}></Route>
-        <Route path='checkout' element={<OrderProduct />}></Route>
-        <Route path='orders' element={<OrderCompleted />}></Route>
-          
+        <Route path='/my_banda' element={<Buyer/>}>
           <Route path='products'>
             <Route index element={<Listing/>}></Route>
             <Route path=':productId' element={<ProductDetails/>}></Route>
           </Route>
-        <Route path='/buyer' element={<Buyer/>}>
-          <Route path='products' element={<Listing/>}></Route>
-          <Route path='productDetails' element={<ProductDetails/>}></Route>
-          <Route path='about' element={<BuyerAbout/>}></Route>
+          <Route path='cart' element={<BuyersCart />}></Route>
+          <Route path='checkout' element={<OrderProduct />}></Route>
+          <Route path='orders' element={<OrderCompleted />}></Route>
         </Route>
+        
 
         
         {/*Banda Admin routes start here*/}
@@ -109,13 +100,6 @@ function App() {
         <Route path="/addprod" element={<AddProduct />} />
         <Route path="/producthome" element={<ProductHome />} />
 
-
-        <Route path='/driverhomepage' element={<DeliveryDashboard/>} />
-        <Route path='/availableDeliveries' element={<AvailableDeliveries />} />
-        <Route path="/completedDeliveries" element={<CompletedDeliveries />} />
-        <Route path="/driverAnalytics" element={<DeliveryDriverAnalytics />} />
-        <Route path='/pendingDeliveries' element={<PendingDeliveries />} />
-        <Route path='/viewDetails/:id' element={<ViewDetails />} />
       </Routes>
     </div>
   );
