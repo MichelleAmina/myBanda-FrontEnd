@@ -12,7 +12,7 @@ function Banners({data}){
             // Take only the first three items
             setShopData(shops.slice(0, 3)); 
             //setShopData(shops);
-            console.log("Extracted shop data:", shops);
+            //console.log("Extracted shop data:", shops);
         }
     }, [data]);
 
