@@ -19,7 +19,6 @@
 }
 
 .chart-container, .single-chart-container {
-    flex: 1 1 45%;
     margin-left: 25px;
     margin-top: 40px;
 
