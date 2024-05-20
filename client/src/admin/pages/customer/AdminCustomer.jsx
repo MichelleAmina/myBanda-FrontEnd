@@ -1,15 +1,15 @@
 import DataTable from '../../components/datatable/DataTable'
-import './list.scss'
+import './adminCustomer.scss'
 import { useState, useEffect } from 'react';
 
-function List(){
+function AdminCustomer(){
     const [userData, setUserData] = useState([]);
 
     useEffect(() => {
         fetch("https://mybanda-backend-88l2.onrender.com/users")
             .then(resp => resp.json())
             .then((data) => {
-                const filteredData = data.filter(user => user.role === 'seller');
+                const filteredData = data.filter(user => user.role === 'buyer');
                 setUserData(filteredData);
             })
             .catch(error => {
@@ -17,16 +17,27 @@ function List(){
             });
     }, []);
 
-    console.log("userData", userData)
-
     return(
-        <div className='adminList'>
-            <div className="listContainer">
-                <DataTable rows={userData} role="seller"/>
-            </div>
+        <div className="adminCustomer">
+            <DataTable rows={userData} role="buyer"/>
         </div>
     )
 }
 
-export default List;
+export default AdminCustomer;
 
+/*
+import DataTable from '../../components/datatable/DataTable'
+import './adminCustomer.scss'
+
+
+function AdminCustomer(){
+    return(
+        <div className="adminCustomer">
+            <DataTable/>
+
+        </div>
+    )
+}
+
+export default AdminCustomer*/

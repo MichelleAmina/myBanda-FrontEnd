@@ -33,7 +33,7 @@ function Buyer(){
         fetch("https://mybanda-backend-88l2.onrender.com/products")
           .then(resp => resp.json())
           .then((data) => {
-            console.log("from buyer",data)
+            //console.log("from buyer",data)
             setProductData(data)
           })
           .catch(error => {

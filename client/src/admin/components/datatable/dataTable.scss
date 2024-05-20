@@ -28,9 +28,23 @@
             height: auto; 
             line-height: normal;
             margin-top: 10px;
-            cursor: pointer;
+            cursor: pointer; 
+            margin-right: 10px;
+        }
 
-            
+        .deleteButton{
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: red;
+            background: rgb(255, 210, 210);
+            font-weight: 600;
+            align-items: center;
+            justify-content: center;
+            height: auto; 
+            line-height: normal;
+            margin-top: 10px;
+            cursor: pointer; 
+
         }
     }
 

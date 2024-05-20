@@ -20,6 +20,8 @@ import OrderProduct from './buyer/pages/order/Order';
 import Admin from './admin/Admin';
 import List from './admin/pages/list/List'
 import Single from './admin/pages/single/Single'
+import AdminCustomer from './admin/pages/customer/AdminCustomer';
+import AdminDelivery from './admin/pages/delivery/AdminDelivery';
 
 // Seller Import 
 import Sellerdash from "./shared/Sellerdash";
@@ -62,14 +64,14 @@ function App() {
         
         {/*Banda Admin routes start here*/}
         <Route path='/banda_admin' element={<Admin/>}>
-          <Route path='customers'></Route>
-          <Route path='delivery'></Route>
+          <Route path='customers' element={<AdminCustomer/>}></Route>
+          <Route path='delivery' element={<AdminDelivery/>}></Route>
           <Route path='shops'>
-            <Route index element={<List/>}></Route>
-            <Route path=':sellerId' element={<Single/>}></Route>
+              <Route index element={<List/>}></Route>
+              <Route path=':sellerId' element={<Single/>}></Route>
           </Route>
-
         </Route>
+
       
         {/* set it to this so that i can code change it once we decide on the initial landing page*/}
         <Route path="*" element={<Navigate to="/login" />} />
