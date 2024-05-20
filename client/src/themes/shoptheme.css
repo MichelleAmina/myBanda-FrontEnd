@@ -1,0 +1,90 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+.store-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.store-banner img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.store-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.store-logo img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-top: -75px;
+  border: 5px solid #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.store-info {
+  margin-top: 20px;
+}
+
+.store-name {
+  font-size: 32px;
+  color: #333;
+  margin: 10px 0;
+}
+
+.store-description {
+  font-size: 16px;
+  color: #666;
+  margin: 10px 0 20px;
+  max-width: 800px;
+}
+
+.store-location,
+.store-contact {
+  font-size: 16px;
+  color: #444;
+  margin: 5px 0;
+}
+
+@media (min-width: 768px) {
+  .store-details {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .store-logo {
+    flex: 0 0 200px;
+    text-align: center;
+  }
+
+  .store-logo img {
+    width: 200px;
+    height: 200px;
+    margin-top: -100px;
+  }
+
+  .store-info {
+    flex: 1;
+    margin-left: 40px;
+  }
+
+  .store-description {
+    margin-top: 0;
+  }
+}

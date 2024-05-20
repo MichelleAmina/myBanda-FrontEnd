@@ -2,9 +2,15 @@
 
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisV, faSearch, faBell, faUser } from "@fortawesome/free-solid-svg-icons"; // Importing necessary icons
-import "../customers.css";
-import Sidebar from "./Sidebar";
+import {
+  faEllipsisV,
+  faSearch,
+  faBell,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons"; 
+import "./customers.css";
+import OldSidebar from "./oldside"; 
+
 
 const Customers = () => {
   // Dummy data for customers
@@ -21,14 +27,13 @@ const Customers = () => {
       address: "Amboseli, Lavington",
     },
     {
-        id: 1,
-        name: "Jane",
-        email: "janen@gmail.com",
-        orders: 12,
-        spent: "Ksh.2250",
-        address: "Amboseli, Lavington",
-      },
-
+      id: 1,
+      name: "Jane",
+      email: "janen@gmail.com",
+      orders: 12,
+      spent: "Ksh.2250",
+      address: "Amboseli, Lavington",
+    },
   ];
 
   // Function to handle search
@@ -46,12 +51,11 @@ const Customers = () => {
 
   return (
     <div className="dashboard-container">
-      <Sidebar />
+    <OldSidebar /> 
       <div className="content-container">
         <div className="header">
           <h1>Customers</h1>
           <div className="header-icons">
-
             <FontAwesomeIcon icon={faBell} />
             <FontAwesomeIcon icon={faUser} />
           </div>
@@ -60,16 +64,15 @@ const Customers = () => {
           <p>View and manage your customers</p>
         </div>
         <div className="search-bar">
-        <FontAwesomeIcon icon={faSearch} />
+          <FontAwesomeIcon icon={faSearch} />
           <input
             type="text"
             placeholder="Search by name..."
             value={searchTerm}
             onChange={handleSearch}
           />
-  
         </div>
-  
+
         <table>
           <thead>
             <tr>
@@ -82,7 +85,6 @@ const Customers = () => {
             </tr>
           </thead>
           <tbody>
-          
             {dataToMap.map((customer) => (
               <tr key={customer.id}>
                 <td>{customer.name}</td>

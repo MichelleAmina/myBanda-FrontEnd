@@ -1,0 +1,225 @@
+/* addproduct.css */
+
+/* Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Sidebar Styles */
+.seller-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  z-index: 9999; /* Ensure sidebar is above other content */
+}
+
+/* Page Content Styles */
+.add-product-container {
+  padding: 20px;
+  margin-left: 250px; /* Adjust for sidebar width */
+  display: flex;
+  flex-direction: column;
+}
+
+.prodheader {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  margin-bottom: 20px;
+
+}
+
+.prodheader h1 {
+  font-size: 20px !important;
+  margin-left: 0;
+  margin-top: 10px !important;
+  font-weight: normal !important;
+}
+.prodheader img {
+  width: 30px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.prodheader .store-icon {
+  margin-right: 10px !important; /* Adjust margin between icon and heading */
+}
+.left-column h2{
+  font-size: 16px !important;
+  font-weight: bold !important;
+}
+.right-column h2{
+  font-size: 16px !important;
+  font-weight: bold !important;
+}
+
+
+.form-section {
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.add-form-group {
+  margin-bottom: 15px;
+}
+
+.add-form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.add-form-group input,
+.add-form-group textarea,
+.add-form-group select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #e6e6e6;
+  border: none;
+  margin-left: 0px ;
+}
+
+.add-form-group p {
+  font-size: 12px;
+  color: #565353;
+}
+
+.sizes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.size-button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #EBC606;
+}
+
+.size-button.selected {
+  background-color: #00aaff;
+  color: white;
+}
+
+.image-upload-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.image-upload-container .image-preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.image-upload-container .image-preview input {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.image-upload-container .image-preview img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.image-upload-container .image-preview.centered {
+  justify-content: center;
+}
+
+.image-upload-container .carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+}
+
+.image-upload-container .carousel img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.image-upload-container .carousel .small-image-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: #565353;
+  border-radius: 5px;
+}
+
+.image-upload-container .carousel .small-image-preview .plus-icon {
+  font-size: 24px;
+  color: #ccc;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.add-new-product-button {
+  background-color: #f2ca00;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.add-new-product-button:hover {
+  background-color: #ffdb4d;
+}
+
+.add-new-product-button:active {
+  background-color: #e0b300;
+}
+
+/* Two-column layout */
+.form-sections-container {
+  display: flex;
+  gap: 20px;
+}
+
+.left-column {
+  flex: 1;
+}
+
+.right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* addproduct.css */
+
+
