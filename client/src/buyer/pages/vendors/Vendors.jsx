@@ -3,7 +3,7 @@ import './vendors.css'
 function Vendors(){
     return(
         <div className="vendors mb-5">
-            <div className="vendorWrapper"  style={{background:"red"}}>
+            <div className="vendorWrapper" >
                 <div className="container-fluid">
                         <div className="vendorBanner"  >
                             <img src="/bluebanner3.jpeg" alt="" className='w-100'/>
