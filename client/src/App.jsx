@@ -25,6 +25,7 @@ import BuyersCart from './buyer/pages/carts/BuyersCart';
 import OrderProduct from './buyer/pages/order/Order';
 import OrderCompleted from './buyer/pages/completed/OrderComplete';
 import Vendors from './buyer/pages/vendors/Vendors';
+import Wishlist from './buyer/pages/wishlist/Wishlist';
 // Banda Admin
 import Admin from './admin/Admin';
 import List from './admin/pages/list/List'
@@ -64,6 +65,7 @@ function App() {
           <Route path='checkout' element={<OrderProduct />}></Route>
           <Route path='orders' element={<OrderCompleted />}></Route>
           <Route path='vendors' element={<Vendors/>}></Route>
+          <Route path='wishlist' element={<Wishlist/>}></Route>
 
         </Route>
         
