@@ -1,6 +1,6 @@
 /* news letter*/
 .newsLetterBanner{
-    width: 500px;
+    width: 600px;
     height: 60px; /*60*/
     position: absolute;
     bottom: 150px;
@@ -10,7 +10,7 @@
 
 }
 
-.newsLetterBanner input{
+.newsLetterBanner .newsLetterBanner-input{
     width: 100%;
     height: 100%;
     background: #fff;

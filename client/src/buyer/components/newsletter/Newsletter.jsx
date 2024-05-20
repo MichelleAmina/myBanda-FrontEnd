@@ -7,7 +7,7 @@ function Newsletter(){
     return(
         <div className="newsLetterBanner">
                 <SendOutlinedIcon/>
-                <input type="text" placeholder='Your email address' />
+                <input type="text" placeholder='Your email address' className='newsLetterBanner-input'/>
                 <Button>Subscribe</Button>
 
             </div>
