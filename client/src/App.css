@@ -259,7 +259,7 @@ hover{
   flex: 0 0 75%; /*is this really necessary*/
 }
 
-.sidebarWrapper h3{
+.sidebarWrapper .sidebar-title{
   font-size: 22px;
   font-weight: 500;
   position: relative;

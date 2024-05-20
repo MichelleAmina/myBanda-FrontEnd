@@ -24,6 +24,7 @@ import ProductDetails from './buyer/components/details/ProductDetails';
 import BuyersCart from './buyer/pages/carts/BuyersCart';
 import OrderProduct from './buyer/pages/order/Order';
 import OrderCompleted from './buyer/pages/completed/OrderComplete';
+import Vendors from './buyer/pages/vendors/Vendors';
 // Banda Admin
 import Admin from './admin/Admin';
 import List from './admin/pages/list/List'
@@ -32,7 +33,6 @@ import AdminCustomer from './admin/pages/customer/AdminCustomer';
 import AdminDelivery from './admin/pages/delivery/AdminDelivery';
 
 // Seller Import 
-// Seller Import
 import Sellerdash from "./newseller/Sellerdash";
 import Custorders from "./existingseller/Custorders";
 import Customers from "./existingseller/Customers";
@@ -63,6 +63,8 @@ function App() {
           <Route path='cart' element={<BuyersCart />}></Route>
           <Route path='checkout' element={<OrderProduct />}></Route>
           <Route path='orders' element={<OrderCompleted />}></Route>
+          <Route path='vendors' element={<Vendors/>}></Route>
+
         </Route>
         
 

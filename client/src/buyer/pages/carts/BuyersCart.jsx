@@ -73,7 +73,7 @@ const BuyersCart = () => {
                                                     <td>
                                                         <div className="d-flex align-items-center">
                                                             <div className="img">
-                                                                <img src={cartItem.images[0]?.image_url} alt={cartItem.name} className="w-100"/>
+                                                                {/*<img src={cartItem.images[0]?.image_url} alt={cartItem.name} className="w-100"/>*/}
                                                             </div>
                                                             <div className="product-name">
                                                                 <Link><h4>{cartItem.name}</h4></Link>

@@ -147,34 +147,7 @@ function ProductDetails(){
                             />
                         ))}
                     </Slider>
-                {/*
-                <Slider {...settings} className='zoomSlider' ref={zoomSlider}>
-                  
-                    <div className="item">
-                        {/*this works in terms of changing the display image*
-                        <img src={`/shoes2.png?im=Resize=(${smlImageSize[0]}, ${smlImageSize[1]})`} alt="" className='w-100' 
-                        onClick={() => goto("/shoes2.png",0)}/>
-                    </div>
-                    <div className="item">
-                        <img src={`/shoes.png?im=Resize=(${smlImageSize[0]}, ${smlImageSize[1]})`}  alt="" className='w-100' 
-                         onClick={() => goto("/shoes.png",1)}/>
-                    </div>
-                    <div className="item">
-                        <img src="/shoes2.png" alt="" className='w-100' 
-                        onClick={() => goto(2)}/>
-                    </div>
-                    <div className="item">
-                        <img src="/shoes2.png" alt="" className='w-100' 
-                        onClick={() => goto(3)}/>
-                    </div>
-                    <div className="item">
-                        <img src="/shoes2.png" alt="" className='w-100'
-                        onClick={() => goto(4)} />
-                    </div>
-
-
-                </Slider>
-    */}
+               
             </div>
             {/*Product Zoom code ends here*/}
 
@@ -388,7 +361,7 @@ function ProductDetails(){
                                                         <span className='rating'>(32 reviews)</span>
                                                         
                                                     </div>
-                                                    <NavLink>Go To Vendor Page</NavLink>
+                                                    <NavLink to='/my_banda/vendors'>Go To Vendor Page</NavLink>
                                                     
                                                     
                                                 </div>
@@ -421,54 +394,38 @@ function ProductDetails(){
                                 <div className="row">
                                     <div className="col-md-8">
                                         <h4 className='mb-4'>Customer Reviews</h4>
-
                                         {
-                                            product.reviews.map((review, index) => (
-                                                <div className="card p-3 reviewsCard flex-row" key={index}>
-                                                    <div className="image">
-                                                        <div className="rounded-circle">
-                                                            <img src="/userAvatar3.png" alt="" />
-                                                        </div>
-
-                                                    </div>
-                                                    <div className="info ps-4">
-                                                        <div className="d-flex align-items-center">
-                                                            <h5>{new Date(review.date).toLocaleString()}</h5>
-                                                            <div className="ms-auto">
-                                                                <Rating name="half-rating-read" defaultValue={review.rating} precision={0.5} readOnly style={{ fontSize: '17px' }} />
+                                            product.reviews.length === 0 ? (
+                                                <h4 style={{color:"#000", opacity:"0.6", fontSize:"16px", fontWeight:"400"}}>Be the first to review this product...</h4>
+                                            ) : (
+                                                product.reviews.map((review, index) => (
+                                                    <div className="card p-3 reviewsCard flex-row" key={index}>
+                                                        <div className="image">
+                                                            <div className="rounded-circle">
+                                                                <img src="/userAvatar3.png" alt="" />
                                                             </div>
                                                         </div>
-                                                        <span className='text-y font-weight-bold'>{review.buyer.email}</span>
-                                                        <p>{review.content}</p>
+                                                        <div className="info ps-4">
+                                                            <div className="d-flex align-items-center">
+                                                                <h5>{new Date(review.date).toLocaleString()}</h5>
+                                                                <div className="ms-auto">
+                                                                    <Rating
+                                                                        name="half-rating-read"
+                                                                        defaultValue={review.rating}
+                                                                        precision={0.5}
+                                                                        readOnly
+                                                                        style={{ fontSize: '17px' }}
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                            <span className='text-y font-weight-bold'>{review.buyer.email}</span>
+                                                            <p>{review.content}</p>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                             ))
+                                                ))
+                                            )
                                         }
-
-                                        {/*
-                                        <div className="card p-3 reviewsCard flex-row">
-                                            <div className="image">
-                                                <div className="rounded-circle">
-                                                    <img src="/userAvatar3.png" alt="" />
-                                                </div>
-                                                <span className='text-y d-block text-center font-weight-bold'>Anna</span>
-                                            </div>
-
-                                            <div className="info ps-4">
-                                                <div className="d-flex align-items-center">
-                                                    <h5>February 15, 2024 at 3:30 pm</h5>
-                                                    <div className="ms-auto">
-                                                        <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly style={{fontSize:'17px'}}/>
-                                                    </div>
-                                                </div>
-                                                
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius inventore ab, quis possimus laborum omnis velit id atque soluta expedita cum eaque nobis alias saepe animi odio aliquam ipsam delectus.</p>
-                                            </div>
-                                            
-                                        </div>
                                     
-                                        
-                                        */}
 
                                     <br />
                         

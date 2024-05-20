@@ -37,7 +37,7 @@ function Sidebar({categories, setCategoryFilter, setPriceRange, priceRange }) {
         <>
             <div className="sidebar">
                 <div className="card border-0 shadow">
-                    <h3>Category</h3>
+                    <h3 className='sidebar-title'>Category</h3>
                     <div className="catList">
                         {categories.map((category, index) => (
                             <div className="catItem d-flex align-items-center" key={index} onClick={() => handleCategoryFilter((category))}>
@@ -53,7 +53,7 @@ function Sidebar({categories, setCategoryFilter, setPriceRange, priceRange }) {
                 </div>
 
                 <div className="card border-0 shadow">
-                    <h3>Filter By Price</h3>
+                    <h3 className='sidebar-title'>Filter By Price</h3>
                     <Slider className='priceSlider'
                         min={0}
                         step={1}
