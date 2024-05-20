@@ -110,12 +110,7 @@ function App() {
         <Route path="/producthome" element={<ProductHome />} />
 
 
-        <Route path='/driverhomepage' element={<DeliveryDashboard/>} />
-        <Route path='/availableDeliveries' element={<AvailableDeliveries />} />
-        <Route path="/completedDeliveries" element={<CompletedDeliveries />} />
-        <Route path="/driverAnalytics" element={<DeliveryDriverAnalytics />} />
-        <Route path='/pendingDeliveries' element={<PendingDeliveries />} />
-        <Route path='/viewDetails/:id' element={<ViewDetails />} />
+
       </Routes>
     </div>
   );
