@@ -9,9 +9,12 @@ import Tooltip from '@mui/material/Tooltip';
 import './homeProduct.css';
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../../redux/cartSlice';
 
 function HomeProduct({ item }) {
     const [products, setProducts] = useState();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setProducts(item);
@@ -26,6 +29,10 @@ function HomeProduct({ item }) {
     }
 
     const imageUrl = item.images[0]?.image_url;
+
+    const handleAddToCart = (item) => {
+        dispatch(addToCart(item)); 
+    };
 
     return (
         <div className='productContainer'>
@@ -60,7 +67,8 @@ function HomeProduct({ item }) {
                                 <div className="d-flex align-items-center">
                                     <span className='price'>{item.price}</span><span className='oldPrice'>$150</span>
                                 </div>
-                                <Button className='ms-auto transition'><ShoppingCartOutlinedIcon />Add</Button>
+                                <Button className='ms-auto transition' onClick={()=> handleAddToCart(item)}>
+                                    <ShoppingCartOutlinedIcon />Add</Button>
                             </div>
                         </div>
                     </>

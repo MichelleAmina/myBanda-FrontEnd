@@ -4,10 +4,14 @@ import BuyerHome from "./pages/home/BuyerHome";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import { useState, useEffect } from "react";
+import { useDispatch } from 'react-redux';
+import { setProducts } from "../redux/productSlice"; 
 import axios from 'axios'
 
 function Buyer(){
     const location = useLocation()
+
+    const dispatch = useDispatch();
 
     const renderHomePage = location.pathname === '/my_banda';
 
@@ -35,11 +39,12 @@ function Buyer(){
           .then((data) => {
             console.log("from buyer",data)
             setProductData(data)
+            dispatch(setProducts(data));
           })
           .catch(error => {
             console.error('Error fetching products data:', error);
           });
-    }, []);
+    }, [dispatch]);
 
     console.log("setProductData", productData)
 

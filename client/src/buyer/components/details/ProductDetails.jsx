@@ -214,7 +214,8 @@ function ProductDetails(){
 
                     </div>
 
-                    <Button className='addToCartBtn'><ShoppingCartOutlinedIcon/>Add to Cart</Button>
+                    <Button className='addToCartBtn' onClick={()=> handleAddToCart(item)}>
+                        <ShoppingCartOutlinedIcon/>Add to Cart</Button>
                     <Button className='favoriteBtn ms-4'><FavoriteBorderOutlinedIcon/></Button>
 
                 </div>

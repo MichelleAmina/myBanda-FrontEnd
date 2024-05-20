@@ -1,7 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
+import "react-toastify/dist/ReactToastify.css";
 
 import { Route, Routes, Navigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+
 import Login from './shared/Login';
 import DeliveryDashboard from './DeliveryPerson/Pages/DeliveryDashboard';
 import CompletedDeliveries from './DeliveryPerson/Pages/CompletedDeliveries';
@@ -16,6 +19,7 @@ import Listing from './buyer/pages/listing/Listing';
 import ProductDetails from './buyer/components/details/ProductDetails';
 import BuyersCart from './buyer/pages/carts/BuyersCart';
 import OrderProduct from './buyer/pages/order/Order';
+import OrderCompleted from './buyer/pages/completed/OrderComplete';
 // Banda Admin
 import Admin from './admin/Admin';
 import List from './admin/pages/list/List'
@@ -40,6 +44,7 @@ function App() {
     // Please add your routes and nested routes to this page. 
     // If there's any problem, reach out and i'll do the routing 
     <div>
+      <ToastContainer />
       <Routes>
         <Route path='/login' element={<Login/>}></Route>
         {/* buyer pages */}
@@ -51,6 +56,7 @@ function App() {
 
         <Route path='cart' element={<BuyersCart />}></Route>
         <Route path='checkout' element={<OrderProduct />}></Route>
+        <Route path='orders' element={<OrderCompleted />}></Route>
           
           <Route path='products'>
             <Route index element={<Listing/>}></Route>

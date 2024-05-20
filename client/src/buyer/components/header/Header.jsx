@@ -13,11 +13,14 @@ import Select from '../selectDrop/select';
 import Nav from '../nav/Nav'
 
 import { useEffect, useState, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import {NavLink} from 'react-router-dom'
 import axios from 'axios'
 
 
 function Header(props){
+    const {cartTotalQuantity} = useSelector(state => state.cart)
+
     console.log("from header,",props)
 
     const [isOpenDropdown, setIsOpenDropdown] = useState(false)
@@ -118,11 +121,13 @@ function Header(props){
                                     </span>
                                 </li>
                                 <li className='list-inline-item'>
+                                <NavLink to="/my_banda/cart" className="nav-link">
                                     <span>
-                                        <ShoppingCartOutlinedIcon className='listIcon'/>
-                                        <span className='badge'>3</span>
+                                        <ShoppingCartOutlinedIcon className='listIcon' />
+                                        <span className='badge'>{cartTotalQuantity}</span>
                                         Cart
                                     </span>
+                                </NavLink>
                                 </li>
                                 <li className='list-inline-item'>
                                     <span onClick={()=>setIsOpenDropdown(!isOpenDropdown)}>
