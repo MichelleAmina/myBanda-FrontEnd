@@ -114,11 +114,13 @@ function Header(props){
                             <ClickAwayListener onClickAway={()=> setIsOpenDropdown(false)}>
                             <ul className='list list-inline mb-0 headerTabs '>
                                 <li className='list-inline-item'>
+                                <NavLink to="/my_banda/wishlist" className="nav-link">
                                     <span>
                                         <FavoriteBorderOutlinedIcon className='listIcon'/>
                                         <span className='badge'>6</span>
                                         Wishlist
                                     </span>
+                                </NavLink>
                                 </li>
                                 <li className='list-inline-item'>
                                 <NavLink to="/my_banda/cart" className="nav-link">

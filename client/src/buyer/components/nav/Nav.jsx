@@ -81,7 +81,7 @@ function Nav({data}) {
                                             <li><Button><NavLink to='/buyer/login'>Login/Register</NavLink></Button></li>
                                             <li><Button><NavLink to='/my_banda/cart'>Cart</NavLink></Button></li>
                                             <li><Button><NavLink to='/my_banda/orders'>Orders</NavLink></Button></li>
-                                            <li><Button><NavLink to='/buyer/about'>Wishlist</NavLink></Button></li>
+                                            <li><Button><NavLink to='/my_banda/wishlist'>Wishlist</NavLink></Button></li>
                                             <li><Button><NavLink to='/buyer/about'>About Us</NavLink></Button></li>
                                             <li><Button><NavLink to='/buyer/about'>Contact</NavLink></Button></li> 
                                         </ul>
