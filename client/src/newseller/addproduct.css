@@ -17,13 +17,13 @@
   background-color: #333;
   color: #fff;
   padding: 20px;
-  z-index: 9999; /* Ensure sidebar is above other content */
+  z-index: 9999; 
 }
 
 /* Page Content Styles */
 .add-product-container {
   padding: 20px;
-  margin-left: 250px; /* Adjust for sidebar width */
+  margin-left: 250px; 
   display: flex;
   flex-direction: column;
 }
@@ -49,7 +49,7 @@
 }
 
 .prodheader .store-icon {
-  margin-right: 10px !important; /* Adjust margin between icon and heading */
+  margin-right: 10px !important; 
 }
 .left-column h2{
   font-size: 16px !important;
@@ -218,6 +218,6 @@
   gap: 20px;
 }
 
-/* addproduct.css */
+
 
 

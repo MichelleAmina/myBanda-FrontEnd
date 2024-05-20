@@ -37,7 +37,7 @@ label {
   margin-bottom: 5px;
 }
 
-input[type="text"],
+/* input[type="text"],
 textarea {
   width: 90%;
   padding: 8px;
@@ -47,7 +47,7 @@ textarea {
   margin-left: 20px;
   margin-bottom: 4px;
   background-color: #f7f7f7;
-}
+} */
 
 .setup-shop-button {
   background: linear-gradient(to right, #57574f, #090808) !important;
