@@ -189,7 +189,7 @@ function ProductDetails(){
 
                 <div className="addCartSection pt-4 pb-4 d-flex align-items-center">
                     <div className="counterSec me-4">
-                        <input type="number"  value={inputValue}/>
+                        <input type="number"  value={inputValue} onChange={(e) => setInputValue(parseInt(e.target.value))}/>
                         <span className='arrow plus' onClick={plus}><KeyboardArrowUpIcon/></span>
                         <span className='arrow minus' onClick={minus}><KeyboardArrowDownIcon/></span>
 

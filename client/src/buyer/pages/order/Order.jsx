@@ -9,7 +9,7 @@ const CheckoutForm = () => {
                 <div className="row">
                     <div className="col-md-7">
                         <div className="card">
-                            <div className="checkout-card-header">
+                            <div className="card-header">
                                 <h4>Delivery Infromation</h4>
                             </div>
                             <div className="card-body">
@@ -46,7 +46,7 @@ const CheckoutForm = () => {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group mb-3">
-                                            <label>Area</label>
+                                            <label>Region</label>
                                             <input type="text" name="area" className="form-control" />
                                         </div>
                                     </div>
@@ -70,7 +70,7 @@ const CheckoutForm = () => {
                                 </div>
 
                                     <div className="col-md-12">
-                                        <button className="btn btn-primary float-end">Place Order</button>
+                                        <button className="order-checkout-button float-end">Place Order</button>
                                     </div>
                                 </div>
                             </div>

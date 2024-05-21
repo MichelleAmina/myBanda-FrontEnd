@@ -14,17 +14,19 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addToCart(state, action){
+        addToCart(state, action) {
             const itemIndex = state.cartItems.findIndex(
                 cartItem => cartItem.id === action.payload.id
             );
-            if(itemIndex >= 0){
-                state.cartItems[itemIndex].cartQuantity += 1;
-                toast.info(`Increased ${state.cartItems[itemIndex].name} cart quantity`, {
+            const quantityToAdd = action.payload.cartQuantity || 1; 
+
+            if (itemIndex >= 0) {
+                state.cartItems[itemIndex].cartQuantity += quantityToAdd; 
+                toast.info(`Increased ${state.cartItems[itemIndex].name} cart quantity by ${quantityToAdd}`, {
                     position: 'top-center',
                 });
             } else {
-                const tempProduct = { ...action.payload, cartQuantity: 1};
+                const tempProduct = { ...action.payload, cartQuantity: quantityToAdd };
                 state.cartItems.push(tempProduct);
                 toast.success(`${action.payload.name} added to cart`, {
                     position: "top-center",
@@ -32,6 +34,8 @@ const cartSlice = createSlice({
             }
 
             localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+
+            cartSlice.caseReducers.getTotals(state);
         },
         removeFromCart(state, action) {
             const nextCartItems = state.cartItems.filter(
@@ -43,6 +47,8 @@ const cartSlice = createSlice({
             toast.error(`${action.payload.name} removed from cart`, {
                 position: "top-center",
             });
+
+            cartSlice.caseReducers.getTotals(state);
         },
         decreaseCart(state, action) {
             const itemIndex = state.cartItems.findIndex(
@@ -66,12 +72,18 @@ const cartSlice = createSlice({
                 position: "top-center",
               });
             }
+            localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+
+            cartSlice.caseReducers.getTotals(state);
         },
         clearCart(state) {
             state.cartItems = [];
             localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
             toast.error("Cart cleared", { position: "top-center" });
+
+            cartSlice.caseReducers.getTotals(state);
         },
+        
         getTotals(state) {
             let { total, quantity } = state.cartItems.reduce(
               (cartTotal, cartItem) => {
