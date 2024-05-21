@@ -1,0 +1,10 @@
+.wishlistProducts{
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 20px;
+}
+
+.wishlistProducts .item{
+    width: 16%;
+    padding: 0px 10px 20px 10px;
+}
