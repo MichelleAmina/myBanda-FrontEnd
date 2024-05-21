@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./producthome.css";
-import NewSellerSidebar from "./sellersidebar";
+import OldSellerSidebar from "./oldside";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faBell, faUser, faFileImport, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import storeIcon from "../assets/store-2.png";
@@ -9,6 +9,8 @@ const ProductHome = () => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
+  const [filterOption, setFilterOption] = useState("");
+
   const productsPerPage = 16;
 
   useEffect(() => {
@@ -27,7 +29,8 @@ const ProductHome = () => {
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const filteredProducts = products.filter(product =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    product.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+    (filterOption === "" || (filterOption === "low" && product.quantity_available < 5) || (filterOption === "high" && product.quantity_available >= 5))
   );
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
@@ -41,6 +44,11 @@ const ProductHome = () => {
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
     setCurrentPage(1); // Reset pagination when performing a new search
+  };
+
+  const handleFilterChange = (e) => {
+    setFilterOption(e.target.value);
+    setCurrentPage(1); // Reset pagination when changing the filter option
   };
 
   const exportToCSV = () => {
@@ -93,6 +101,15 @@ const ProductHome = () => {
           <FontAwesomeIcon icon={faSearch} className="pbsearchicon" />
           <input type="text" placeholder="Search Products..." value={searchQuery} onChange={handleSearch} />
         </div>
+        <div className="filter-dropdown">
+       {/*} <FontAwesomeIcon icon={faFilter} className="filter-icon" /> */}
+
+          <select value={filterOption} onChange={handleFilterChange}>
+            <option value="">All</option>
+            <option value="low" >Low Stock </option>
+            <option value="high">High Stock</option>
+          </select>
+        </div>
         <button className="pdaction-btn" onClick={exportToCSV}>
           <FontAwesomeIcon icon={faFileImport} className="pdimport" />
           Export
@@ -129,7 +146,7 @@ const ProductHome = () => {
           <FontAwesomeIcon icon={faChevronRight} />
         </button>
       </div>
-      <NewSellerSidebar />
+      <OldSellerSidebar />
     </div>
   );
 };

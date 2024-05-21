@@ -2,7 +2,8 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThLarge } from "@fortawesome/free-solid-svg-icons";
-
+import BandaLogo from "../assets/banda.png";
+import dashlogo from "../assets/dashboard.png";
 import {
   faHome,
   faShoppingBag,
@@ -17,73 +18,78 @@ function OldSidebar() {
   const location = useLocation();
 
   return (
-    <div className="sidebar-container">
-      <div className="sidebar-logo-details">
-        <FontAwesomeIcon
-          icon={faHome}
-          className="icon"
-          color="white"
-          style={{ fontSize: "18px" }}
-        />
-        <span className="logo-name">MY BANDA</span>
+    <div className="old-sidebar-container">
+      <div className="old-sidebar-header">
+        <div className="old-sidebar-logo">
+          <img src={BandaLogo} alt="Banda Logo" className="old-logo-image" />
+          <span className="old-logo-name">MY BANDA</span>
+        </div>
       </div>
-      <ul className="sidebar-nav-links">
+      <ul className="old-sidebar-nav">
         <li>
           <Link
-            to="/sellerdash"
-            className={location.pathname === "/sellerdash" ? "active" : ""}
+            to="/oldsellerdash"
+            className={`old-sidebar-link ${
+              location.pathname === "/oldsellerdash" ? "active" : ""
+            }`}
           >
-            <FontAwesomeIcon icon={faThLarge} className="icon" color="white" />
-            <span className="links-name">Dashboard</span>
+            <img src={dashlogo} alt="dash Logo" className="old-dashlogo" />
+            <span className="old-link-name">Dashboard</span>
           </Link>
         </li>
         <li>
           <Link
             to="/orders"
-            className={location.pathname === "/orders" ? "active" : ""}
+            className={`old-sidebar-link ${
+              location.pathname === "/orders" ? "active" : ""
+            }`}
           >
-            <FontAwesomeIcon
-              icon={faShoppingBag}
-              className="icon"
-              color="white"
-            />
-            <span className="links-name">Orders</span>
+            <FontAwesomeIcon icon={faShoppingBag} className="old-link-icon" />
+            <span className="old-link-name">Orders</span>
           </Link>
         </li>
         <li>
           <Link
-            to="/sellerproducts"
-            className={location.pathname === "/sellerproducts" ? "active" : ""}
+            to="/producthome"
+            className={`old-sidebar-link ${
+              location.pathname === "/producthome" ? "active" : ""
+            }`}
           >
-            <FontAwesomeIcon icon={faBox} className="icon" color="white" />
-            <span className="links-name">Products</span>
+            <FontAwesomeIcon icon={faBox} className="old-link-icon" />
+            <span className="old-link-name">Products</span>
           </Link>
         </li>
         <li>
           <Link
             to="/customers"
-            className={location.pathname === "/customers" ? "active" : ""}
+            className={`old-sidebar-link ${
+              location.pathname === "/customers" ? "active" : ""
+            }`}
           >
-            <FontAwesomeIcon icon={faUsers} className="icon" color="white" />
-            <span className="links-name">Customers</span>
+            <FontAwesomeIcon icon={faUsers} className="old-link-icon" />
+            <span className="old-link-name">Customers</span>
           </Link>
         </li>
         <li>
           <Link
             to="/analytics"
-            className={location.pathname === "/analytics" ? "active" : ""}
+            className={`old-sidebar-link ${
+              location.pathname === "/analytics" ? "active" : ""
+            }`}
           >
-            <FontAwesomeIcon icon={faSignal} className="icon" color="white" />
-            <span className="links-name">Analytics</span>
+            <FontAwesomeIcon icon={faSignal} className="old-link-icon" />
+            <span className="old-link-name">Analytics</span>
           </Link>
         </li>
         <li>
           <Link
             to="/settings"
-            className={location.pathname === "/settings" ? "active" : ""}
+            className={`old-sidebar-link ${
+              location.pathname === "/settings" ? "active" : ""
+            }`}
           >
-            <FontAwesomeIcon icon={faCog} className="icon" color="white" />
-            <span className="links-name">Settings</span>
+            <FontAwesomeIcon icon={faCog} className="old-link-icon" />
+            <span className="old-link-name">Settings</span>
           </Link>
         </li>
       </ul>

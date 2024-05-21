@@ -1,5 +1,5 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -27,13 +27,13 @@ import OrderCompleted from './buyer/pages/completed/OrderComplete';
 import Vendors from './buyer/pages/vendors/Vendors';
 import Wishlist from './buyer/pages/wishlist/Wishlist';
 // Banda Admin
-import Admin from './admin/Admin';
-import List from './admin/pages/list/List'
-import Single from './admin/pages/single/Single'
-import AdminCustomer from './admin/pages/customer/AdminCustomer';
-import AdminDelivery from './admin/pages/delivery/AdminDelivery';
+import Admin from "./admin/Admin";
+import List from "./admin/pages/list/List";
+import Single from "./admin/pages/single/Single";
+import AdminCustomer from "./admin/pages/customer/AdminCustomer";
+import AdminDelivery from "./admin/pages/delivery/AdminDelivery";
 
-// Seller Import 
+// Seller Import
 import Sellerdash from "./newseller/Sellerdash";
 import Custorders from "./existingseller/Custorders";
 import Customers from "./existingseller/Customers";
@@ -41,11 +41,9 @@ import Sellerproducts from "./newseller/Sellerproducts";
 import Newsellercustomers from "./newseller/Newsellercustomers";
 import Newsellerorders from "./newseller/Newsellerorders";
 import ShopSetup from "./newseller/shopsetup";
-import AddProduct from "./newseller/addproduct"; 
-import ProductHome from "./newseller/producthome"; 
-
-
-
+import AddProduct from "./newseller/addproduct";
+import ProductHome from "./existingseller/producthome";
+import OldSellerDash  from "./existingseller/oldsellerdash";
 
 function App() {
   return (
@@ -56,10 +54,10 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         {/* buyer pages */}
-        <Route path='/my_banda' element={<Buyer/>}>
-          <Route path='products'>
-            <Route index element={<Listing/>}></Route>
-            <Route path=':productId' element={<ProductDetails/>}></Route>
+        <Route path="/my_banda" element={<Buyer />}>
+          <Route path="products">
+            <Route index element={<Listing />}></Route>
+            <Route path=":productId" element={<ProductDetails />}></Route>
           </Route>
           <Route path='cart' element={<BuyersCart />}></Route>
           <Route path='checkout' element={<OrderProduct />}></Route>
@@ -68,30 +66,25 @@ function App() {
           <Route path='wishlist' element={<Wishlist/>}></Route>
 
         </Route>
-        
 
-        
         {/*Banda Admin routes start here*/}
-        <Route path='/banda_admin' element={<Admin/>}>
-          <Route path='customers' element={<AdminCustomer/>}></Route>
-          <Route path='delivery' element={<AdminDelivery/>}></Route>
-          <Route path='shops'>
-              <Route index element={<List/>}></Route>
-              <Route path=':sellerId' element={<Single/>}></Route>
+        <Route path="/banda_admin" element={<Admin />}>
+          <Route path="customers" element={<AdminCustomer />}></Route>
+          <Route path="delivery" element={<AdminDelivery />}></Route>
+          <Route path="shops">
+            <Route index element={<List />}></Route>
+            <Route path=":sellerId" element={<Single />}></Route>
           </Route>
         </Route>
 
-      
         {/* set it to this so that i can code change it once we decide on the initial landing page*/}
         <Route path="*" element={<Navigate to="/login" />} />
-        <Route path='/driverhomepage' element={<DeliveryDashboard/>} />
-        <Route path='/availableDeliveries' element={<AvailableDeliveries />} />
+        <Route path="/driverhomepage" element={<DeliveryDashboard />} />
+        <Route path="/availableDeliveries" element={<AvailableDeliveries />} />
         <Route path="/completedDeliveries" element={<CompletedDeliveries />} />
         <Route path="/driverAnalytics" element={<DeliveryDriverAnalytics />} />
-        <Route path='/pendingDeliveries' element={<PendingDeliveries />} />
-        <Route path='/viewDetails/:orderId' element={<ViewDetails />} />
-
-        
+        <Route path="/pendingDeliveries" element={<PendingDeliveries />} />
+        <Route path="/viewDetails/:orderId" element={<ViewDetails />} />
 
         {/*Seller routes */}
         <Route path="/sellerdash" element={<Sellerdash />} />
@@ -103,13 +96,10 @@ function App() {
         <Route path="/shopsetup" element={<ShopSetup />} />
         <Route path="/addprod" element={<AddProduct />} />
         <Route path="/producthome" element={<ProductHome />} />
-
-
-
+        <Route path="/oldsellerdash" element={<OldSellerDash  />} />
       </Routes>
     </div>
   );
-
 }
 
 export default App;

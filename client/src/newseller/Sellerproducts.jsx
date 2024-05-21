@@ -13,6 +13,8 @@ import "./sellerproducts.css";
 
 const SellerProducts = () => {
   return (
+    <div className="seller-font">
+
     <div className="dashboard-container">
       <NewSellerSidebar />
       <div className="content-container">
@@ -71,6 +73,7 @@ const SellerProducts = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
