@@ -8,23 +8,13 @@ import AddIcCallOutlinedIcon from '@mui/icons-material/AddIcCallOutlined';
 import { useEffect, useState } from 'react';
 
 
+const normalizeCategoryName = (name) => name.replace(/\s+/g, '').toLowerCase();
 
-function Nav({data}) {
+function Nav({categories, categoryImages}) {
     //console.log("from nav",data)
 
     const [isOpenDropDown, setIsOpenDropDown] = useState(false)
-    const [navData, setNavData] = useState([]);
 
-    useEffect(() => {
-        setNavData(data);
-    }, [])
-
-    //console.log("this is navData", navData)
-
-    
-  
-
-    
 
     return(
         <div className="buyerNav d-flex align-items-center">
@@ -38,11 +28,13 @@ function Nav({data}) {
                         <div className="row dropdown_Menu">
                             
                                 {
-                                    navData.map((item, index) => {
+                                    categories.length !== 0 &&
+                                    categories.map((category, index) => {
+                                        const normalizedCategory = normalizeCategoryName(category);
                                         return(
-                                            <div className="catItem d-flex align-items-center" key={index}>
-                                                <span className='img pe-3'><img src="/spa.png" alt="" width={35} /></span>
-                                                <p className='mb-0 ml-3 mr-3'>{item}</p>
+                                            <div className="catItem d-flex align-items-center p-1" key={index}>
+                                                <span className='img pe-3'><img src={categoryImages[normalizedCategory]} alt="" width={30} heigh={30} /></span>
+                                                <p className='mb-0 ml-3 mr-3'>{category}</p>
     
                                             </div>
                                         )

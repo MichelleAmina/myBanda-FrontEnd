@@ -4,17 +4,29 @@ import { useEffect, useState } from 'react'
 
 function Banners({data}){
     const [shopData, setShopData] = useState([]);
-
+    
+    
     useEffect(() => {
         if (data && data.length > 0) {
-            // get all data involving the shops 
+            // Get all data involving the shops
             const shops = data.map(product => product.shop);
-            // Take only the first three items
-            setShopData(shops.slice(0, 3)); 
-            //setShopData(shops);
-            //console.log("Extracted shop data:", shops);
+            const uniqueShops = Array.from(new Set(shops.map(shop => JSON.stringify(shop))))
+                                    .map(shop => JSON.parse(shop));
+            setShopData(uniqueShops.slice(0, 3)); 
         }
     }, [data]);
+
+    /*
+    useEffect(() => {
+        if (data.length !== 0) {
+            // Extract unique shops
+            const uniqueShops = Array.from(new Set(data.map(item => item.shop.id)))  // Get unique shop IDs
+                .map(id => data.find(item => item.shop.id === id).shop);  // Find the corresponding shop for each unique ID
+            setShopData(uniqueShops.slice(0, 3));  // Set unique shops and limit to 3
+        }
+    }, [data]);*/
+
+    console.log("shop", shopData)
 
     return(
         <div className="bannerSection">
@@ -24,10 +36,7 @@ function Banners({data}){
                         <div className="col" key={index}>
                             <div className="box">
                                 <img src={shop.banner_image_url} alt="" className='w-100 transition' />
-                                <div className="bannerInfo">
-                                    <h3>{shop.name}</h3>
-                                    <Button>View Shop</Button>
-                                </div>
+                                
                             </div>
                         </div>
                     ))}

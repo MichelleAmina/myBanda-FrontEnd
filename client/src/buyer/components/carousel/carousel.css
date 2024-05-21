@@ -23,6 +23,7 @@
 }
 
 .cat_slider_main .item .info{
+    height: 150px;
     margin: auto;
     display: flex;
     align-items: center;
@@ -31,10 +32,20 @@
     padding: 15px ;
     transition: all 0.3s ease-in-out;
     position: relative;
+    border-radius: 4px;
+}
+
+.cat_slider_main .item .info img{
+    height: 60px;
+    width: 60px;
+
 }
 
 .cat_slider_main .item .info h5{
-    font-weight: 300 !important;
+    font-weight: 500 !important;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
     
 }
 
