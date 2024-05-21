@@ -16,7 +16,6 @@ const ShopSetup = () => {
   const navigate = useNavigate();
 
   const getCurrentUserId = () => {
-  
     const currentUser = getCurrentUser();
     return currentUser ? currentUser.id : null;
   };
@@ -31,7 +30,7 @@ const ShopSetup = () => {
       banner_image_url: banner,
       contact: contact,
       location: location,
-      seller_id: getCurrentUserId(), // Dynamically get the current user's ID
+      seller_id: getCurrentUserId(),
     };
 
     try {
@@ -59,17 +58,17 @@ const ShopSetup = () => {
   };
 
   return (
-    <div className="shop-setup-container">
-      <div className="background-container"></div>
-      <div className="bgcon">
-        <div className="form-container">
-          <form className="shop-setup-form" onSubmit={handleSubmit}>
-            <div className="form-group">
-              <div className="logo-container">
-                <img src={BandaLogo} alt="Banda Logo" className="banda-logo" />
-                <h1 className="shop-name">MY BANDA</h1>
+    <div className="sets-shop-setup-container">
+      <div className="sets-background-container"></div>
+      <div className="sets-bgcon">
+        <div className="sets-form-container">
+          <form className="sets-shop-setup-form" onSubmit={handleSubmit}>
+            <div className="sets-form-group">
+              <div className="sets-logo-container">
+                <img src={BandaLogo} alt="Banda Logo" className="sets-banda-logo" />
+                <h1 className="sets-shop-name">MY BANDA</h1>
               </div>
-              <div className="subheads">
+              <div className="sets-subheads">
                 <h2>Tell us a little about your store.</h2>
                 <h4>
                   This is initial information about your business. <br />
@@ -83,20 +82,22 @@ const ShopSetup = () => {
                 onChange={(e) => setShopName(e.target.value)}
                 placeholder="Enter shop name"
                 required
+                className="sets-custom-input"
               />
             </div>
 
-            <div className="form-group">
+            <div className="sets-form-group">
               <textarea
                 id="description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Enter description"
                 required
+                className="sets-custom-textarea"
               ></textarea>
             </div>
 
-            <div className="form-group">
+            <div className="sets-form-group">
               <input
                 type="text"
                 id="logoUrl"
@@ -104,11 +105,12 @@ const ShopSetup = () => {
                 onChange={(e) => setLogoUrl(e.target.value)}
                 placeholder="Enter logo URL"
                 required
+                className="sets-custom-input"
               />
             </div>
 
             {/* Banner */}
-            <div className="form-group">
+            <div className="sets-form-group">
               <input
                 type="text"
                 id="banner"
@@ -116,10 +118,11 @@ const ShopSetup = () => {
                 onChange={(e) => setBanner(e.target.value)}
                 placeholder="Enter banner URL"
                 required
+                className="sets-custom-input"
               />
             </div>
 
-            <div className="form-group">
+            <div className="sets-form-group">
               <input
                 type="text"
                 id="contact"
@@ -127,10 +130,11 @@ const ShopSetup = () => {
                 onChange={(e) => setContact(e.target.value)}
                 placeholder="Enter contact information"
                 required
+                className="sets-custom-input"
               />
             </div>
 
-            <div className="form-group">
+            <div className="sets-form-group">
               <input
                 type="text"
                 id="location"
@@ -138,17 +142,17 @@ const ShopSetup = () => {
                 onChange={(e) => setLocation(e.target.value)}
                 placeholder="Enter location"
                 required
+                className="sets-custom-input"
               />
             </div>
 
-            <button type="submit" className="setup-shop-button">
+            <button type="submit" className="sets-setup-shop-button">
               Setup Shop
             </button>
           </form>
         </div>
 
-        <div className="shop-setup-image">
-
+        <div className="sets-shop-setup-image">
           <img src="src/assets/top.jpg" alt="Placeholder" />
         </div>
       </div>

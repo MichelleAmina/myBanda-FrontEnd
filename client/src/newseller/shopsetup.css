@@ -1,16 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/* Your existing CSS */
 
-/* *{
-  font-family: "Montserrat", sans-serif !important;
-  font-weight: 400 !important;
-
-
-} */
-* {
-  font-family: "Poppins", sans-serif;
-}
-
-.shop-setup-container {
+.sets-shop-setup-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,7 +8,7 @@
   position: relative;
 }
 
-.background-container {
+.sets-background-container {
   position: absolute;
   top: 0;
   left: 0;
@@ -27,33 +17,16 @@
   background: #f4df77;
 }
 
-.shop-setup-form {
+.sets-shop-setup-form {
   flex: 1;
 }
 
-.form-group {
+.sets-form-group {
   margin-bottom: 20px;
   width: 400px;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-/* input[type="text"],
-textarea {
-  width: 90%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  margin-left: 20px;
-  margin-bottom: 4px;
-  background-color: #f7f7f7;
-} */
-
-.setup-shop-button {
+.sets-setup-shop-button {
   background: linear-gradient(to right, #57574f, #090808) !important;
   color: white;
   border: none;
@@ -66,23 +39,20 @@ textarea {
   margin-left: 20px;
 }
 
-.setup-shop-button svg {
+.sets-setup-shop-button svg {
   margin-right: 5px;
 }
 
-.shop-setup-image {
+.sets-shop-setup-image {
   flex: 1;
   margin-left: 100px;
-  /* background-color: #fbb034; */
-  /* background-image: linear-gradient(315deg, #fbb034 0%, #ffdd00 74%); */
-  background-size: cover !important; 
 }
 
-.shop-setup-image img {
+.sets-shop-setup-image img {
   width: 100%;
 }
 
-.bgcon {
+.sets-bgcon {
   background-color: white;
   width: 1100px;
   height: 700px;
@@ -93,15 +63,16 @@ textarea {
   border-radius: 20px;
 }
 
-.bgcon .form-container {
+.sets-bgcon .sets-form-container {
   background-color: white;
 }
-.logo-container {
+
+.sets-logo-container {
   display: flex;
   align-items: center;
 }
 
-.banda-logo {
+.sets-banda-logo {
   width: 30px;
   border-radius: 50%;
   margin-right: 10px;
@@ -110,30 +81,117 @@ textarea {
   font-size: 00px;
 }
 
-.shop-name {
+.sets-shop-name {
   margin-top: 10px;
   font-size: 20px;
   font-weight: 900 bold;
 }
 
-.shop-name-label {
+.sets-shop-name-label {
   display: block;
   margin-top: 5px !important;
   margin-left: 20px !important;
   font-weight: bold !important;
 }
 
-.bgcon h4 {
+.sets-bgcon h4 {
   font-size: 13px;
   margin-left: 22px;
   margin-top: 5px;
   margin-bottom: 5px !important;
 }
 
-.bgcon h2 {
+.sets-bgcon h2 {
   font-size: 24px;
   margin-top: 20px;
   font-weight: bold !important;
   margin-left: 20px;
   margin-bottom: 3px !important;
+}
+
+.sets-custom-input,
+.sets-custom-textarea {
+  width: 90%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-left: 20px;
+  margin-bottom: 4px;
+  background-color: #f7f7f7;
+}
+
+.sets-custom-input[type="text"]:focus,
+.sets-custom-textarea:focus {
+  outline: none;
+  border-color: #555;
+}
+
+.sets-custom-textarea {
+  resize: vertical;
+}
+
+.sets-setup-shop-button {
+  background: linear-gradient(to right, #57574f, #090808) !important;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.sets-setup-shop-button svg {
+  margin-right: 5px;
+}
+
+.sets-shop-setup-image {
+  flex: 1;
+  margin-left: 100px;
+  background-size: cover !important; 
+}
+
+.sets-shop-setup-image img {
+  width: 100%;
+}
+
+.sets-background-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f4df77;
+}
+
+.sets-form-group {
+  margin-bottom: 20px;
+  width: 400px;
+}
+
+.sets-form-container {
+  background-color: white;
+}
+
+.sets-logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.sets-banda-logo {
+  width: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 00px;
+}
+
+.sets-shop-name {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 900 bold;
 }
