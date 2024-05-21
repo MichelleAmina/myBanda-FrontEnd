@@ -36,7 +36,7 @@ function HomeProduct({ item }) {
 
     return (
         <div className='productContainer'>
-            <div className="productThumb" style={{ minHeight: '350px' }}>
+            <div className="productThumb">
                 {
                     products !== undefined &&
                     <>
@@ -60,12 +60,12 @@ function HomeProduct({ item }) {
                         </NavLink>
                         <div className="info">
                             <span className='d-block catName'>{item.category}</span>
-                            <h4 className='title'>{truncateText(item.description, 50)}</h4>
+                            <h4 className='title'>{truncateText(item.name, 40)}</h4>
                             <Rating name="half-rating-read" defaultValue={3.5} precision={0.5} readOnly />
                             <span className='d-block brand'>By <NavLink href="">{item.shop.name}</NavLink></span>
-                            <div className="d-flex align-items-center">
+                            <div className="d-flex align-items-center mt-2">
                                 <div className="d-flex align-items-center">
-                                    <span className='price'>{item.price}</span><span className='oldPrice'>$150</span>
+                                    <span className='price'>${item.price}</span>
                                 </div>
                                 <Button className='ms-auto transition' onClick={()=> handleAddToCart(item)}>
                                     <ShoppingCartOutlinedIcon />Add</Button>

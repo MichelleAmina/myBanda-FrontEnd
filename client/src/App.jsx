@@ -64,7 +64,7 @@ function App() {
           <Route path='cart' element={<BuyersCart />}></Route>
           <Route path='checkout' element={<OrderProduct />}></Route>
           <Route path='orders' element={<OrderCompleted />}></Route>
-          <Route path='vendors' element={<Vendors/>}></Route>
+          <Route path='vendors/:sellerId' element={<Vendors/>}></Route>
           <Route path='wishlist' element={<Wishlist/>}></Route>
 
         </Route>

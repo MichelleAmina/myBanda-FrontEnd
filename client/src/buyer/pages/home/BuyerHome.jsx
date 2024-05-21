@@ -19,6 +19,22 @@ function BuyerHome(props){
     const [activeCategoryIndex, setActiveCategoryIndex] = useState(0)
     const [activeCategoryData, setActiveCategoryData] = useState([])
 
+
+    const categoryImages = {
+        homedecor: "/home-decor.png",
+        appliances: "/appliances.png",
+        toolsandhardware: "/tools.png",
+        clothing: "/clothing.png",
+        accessories: "/jewelry.png",
+        beautyandskincare: "/skin-care.png",
+        outdoorgear: "/outdoor-gear.png",
+        electronics: "/electronics.png",
+        healthandwellness: "/spa.png",
+        toysandgames: "/toys.png",
+        booksandstationary: "/stationary.png",
+        foodandbeverages: "/fast-food.png",
+    };
+
     var settings = {
         dots: false,
         infinite: true,
@@ -40,6 +56,7 @@ function BuyerHome(props){
         }
     }, [prodData]);
     
+    console.log("active category data", activeCategoryData)
 
     useEffect(() => {
         if (activeCategory) {
@@ -48,8 +65,7 @@ function BuyerHome(props){
         }
     }, [activeCategory, prodData]);
 
-    //console.log("activeCategoryData", activeCategoryData)
-    //console.log("category data", activeCategoryData)
+    
 
     
 
@@ -60,7 +76,7 @@ function BuyerHome(props){
     return(
         <div>
             <HomeSlider/>
-            <Carousel/>
+            <Carousel categories={categories} categoryImages={categoryImages}/>
             <Banners data={prodData}/>
 
             <section className='homeProducts'>

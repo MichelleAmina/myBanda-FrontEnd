@@ -361,7 +361,7 @@ function ProductDetails(){
                                                         <span className='rating'>(32 reviews)</span>
                                                         
                                                     </div>
-                                                    <NavLink to='/my_banda/vendors'>Go To Vendor Page</NavLink>
+                                                    <NavLink to={`/my_banda/vendors/${product.shop.seller_id}`} >Go To Vendor Page</NavLink>
                                                     
                                                     
                                                 </div>

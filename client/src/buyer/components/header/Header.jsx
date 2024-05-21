@@ -21,26 +21,35 @@ import axios from 'axios'
 function Header(props){
     const {cartTotalQuantity} = useSelector(state => state.cart)
 
-    console.log("from header,",props)
+    //console.log("from header,",props)
 
     const [isOpenDropdown, setIsOpenDropdown] = useState(false)
     const headerRef = useRef()
     
-    const [categories, setCategories] = useState([
-        'Home Decor',
-        'Appliances',
-        'Tools & Hardware',
-        'Clothing',
-        'Accessories',
-        'Beauty & Skincare',
-        'Outdoor Gear',
-        'Electronics',
-        'Health & Wellness',
-        'Toys & Games',
-        'Books & Stationary',
-        'Food & Beverages',
+    const [categories, setCategories] = useState([])
 
-    ])
+    useEffect(() => {
+        if (props.data.length !== 0) {
+            const uniqueCategories = Array.from(new Set(props.data.map(item => item.category)));
+            setCategories(uniqueCategories);
+        }
+    }, [props.data]);
+
+    const categoryImages = {
+        homedecor: "/home-decor.png",
+        appliances: "/appliances.png",
+        toolsandhardware: "/tools.png",
+        clothing: "/clothing.png",
+        accessories: "/jewelry.png",
+        beautyandskincare: "/skin-care.png",
+        outdoorgear: "/outdoor-gear.png",
+        electronics: "/electronics.png",
+        healthandwellness: "/spa.png",
+        toysandgames: "/toys.png",
+        booksandstationary: "/stationary.png",
+        foodandbeverages: "/fast-food.png",
+    };
+
 
     const countryList = []
 
@@ -159,7 +168,7 @@ function Header(props){
             </div>
             </header>
 
-            <Nav data={categories}/>
+            <Nav categories={categories} categoryImages={categoryImages}/>
         </div>
 
         <div className="afterHeader">

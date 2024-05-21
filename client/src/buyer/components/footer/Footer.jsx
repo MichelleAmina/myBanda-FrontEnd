@@ -101,12 +101,12 @@ function Footer(){
                                         <h3>Account</h3>
                                         <ul className='footer-list mb-sm-5 mb-md-0'>
                                             <li><NavLink to='/login'>Sign In</NavLink></li>
-                                            <li><NavLink to='/About'>View Cart</NavLink></li>
-                                            <li><NavLink to='/About'>My Wishlist</NavLink></li>
+                                            <li><NavLink to='/my_banda/cart'>View Cart</NavLink></li>
+                                            <li><NavLink to="/my_banda/wishlist">My Wishlist</NavLink></li>
                                             <li><NavLink to='/About'>Track My Order</NavLink></li>
                                             <li><NavLink to='/About'>Help Ticket</NavLink></li>
                                             <li><NavLink to='/About'>Shipping Details</NavLink></li>
-                                            <li><NavLink to='/About'>Compare Products</NavLink></li>
+                                    
 
                                         </ul>
                                     </div>
@@ -114,8 +114,8 @@ function Footer(){
                                     <div className="col ms-4">
                                         <h3>Corporate</h3>
                                         <ul className='footer-list mb-sm-5 mb-md-0'>
-                                            <li><NavLink to='/About'>Become a Vendor</NavLink></li>
-                                            <li><NavLink to='/About'>Delivery Providers</NavLink></li>
+                                            <li><NavLink to='/login'>Become a Vendor</NavLink></li>
+                                            <li><NavLink to='/login'>Delivery Providers</NavLink></li>
                                             <li><NavLink to='/About'>Our Partners</NavLink></li>
                                             <li><NavLink to='/About'>Accessibility</NavLink></li>
                                             <li><NavLink to='/About'>Promotions</NavLink></li>
