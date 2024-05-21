@@ -6,7 +6,6 @@ import "./shopsetup.css";
 import BandaLogo from "../assets/banda.png";
 
 const ShopSetup = () => {
-  // State variables to store form input values
   const [shopName, setShopName] = useState("");
   const [description, setDescription] = useState("");
   const [logoUrl, setLogoUrl] = useState("");
@@ -16,11 +15,8 @@ const ShopSetup = () => {
 
   const navigate = useNavigate();
 
-  // Function to get the current user's ID (this depends on how you manage authentication in your app)
   const getCurrentUserId = () => {
-    // Logic to retrieve the current user's ID
-    // For example, if you're using context or Redux for authentication, you would get the user ID from there
-    // For demonstration purposes, let's assume you have a function called getCurrentUser() that returns the user object
+  
     const currentUser = getCurrentUser();
     return currentUser ? currentUser.id : null;
   };
@@ -53,7 +49,6 @@ const ShopSetup = () => {
       if (response.ok) {
         const data = await response.json();
         console.log("Shop created successfully:", data);
-        // Navigate to themes
         navigate("/shop-dashboard");
       } else {
         console.error("Failed to create shop:", response.statusText);
@@ -69,7 +64,6 @@ const ShopSetup = () => {
       <div className="bgcon">
         <div className="form-container">
           <form className="shop-setup-form" onSubmit={handleSubmit}>
-            {/* Shop Name */}
             <div className="form-group">
               <div className="logo-container">
                 <img src={BandaLogo} alt="Banda Logo" className="banda-logo" />
@@ -92,7 +86,6 @@ const ShopSetup = () => {
               />
             </div>
 
-            {/* Description */}
             <div className="form-group">
               <textarea
                 id="description"
@@ -103,7 +96,6 @@ const ShopSetup = () => {
               ></textarea>
             </div>
 
-            {/* Logo URL */}
             <div className="form-group">
               <input
                 type="text"
@@ -127,7 +119,6 @@ const ShopSetup = () => {
               />
             </div>
 
-            {/* Contact */}
             <div className="form-group">
               <input
                 type="text"
@@ -139,7 +130,6 @@ const ShopSetup = () => {
               />
             </div>
 
-            {/* Location */}
             <div className="form-group">
               <input
                 type="text"
@@ -151,14 +141,12 @@ const ShopSetup = () => {
               />
             </div>
 
-            {/* Submit Button */}
             <button type="submit" className="setup-shop-button">
               Setup Shop
             </button>
           </form>
         </div>
 
-        {/* Placeholder image */}
         <div className="shop-setup-image">
 
           <img src="src/assets/top.jpg" alt="Placeholder" />
