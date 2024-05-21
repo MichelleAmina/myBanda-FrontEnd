@@ -1,36 +1,41 @@
 .checkoutSection {
-    width: 100%;
+    width: 90%;
     height: auto;
     padding: 35px 0px;
 }
 
 .order-checkout-button {
-    padding: 7px;
+    padding: 5px 10px;
     background-color: #FFD700;
     border-radius: 4px;
     border: none;
     cursor: pointer;
-    font-size: 17px;
+    font-size: 16px;
     margin-left: auto;
     align-items: flex-end;
 }
 
 .card-header {
-    background-color: #ffed96;
-    padding: 5px;
+    background-color: #FFD700;
     border-radius: 4px;
+
 }
+
 
 .card-header h4 {
     text-align: center;
     font-size: 24px;
-    padding: auto;
-    border-radius: 4px 0px;
+    padding: 10px 0px;
+    margin-bottom: 0px;
 }
 
-.checkout-card h3 {
+.card h3 {
     text-align: center;
-    color: #FFD700;
+    color: black;
     margin-top: 0;
     padding: 5px;
+}
+
+.card-body{
+    margin-top: 10px;
 }
