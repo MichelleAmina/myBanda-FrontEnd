@@ -2,21 +2,14 @@ import React, { useState } from "react";
 import "./addproduct.css";
 import NewSellerSidebar from "./sellersidebar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingBag, faPlus, faFileImport, faSearch, faBell, faUser } from "@fortawesome/free-solid-svg-icons";
 import storeIcon from '../assets/store-2.png';
-import {
-  faPlus,
-  faFileImport,
-  faSearch,
-  faBell,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
 
 const AddProduct = () => {
   const [productName, setProductName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [imageUrls, setImageUrls] = useState(["", "", "", "", ""]); // Initialize with 5 empty strings
+  const [imageUrls, setImageUrls] = useState([""]); // Initialize with one empty string
   const [quantity, setQuantity] = useState("");
   const [category, setCategory] = useState("");
   const [sizes, setSizes] = useState([]);
@@ -34,10 +27,10 @@ const AddProduct = () => {
     }
   };
 
-  const handleImageSwap = (index) => {
-    const newImageUrls = [...imageUrls];
-    [newImageUrls[0], newImageUrls[index]] = [newImageUrls[index], newImageUrls[0]];
-    setImageUrls(newImageUrls);
+  const addMoreImages = () => {
+    if (imageUrls.length < 5) {
+      setImageUrls([...imageUrls, ""]);
+    }
   };
 
   const getSizesForCategory = (category) => {
@@ -174,39 +167,30 @@ const AddProduct = () => {
         </div>
         <div className="right-column">
           <div className="form-section gray-container">
-            <h2>Upload Image</h2>
+            <h2>Upload Images</h2>
             <div className="image-upload-container">
-              <div className="image-preview centered">
-                {imageUrls[0] && <img src={imageUrls[0]} alt={`Preview 0`} />}
-              </div>
-              <div className="carousel">
-                {imageUrls.slice(1).map((url, index) => (
-                  url && (
-                    <div key={index + 1} className="small-image-preview">
-                      <img
-                        src={url}
-                        alt={`Preview ${index + 1}`}
-                        onClick={() => handleImageSwap(index + 1)}
-                      />
-                    </div>
-                  )
-                ))}
-                {imageUrls.length < 5 && (
-                  <div className="small-image-preview plus-icon" onClick={() => setImageUrls([...imageUrls, ""])}>
-                    +
-                  </div>
-                )}
-              </div>
-
-              {/* Input fields for all the images */}
               {imageUrls.map((url, index) => (
                 <div key={index} className="image-preview">
                   <input
                     type="file"
                     onChange={(e) => handleImageChange(index, e)}
                   />
+                  {url && (
+                    <div className="image-thumb">
+                      <img src={url} alt={`Preview ${index}`} />
+                    </div>
+                  )}
                 </div>
               ))}
+              {imageUrls.length < 5 && (
+                <button
+                  type="button"
+                  className="add-more-button"
+                  onClick={addMoreImages}
+                >
+                  <FontAwesomeIcon icon={faPlus} /> Add More
+                </button>
+              )}
             </div>
           </div>
           <div className="form-actions">

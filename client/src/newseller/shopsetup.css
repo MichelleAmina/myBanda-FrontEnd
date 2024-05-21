@@ -6,6 +6,10 @@
 
 
 } */
+* {
+  font-family: "Poppins", sans-serif;
+}
+
 .shop-setup-container {
   display: flex;
   justify-content: center;

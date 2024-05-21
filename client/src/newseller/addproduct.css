@@ -1,13 +1,7 @@
-
-/* @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-} */
+  font-family: "Poppins", sans-serif;
+}
 
-/* Sidebar Styles */
 .seller-sidebar {
   position: fixed;
   top: 0;
@@ -20,7 +14,7 @@
   z-index: 9999; 
 }
 
-/* Page Content Styles */
+
 .add-product-container {
   padding: 20px;
   margin-left: 250px; 
@@ -30,10 +24,8 @@
 
 .prodheader {
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
   margin-bottom: 20px;
-
 }
 
 .prodheader h1 {
@@ -42,6 +34,7 @@
   margin-top: 10px !important;
   font-weight: normal !important;
 }
+
 .prodheader img {
   width: 30px;
   height: auto;
@@ -51,15 +44,11 @@
 .prodheader .store-icon {
   margin-right: 10px !important; 
 }
-.left-column h2{
-  font-size: 16px !important;
-  font-weight: bold !important;
-}
-.right-column h2{
-  font-size: 16px !important;
-  font-weight: bold !important;
-}
 
+.left-column h2, .right-column h2 {
+  font-size: 16px !important;
+  font-weight: bold !important;
+}
 
 .form-section {
   background-color: #f7f7f7;
@@ -76,7 +65,7 @@
   display: block;
   margin-bottom: 5px;
   font-size: 14px;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .add-form-group input,
@@ -176,6 +165,28 @@
   color: #ccc;
 }
 
+.add-more-button {
+  background-color: #f2ca00;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+}
+
+.add-more-button:hover {
+  background-color: #ffdb4d;
+}
+
+.add-more-button:active {
+  background-color: #e0b300;
+}
+
 .form-actions {
   display: flex;
   justify-content: flex-start;
@@ -218,6 +229,8 @@
   gap: 20px;
 }
 
-
-
-
+.image-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
