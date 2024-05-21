@@ -178,7 +178,7 @@ label#form-label {
     transform: translateX(-100%);
   }
   
-.overlay {
+.login-overlay {
     background: #FFD700;
     background: -webkit-linear-gradient(to right, #FFD700, #FFD700);
     background: linear-gradient(to right, #FFD700, #FFD700);
