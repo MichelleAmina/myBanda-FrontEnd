@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import Rating from '@mui/material/Rating';
 import './buyersCart.css';
 import { Link, NavLink } from "react-router-dom";
 import { addToCart, removeFromCart, decreaseCart, clearCart, getTotals, setShippingFee } from "../../../redux/cartSlice";
@@ -73,7 +72,7 @@ const BuyersCart = () => {
                                                     <td>
                                                         <div className="d-flex align-items-center">
                                                             <div className="img">
-                                                                {/*<img src={cartItem.images[0]?.image_url} alt={cartItem.name} className="w-100"/>*/}
+                                                                <img src={cartItem.images[0]?.image_url} alt={cartItem.name} className="w-100"/>
                                                             </div>
                                                             <div className="product-name">
                                                                 <Link><h4>{cartItem.name}</h4></Link>

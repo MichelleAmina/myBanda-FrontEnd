@@ -1,0 +1,18 @@
+.no-orders {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 20px;
+    margin: auto;
+}
+
+.no-orders img {
+    height: 450px;
+}
+
+.no-orders p {
+    font-size: 30px;
+    /* font-weight: bold; */
+}
