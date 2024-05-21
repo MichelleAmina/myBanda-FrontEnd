@@ -43,7 +43,7 @@ function driverAnalytics() {
 
     return (
         <main className='deliveryAnalytics-container'>
-            <div className='chart-row'>
+            {/* <div className='chart-row'>
                 <div className='deliverytable-container'>
                     <h2>Best Performing Drivers</h2>
                     <p>Top drivers based on the number of deliveries made in the last week.</p>
@@ -66,8 +66,8 @@ function driverAnalytics() {
                 </div>
 
                 <div className='chart-container'>
-                    {/* <h2>Deliveries made by Drivers in the last week</h2> */}
-                    {/* <p>A pie chart representation of the number of deliveries made by each driver.</p> */}
+                        <h2>Deliveries made by Drivers in the last week</h2> 
+                     <p>A pie chart representation of the number of deliveries made by each driver.</p> 
                     <ResponsiveContainer width="100%" height={300}>
                         <PieChart>
                             <Pie
@@ -89,7 +89,7 @@ function driverAnalytics() {
                         </PieChart>
                     </ResponsiveContainer>
                 </div>
-            </div>
+            </div> */}
 
             <div className='row'>
                 <div className='single-chart-container'>

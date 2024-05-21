@@ -1,21 +1,19 @@
-// existing seller- customer page - this file displays a list of customers for an s=existing seller who has sold products
-
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faEllipsisV,
   faSearch,
   faBell,
   faUser,
-} from "@fortawesome/free-solid-svg-icons"; 
+  faEdit,
+  faFilter
+} from "@fortawesome/free-solid-svg-icons";
 import "./customers.css";
-import OldSidebar from "./oldside"; 
-
+import OldSidebar from "./oldside";
 
 const Customers = () => {
-  // Dummy data for customers
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCustomers, setFilteredCustomers] = useState([]);
+  const [sortOrder, setSortOrder] = useState("");
 
   const customers = [
     {
@@ -27,16 +25,81 @@ const Customers = () => {
       address: "Amboseli, Lavington",
     },
     {
-      id: 1,
-      name: "Jane",
+      id: 2,
+      name: "Jane Doe",
       email: "janen@gmail.com",
-      orders: 12,
-      spent: "Ksh.2250",
-      address: "Amboseli, Lavington",
+      orders: 8,
+      spent: "Ksh.1800",
+      address: "Karen, Nairobi",
+    },
+    {
+      id: 3,
+      name: "John Smith",
+      email: "johnsmith@gmail.com",
+      orders: 15,
+      spent: "Ksh.3000",
+      address: "Nakuru, Kenya",
+    },
+    {
+      id: 4,
+      name: "David Kimani",
+      email: "davidk@gmail.com",
+      orders: 20,
+      spent: "Ksh.4000",
+      address: "Thika, Kenya",
+    },
+    {
+      id: 5,
+      name: "Sarah Wangari",
+      email: "sarahw@gmail.com",
+      orders: 10,
+      spent: "Ksh.2500",
+      address: "Kisumu, Kenya",
+    },
+    {
+      id: 6,
+      name: "James Mwangi",
+      email: "jamesm@gmail.com",
+      orders: 18,
+      spent: "Ksh.3500",
+      address: "Mombasa, Kenya",
+    },
+    {
+      id: 7,
+      name: "Emily Njeri",
+      email: "emilyn@gmail.com",
+      orders: 6,
+      spent: "Ksh.1500",
+      address: "Eldoret, Kenya",
+    },
+    {
+      id: 8,
+      name: "Peter Kamau",
+      email: "peterk@gmail.com",
+      orders: 14,
+      spent: "Ksh.2700",
+      address: "Kakamega, Kenya",
+    },
+    {
+      id: 9,
+      name: "Alice Wanjiku",
+      email: "alicew@gmail.com",
+      orders: 16,
+      spent: "Ksh.3200",
+      address: "Nyeri, Kenya",
+    },
+    {
+      id: 10,
+      name: "Joseph Nyaga",
+      email: "josephn@gmail.com",
+      orders: 22,
+      spent: "Ksh.4200",
+      address: "Kiambu, Kenya",
     },
   ];
+  
 
-  // Function to handle search
+
   const handleSearch = (e) => {
     const term = e.target.value.toLowerCase();
     setSearchTerm(term);
@@ -46,34 +109,58 @@ const Customers = () => {
     setFilteredCustomers(filtered);
   };
 
-  //mapping to search
-  const dataToMap = searchTerm ? filteredCustomers : customers;
+  const handleSortOrderChange = (e) => {
+    const order = e.target.value;
+    setSortOrder(order);
+    const sortedCustomers = [...customers].sort((a, b) => {
+      if (order === "highest") {
+        return b.orders - a.orders;
+      } else if (order === "lowest") {
+        return a.orders - b.orders;
+      }
+      return 0;
+    });
+    setFilteredCustomers(sortedCustomers);
+  };
+
+  const dataToMap = searchTerm || sortOrder ? filteredCustomers : customers;
 
   return (
-    <div className="dashboard-container">
-    <OldSidebar /> 
-      <div className="content-container">
-        <div className="header">
+    <div className="customers-dashboard">
+      <OldSidebar />
+      <div className="customers-content">
+        <div className="customers-header">
           <h1>Customers</h1>
-          <div className="header-icons">
+          <div className="customers-header-icons">
             <FontAwesomeIcon icon={faBell} />
             <FontAwesomeIcon icon={faUser} />
           </div>
         </div>
-        <div className="sub-header">
+        <div className="customers-sub-header">
           <p>View and manage your customers</p>
         </div>
-        <div className="search-bar">
-          <FontAwesomeIcon icon={faSearch} />
-          <input
-            type="text"
-            placeholder="Search by name..."
-            value={searchTerm}
-            onChange={handleSearch}
-          />
+        <div className="customers-search-bar-container">
+          <div className="customers-search-bar">
+            <FontAwesomeIcon icon={faSearch} />
+            <input
+              type="text"
+              placeholder="Search by name..."
+              value={searchTerm}
+              onChange={handleSearch}
+            />
+          </div>
+          <div className="customers-filter-bar">
+            <select value={sortOrder} onChange={handleSortOrderChange}>
+              <option value="">Number Of Orders</option>
+              <option value="highest">Highest</option>
+              <option value="lowest">Lowest</option>
+            </select>
+            <button>
+              <FontAwesomeIcon icon={faFilter} />
+            </button>
+          </div>
         </div>
-
-        <table>
+        <table className="customers-table">
           <thead>
             <tr>
               <th>Customer</th>
@@ -93,7 +180,7 @@ const Customers = () => {
                 <td>{customer.spent}</td>
                 <td>{customer.address}</td>
                 <td>
-                  <FontAwesomeIcon icon={faEllipsisV} />{" "}
+                  <FontAwesomeIcon icon={faEdit} className="edit-icon" />
                 </td>
               </tr>
             ))}

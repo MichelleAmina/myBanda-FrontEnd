@@ -222,10 +222,10 @@ function Login(){
                 </form>
             </div>
             <div className="overlay-container">
-                <div className="overlay">
+                <div className="login-overlay">
                     <div className="overlay-panel overlay-left">
                         <div className="overlay-log-in">
-                            <h1>Welcome Back!</h1>
+                            <h1>Welcome Back</h1>
                             <p>To keep connected with us please login with your personal info</p>
                         </div>
                         <div className="overlay-login-signup">

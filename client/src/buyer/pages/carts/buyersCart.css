@@ -168,6 +168,11 @@
 }
 
 .continue-shopping button:hover {
+    background-color: #ffed96;
+    color: black;
+}
+
+.continue-shopping button:hover {
     background-color: white;
     background-color: #ffed96;
 }
