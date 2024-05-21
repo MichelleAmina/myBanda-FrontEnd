@@ -13,13 +13,15 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../redux/cartSlice';
 
 function HomeProduct({ item }) {
+    //console.log("homeProduct", item)
     const [products, setProducts] = useState();
     const dispatch = useDispatch();
 
     useEffect(() => {
         setProducts(item);
     }, [item]);
-
+    //console.log("homeProducts products", products)
+    
     // Shortened length of product description
     function truncateText(text, maxLength) {
         if (text.length <= maxLength) {
@@ -40,6 +42,7 @@ function HomeProduct({ item }) {
                 {
                     products !== undefined &&
                     <>
+                  
                         <NavLink to={`/my_banda/products/${item.id}`} state={{ product: item }}>
                             <div className="imgWrapper">
                                 <img src={imageUrl} alt="" className='w-100' />
@@ -58,6 +61,7 @@ function HomeProduct({ item }) {
                                 </div>
                             </div>
                         </NavLink>
+                        
                         <div className="info">
                             <span className='d-block catName'>{item.category}</span>
                             <h4 className='title'>{truncateText(item.name, 40)}</h4>
@@ -71,6 +75,7 @@ function HomeProduct({ item }) {
                                     <ShoppingCartOutlinedIcon />Add</Button>
                             </div>
                         </div>
+                
                     </>
                 }
             </div>
