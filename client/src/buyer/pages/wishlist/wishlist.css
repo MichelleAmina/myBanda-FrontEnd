@@ -8,3 +8,52 @@
     width: 16%;
     padding: 0px 10px 20px 10px;
 }
+
+.wishlist-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .wishlist-items {
+    list-style: none;
+    padding: 0;
+  }
+  
+.wishlist-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+  .wishlist-item-image {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+  }
+  
+  .wishlist-item-details {
+    flex: 1;
+  }
+  
+  .wishlist-item-details h2 {
+    font-size: 18px;
+    margin: 0 0 5px;
+  }
+  
+  .wishlist-item-price {
+    display: flex;
+    align-items: center;
+  }
+  
+  .wishlist-item-price span {
+    margin-right: 10px;
+  }
+
+  .wishlist-item-button {
+    background: #EBC606;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }

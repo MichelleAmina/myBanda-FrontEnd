@@ -23,7 +23,7 @@ function Wishlist(){
             });
     }, []);
 
-    //console.log("wishlist", productData[0].product)
+    
 
     if (loading){
         return <div>Loading...</div>
@@ -40,7 +40,7 @@ function Wishlist(){
             <div className="container-fluid">
                 Wishlist
                 <div className="wishlistProducts ps-4">
-                    {productData.length !== 0 &&
+                    {/* {productData.length !== 0 &
                         // <h2>{productData[0].product.name}</h2>
                         productData.map((item, index) => (
                             <div className="item" key={index}>
@@ -48,7 +48,26 @@ function Wishlist(){
                                 <HomeProduct item={item.product}/>
                             </div>
                         ))
-                    }           
+                    }            */}
+                    {console.log("wishlist", productData[0].product)}
+                    <div className="wishlist-container">
+                        <ul className="wishlist-items">
+                            {productData.length !== 0 &&
+                            productData.map((item, index) => (
+                                <li key={item.id} className="wishlist-item">
+                                    <img src={item.product.images[0].image_url} alt={item.name} className="wishlist-item-image" />
+                                    <div className="wishlist-item-details">
+                                        <h2>{item.name}</h2>
+                                        <div className="wishlist-item-price">
+                                            <span>{item.product.price}</span>
+                                        </div>
+                                    </div>
+                                    <button className="wishlist-item-button">Add To Cart</button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    {/* <h1>{productData[0].product.name}</h1> */}
                 </div>
             </div>
         </div>
