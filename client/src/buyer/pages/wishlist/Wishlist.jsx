@@ -5,18 +5,38 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../redux/cartSlice';
 import Rating from '@mui/material/Rating';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function Wishlist(){
     // store product data
     const [productData, setProductData] = useState([]);
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    const [deleted, setDeleted] = useState(false)
     const dispatch = useDispatch();
 
     const handleAddToCart = (item) => {
         dispatch(addToCart(item)); 
     };
 
+    function handleDeleteFromWishlist(id) {
+        fetch("https://mybanda-backend-88l2.onrender.com/like", {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            id: id
+        }),
+        })
+        .then((r) => console.log(r))
+        .then(setDeleted(updateDelete))
+    }
+
+    function updateDelete() {
+        setDeleted(!deleted)
+    }
+    
 
     useEffect(() => {
         fetch("https://mybanda-backend-88l2.onrender.com/like")
@@ -31,7 +51,7 @@ function Wishlist(){
                 setError(error)
                 setLoading(falase)
             });
-    }, []);
+    }, [deleted]);
 
     
 
@@ -75,6 +95,7 @@ function Wishlist(){
 
                                         </div>
                                     </div>
+                                    <button onClick={() => handleDeleteFromWishlist(item.id)}><DeleteIcon/></button>
                                     <button className="wishlist-item-button" onClick={()=> handleAddToCart(item.product)}><ShoppingCartOutlinedIcon />Add To Cart</button>
                                 </li>
                             ))}
