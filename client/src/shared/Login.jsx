@@ -54,7 +54,7 @@ function Login(){
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("https://mybanda-backend-88l2.onrender.com/signup", {
+            const response = await fetch("https://mybanda-backend-3.onrender.com/signup", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ function Login(){
             });
             const data = await response.json();
             console.log('Successful');
-            navigate('/driverhomepage');
+            navigate('/my_banda');
         } catch (error) {
             console.error('Signup failed:', error);
         }
@@ -78,7 +78,7 @@ function Login(){
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("https://mybanda-backend-88l2.onrender.com/login", {
+            const response = await fetch("https://mybanda-backend-3.onrender.com/login", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

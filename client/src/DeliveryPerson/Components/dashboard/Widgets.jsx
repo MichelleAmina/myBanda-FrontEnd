@@ -82,7 +82,7 @@ const Widget = ({type}) => {
             <div className="left">
                 <span className="title">{data.title}</span>
                 <span className="count">{data.isMoney && '$'} {amount}</span>
-                <Link to={data.path} className="link">{data.link}</Link>
+                <Link to={data.path} className="widget-link">{data.link}</Link>
             </div>
             <div className="right">
                 {data.icon}

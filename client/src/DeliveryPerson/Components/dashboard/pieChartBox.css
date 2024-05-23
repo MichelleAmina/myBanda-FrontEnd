@@ -1,0 +1,53 @@
+.pieChartBox {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .pieChartBox h4 {
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  .pieChartBox .chart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .pieChartBox .options {
+    display: flex;
+    /* justify-content: space-between; */
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
+    align-items: left;
+  }
+  
+  .pieChartBox .option {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .pieChartBox .option .title {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .pieChartBox .option .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .loc {
+    font-size: 16px;
+
+  }
+  

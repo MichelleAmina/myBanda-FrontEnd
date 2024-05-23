@@ -1,4 +1,4 @@
-.deliveryAnalytics-container {
+/* .deliveryAnalytics-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,4 +48,51 @@
 
 .driver-table th {
     background-color: #FFD700;
+} */
+
+
+.topBox h3 {
+      margin-bottom: 30px;
 }
+      
+.best-listItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.best-cust {
+    display: flex;
+    gap: 20px;
+}
+  
+.best-cust img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  
+}
+          
+.userTexts {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.customer-username {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.customer-email {
+    font-size: 12px;
+}
+  
+.customer-amount {
+    font-weight: 500;
+}
+
+   
+  
