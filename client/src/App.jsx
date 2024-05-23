@@ -1,14 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
-
 import { Route, Routes, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-
-
+// Importing components
 import Login from './shared/Login';
 import DeliveryDashboard from './DeliveryPerson/Pages/DeliveryDashboard';
 import CompletedDeliveries from './DeliveryPerson/Pages/CompletedDeliveries';
@@ -16,6 +12,7 @@ import DeliveryDriverAnalytics from './DeliveryPerson/Pages/DeliveryAnalytics';
 import AvailableDeliveries from './DeliveryPerson/Pages/AvailableDeliveries';
 import PendingDeliveries from './DeliveryPerson/Pages/PendingDeliveries';
 import ViewDetails from './DeliveryPerson/Pages/ViewDetails';
+
 // Buyer import 
 import Buyer from './buyer/Buyer';
 import BuyerAbout from './buyer/pages/about/BuyerAbout';
@@ -26,6 +23,7 @@ import OrderProduct from './buyer/pages/order/Order';
 import OrderCompleted from './buyer/pages/completed/OrderComplete';
 import Vendors from './buyer/pages/vendors/Vendors';
 import Wishlist from './buyer/pages/wishlist/Wishlist';
+
 // Banda Admin
 import Admin from "./admin/Admin";
 import List from "./admin/pages/list/List";
@@ -43,12 +41,11 @@ import Newsellerorders from "./newseller/Newsellerorders";
 import ShopSetup from "./newseller/shopsetup";
 import AddProduct from "./newseller/addproduct";
 import ProductHome from "./existingseller/producthome";
-import OldSellerDash  from "./existingseller/oldsellerdash";
+import OldSellerDash from "./existingseller/oldsellerdash";
+import FinalCheckout from './newseller/finalcheckout';
 
 function App() {
   return (
-    // Please add your routes and nested routes to this page.
-    // If there's any problem, reach out and I'll do the routing
     <div>
       <ToastContainer />
       <Routes>
@@ -62,10 +59,11 @@ function App() {
           <Route path='cart' element={<BuyersCart />}></Route>
           <Route path='checkout' element={<OrderProduct />}></Route>
           <Route path='orders' element={<OrderCompleted />}></Route>
-          <Route path='vendors/:sellerId' element={<Vendors/>}></Route>
-          <Route path='wishlist' element={<Wishlist/>}></Route>
-
+          <Route path='vendors/:sellerId' element={<Vendors />}></Route>
+          <Route path='wishlist' element={<Wishlist />}></Route>
         </Route>
+        <Route path="/finalcheckout" element={<FinalCheckout />} />
+
 
         {/*Banda Admin routes start here*/}
         <Route path="/banda_admin" element={<Admin />}>
@@ -77,7 +75,7 @@ function App() {
           </Route>
         </Route>
 
-        {/* set it to this so that i can code change it once we decide on the initial landing page*/}
+        {/* set it to this so that I can change it once we decide on the initial landing page*/}
         <Route path="*" element={<Navigate to="/login" />} />
         <Route path="/driverhomepage" element={<DeliveryDashboard />} />
         <Route path="/availableDeliveries" element={<AvailableDeliveries />} />
@@ -96,7 +94,8 @@ function App() {
         <Route path="/shopsetup" element={<ShopSetup />} />
         <Route path="/addprod" element={<AddProduct />} />
         <Route path="/producthome" element={<ProductHome />} />
-        <Route path="/oldsellerdash" element={<OldSellerDash  />} />
+        <Route path="/oldsellerdash" element={<OldSellerDash />} />
+      
       </Routes>
     </div>
   );
