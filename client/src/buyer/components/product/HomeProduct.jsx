@@ -141,6 +141,20 @@ function HomeProduct({ item }) {
         dispatch(addToCart(item)); 
     };
 
+    const handleAddToWishlist = (id) => {
+        fetch("https://mybanda-backend-88l2.onrender.com/like", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            product_id: id
+        }),
+        })
+        .then((r) => console.log(r))
+        // .then(setDeleted(updateDelete))
+    }
+
     return (
         <div className='productContainer'>
             <div className="productThumb">
@@ -157,7 +171,7 @@ function HomeProduct({ item }) {
                                 <div className="overlay transition">
                                     <ul className='list list-inline mb-0'>
                                         <li className='list-inline-item'>
-                                            <NavLink className='cursor' tooltip="Add to Wishlist!"><FavoriteBorderOutlinedIcon /></NavLink>
+                                            <NavLink className='cursor' tooltip="Add to Wishlist!" onClick={()=> handleAddToWishlist(item.id)}><FavoriteBorderOutlinedIcon /></NavLink>
                                         </li>
                                         <li className='list-inline-item'>
                                             <NavLink className='cursor' tooltip="Compare"><CompareArrowsOutlinedIcon /></NavLink>

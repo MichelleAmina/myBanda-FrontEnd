@@ -6,6 +6,7 @@ import { addToCart } from '../../../redux/cartSlice';
 import Rating from '@mui/material/Rating';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { NavLink } from "react-router-dom";
 
 function Wishlist(){
     // store product data
@@ -85,7 +86,7 @@ function Wishlist(){
                                 <li key={item.id} className="wishlist-item">
                                     <img src={item.product.images[0].image_url} alt={item.name} className="wishlist-item-image" />
                                     <div className="wishlist-item-details">
-                                        <h2>{item.product.name.toUpperCase()}</h2>
+                                        <h2><NavLink to={`/my_banda/products/${item.product.id}`}>{item.product.name.toUpperCase()}</NavLink></h2>
                                         <h2>{item.product.description}</h2>
                                         <Rating name="half-rating-read" defaultValue={3.5} precision={0.5} readOnly/>
                                         <div className="wishlist-item-price">
