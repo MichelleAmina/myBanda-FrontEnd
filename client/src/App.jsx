@@ -62,6 +62,8 @@ function App() {
           <Route path='vendors/:sellerId' element={<Vendors />}></Route>
           <Route path='wishlist' element={<Wishlist />}></Route>
         </Route>
+        <Route path="/finalcheckout" element={<FinalCheckout />} />
+
 
         {/*Banda Admin routes start here*/}
         <Route path="/banda_admin" element={<Admin />}>
@@ -93,7 +95,7 @@ function App() {
         <Route path="/addprod" element={<AddProduct />} />
         <Route path="/producthome" element={<ProductHome />} />
         <Route path="/oldsellerdash" element={<OldSellerDash />} />
-        <Route path="/finalcheckout" element={<FinalCheckout />} />
+      
       </Routes>
     </div>
   );
