@@ -31,11 +31,7 @@ function Wishlist(){
         }),
         })
         .then((r) => console.log(r))
-        .then(setDeleted(updateDelete))
-    }
-
-    function updateDelete() {
-        setDeleted(!deleted)
+        .then(setDeleted(!deleted))
     }
     
 
@@ -45,7 +41,8 @@ function Wishlist(){
             .then((data) => {
                 setProductData(data)
                 setLoading(false)
-                console.log("wishlist data",data);
+                // console.log("wishlist data",data);
+
             })
             .catch(error => {
                 console.error('Error fetching liked products:', error);
