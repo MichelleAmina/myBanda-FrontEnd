@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { setProducts } from "../redux/productSlice"; 
 import axios from 'axios'
+import './responsive.css'
 
 function Buyer(){
     const location = useLocation()
@@ -17,21 +18,6 @@ function Buyer(){
 
     const [productData, setProductData] = useState([]);
     
-    /*
-    useEffect(() => {
-        getData('https://mybanda-backend-4.onrender.com/products')
-    },[])
-
-    const getData = async(url) => {
-        try{
-            await axios.get(url).then((resp)=>{
-                //console.log(resp.data)
-                setProductData(resp.data)
-            })
-        }catch(error){
-            console.log(error.message)
-        }
-    }*/
 
     useEffect(() => {
         fetch("https://mybanda-backend-88l2.onrender.com/products")
@@ -50,7 +36,7 @@ function Buyer(){
 
     return(
         productData.length !== 0 &&
-        <div>
+        <div className="buyerSide">
            
             <Header data={productData}/>
             {renderHomePage && <BuyerHome data={productData}/>}

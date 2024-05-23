@@ -20,7 +20,7 @@ function HomeProduct({ item }) {
     useEffect(() => {
         setProducts(item);
     }, [item]);
-    //console.log("homeProducts products", products)
+    //console.log("homeProducts products", products.reviews)
     
     // Shortened length of product description
     function truncateText(text, maxLength) {
@@ -31,6 +31,22 @@ function HomeProduct({ item }) {
     }
 
     const imageUrl = item.images[0]?.image_url;
+
+    // const reviews = products.reviews
+    // console.log("reviews", reviews)
+
+    // const calculateAverageRating = () => {
+    //     if (reviews.length === 0) {
+    //         return 0
+    //     }
+
+    //     const totalStars = reviews.reduce((acc, review) => acc + review.rating, 0)
+    //     return totalStars / reviews.length; 
+    // }
+
+    // const averageRating = calculateAverageRating()
+    // console.log("average rating",averageRating)
+    
 
     const handleAddToCart = (item) => {
         dispatch(addToCart(item)); 
@@ -65,7 +81,8 @@ function HomeProduct({ item }) {
                         <div className="info">
                             <span className='d-block catName'>{item.category}</span>
                             <h4 className='title'>{truncateText(item.name, 40)}</h4>
-                            <Rating name="half-rating-read" defaultValue={3.5} precision={0.5} readOnly />
+                            <Rating name="half-rating-read" value={3.5} precision={0.5} readOnly />
+                            {/* <Rating name="half-rating-read" defaultValue={averageRating} precision={0.5} readOnly /> */}
                             <span className='d-block brand'>By <NavLink href="">{item.shop.name}</NavLink></span>
                             <div className="d-flex align-items-center mt-2">
                                 <div className="d-flex align-items-center">

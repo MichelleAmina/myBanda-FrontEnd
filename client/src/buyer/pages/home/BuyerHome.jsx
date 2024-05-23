@@ -83,7 +83,7 @@ function BuyerHome(props){
                 <div className="container-fluid">
                     <div className="d-flex align-items-center">
                      <h2 className='hd mb-0 mt-0'>Popular Products</h2>
-                     {/*ml-auto switched to ms-auto*/}
+                    
                      <ul className='list list-inline ms-auto filterTab mb-0'>
                         {
                             categories.length !== 0 &&
@@ -115,7 +115,7 @@ function BuyerHome(props){
                                 return(
                                     <div className="item" key={item.id} >
                                         <HomeProduct item={item}/>
-                                        {/*console.log("passing to homeproduct", item)*/}
+                                        
                                     </div>
                                 )
                             })

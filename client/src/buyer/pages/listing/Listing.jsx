@@ -20,6 +20,9 @@ function Listing() {
     const [isOpenDropdown, setIsOpenDropdown] = useState(false);
     const [isOpenDropdown2, setIsOpenDropdown2] = useState(false);
 
+    // Loading state
+    const [loading, setLoading] = useState(true);
+
     // Fetch data 
     useEffect(() => {
         fetch("https://mybanda-backend-88l2.onrender.com/products")
@@ -29,6 +32,8 @@ function Listing() {
                 const maxPrice = Math.max(...data.map(item => item.price));
                 setPriceRange([0, maxPrice]);
                 setFilteredProducts(data);
+                setLoading(false);
+                //setTimeout(() => setLoading(false), 1000);
             })
             .catch(error => {
                 console.error('Error fetching products data:', error);
@@ -62,6 +67,15 @@ function Listing() {
 
 
     const totalProducts = useMemo(() => filteredProducts.length, [filteredProducts]);
+
+    // Render loading GIF if loading
+    if (loading) {
+        return (
+            <div className="loader">
+                <img src="https://i.pinimg.com/originals/c1/bc/d8/c1bcd8a8c945b53da6b29f10a2a553c0.gif" alt="Loading..." />
+            </div>
+        );
+    }
     
 
     return (
@@ -147,127 +161,3 @@ export default Listing;
 
 
 
-/*import './listing.css'
-import {NavLink} from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import Sidebar from '../../components/sidebar/Sidebar'
-import HomeProduct from '../../components/product/HomeProduct'
-
-import { Button } from '@mui/material'
-import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
-import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined';
-
-function Listing(){
-
-    const [productData, setProductData] = useState([]);
-    const [isOpenDropdown, setIsOpenDropdown] = useState(false)
-    const [isOpenDropdown2, setIsOpenDropdown2] = useState(false)
-
-
-    useEffect(() => {
-        fetch("https://mybanda-backend-88l2.onrender.com/products")
-            .then(resp => resp.json())
-            .then((data) => {
-                setProductData(data);
-            })
-            .catch(error => {
-                console.error('Error fetching products data:', error);
-            });
-    }, []);
-
-    const totalProducts = productData.length;
-
-    //console.log("productData from listing", productData)
-
-
-    return(
-        <div>
-            <section className='listingPage'>
-                <div className="container-fluid">
-                    <div className="breadcrumb flex-column">
-                        <h1>Product Listing</h1>
-                        <ul className='list list-inline'>
-                            <li className='list-inline-item'>
-                                <NavLink to='/buyer'>Home</NavLink>
-                                
-                            </li>
-                            <li className='list-inline-item'>
-                                <NavLink to='/buyer/products'>Products</NavLink>  
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div className="listingData">
-                        <div className="row">
-                            <div className="col-md-3 sidebarWrapper">
-                                <Sidebar/>
-                            </div>
-                            {/*div was initially named homeProducts*
-                            <div className="col-md-9 rightContent homeProducts pt-0">
-                                <div className="topStrip d-flex align-items-center">
-                                    <p className='mb-0'>We found <span>{totalProducts}</span> items for you</p>
-                                    <div className="ms-auto d-flex align-items-center">
-                                        <div className="tab_ position-relative">
-                                            {/*selects might be better for these features*
-                                            <Button className='btn_' onClick={()=>setIsOpenDropdown(!isOpenDropdown)}>
-                                                <GridViewOutlinedIcon/>
-                                                Show: 50
-                                            </Button>
-                                            { isOpenDropdown !== false &&
-                                            
-                                                <ul className='dropdownMenu'>
-                                                    <li><Button className='align-items-center' onClick={()=>setIsOpenDropdown(false)}>50</Button></li>
-                                                    <li><Button className='align-items-center' onClick={()=>setIsOpenDropdown(false)}>100</Button></li>
-                                                    <li><Button className='align-items-center' onClick={()=>setIsOpenDropdown(false)}>150</Button></li>
-                                                    <li><Button className='align-items-center' onClick={()=>setIsOpenDropdown(false)}>200</Button></li>
-                                                    <li><Button className='align-items-center' onClick={()=>setIsOpenDropdown(false)}>All</Button></li>
-                                                </ul>
-                                            }
-                                        </div>
-                                        <div className="tab_ ms-3 position-relative">
-                                            <Button className='btn_' onClick={()=>setIsOpenDropdown2(!isOpenDropdown2)}>
-                                                <TuneOutlinedIcon/>
-                                                Sort By:
-                                            </Button>
-                                            { isOpenDropdown2 !== false &&
-                                            
-                                            <ul className='dropdownMenu'>
-                                                <li><Button className='align-items-center'>Featured</Button></li>
-                                                <li><Button className='align-items-center'>Price: Low to High</Button></li>
-                                                <li><Button className='align-items-center'>Price: High to Low</Button></li>
-                                                <li><Button className='align-items-center'>Highest Rating</Button></li>
-                                            </ul>
-                                        }
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <div className="productRow ps-4">
-                                    {
-                                        productData.map((item, index) => {
-                                            return(
-                                                <div className="item" key={index}>
-                                                    <HomeProduct item={item}/>
-                                                </div>
-
-                                            )
-                                        })
-                                    }
-                                    
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-    )
-}
-
-export default Listing
-*/
