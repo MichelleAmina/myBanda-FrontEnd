@@ -197,10 +197,10 @@ function BuyerHome(props){
                             
                         </div>
 
-                        <div className="col">
+                        {/* <div className="col">
                             <TopProducts title="Recently Added"/>
                             
-                        </div>
+                        </div> */}
 
                         <div className="col">
                             <TopProducts title="Top Rated"/>
