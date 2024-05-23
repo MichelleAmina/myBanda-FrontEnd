@@ -117,11 +117,11 @@ function Login(){
             if (response.ok) {
                 const data = await response.json();
                 console.log("this is the data", data)
-                //const { access_token } = data; // Extract the JWT token from the response
-                //localStorage.setItem('access_token', access_token); // Store the token in local storage
+                const { access_token } = data; // Extract the JWT token from the response
+                localStorage.setItem('access_token', access_token); // Store the token in local storage
+                
                 console.log('User logged in:', data);
-                const message = data.message
-                console.log("this is the message ", message)
+                
                 const role = data.role 
                 console.log("this is the role", role)
 
@@ -132,10 +132,10 @@ function Login(){
                 } else if (role === 'delivery'){
                     navigate('/driverhomepage')
                 } else{
-                    console.log("Message after all roles")
-                    //navigate('/banda_admin')
+                    
+                    navigate('/banda_admin')
                 }
-                // navigate('/driverhomepage');
+                
                 console.log('Successful');
             } else {
                 console.error('Login failed:', response.statusText);
