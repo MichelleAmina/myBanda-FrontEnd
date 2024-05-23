@@ -55,6 +55,10 @@ function HomeProduct({ item }) {
     return (
         <div className='productContainer'>
             <div className="productThumb">
+            {/* {
+                props.tag !== null && props.tag !== undefined &&
+                <span className={`badge ${props.tag}`}>{props.tag}</span>
+            } */}
                 {
                     products !== undefined &&
                     <>

@@ -35,8 +35,8 @@ function Login(){
                 ...formData,
                 [name]: value
             });
-            setShowLocationInput(value === "3"); 
-            setShowContactInput(value === "3"); 
+            setShowLocationInput(value === "delivery"); 
+            setShowContactInput(value === "delivery"); 
         } else {
             setFormData({
                 ...formData,
@@ -51,19 +51,46 @@ function Login(){
         }
     };
 
+    // SIGNUP PAGE 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("https://mybanda-backend-3.onrender.com/signup", {
+            const response = await fetch("https://mybanda-backend-88l2.onrender.com/signup", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formData)
             });
-            const data = await response.json();
-            console.log('Successful');
-            navigate('/my_banda');
+            if (response.ok) {
+                const data = await response.json();
+                console.log("this is the data", data)
+                //const { access_token } = data; // Extract the JWT token from the response
+                //localStorage.setItem('access_token', access_token); // Store the token in local storage
+                console.log('User registered:', data);
+
+                const role = data.name
+                console.log("this is the role", role)
+
+                if (role === 'buyer'){
+                    navigate('/my_banda')
+                } else if (role === 'seller'){
+                    navigate('/sellerdash')
+                } else if (role === 'delivery'){
+                    navigate('/driverhomepage')
+                } else{
+                    console.log("Message after all roles")
+                    //navigate('/banda_admin')
+                }
+                // navigate('/driverhomepage');
+                console.log('Successful');
+            } else {
+                console.error('Login failed:', response.statusText);
+            }
+            // const data = await response.json();
+            // console.log("signup data", data)
+            // console.log('Successful');
+            //navigate('/my_banda');
         } catch (error) {
             console.error('Signup failed:', error);
         }
@@ -75,10 +102,11 @@ function Login(){
         password: ""
     });
 
+    // LOGIN PAGE 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("https://mybanda-backend-3.onrender.com/login", {
+            const response = await fetch("https://mybanda-backend-88l2.onrender.com/login", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -88,10 +116,26 @@ function Login(){
 
             if (response.ok) {
                 const data = await response.json();
-                const { access_token } = data; // Extract the JWT token from the response
-                localStorage.setItem('access_token', access_token); // Store the token in local storage
+                console.log("this is the data", data)
+                //const { access_token } = data; // Extract the JWT token from the response
+                //localStorage.setItem('access_token', access_token); // Store the token in local storage
                 console.log('User logged in:', data);
-                navigate('/driverhomepage');
+                const message = data.message
+                console.log("this is the message ", message)
+                const role = data.role 
+                console.log("this is the role", role)
+
+                if (role === 'buyer'){
+                    navigate('/my_banda')
+                } else if (role === 'seller'){
+                    navigate('/sellerdash')
+                } else if (role === 'delivery'){
+                    navigate('/driverhomepage')
+                } else{
+                    console.log("Message after all roles")
+                    //navigate('/banda_admin')
+                }
+                // navigate('/driverhomepage');
                 console.log('Successful');
             } else {
                 console.error('Login failed:', response.statusText);
@@ -139,9 +183,9 @@ function Login(){
                     />
                     <label id="form-label" htmlFor="role">Role:</label>
                     <select name="role" id="role" value={formData.role} onChange={handleChange}>
-                        <option value="1">Buyer</option>
-                        <option value="2">Seller</option>
-                        <option value="3">Delivery person</option>
+                        <option value="buyer">Buyer</option>
+                        <option value="seller">Seller</option>
+                        <option value="delivery">Delivery person</option>
                     </select>
                     <label id="form-label" htmlFor="password">Password:</label>
                     <input  
