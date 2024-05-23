@@ -140,7 +140,7 @@ function Header(props){
                                 <NavLink to="/my_banda/wishlist" className="nav-link">
                                     <span>
                                         <FavoriteBorderOutlinedIcon className='listIcon'/>
-                                        <span className='badge'>0</span>
+                                        {/* <span className='badge'>0</span> */}
                                         Wishlist
                                     </span>
                                 </NavLink>
