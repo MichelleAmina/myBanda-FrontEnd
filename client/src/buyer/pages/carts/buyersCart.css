@@ -9,6 +9,11 @@
     font-weight: bold;
 }
 
+
+.cart-body{
+    padding-bottom: 10px;
+}
+
 .clear-cart {
     margin-left: auto; 
      display: flex; 

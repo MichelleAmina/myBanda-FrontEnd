@@ -66,7 +66,7 @@ const BuyersCart = () => {
                                                 <th>Subtotal</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody className="cart-body">
                                             {cart.cartItems.map((cartItem) => (
                                                 <tr key={cartItem.id}>
                                                     <td>
@@ -127,7 +127,7 @@ const BuyersCart = () => {
                                     </h3>
                                 </div>
                                 <br />
-                                <NavLink to="/my_banda/checkout">
+                                <NavLink to="/my_banda/finalCheckout">
                                     <button className="checkout-button">Proceed to Checkout</button>
                                 </NavLink>
                             </div>

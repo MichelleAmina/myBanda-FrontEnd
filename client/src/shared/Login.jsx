@@ -55,7 +55,7 @@ function Login(){
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("https://mybanda-backend-88l2.onrender.com/signup", {
+            const response = await fetch("https://mybanda-backend-3.onrender.com/signup", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -106,7 +106,7 @@ function Login(){
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("https://mybanda-backend-88l2.onrender.com/login", {
+            const response = await fetch("https://mybanda-backend-3.onrender.com/login", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -119,6 +119,8 @@ function Login(){
                 console.log("this is the data", data)
                 const { access_token } = data; // Extract the JWT token from the response
                 localStorage.setItem('access_token', access_token); // Store the token in local storage
+                
+                // localStroage.setItem('userId', userId )
                 
                 console.log('User logged in:', data);
                 
