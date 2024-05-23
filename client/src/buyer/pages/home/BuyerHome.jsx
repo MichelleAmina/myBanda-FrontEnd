@@ -10,60 +10,114 @@ import { useEffect, useState } from 'react'
 
 function BuyerHome(props){
 
-    // All the data 
-    const [prodData, setProdData] = useState(props.data)
-    // All the categories appearing only a once 
-    const [categories, setCategories] = useState([])
-    const [activeCategory, setActiveCategory] = useState()
-    // Highlight index of active tab/category 
-    const [activeCategoryIndex, setActiveCategoryIndex] = useState(0)
-    const [activeCategoryData, setActiveCategoryData] = useState([])
+    // // All the data 
+    // const [prodData, setProdData] = useState(props.data)
+    // // All the categories appearing only a once 
+    // const [categories, setCategories] = useState([])
+    // const [activeCategory, setActiveCategory] = useState()
+    // // Highlight index of active tab/category 
+    // const [activeCategoryIndex, setActiveCategoryIndex] = useState(0)
+    // const [activeCategoryData, setActiveCategoryData] = useState([])
 
 
-    const categoryImages = {
-        homedecor: "/home-decor.png",
-        appliances: "/appliances.png",
-        toolsandhardware: "/tools.png",
-        clothing: "/clothing.png",
-        accessories: "/jewelry.png",
-        beautyandskincare: "/skin-care.png",
-        outdoorgear: "/outdoor-gear.png",
-        electronics: "/electronics.png",
-        healthandwellness: "/spa.png",
-        toysandgames: "/toys.png",
-        booksandstationary: "/stationary.png",
-        foodandbeverages: "/fast-food.png",
-    };
+    // const categoryImages = {
+    //     homedecor: "/home-decor.png",
+    //     appliances: "/appliances.png",
+    //     toolsandhardware: "/tools.png",
+    //     clothing: "/clothing.png",
+    //     accessories: "/jewelry.png",
+    //     beautyandskincare: "/skin-care.png",
+    //     outdoorgear: "/outdoor-gear.png",
+    //     electronics: "/electronics.png",
+    //     healthandwellness: "/spa.png",
+    //     toysandgames: "/toys.png",
+    //     booksandstationary: "/stationary.png",
+    //     foodandbeverages: "/fast-food.png",
+    // };
 
-    var settings = {
-        dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 1, 
-        fade: false,
-        arrows: true,
-        autoplay: 3000,
+    // var settings = {
+    //     dots: false,
+    //     infinite: true,
+    //     speed: 500,
+    //     slidesToShow: 4,
+    //     slidesToScroll: 1, 
+    //     fade: false,
+    //     arrows: true,
+    //     autoplay: 3000,
        
-    };
+    // };
 
 
-    useEffect(() => {
-        if (prodData.length !== 0) {
-            const uniqueCategories = new Set(prodData.map(item => item.category));
-            setCategories([...uniqueCategories]);
-            setActiveCategory([...uniqueCategories][0]);
-        }
-    }, [prodData]);
+    // useEffect(() => {
+    //     if (prodData.length !== 0) {
+    //         const uniqueCategories = new Set(prodData.map(item => item.category));
+    //         setCategories([...uniqueCategories]);
+    //         setActiveCategory([...uniqueCategories][0]);
+    //     }
+    // }, [prodData]);
     
-    console.log("active category data", activeCategoryData)
+    // console.log("active category data", activeCategoryData)
 
-    useEffect(() => {
-        if (activeCategory) {
-            const filteredData = prodData.filter(item => item.category === activeCategory);
-            setActiveCategoryData(filteredData);
-        }
-    }, [activeCategory, prodData]);
+    // useEffect(() => {
+    //     if (activeCategory) {
+    //         const filteredData = prodData.filter(item => item.category === activeCategory);
+    //         setActiveCategoryData(filteredData);
+    //     }
+    // }, [activeCategory, prodData]);
+
+     // All the data 
+     const [prodData, setProdData] = useState(props.data)
+     // All the categories appearing only once 
+     const [categories, setCategories] = useState([])
+     const [activeCategory, setActiveCategory] = useState()
+     // Highlight index of active tab/category 
+     const [activeCategoryIndex, setActiveCategoryIndex] = useState(0)
+     const [activeCategoryData, setActiveCategoryData] = useState([])
+ 
+ 
+     const categoryImages = {
+         homedecor: "/home-decor.png",
+         appliances: "/appliances.png",
+         toolsandhardware: "/tools.png",
+         clothing: "/clothing.png",
+         accessories: "/jewelry.png",
+         beautyandskincare: "/skin-care.png",
+         outdoorgear: "/outdoor-gear.png",
+         electronics: "/electronics.png",
+         healthandwellness: "/spa.png",
+         toysandgames: "/toys.png",
+         booksandstationary: "/stationary.png",
+         foodandbeverages: "/fast-food.png",
+     };
+ 
+     var settings = {
+         dots: false,
+         infinite: true,
+         speed: 500,
+         slidesToShow: 4,
+         slidesToScroll: 1, 
+         fade: false,
+         arrows: true,
+         autoplay: 3000,
+     };
+ 
+ 
+     useEffect(() => {
+         if (prodData.length !== 0) {
+             const uniqueCategories = new Set(prodData.map(item => item.category));
+             setCategories([...uniqueCategories]);
+             setActiveCategory([...uniqueCategories][0]);
+         }
+     }, [prodData]);
+     
+     console.log("active category data", activeCategoryData)
+ 
+     useEffect(() => {
+         if (activeCategory) {
+             const filteredData = prodData.filter(item => item.category === activeCategory);
+             setActiveCategoryData(filteredData);
+         }
+     }, [activeCategory, prodData]);
 
     
 
@@ -79,6 +133,7 @@ function BuyerHome(props){
             <Carousel categories={categories} categoryImages={categoryImages}/>
             <Banners data={prodData}/>
 
+
             <section className='homeProducts'>
                 <div className="container-fluid">
                     <div className="d-flex align-items-center">
@@ -88,53 +143,44 @@ function BuyerHome(props){
                         {
                             categories.length !== 0 &&
                             categories.slice(0,6).map((category, index) => {
-                                return(
+                                return (
                                     <li className='list list-inline-item' key={index}>
                                         <a className={`cursor text-capitalize ${activeCategoryIndex === index ? 'active' : ''}`}
                                         onClick={() => {
                                             setActiveCategoryIndex(index);
                                             setActiveCategory(categories[index]);
-                                        }}
-                                        >
+                                        }}>
                                             {category}
                                         </a>
                                     </li>
                                 )
                             })
                         }
-                        
                      </ul>
                     </div>
 
                     {/*product displays start here*/}
-                    <div className="productRow" >
+                    <div className="productRow">
                         {
                             activeCategoryData.length !== 0 &&
-                            
-                            activeCategoryData.map((item, index) => {
-                                return(
-                                    <div className="item" key={item.id} >
-                                        <HomeProduct item={item}/>
-                                        
-                                    </div>
-                                )
-                            })
+                            activeCategoryData.map((item) => (
+                                <div className="item" key={item.id}>
+                                    <HomeProduct item={item} />
+                                </div>
+                            ))
                         }
-                        
                     </div>
                 </div>
             </section>
-
 
             {/* second product displays start here*/}
             <section className='homeProducts homeProductsRow2 pt-0'>
                 <div className="container-fluid">
                     <div className="d-flex align-items-center">
                      <h2 className='hd mb-0 mt-0'>Daily Best Sales</h2>
-                     {/*ml-auto switched to ms-auto*/}
                      <ul className='list list-inline ms-auto filterTab mb-0'>
                         <li className='list-inline-item'>
-                            <a className='cursor'>Featured</a>
+                            <a className='cursor'>Hot</a>
                         </li>
                         <li className='list-inline-item'>
                             <a className='cursor'>Popular</a>
@@ -142,47 +188,30 @@ function BuyerHome(props){
                         <li className='list-inline-item'>
                             <a className='cursor'>New</a>
                         </li>
-                        
                      </ul>
                     </div>
-                    {/*remove second br*/}
                     <br /><br />
                     <div className="row">
                         <div className="col-md-3 pr-5">
                             <img src="/sale2.jpeg" alt="" className='w-100'/>
                         </div>
-
                         <div className="col-md-9">
-
-                        <Slider {...settings} className='productSlider'>
-                            <div className="item">
-                              {/*<HomeProduct />*/}  
-                            </div>
-                            <div className="item">
-                                {/*<HomeProduct />*/} 
-                            </div>
-                            <div className="item">
-                                {/*<HomeProduct />*/} 
-                            </div>
-                            <div className="item">
-                                {/*<HomeProduct />*/} 
-                            </div>
-                            <div className="item">
-                                {/*<HomeProduct />*/} 
-                            </div>
-                            <div className="item">
-                                {/*<HomeProduct />*/} 
-                            </div>
-                            
-                            
-                        </Slider>
+                            <Slider {...settings} className='productSlider'>
+                                {
+                                    prodData.filter(item => item.tag === "popular" || item.tag === "new").map((item) => (
+                                        <div className="item" key={item.id}>
+                                            <HomeProduct item={item} />
+                                        </div>
+                                    ))
+                                }
+                            </Slider>
                         </div>
                     </div>
-
-                    
-                    
                 </div>
             </section>
+
+
+            
 
             <section className='topProductsSection'>
                 <div className="container-fluid">

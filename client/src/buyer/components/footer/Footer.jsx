@@ -16,7 +16,7 @@ function Footer(){
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col">
-                                <div className="box d-flex align-items-center justify-content-center w-100">
+                                <div className="Box d-flex align-items-center justify-content-center w-100">
                                     <span><img src="/tag.png" alt=""/></span>
                                     <div className="info">
                                         <h4>Best Prices & Offers</h4>
@@ -28,7 +28,7 @@ function Footer(){
                             </div>
 
                             <div className="col">
-                                <div className="box d-flex align-items-center justify-content-center w-100">
+                                <div className="Box d-flex align-items-center justify-content-center w-100">
                                     <span><img src="/delivery.png" alt=""/></span>
                                     <div className="info">
                                         <h4>Delivery Services</h4>
@@ -40,7 +40,7 @@ function Footer(){
                             </div>
 
                             <div className="col">
-                                <div className="box d-flex align-items-center justify-content-center w-100">
+                                <div className="Box d-flex align-items-center justify-content-center w-100">
                                     <span><img src="/offer.png" alt=""/></span>
                                     <div className="info">
                                         <h4>Daily Deals</h4>
@@ -52,7 +52,7 @@ function Footer(){
                             </div>
 
                             <div className="col">
-                                <div className="box d-flex align-items-center justify-content-center w-100">
+                                <div className="Box d-flex align-items-center justify-content-center w-100">
                                     <span><img src="/wallet.png" alt=""/></span>
                                     <div className="info">
                                         <h4>Easy Payment</h4>
@@ -71,8 +71,8 @@ function Footer(){
                 <footer>
                     <div className="container-fluid">
                         <div className="row">
-                            <div className="col-md-3 part1">
-                                <NavLink to='/buyer'><img src="/logo2.svg" alt="" style={{height:'50px'}}/></NavLink>
+                            <div className="col-md-4 part1">
+                                <NavLink to='/my_banda' style={{textDecoration:"none"}}><h2>My Banda</h2></NavLink>
                                 <br /><br />
 
                                 <p><LocationOnOutlinedIcon/> <strong>Address:</strong> 5128 W Manchester Str, Kent 51327 Gonghzou China</p>
@@ -82,22 +82,25 @@ function Footer(){
 
                             </div>
 
-                            <div className="col-md-6 part2">
+                            <div className="col-md-5 part2">
                                 <div className="row">
-                                    <div className="col ms-4">
+                                    <div className="col ms-6">
                                         <h3>Company</h3>
                                         <ul className='footer-list mb-sm-5 mb-md-0'>
                                             <li><NavLink to='/About'>About Us</NavLink></li>
-                                            <li><NavLink to='/About'>Privacy Policy</NavLink></li>
+                                            <li><NavLink to='/login'>Become a Vendor</NavLink></li>
+                                            <li><NavLink to='/login'>Delivery Providers</NavLink></li>
+                                            
                                             <li><NavLink to='/About'>Terms &amp; Conditions</NavLink></li>
                                             <li><NavLink to='/About'>Contact Us</NavLink></li>
                                             <li><NavLink to='/About'>Support Center</NavLink></li>
-                                            <li><NavLink to='/About'>Careers</NavLink></li>
+                                            
+                                            
 
                                         </ul>
                                     </div>
 
-                                    <div className="col ms-4">
+                                    <div className="col ms-6">
                                         <h3>Account</h3>
                                         <ul className='footer-list mb-sm-5 mb-md-0'>
                                             <li><NavLink to='/login'>Sign In</NavLink></li>
@@ -111,7 +114,7 @@ function Footer(){
                                         </ul>
                                     </div>
 
-                                    <div className="col ms-4">
+                                    {/* <div className="col ms-4">
                                         <h3>Corporate</h3>
                                         <ul className='footer-list mb-sm-5 mb-md-0'>
                                             <li><NavLink to='/login'>Become a Vendor</NavLink></li>
@@ -121,7 +124,7 @@ function Footer(){
                                             <li><NavLink to='/About'>Promotions</NavLink></li>
 
                                         </ul>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
 
@@ -153,7 +156,7 @@ function Footer(){
                                     <div className="phNo d-flex align-items-center mx-5">
                                         <span><AddIcCallOutlinedIcon/></span>
                                         <div className="info ml-3">
-                                            <h4 className='mb-0 text-b'>8910-112</h4>
+                                            <h4 className='mb-0'>8910-112</h4>
                                             <p className='mb-0'>Working 8:00 - 22:00</p>
                                         </div>
                                     </div>
@@ -161,7 +164,7 @@ function Footer(){
                                     <div className="phNo d-flex align-items-center mx-5">
                                         <span><AddIcCallOutlinedIcon/></span>
                                         <div className="info ml-3">
-                                            <h4 className='mb-0 text-b'>1234-567</h4>
+                                            <h4 className='mb-0'>1234-567</h4>
                                             <p className='mb-0'>24/7 Support Center</p>
                                         </div>
                                     </div>

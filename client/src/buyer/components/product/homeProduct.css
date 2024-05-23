@@ -29,13 +29,15 @@
 }
 
 .productThumb .badge.hot{
-    background: rgb(255, 49, 49) !important;
+    /* background: rgb(255, 49, 49) !important; */
+    background: #FF00A8 !important;
 }
-.productThumb .badge.sale{
-    background: #67bcee !important;
+.productThumb .badge.popular{
+    /* background: #67bcee !important; */
+    background: #0028FF !important;
 }
 .productThumb .badge.new{
-    background: #38877E !important;
+    background: #00FF58 !important;
 }
 .productThumb .badge.best{
     background: #f59758 !important;

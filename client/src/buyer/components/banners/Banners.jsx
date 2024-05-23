@@ -34,7 +34,7 @@ function Banners({data}){
                 <div className="row">
                     {shopData.map((shop, index) => (
                         <div className="col" key={index}>
-                            <div className="box">
+                            <div className="Box">
                                 <img src={shop.banner_image_url} alt="" className='w-100 transition' />
                                 
                             </div>
