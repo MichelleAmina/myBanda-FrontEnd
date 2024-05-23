@@ -183,6 +183,7 @@ function Login(){
                     />
                     <label id="form-label" htmlFor="role">Role:</label>
                     <select name="role" id="role" value={formData.role} onChange={handleChange}>
+                        <option value="">Select...</option>
                         <option value="buyer">Buyer</option>
                         <option value="seller">Seller</option>
                         <option value="delivery">Delivery person</option>
