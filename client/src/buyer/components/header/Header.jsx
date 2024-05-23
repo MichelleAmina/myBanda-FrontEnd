@@ -7,6 +7,9 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import Button from '@mui/material/Button';
 import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+// responsive icons
+import MenuIcon from '@mui/icons-material/Menu';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 
 import Select from '../selectDrop/select';
@@ -95,25 +98,35 @@ function Header(props){
             <header >
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-sm-2">
-                        {/*<img src="logo2.svg" alt="Logo" className='header-logo'/>*/}
+                    <div className="col-sm-2 part1 d-flex align-items-center">
                         <NavLink className='header-logo' to='/my_banda'><h1>MyBanda</h1></NavLink>
+                        {/* {
+                            windowWidth < 992 &&
+                            <div className="ms-auto d-flex align-items-center">
+                                <div className="navbarToggle me-2"><SearchIcon/></div> 
+                                <div className="navbarToggle me-2"><ShoppingCartOutlinedIcon/></div>
+                                <div className="navbarToggle"><MenuIcon/></div> 
+                            </div>
+                        } */}
                         
+                          
                     </div>
-                    {/* header Search starts here */}
-                    <div className="col-sm-5 d-flex align-items-center">
-                        {/*<div className="headerSearch d-flex align-items-center">
-                            <Select data={categories} placeholder={'All Categories'} icon={false}/>*/}
 
+                    {/* header Search starts here */}
+                    <div className="col-sm-5 part2">
+                        <div className="headerSearch d-flex align-items-center">
+                            
                             <div className="productSearch d-flex align-items-center">
                                 <input type="text" placeholder='Search for products...' />
                                 <SearchIcon className='searchIcon cursor'/>
                             </div>
+
+                        </div>
                         
                     </div>
                     {/* header Search ends here */}
 
-                    <div className="col-sm-5 d-flex align-items-center">
+                    <div className="col-sm-5 d-flex align-items-center part3">
                         {/*ml-auto changed to ms-auto bootstrap 5*/}
                         <div className="ms-auto d-flex align-items-center">
                             <div className="countryWrapper">
@@ -136,6 +149,7 @@ function Header(props){
                                     <span>
                                         <ShoppingCartOutlinedIcon className='listIcon' />
                                         <span className='badge'>{cartTotalQuantity}</span>
+                                        {console.log("Cart total", cartTotalQuantity.toString())}
                                         Cart
                                     </span>
                                 </NavLink>

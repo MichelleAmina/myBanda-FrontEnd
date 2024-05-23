@@ -61,6 +61,18 @@ function ProductDetails(){
         return <div>Loading...</div>;
     }
 
+    // Calculate average rating
+    const calculateAverageRating = () => {
+        if (product.reviews.length === 0) {
+            return 0;
+        }
+
+        const totalStars = product.reviews.reduce((acc, review) => acc + review.rating, 0);
+        return totalStars / product.reviews.length;
+    };
+
+    const averageRating = calculateAverageRating();
+
     var settings = {
         dots: false,
         infinite: false,
@@ -112,6 +124,8 @@ function ProductDetails(){
         dispatch(addToCart(productWithQuantity));
     };
 
+    
+
     return(
         <section className='detailsPage mb-5'>
             <div className="breadcrumbWrapper mb-4">
@@ -160,8 +174,9 @@ function ProductDetails(){
                     <span>Sold By: <span className='text-b'>{product.shop.name}</span></span>
                 </div>
                 <div className="d-flex align-items center">
-                    <Rating name="half-rating-read" defaultValue={3.5} precision={0.5} readOnly />
-                    <span className='text-light'>(32 reviews)</span>
+                    <Rating name="half-rating-read" value={averageRating} precision={0.5} readOnly />
+                    {/* <Rating name="half-rating-read" defaultValue={3.5} precision={0.5} readOnly />
+                    <span className='text-light'>(32 reviews)</span> */}
                 </div>
 
                 <div className="priceSec d-flex align-items-center mb-3">
@@ -235,16 +250,11 @@ function ProductDetails(){
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod neque laborum tempore iure blanditiis quas sit, rem eius sed aliquam a provident fugiat obcaecati mollitia officia reiciendis, ad, assumenda delectus</p>
                                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam, ullam distinctio sequi laboriosam possimus rem harum? Ipsum vel odit adipisci rerum, sapiente reprehenderit! Quis modi, labore sit similique minus necessitatibus!</p>
 
-                                <br/>
-                                <h4>Suggested Use</h4>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod neque laborum tempore iure blanditiis quas sit, rem eius sed aliquam a provident fugiat obcaecati mollitia officia reiciendis, ad, assumenda delectus</p>
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam, ullam distinctio sequi laboriosam possimus rem harum? Ipsum vel odit adipisci rerum, sapiente reprehenderit! Quis modi, labore sit similique minus necessitatibus!</p>
-
                             </div>
 
                         }
 
-                        {/* Additional Info */}
+                        {/* Additional Info
                         {
                             activeTabs ===1 &&
                             <div className="tabContent">
@@ -340,7 +350,7 @@ function ProductDetails(){
                                 </table>
                             </div>
                         </div>
-                        }
+                        } */}
 
                         {/* Vendors */}
                         {
@@ -469,8 +479,8 @@ function ProductDetails(){
                                     <div className="col-md-4 ps-3">
                                         <h4>Average Reviews</h4>
                                         <div className="d-flex align-items-center mt-3 mb-3">
-                                            <Rating name="half-rating-read" defaultValue={4.0} precision={0.5} readOnly />
-                                            <strong className='ms-3'>4.8 out of 5</strong>
+                                            <Rating name="half-rating-read" value={averageRating} precision={0.5} readOnly />
+                                            <strong className='ms-3'>{averageRating.toFixed(1)} out of 5</strong>
                                     
                                         </div>
 

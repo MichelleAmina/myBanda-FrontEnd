@@ -11,6 +11,8 @@ function Vendors() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    
+
     useEffect(() => {
         // Fetch vendor data based on sellerId
         fetch(`https://mybanda-backend-88l2.onrender.com/user/${sellerId}`)
@@ -18,7 +20,8 @@ function Vendors() {
             .then(data => {
                 //console.log('Fetched vendor data:', data);
                 setVendor(data);
-                setLoading(false);
+                //setLoading(false);
+                setTimeout(() => setLoading(false), 1000);
             })
             .catch(error => {
                 console.error('Error fetching vendor data:', error);
@@ -29,10 +32,16 @@ function Vendors() {
 
     console.log(vendor)
 
+   
 
 
-    if (loading) {
-        return <div>Loading...</div>;
+
+    if(loading) {
+        return(
+            <div className="loader">
+                <img src="https://i.pinimg.com/originals/c1/bc/d8/c1bcd8a8c945b53da6b29f10a2a553c0.gif" alt="" />
+            </div>
+        )
     }
 
     if (error) {
@@ -87,6 +96,7 @@ function Vendors() {
                         return(
                             <div className="item" key={index}>
                                 <HomeProduct item={item} />
+                                {/* {console.log("vendors", item)} */}
                             </div>
                             
                         )
@@ -100,5 +110,4 @@ function Vendors() {
 
 export default Vendors;
 
-
-
+             

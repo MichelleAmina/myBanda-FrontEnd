@@ -21,7 +21,7 @@ function Nav({categories, categoryImages}) {
             <div className="container-fluid">
                 <div className="row position-relative" >
                     <div className="col-sm-3 part1 d-flex align-items-center">
-                        <Button className='browseButton' onClick={()=>setIsOpenDropDown(!isOpenDropDown)}>
+                        <Button className='browseButton res-hide' onClick={()=>setIsOpenDropDown(!isOpenDropDown)}>
                             <GridViewOutlinedIcon/> &nbsp;Browse All Categories<KeyboardArrowDownIcon/>
                         </Button>
                         {isOpenDropDown !== false &&
