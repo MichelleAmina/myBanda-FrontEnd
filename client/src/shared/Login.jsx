@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import './Login.css'
 
 function Login(){
@@ -54,8 +55,14 @@ function Login(){
     // SIGNUP PAGE 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (formData.password !== formData.confirmPassword) {
+            toast.error("Passwords do not match", { position: "top-right" });
+            return;
+        }
+
         try {
-            const response = await fetch("https://mybanda-backend-88l2.onrender.com/signup", {
+            const response = await fetch("https://mybanda-backend-8812.onrender.com/signup", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -64,9 +71,10 @@ function Login(){
             });
             if (response.ok) {
                 const data = await response.json();
+                toast.success("Account created successfully!", { position: "top-right", className: "toast-message"  });
                 console.log("this is the data", data)
-                //const { access_token } = data; // Extract the JWT token from the response
-                //localStorage.setItem('access_token', access_token); // Store the token in local storage
+                const { access_token } = data; // Extract the JWT token from the response
+                localStorage.setItem('access_token', access_token); // Store the token in local storage
                 console.log('User registered:', data);
 
                 const role = data.name
@@ -85,6 +93,7 @@ function Login(){
                 // navigate('/driverhomepage');
                 console.log('Successful');
             } else {
+                toast.error("Signup failed. Please try again.", { position: "top-right", className: "toast-message"  });
                 console.error('Login failed:', response.statusText);
             }
             // const data = await response.json();
@@ -92,6 +101,7 @@ function Login(){
             // console.log('Successful');
             //navigate('/my_banda');
         } catch (error) {
+            toast.error("Signup failed. Please try again.", { position: "top-right", className: "toast-message"  });
             console.error('Signup failed:', error);
         }
         
@@ -116,9 +126,10 @@ function Login(){
 
             if (response.ok) {
                 const data = await response.json();
+                toast.success("Login successful!", { position: "top-right", className: "toast-message" });
                 console.log("this is the data", data)
-                //const { access_token } = data; // Extract the JWT token from the response
-                //localStorage.setItem('access_token', access_token); // Store the token in local storage
+                const { access_token } = data; // Extract the JWT token from the response
+                localStorage.setItem('access_token', access_token); // Store the token in local storage
                 console.log('User logged in:', data);
                 const message = data.message
                 console.log("this is the message ", message)
@@ -138,9 +149,14 @@ function Login(){
                 // navigate('/driverhomepage');
                 console.log('Successful');
             } else {
+                toast.error("You have failed", {
+                    position: "top-right",
+                    className: "toast-message" 
+                })
                 console.error('Login failed:', response.statusText);
             }
         } catch (error) {
+            toast.error("Login failed. Please check your credentials.", { position: "top-right", className: "toast-message"  });
             console.error('Login failed:', error);
         }
     };
