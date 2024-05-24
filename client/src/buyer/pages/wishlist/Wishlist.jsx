@@ -15,6 +15,7 @@ function Wishlist(){
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [deleted, setDeleted] = useState(false)
+    const dispatch = useDispatch();
 
     const handleAddToCart = (item) => {
         dispatch(addToCart(item)); 
@@ -40,7 +41,7 @@ function Wishlist(){
             .then((data) => {
                 setProductData(data)
                 setLoading(false)
-                console.log(data);
+                console.log('Fetched wishlist:',data);
                 // console.log("wishlist data",data);
 
             })
@@ -61,14 +62,14 @@ function Wishlist(){
         return <div>Error loading likes</div>
     }
 
-    if (!loading && !productData){
+    if (productData.length == 0 && loading == false){
         return <div>No Likes So Far</div>
     }
 
     return(
         <div className="wishlist">
             <div className="container-fluid">
-                Wishlist
+                You have {productData.length} items on Wishlist
                 <div className="wishlistProducts ps-4">
                     {/* {productData.length !== 0 &
                         // <h2>{productData[0].product.name}</h2>
