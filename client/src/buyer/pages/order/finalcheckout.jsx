@@ -22,6 +22,7 @@ const FinalCheckout = () => {
   });
 
   const cart = useSelector((state) => state.cart);  
+  console.log("these are the items in the cart",cart)
   const shippingFee = 50;  
 
   useEffect(() => {
@@ -38,7 +39,7 @@ const FinalCheckout = () => {
     setError(null);
     setSuccess(false);
     try {
-      const res = await fetch('https://mybanda-backend-3.onrender.com/order', {
+      const res = await fetch('https://mybanda-backend-88l2.onrender.com/order', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
