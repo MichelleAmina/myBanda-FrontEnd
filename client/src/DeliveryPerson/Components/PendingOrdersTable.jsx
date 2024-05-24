@@ -11,7 +11,7 @@ const AvailableOrders = () => {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const token = localStorage.getItem('access_token'); // Consistent token key
+                const token = localStorage.getItem('access_token'); 
                 if (!token) {
                     throw new Error('Authentication token not found.');
                 }
@@ -74,14 +74,13 @@ const AvailableOrders = () => {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
             },
-            body: JSON.stringify({ status: 'assigned' }), // Ensure the correct status is sent
+            body: JSON.stringify({ status: 'assigned' }), 
         })
         .then(async response => {
             console.log('Response status:', response.status);
     
             if (response.ok) {
                 console.log('Order status updated successfully.');
-                // Assuming you want to remove the accepted order from the UI
                 setOrders(prevOrders => prevOrders.filter(order => order.id !== order_Id));
                 setFilteredOrders(prevOrders => prevOrders.filter(order => order.id !== order_Id));
             } else {
