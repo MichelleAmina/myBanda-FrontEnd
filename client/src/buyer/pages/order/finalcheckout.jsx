@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTotals } from '../../../redux/cartSlice';
 import './finalcheckout.css';
 
 const FinalCheckout = () => {
+  const dispatch = useDispatch();
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedMethod, setSelectedMethod] = useState('');
   const [showPhoneNumberInput, setShowPhoneNumberInput] = useState(false);
+  
+  // Same as ndanu's checkoutData
   const [deliveryInfo, setDeliveryInfo] = useState({
     firstName: '',
     lastName: '',
@@ -16,6 +21,132 @@ const FinalCheckout = () => {
     deliveryDriver: '',
   });
 
+  const cart = useSelector((state) => state.cart);  
+  console.log("these are the items in the cart",cart)
+  const shippingFee = 50;  
+
+  useEffect(() => {
+      dispatch(getTotals());
+  }, [cart, dispatch]);
+
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const placeOrder = async () => {
+    console.log("placing order ")
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+    try {
+      const res = await fetch('https://mybanda-backend-88l2.onrender.com/order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        },
+        body: JSON.stringify({
+          total_price: cart.cartTotalAmount + shippingFee,
+          name: `${deliveryInfo.firstName} ${deliveryInfo.lastName}`,
+          status: "pending",
+          delivery_fee: shippingFee,
+          delivery_address: deliveryInfo.address,
+          contact: deliveryInfo.phone,
+          country: deliveryInfo.country,
+          city: deliveryInfo.city,
+          delivery_persons: deliveryInfo.deliveryDriver
+          
+        }),
+      
+      })
+
+      if(res.ok){
+        setSuccess(true);
+        console.log("Success")
+      }
+      else{
+        const errorData = await res.json();
+        setError("Error placing order in else statement: " + errorData.message);
+        setSuccess(null);
+        console.error('Error placing order:', errorData);
+      
+      }
+    }
+    catch (error) {
+      setError("Error placing order in catch error: " + error.message);
+      setSuccess(null);
+      console.error('Error:', error);
+    }
+
+  }
+
+
+  // const placeOrder = async (e) => {
+  //   e.preventDefault();
+  //   console.log('Placing order...');
+
+  //   const data = {
+  //       total_price: cart.cartTotalAmount + shippingFee,
+  //       name: `${deliveryInfo.firstName} ${deliveryInfo.lastName}`,
+  //       status: "pending",
+  //       delivery_fee: shippingFee,
+  //       delivery_address: deliveryInfo.address,
+  //       contact: deliveryInfo.phone,
+  //       country: deliveryInfo.country,
+  //       city: deliveryInfo.city,
+  //       delivery_persons: deliveryInfo.deliveryDriver,
+  //   };
+
+  //   console.log("this is the data", data)
+
+  //   const accessToken = localStorage.getItem('access_token');
+  //   console.log('Access Token:', accessToken);
+
+  //   if (!accessToken) {
+  //       setError("This User is not logged in");
+  //       return;
+  //   }
+
+  //   // Decoding the JWT token to get the payload
+  //   const tokenParts = accessToken.split('.');
+  //   const payload = JSON.parse(atob(tokenParts[1]));
+
+  //   // Extracting the user ID from the payload
+  //   const userId = payload.sub;
+  //   console.log('User ID:', userId);
+
+
+  //   try {
+  //       const response = await fetch('https://mybanda-backend-88l2.onrender.com/order', {
+  //           method: 'POST',
+  //           headers: {
+  //               'Content-Type': 'application/json',
+  //               'Authorization': `Bearer ${accessToken}`,
+  //               'X-User-ID': userId, 
+  //           },
+  //           body: JSON.stringify(data),
+  //       });
+
+  //       if (response.ok) {
+  //           const result = await response.json();
+  //           setSuccess("Order placed successfully!");
+  //           setError(null);
+  //           console.log('Success:', result);
+  //       } else {
+  //           const errorData = await response.json();
+  //           setError("Error placing order: " + errorData.message);
+  //           setSuccess(null);
+  //           console.error('Error:', errorData);
+  //       }
+  //   } catch (error) {
+  //       setError("Error placing order: " + error.message);
+  //       setSuccess(null);
+  //       console.error('Error:', error);
+  //   }
+  // }
+
+
+  // KINSI CODE 
   const handleMethodClick = (method) => {
     setSelectedMethod(method);
     if (method === 'mpesa') {
@@ -193,20 +324,20 @@ const FinalCheckout = () => {
                             <div className="cart-summary-container">
                               <h5 className="cart-summary-title">Subtotal:</h5>
                               <h3 className="cart-summary-details">
-                                <span className="cart-product-price">Ksh 200</span>
+                                <span className="cart-product-price">$ {cart.cartTotalAmount}</span>
                               </h3>
                             </div>
                             <div className="d-flex align-items-center mb-4">
                               <h5 className="cart-summary-title">Shipping:</h5>
                               <h3 className="cart-summary-details">
-                                <span className="cart-product-unit-price">Free</span>
+                                <span className="cart-product-unit-price">{shippingFee}</span>
                               </h3>
                             </div>
                             <hr />
                             <div className="d-flex align-items-center">
                               <h5 className="cart-summary-title">Total</h5>
                               <h3 className="cart-summary-details">
-                                <span className="cart-product-price">Ksh 200</span>
+                                <span className="cart-product-price">$ {cart.cartTotalAmount + shippingFee}</span>
                               </h3>
                             </div>
                           </div>
@@ -232,7 +363,7 @@ const FinalCheckout = () => {
                     </div>
                     <div className="cht-radio-input">
                       <input id="card" type="radio" name="payment" />
-                      Pay £340.00 with credit card
+                       Pay ${cart.cartTotalAmount + shippingFee} with credit card
                     </div>
                   </label>
 
@@ -244,7 +375,7 @@ const FinalCheckout = () => {
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/M-PESA_LOGO-01.svg/2560px-M-PESA_LOGO-01.svg.png" alt="MPesa Logo" />
                     <div className="cht-radio-input">
                       <input id="mpesa" type="radio" name="payment" />
-                      Pay £340.00 with MPesa
+                      Pay ${cart.cartTotalAmount + shippingFee} with MPesa
                     </div>
                   </label>
                 </div>
@@ -292,8 +423,12 @@ const FinalCheckout = () => {
 
             {currentStep === 4 && (
               <div>
-                <h4>Finish</h4>
-                <p>Thank you for your order!</p>
+                <br />
+                <button className="order-checkout-button float-end" onClick={placeOrder}>Place Order</button>
+                <h4>Thank You!</h4>
+                {/* <p>Thank you for your order!</p> */}
+                
+                 
               </div>
             )}
           </div>

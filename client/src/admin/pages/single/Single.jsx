@@ -2,12 +2,40 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import AdminChart from '../../components/charts/AdminChart';
 import AdminTable from '../../components/table/AdminTable';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import TablePagination from '@mui/material/TablePagination';
 import './single.scss';
 
 function Single() {
     const { sellerId } = useParams();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    const columns = [
+        { id: 'id', label: 'Id', minWidth: 170 },
+        { id: '', label: 'Role', minWidth: 170 },
+        { id: 'location', label: 'Location', minWidth: 170 },
+        { id: 'email', label: 'Email', minWidth: 170 },
+      ];
+    
+      const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+      };
+    
+      const handleRowsPerPageChange = (event) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+      };
+    
+      const [page, setPage] = useState(0);
+      const [rowsPerPage, setRowsPerPage] = useState(5);
+
 
     useEffect(() => {
         // Fetch user details using sellerId
@@ -35,6 +63,8 @@ function Single() {
 
     // Extract shop information from the user object
     const shop = user.shop || {};
+
+    
 
     return (
         <div className='adminSingle'>
@@ -74,6 +104,48 @@ function Single() {
                         <AdminChart aspect={3 / 1} title="Sales (Last 6 Months)" />
                     </div>
                 </div>
+{/* 
+                <div className="bottom">
+                    <h1 className="title" style={{ fontSize: "20px" }}>Previous Sales</h1>
+                    <Paper className='adminTable'>
+                        <TableContainer sx={{ maxHeight: '450' }}>
+                          <Table stickyHeader>
+                            <TableHead>
+                              <TableRow>
+                                {columns.map((column) => (
+                                  <TableCell key={column.id} className='tableCell'>{column.label}</TableCell>
+                                ))}
+                              </TableRow>
+                            </TableHead>
+                            <TableBody>
+                              {users
+                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                .map((user) => (
+                                  <TableRow key={user.id}>
+                                    {columns.map((column) => (
+                                      <TableCell key={column.id}>
+                                        {column.id === 'location' && user.role === 'seller' 
+                                          ? user.shop?.location 
+                                          : user[column.id]
+                                        }
+                                      </TableCell>
+                                    ))}
+                                  </TableRow>
+                                ))}
+                            </TableBody>
+                          </Table>
+                        </TableContainer>
+                        <TablePagination
+                          rowsPerPageOptions={[5, 10, 25]}
+                          page={page}
+                          count={users.length}
+                          rowsPerPage={rowsPerPage}
+                          component='div'
+                          onPageChange={handleChangePage}
+                          onRowsPerPageChange={handleRowsPerPageChange}
+                        />
+                    </Paper>
+                </div> */}
 
                 
             </div>
