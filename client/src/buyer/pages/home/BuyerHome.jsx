@@ -192,7 +192,7 @@ function BuyerHome(props){
                     </div>
                     <br /><br />
                     <div className="row">
-                        <div className="col-md-3 pr-5">
+                        <div className="col-md-3 pr-5 saleImage">
                             <img src="/sale2.jpeg" alt="" className='w-100'/>
                         </div>
                         <div className="col-md-9">

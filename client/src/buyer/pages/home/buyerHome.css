@@ -41,6 +41,10 @@
     padding: 15px 10px;
 }
 
+.saleImage img{
+    height: 400px;
+    border-radius: 4px;
+}
 
 .homeProductsRow2 .productSlider .item{
    /* padding: 0px 10px !important; 0px 15px*/
