@@ -31,6 +31,7 @@ function Header(props){
     
     const [categories, setCategories] = useState([])
 
+
     useEffect(() => {
         if (props.data.length !== 0) {
             const uniqueCategories = Array.from(new Set(props.data.map(item => item.category)));
@@ -139,7 +140,7 @@ function Header(props){
                                 <NavLink to="/my_banda/wishlist" className="nav-link">
                                     <span>
                                         <FavoriteBorderOutlinedIcon className='listIcon'/>
-                                        <span className='badge'>6</span>
+                                        {/* <span className='badge'>0</span> */}
                                         Wishlist
                                     </span>
                                 </NavLink>

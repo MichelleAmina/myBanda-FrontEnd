@@ -8,6 +8,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { NavLink } from "react-router-dom";
 
+
 function Wishlist(){
     // store product data
     const [productData, setProductData] = useState([]);
@@ -30,12 +31,7 @@ function Wishlist(){
             id: id
         }),
         })
-        .then((r) => console.log(r))
-        .then(setDeleted(updateDelete))
-    }
-
-    function updateDelete() {
-        setDeleted(!deleted)
+        .then(setDeleted(!deleted))
     }
     
 
@@ -45,7 +41,9 @@ function Wishlist(){
             .then((data) => {
                 setProductData(data)
                 setLoading(false)
-                console.log("wishlist data",data);
+                console.log('Fetched wishlist:',data);
+                // console.log("wishlist data",data);
+
             })
             .catch(error => {
                 console.error('Error fetching liked products:', error);
@@ -64,10 +62,14 @@ function Wishlist(){
         return <div>Error loading likes</div>
     }
 
+    if (productData.length == 0 && loading == false){
+        return <div>No Likes So Far</div>
+    }
+
     return(
         <div className="wishlist">
             <div className="container-fluid">
-                Wishlist
+                You have {productData.length} items on Wishlist
                 <div className="wishlistProducts ps-4">
                     {/* {productData.length !== 0 &
                         // <h2>{productData[0].product.name}</h2>
@@ -78,10 +80,10 @@ function Wishlist(){
                             </div>
                         ))
                     }            */}
-                    {console.log("wishlist", productData[0].product)}
                     <div className="wishlist-container">
                         <ul className="wishlist-items">
-                            {productData.length !== 0 &&
+                            {
+                            productData.length !== 0 &&
                             productData.map((item, index) => (
                                 <li key={item.id} className="wishlist-item">
                                     <img src={item.product.images[0].image_url} alt={item.name} className="wishlist-item-image" />
@@ -96,8 +98,10 @@ function Wishlist(){
 
                                         </div>
                                     </div>
-                                    <button onClick={() => handleDeleteFromWishlist(item.id)}><DeleteIcon/></button>
-                                    <button className="wishlist-item-button" onClick={()=> handleAddToCart(item.product)}><ShoppingCartOutlinedIcon />Add To Cart</button>
+                                    <div className='wishlist-clicks'>
+                                        <button onClick={() => handleDeleteFromWishlist(item.id)}><DeleteIcon/></button>
+                                        <button className="wishlist-item-button" onClick={()=> handleAddToCart(item.product)}><ShoppingCartOutlinedIcon />Add To Cart</button>
+                                    </div>
                                 </li>
                             ))}
                         </ul>
