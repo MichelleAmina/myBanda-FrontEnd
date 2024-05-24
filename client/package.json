@@ -22,6 +22,7 @@
     "@reduxjs/toolkit": "^2.2.5",
     "axios": "^1.7.0",
     "bootstrap": "^5.3.3",
+    "cloudinary": "^2.2.0",
     "highcharts": "^11.4.1",
     "highcharts-react-official": "^3.2.1",
     "react": "^18.2.0",
