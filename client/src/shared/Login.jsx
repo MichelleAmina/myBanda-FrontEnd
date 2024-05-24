@@ -115,6 +115,10 @@ function Login(){
     // LOGIN PAGE 
     const handleLogin = async (e) => {
         e.preventDefault();
+
+        // Clear any existing user data before logging in
+        localStorage.clear();
+        
         try {
             const response = await fetch("https://mybanda-backend-88l2.onrender.com/login", {
                 method: 'POST',

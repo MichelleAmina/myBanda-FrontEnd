@@ -906,7 +906,7 @@ input[type=number]{
  
 }
 
-.adminLoader{
+/* .adminLoader{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -914,11 +914,26 @@ input[type=number]{
   top: 40%;
   left: 40%;
   background: green;
+}   */
+
+/* .adminLoader img{
+  width: 50px;
+  height: 200px;
+} */
+
+.adminLoader{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 20%;
+  left: 40%;
+  background: green;
 }  
 
 .adminLoader img{
-  width: 50px;
-  height: 200px;
+  width: 300px;
+  height: 400px;
 }
 
 .driverLoader{

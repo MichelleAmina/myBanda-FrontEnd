@@ -76,7 +76,7 @@ function Wishlist(){
             <div className="container-fluid">
                 <div className="wishlist">
                     <div className="wishlistTitle">
-                        <h1>You have {productData.length} item/s on Wishlist</h1>
+                        <h1>You have {productData.length} item/s in your Wishlist</h1>
                     </div>
 
                     <div className="wishlistProducts ps-4">

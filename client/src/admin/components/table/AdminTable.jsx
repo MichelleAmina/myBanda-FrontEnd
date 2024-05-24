@@ -49,9 +49,12 @@ function AdminTable({ users }) {
                 <TableRow key={user.id}>
                   {columns.map((column) => (
                     <TableCell key={column.id}>
-                      {column.id === 'location' && user.role === 'seller' 
-                        ? user.shop?.location 
-                        : user[column.id]
+                      {column.id === 'id' 
+                        // ? `${user.id} + ${Math.floor(Math.random() * 10000)}` 
+                        ? user.id + Math.floor(Math.random() * 10000) 
+                        : column.id === 'location' && user.role === 'seller' 
+                          ? user.shop?.location 
+                          : user[column.id]
                       }
                     </TableCell>
                   ))}
@@ -74,6 +77,3 @@ function AdminTable({ users }) {
 }
 
 export default AdminTable;
-
-
-

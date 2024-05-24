@@ -27,7 +27,7 @@ function List(){
     if(loading){
         return (
         <div className='adminLoader'>
-            <img src="https://www.icegif.com/wp-content/uploads/2023/07/icegif-1262.gif" alt="" className='w-100'/>
+            <img src="https://i.pinimg.com/originals/26/05/5a/26055ac39cd00944266e45a2799260e4.gif" alt="" className='w-100'/>
         </div>
         )
     }

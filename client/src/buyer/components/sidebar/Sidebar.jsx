@@ -43,7 +43,7 @@ function Sidebar({categories, setCategoryFilter, setPriceRange, priceRange }) {
                             <div className="catItem d-flex align-items-center" key={index} onClick={() => handleCategoryFilter((category))}>
                                 <span className='img'><img src="/spa.png" alt="" width={35} /></span>
                                 <h4 className='mb-0 ml-3 mr-3' >{category}</h4>
-                                <span className='d-flex align-items-center justify-content-center rounded-circle ms-auto'>30</span>
+                                {/* <span className='d-flex align-items-center justify-content-center rounded-circle ms-auto'>30</span> */}
                             </div>
                         ))}
                         

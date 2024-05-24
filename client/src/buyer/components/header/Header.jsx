@@ -15,15 +15,16 @@ import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 import Select from '../selectDrop/select';
 import Nav from '../nav/Nav'
 
+
 import { useEffect, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import {NavLink} from 'react-router-dom'
+import {NavLink, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 
 
 function Header(props){
     const {cartTotalQuantity} = useSelector(state => state.cart)
-
+    const navigate = useNavigate();
     //console.log("from header,",props)
 
     const [isOpenDropdown, setIsOpenDropdown] = useState(false)
@@ -91,6 +92,16 @@ function Header(props){
             }
         })
     }, [])
+
+    const handleLogout = () => {
+        localStorage.removeItem('access_token');
+        console.log("user logged out")
+        // Optionally, remove other user-specific data
+        localStorage.removeItem('userId');
+        localStorage.removeItem('role');
+        localStorage.removeItem('cart');
+        navigate('/login'); 
+    };
 
 
     return(
@@ -167,7 +178,7 @@ function Header(props){
                                             <li><Button><LocationOnOutlinedIcon/>Order Tracking</Button></li>
                                             <li><Button><FavoriteBorderOutlinedIcon/>My Wishlist</Button></li>
                                             <li><Button><TuneOutlinedIcon/>Setting</Button></li>
-                                            <li><Button><LogoutOutlinedIcon/>Sign Out</Button></li>
+                                            <li><Button onClick={handleLogout}><LogoutOutlinedIcon/>Sign Out</Button></li>
 
                                         </ul>
                                     }
