@@ -8,6 +8,9 @@ const AvailableOrders = () => {
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [searchTerm, setSearchTerm] = useState('');
 
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
     useEffect(() => {
         const fetchOrders = async () => {
             try {
@@ -34,13 +37,17 @@ const AvailableOrders = () => {
                 const pendingOrders = data.filter(order => order.status === 'pending');
                 setOrders(pendingOrders);
                 setFilteredOrders(pendingOrders);
+                setLoading(false);
             } catch (error) {
                 console.error('Error fetching orders:', error);
+                setError(error);
+                setLoading(false);
             }
         };
     
         fetchOrders();
     }, []);
+
 
     useEffect(() => {
         const filtered = orders.filter(order =>
@@ -57,6 +64,18 @@ const AvailableOrders = () => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+
+    if(loading){
+        return (
+        <div className='driverLoader'>
+            <img src="https://i.pinimg.com/originals/63/30/4c/63304c0ead674232ee58af3dbc63b464.gif" alt="" className='w-100'/>
+        </div>
+        )
+    }
+
+    if (error) {
+        return <div>Error loading vendor data</div>;
+    }
 
     const handleAcceptOrder = (order_Id) => {
         const token = localStorage.getItem('access_token');
