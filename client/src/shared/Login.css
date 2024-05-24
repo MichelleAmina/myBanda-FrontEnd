@@ -271,3 +271,11 @@ label#form-label {
     color: black;
     font-weight: 300;
 }
+
+.toast-message button{
+    background-color: white;
+    border: none;
+    margin-top: 0;
+    padding: 0;
+    margin-left: auto;
+}

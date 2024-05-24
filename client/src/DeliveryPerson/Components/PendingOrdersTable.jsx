@@ -11,12 +11,12 @@ const AvailableOrders = () => {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const token = localStorage.getItem('access_token');
+                const token = localStorage.getItem('access_token'); // Consistent token key
                 if (!token) {
                     throw new Error('Authentication token not found.');
                 }
     
-                const response = await fetch('https://mybanda-backend-3.onrender.com/order', {
+                const response = await fetch('https://mybanda-backend-88l2.onrender.com/order', {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -58,39 +58,42 @@ const AvailableOrders = () => {
         setPage(0);
     };
 
-    const handleAcceptOrder = (orderId) => {
-        // Retrieve the JWT token from localStorage
-        const token = localStorage.getItem('token');
-
-        // If token is not available, handle the authentication error or redirect to login page
+    const handleAcceptOrder = (order_Id) => {
+        const token = localStorage.getItem('access_token');
+    
         if (!token) {
             console.error('Authentication token not found.');
-            // Handle authentication error (e.g., redirect to login page)
             return;
         }
-
-        // Send a PATCH request to update the status
-        fetch(`https://mybanda-backend-3.onrender.com/order/${orderId}`, {
+    
+        console.log('Attempting to accept order:', order_Id);
+    
+        fetch(`https://mybanda-backend-88l2.onrender.com/order/${order_Id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`, // Include the JWT token in the Authorization header
+                'Authorization': `Bearer ${token}`,
             },
-            body: JSON.stringify({ status: 'assigned' }),
+            body: JSON.stringify({ status: 'assigned' }), // Ensure the correct status is sent
         })
-        .then(response => {
+        .then(async response => {
+            console.log('Response status:', response.status);
+    
             if (response.ok) {
                 console.log('Order status updated successfully.');
-                // Remove the accepted order from the state
-                setOrders(prevOrders => prevOrders.filter(order => order.id !== orderId));
-                setFilteredOrders(prevOrders => prevOrders.filter(order => order.id !== orderId));
+                // Assuming you want to remove the accepted order from the UI
+                setOrders(prevOrders => prevOrders.filter(order => order.id !== order_Id));
+                setFilteredOrders(prevOrders => prevOrders.filter(order => order.id !== order_Id));
             } else {
-                console.error('Failed to update order status.');
+                const errorData = await response.json();
+                console.error('Failed to update order status.', errorData);
             }
         })
         .catch(error => console.error('Error updating order:', error));
     };
-
+    
+    
+    
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
     };
@@ -98,14 +101,14 @@ const AvailableOrders = () => {
     return (
         <div className='pending-deliveries-table' style={{ padding: '10px' }}>
             <Paper className='pending-deliveries-table-container' sx={{ padding: '10px' }}>
-                {/* <TextField
+                <TextField
                     label="Search by Buyer"
                     variant="outlined"
                     value={searchTerm}
                     onChange={handleSearchChange}
                     fullWidth
                     margin="normal"
-                /> */}
+                />
                 <TableContainer sx={{ maxHeight: 450 }}>
                     <Table stickyHeader>
                         <TableHead>
@@ -122,8 +125,8 @@ const AvailableOrders = () => {
                                 <TableRow key={index}>
                                     <TableCell>{order.buyer.username}</TableCell>
                                     <TableCell>{order.buyer.location}</TableCell>
-                                    <TableCell>N/A</TableCell>
-                                    <TableCell>N/A</TableCell>
+                                    <TableCell>{order.order_items[0]?.product.shop.name || 'N/A'}</TableCell>
+                                    <TableCell>{order.order_items[0]?.product.shop.location || 'N/A'}</TableCell>
                                     <TableCell>
                                         <Button variant="contained" color="primary" onClick={() => handleAcceptOrder(order.id)}>Accept</Button>
                                     </TableCell>
