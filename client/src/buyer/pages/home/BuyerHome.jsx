@@ -19,7 +19,7 @@ function BuyerHome(props){
      const [activeCategoryIndex, setActiveCategoryIndex] = useState(0)
      const [activeCategoryData, setActiveCategoryData] = useState([])
 
-     console.log("prod data in buyer home", prodData)
+    
  
  
      const categoryImages = {

@@ -20,7 +20,7 @@ import Listing from './buyer/pages/listing/Listing';
 import ProductDetails from './buyer/components/details/ProductDetails';
 import BuyersCart from './buyer/pages/carts/BuyersCart';
 // import OrderProduct from './buyer/pages/order/Order';
-import CheckoutForm from './buyer/pages/order/Order'
+// import CheckoutForm from './buyer/pages/order/Order'
 import OrderCompleted from './buyer/pages/completed/OrderComplete';
 import Vendors from './buyer/pages/vendors/Vendors';
 import Wishlist from './buyer/pages/wishlist/Wishlist';

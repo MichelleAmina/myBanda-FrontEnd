@@ -17,9 +17,17 @@ function Wishlist(){
     const [deleted, setDeleted] = useState(false)
     const dispatch = useDispatch();
 
-    const handleAddToCart = (item) => {
-        dispatch(addToCart(item)); 
-    };
+    const accessToken = localStorage.getItem('access_token');
+
+    //Decoding the JWT token to get the payload
+    const tokenParts = accessToken.split('.');
+    const payload = JSON.parse(atob(tokenParts[1]));
+
+    //Extracting the user ID from the payload
+    const userId = payload.sub;
+    console.log('User ID:', userId);
+
+    
 
     function handleDeleteFromWishlist(id) {
         fetch("https://mybanda-backend-88l2.onrender.com/like", {
@@ -39,7 +47,8 @@ function Wishlist(){
         fetch("https://mybanda-backend-88l2.onrender.com/like")
             .then(resp => resp.json())
             .then((data) => {
-                setProductData(data)
+                const filteredData = data.filter(like => like.buyers_id === userId);
+                setProductData(filteredData)
                 setLoading(false)
                 //console.log('Fetched wishlist:',data);
                 // console.log("wishlist data",data);
@@ -51,6 +60,12 @@ function Wishlist(){
                 setLoading(falase)
             });
     }, [deleted]);
+
+    console.log("wishlist", productData)
+
+    const handleAddToCart = (item) => {
+        dispatch(addToCart(item)); 
+    };
 
     
 
@@ -68,7 +83,14 @@ function Wishlist(){
     }
 
     if (productData.length == 0 && loading == false){
-        return <div>No Likes So Far</div>
+        return (
+        <div className='container-fluid pt-3 d-flex align-items-center justify-content-center'>
+            <h4>No items in your wishlist....</h4>
+            <div className="noWishlistImage">
+                {/* Add wishlist image here */}
+            </div>  
+        </div>
+        )
     }
 
     return(
