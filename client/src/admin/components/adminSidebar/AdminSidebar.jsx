@@ -1,6 +1,5 @@
 import './adminSidebar.scss'
-import {NavLink} from 'react-router-dom'
-
+import {NavLink, useNavigate} from 'react-router-dom'
 import HomeIcon from '@mui/icons-material/Home';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
@@ -14,6 +13,19 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 function AdminSidebar(){
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('access_token');
+        console.log("user logged out")
+        // Optionally, remove other user-specific data
+        // localStorage.removeItem('userId');
+        localStorage.removeItem('role');
+        localStorage.removeItem('cart');
+        navigate('/login'); 
+    };
+
     return(
         <div className='adminSidebar'>
             <div className="top">
@@ -35,7 +47,7 @@ function AdminSidebar(){
                     <li><InsertChartIcon/><span>Analytics</span></li>*/}
                     <p className="title">User</p>
                     <li><AccountCircleIcon/><span>Profile</span></li>
-                    <li><LogoutIcon/><span>Logout</span></li>
+                    <li onClick={handleLogout}><LogoutIcon/><span>Logout</span></li>
                 </ul>
             </div>
 

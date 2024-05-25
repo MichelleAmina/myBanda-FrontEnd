@@ -68,7 +68,7 @@ function DataTable({ rows, role }) {
 
     const handleDelete = async (id) => {
         try {
-            const response = await fetch(`https://mybanda-backend-88l2.onrender.com/admin/users/${id}`, {
+            const response = await fetch(`https://mybanda-backend-88l2.onrender.com/del_user/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

@@ -146,8 +146,7 @@ function Login(){
                     navigate('/sellerdash')
                 } else if (role === 'delivery'){
                     navigate('/driverhomepage')
-                } else{
-                    
+                } else if(role === 'banda_admin'){
                     navigate('/banda_admin')
                 }
                 
