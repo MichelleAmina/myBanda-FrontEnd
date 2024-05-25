@@ -62,7 +62,7 @@ function Login(){
         }
 
         try {
-            const response = await fetch("https://mybanda-backend-8812.onrender.com/signup", {
+            const response = await fetch("https://mybanda-backend-88l2.onrender.com/signup", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
