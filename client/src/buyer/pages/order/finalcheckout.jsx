@@ -19,6 +19,7 @@ const FinalCheckout = () => {
     region: '',
     country: '',
     deliveryDriver: '',
+    mpesa_contact: '',
   });
 
   const cart = useSelector((state) => state.cart);  
@@ -57,6 +58,7 @@ const FinalCheckout = () => {
           country: deliveryInfo.country,
           city: deliveryInfo.city,
           delivery_persons: deliveryInfo.deliveryDriver, 
+          mpesa_contact: deliveryInfo.mpesa_contact,
           items: cart.cartItems.map((item => ({ id: item.id, quantity: item.cartQuantity })))
           
         }),
@@ -406,7 +408,7 @@ const FinalCheckout = () => {
                   >
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/M-PESA_LOGO-01.svg/2560px-M-PESA_LOGO-01.svg.png" alt="MPesa Logo" />
                     <div className="cht-radio-input">
-                      <input id="mpesa" type="radio" name="payment" />
+                      <input id="mpesa" type="radio" name="payment"/>
                       Pay ${cart.cartTotalAmount + shippingFee} with MPesa
                     </div>
                   </label>
@@ -418,7 +420,12 @@ const FinalCheckout = () => {
                     <div className="cht-input-fields">
                       <div className="cht-column-1">
                         <label htmlFor="phone">Phone Number</label>
-                        <input type="text" id="phone" />
+                        <input 
+                        type="text" 
+                        name="mpesa_contact"
+                        id="phone" 
+                        value={deliveryInfo.mpesa_contact} 
+                        onChange={handleChange}/>
                       </div>
                     </div>
                   </div>
@@ -464,13 +471,13 @@ const FinalCheckout = () => {
                 {loading && 
                   <div className='finalCheckout-2'>
                     <h4>Your order is being processed...</h4>
-                    <div className="finalCheckout-gif1">
+                    {/* <div className="finalCheckout-gif1">
                       <img src="https://i.pinimg.com/originals/93/e3/3d/93e33d89a8cbe54ec945235d25af5607.gif" alt="" />
 
-                    </div>
+                    </div> */}
                   </div> 
                 }
-                {error && <p className="error">Error placing order, please try again later....{error}</p>}
+                {error && <h4 className="error">Error placing order, please try again later....</h4>}
                 {success && (
                   <div className='finalCheckout-2'>
                     <h4>Thank you for shopping with us!</h4>
