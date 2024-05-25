@@ -97,7 +97,7 @@ function Header(props){
         localStorage.removeItem('access_token');
         console.log("user logged out")
         // Optionally, remove other user-specific data
-        localStorage.removeItem('userId');
+        // localStorage.removeItem('userId');
         localStorage.removeItem('role');
         localStorage.removeItem('cart');
         navigate('/login'); 

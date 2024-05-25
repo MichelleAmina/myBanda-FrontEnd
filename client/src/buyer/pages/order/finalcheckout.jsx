@@ -22,7 +22,7 @@ const FinalCheckout = () => {
   });
 
   const cart = useSelector((state) => state.cart);  
-  console.log("these are the items in the cart",cart)
+  //console.log("these are the items in the cart",cart)
   const shippingFee = 50;  
 
   useEffect(() => {
@@ -32,12 +32,14 @@ const FinalCheckout = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showGif, setShowGif] = useState(false); // State for GIF visibility
 
   const placeOrder = async () => {
     console.log("placing order ")
     setLoading(true);
     setError(null);
     setSuccess(false);
+    
     try {
       const res = await fetch('https://mybanda-backend-88l2.onrender.com/order', {
         method: 'POST',
@@ -54,7 +56,8 @@ const FinalCheckout = () => {
           contact: deliveryInfo.phone,
           country: deliveryInfo.country,
           city: deliveryInfo.city,
-          delivery_persons: deliveryInfo.deliveryDriver
+          delivery_persons: deliveryInfo.deliveryDriver, 
+          items: cart.cartItems.map((item => ({ id: item.id, quantity: item.cartQuantity })))
           
         }),
       
@@ -62,6 +65,7 @@ const FinalCheckout = () => {
 
       if(res.ok){
         setSuccess(true);
+        setShowGif(true);
         console.log("Success")
       }
       else{
@@ -76,9 +80,31 @@ const FinalCheckout = () => {
       setError("Error placing order in catch error: " + error.message);
       setSuccess(null);
       console.error('Error:', error);
+    }finally {
+      setLoading(false);
     }
 
   }
+
+  const [deliveryData, setDeliveryData] = useState([]);
+
+  useEffect(() => {
+    fetch("https://mybanda-backend-88l2.onrender.com/users")
+        .then(resp => resp.json())
+        .then((data) => {
+            const filteredData = data.filter(user => user.role === 'delivery');
+            setDeliveryData(filteredData);
+        
+        })
+        .catch(error => {
+            console.error('Error fetching user data:', error);
+            setError(error);
+          
+        });
+  }, []);
+
+  console.log("delivery data", deliveryData)
+
 
 
   // const placeOrder = async (e) => {
@@ -173,6 +199,10 @@ const FinalCheckout = () => {
       ...deliveryInfo,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
   };
 
   return (
@@ -287,9 +317,10 @@ const FinalCheckout = () => {
                         onChange={handleChange}
                       >
                         <option value="">Select...</option>
-                        <option value="DHL">DHL</option>
-                        <option value="Wells Fargo">Wells Fargo</option>
-                        <option value="Western Union">Western Union</option>
+                        {deliveryData.map((driver) => (
+                          <option key={driver.id} value={driver.username}>{capitalizeFirstLetter(driver.username)} - {driver.location}</option>
+                        ))}
+                        
                         
                       </select>
                     </div>
@@ -421,16 +452,34 @@ const FinalCheckout = () => {
               </div>
             )}
 
-            {currentStep === 4 && (
+            {/* {currentStep === 4 && (
               <div>
                 <br />
                 <button className="order-checkout-button float-end" onClick={placeOrder}>Place Order</button>
                 <h4>Thank You!</h4>
-                {/* <p>Thank you for your order!</p> */}
+                
                 
                  
               </div>
-            )}
+            )} */}
+            {currentStep === 4 && (
+        <div>
+          <br />
+          <button className="order-checkout-button float-end" onClick={placeOrder}>Place Order</button>
+          {loading && <p>Loading...</p>}
+          {error && <p className="error">{error}</p>}
+          {success && (
+            <div>
+              <h4>Thank You!</h4>
+              {showGif && (
+                <div className="gif-container">
+                  <img src="https://i.pinimg.com/originals/c4/9a/20/c49a207e0f89c9290d98fd43a87a8cb0.gif" alt="Loading..." />
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
           </div>
 
           <div className="cht-panel-footer">

@@ -117,7 +117,7 @@ const BuyersCart = () => {
                                     <h5 className="summary-title">Total</h5>
                                     <h3 className="summary-value">Ksh. {cart.cartTotalAmount + shippingFee}</h3>
                                 </div>
-                                <NavLink to="/my_banda/checkout">
+                                <NavLink to="/my_banda/finalcheckout">
                                     <button className="checkout-button">Proceed to Checkout</button>
                                 </NavLink>
                             </div>
