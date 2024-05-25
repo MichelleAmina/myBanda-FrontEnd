@@ -17,9 +17,17 @@ function Wishlist(){
     const [deleted, setDeleted] = useState(false)
     const dispatch = useDispatch();
 
-    const handleAddToCart = (item) => {
-        dispatch(addToCart(item)); 
-    };
+    const accessToken = localStorage.getItem('access_token');
+
+    //Decoding the JWT token to get the payload
+    const tokenParts = accessToken.split('.');
+    const payload = JSON.parse(atob(tokenParts[1]));
+
+    //Extracting the user ID from the payload
+    const userId = payload.sub;
+    console.log('User ID:', userId);
+
+    
 
     function handleDeleteFromWishlist(id) {
         fetch("https://mybanda-backend-88l2.onrender.com/like", {
@@ -39,8 +47,10 @@ function Wishlist(){
         fetch("https://mybanda-backend-88l2.onrender.com/like")
             .then(resp => resp.json())
             .then((data) => {
-                setProductData(data)
-                setLoading(false)
+                const filteredData = data.filter(like => like.buyers_id === userId);
+                setProductData(filteredData)
+                // setLoading(false)
+                setTimeout(() => setLoading(false), 1000);
                 //console.log('Fetched wishlist:',data);
                 // console.log("wishlist data",data);
 
@@ -51,6 +61,12 @@ function Wishlist(){
                 setLoading(falase)
             });
     }, [deleted]);
+
+    console.log("wishlist", productData)
+
+    const handleAddToCart = (item) => {
+        dispatch(addToCart(item)); 
+    };
 
     
 
@@ -68,7 +84,15 @@ function Wishlist(){
     }
 
     if (productData.length == 0 && loading == false){
-        return <div>No Likes So Far</div>
+        return (
+        <div className='container-fluid noWishlist'>
+            <h4>No items in your wishlist....</h4>
+            <div className="noWishlistImage">
+                <img src="/wishlist.jpeg" alt="" />
+                {/* Add wishlist image here */}
+            </div>  
+        </div>
+        )
     }
 
     return(
@@ -76,7 +100,7 @@ function Wishlist(){
             <div className="container-fluid">
                 <div className="wishlist">
                     <div className="wishlistTitle">
-                        <h1>You have {productData.length} item/s on Wishlist</h1>
+                        <h1>You have {productData.length} item/s in your Wishlist</h1>
                     </div>
 
                     <div className="wishlistProducts ps-4">

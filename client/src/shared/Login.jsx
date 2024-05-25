@@ -62,7 +62,7 @@ function Login(){
         }
 
         try {
-            const response = await fetch("https://mybanda-backend-8812.onrender.com/signup", {
+            const response = await fetch("https://mybanda-backend-88l2.onrender.com/signup", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -115,6 +115,10 @@ function Login(){
     // LOGIN PAGE 
     const handleLogin = async (e) => {
         e.preventDefault();
+
+        // Clear any existing user data before logging in
+        localStorage.clear();
+        
         try {
             const response = await fetch("https://mybanda-backend-88l2.onrender.com/login", {
                 method: 'POST',
@@ -131,8 +135,6 @@ function Login(){
                 const { access_token } = data; // Extract the JWT token from the response
                 localStorage.setItem('access_token', access_token); // Store the token in local storage
                 
-                // localStroage.setItem('userId', userId )
-                
                 console.log('User logged in:', data);
                 
                 const role = data.role 
@@ -144,8 +146,7 @@ function Login(){
                     navigate('/sellerdash')
                 } else if (role === 'delivery'){
                     navigate('/driverhomepage')
-                } else{
-                    
+                } else if(role === 'banda_admin'){
                     navigate('/banda_admin')
                 }
                 

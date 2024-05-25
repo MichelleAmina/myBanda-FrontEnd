@@ -1,6 +1,7 @@
 import './banners.css'
 import Button from '@mui/material/Button';
 import { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
 function Banners({data}){
     const [shopData, setShopData] = useState([]);
@@ -35,7 +36,10 @@ function Banners({data}){
                     {shopData.map((shop, index) => (
                         <div className="col" key={index}>
                             <div className="Box">
-                                <img src={shop.banner_image_url} alt="" className='w-100 transition' />
+                                <NavLink to={`/my_banda/vendors/${shop.seller_id}`}>
+                                    <img src={shop.banner_image_url} alt="" className='w-100 transition' /> 
+                                </NavLink>
+                                
                                 
                             </div>
                         </div>

@@ -80,10 +80,10 @@ function HomeProduct({ item }) {
                             <span className='d-block catName'>{item.category}</span>
                             <h4 className='title'>{truncateText(item.name, 40)}</h4>
                             <Rating name="half-rating-read" value={3.5} precision={0.5} readOnly />
-                            <span className='d-block brand'>By <NavLink to="">{item.shop.name}</NavLink></span>
+                            <span className='d-block brand'>By <NavLink to={`/my_banda/vendors/${item.shop.seller_id}`}>{item.shop.name}</NavLink></span>
                             <div className="d-flex align-items-center mt-2">
                                 <div className="d-flex align-items-center">
-                                    <span className='price'>${item.price}</span>
+                                    <span className='price'>Ksh.{item.price}</span>
                                 </div>
                                 <Button className='ms-auto transition' onClick={() => handleAddToCart(item)}>
                                     <ShoppingCartOutlinedIcon />Add

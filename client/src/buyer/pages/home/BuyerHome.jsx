@@ -10,61 +10,6 @@ import { useEffect, useState } from 'react'
 
 function BuyerHome(props){
 
-    // // All the data 
-    // const [prodData, setProdData] = useState(props.data)
-    // // All the categories appearing only a once 
-    // const [categories, setCategories] = useState([])
-    // const [activeCategory, setActiveCategory] = useState()
-    // // Highlight index of active tab/category 
-    // const [activeCategoryIndex, setActiveCategoryIndex] = useState(0)
-    // const [activeCategoryData, setActiveCategoryData] = useState([])
-
-
-    // const categoryImages = {
-    //     homedecor: "/home-decor.png",
-    //     appliances: "/appliances.png",
-    //     toolsandhardware: "/tools.png",
-    //     clothing: "/clothing.png",
-    //     accessories: "/jewelry.png",
-    //     beautyandskincare: "/skin-care.png",
-    //     outdoorgear: "/outdoor-gear.png",
-    //     electronics: "/electronics.png",
-    //     healthandwellness: "/spa.png",
-    //     toysandgames: "/toys.png",
-    //     booksandstationary: "/stationary.png",
-    //     foodandbeverages: "/fast-food.png",
-    // };
-
-    // var settings = {
-    //     dots: false,
-    //     infinite: true,
-    //     speed: 500,
-    //     slidesToShow: 4,
-    //     slidesToScroll: 1, 
-    //     fade: false,
-    //     arrows: true,
-    //     autoplay: 3000,
-       
-    // };
-
-
-    // useEffect(() => {
-    //     if (prodData.length !== 0) {
-    //         const uniqueCategories = new Set(prodData.map(item => item.category));
-    //         setCategories([...uniqueCategories]);
-    //         setActiveCategory([...uniqueCategories][0]);
-    //     }
-    // }, [prodData]);
-    
-    // console.log("active category data", activeCategoryData)
-
-    // useEffect(() => {
-    //     if (activeCategory) {
-    //         const filteredData = prodData.filter(item => item.category === activeCategory);
-    //         setActiveCategoryData(filteredData);
-    //     }
-    // }, [activeCategory, prodData]);
-
      // All the data 
      const [prodData, setProdData] = useState(props.data)
      // All the categories appearing only once 
@@ -73,6 +18,8 @@ function BuyerHome(props){
      // Highlight index of active tab/category 
      const [activeCategoryIndex, setActiveCategoryIndex] = useState(0)
      const [activeCategoryData, setActiveCategoryData] = useState([])
+
+    
  
  
      const categoryImages = {
@@ -110,7 +57,7 @@ function BuyerHome(props){
          }
      }, [prodData]);
      
-     console.log("active category data", activeCategoryData)
+     //console.log("active category data", activeCategoryData)
  
      useEffect(() => {
          if (activeCategory) {
@@ -118,12 +65,6 @@ function BuyerHome(props){
              setActiveCategoryData(filteredData);
          }
      }, [activeCategory, prodData]);
-
-    
-
-    
-
-    
 
 
 
@@ -217,6 +158,22 @@ function BuyerHome(props){
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col">
+                            <TopProducts title="Top Selling" tag="hot" products={prodData} />
+                        </div>
+
+                        <div className="col">
+                            <TopProducts title="Trending Products" tag="popular" products={prodData} />
+                        </div>
+                                                    
+                        {/* <div className="col">
+                            <TopProducts title="Recently Added" tag="recent" products={prodData} />
+                        </div> */}
+                        
+                        <div className="col">
+                            <TopProducts title="Top New" tag="new" products={prodData} />
+                        </div>
+                        
+                        {/* <div className="col">
                             <TopProducts title="Top Selling"/>
 
                         </div>
@@ -229,12 +186,12 @@ function BuyerHome(props){
                         {/* <div className="col">
                             <TopProducts title="Recently Added"/>
                             
-                        </div> */}
+                        </div> *
 
                         <div className="col">
-                            <TopProducts title="Top Rated"/>
+                            <TopProducts title="Top New"/>
                             
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </section>

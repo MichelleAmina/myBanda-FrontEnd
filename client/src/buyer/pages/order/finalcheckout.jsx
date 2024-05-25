@@ -19,10 +19,11 @@ const FinalCheckout = () => {
     region: '',
     country: '',
     deliveryDriver: '',
+    mpesa_contact: '',
   });
 
   const cart = useSelector((state) => state.cart);  
-  console.log("these are the items in the cart",cart)
+  //console.log("these are the items in the cart",cart)
   const shippingFee = 50;  
 
   useEffect(() => {
@@ -32,12 +33,14 @@ const FinalCheckout = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showGif, setShowGif] = useState(false); // State for GIF visibility
 
   const placeOrder = async () => {
     console.log("placing order ")
     setLoading(true);
     setError(null);
     setSuccess(false);
+    
     try {
       const res = await fetch('https://mybanda-backend-88l2.onrender.com/order', {
         method: 'POST',
@@ -54,7 +57,9 @@ const FinalCheckout = () => {
           contact: deliveryInfo.phone,
           country: deliveryInfo.country,
           city: deliveryInfo.city,
-          delivery_persons: deliveryInfo.deliveryDriver
+          delivery_persons: deliveryInfo.deliveryDriver, 
+          mpesa_contact: deliveryInfo.mpesa_contact,
+          items: cart.cartItems.map((item => ({ id: item.id, quantity: item.cartQuantity })))
           
         }),
       
@@ -62,6 +67,7 @@ const FinalCheckout = () => {
 
       if(res.ok){
         setSuccess(true);
+        setShowGif(true);
         console.log("Success")
       }
       else{
@@ -76,9 +82,31 @@ const FinalCheckout = () => {
       setError("Error placing order in catch error: " + error.message);
       setSuccess(null);
       console.error('Error:', error);
+    }finally {
+      setLoading(false);
     }
 
   }
+
+  const [deliveryData, setDeliveryData] = useState([]);
+
+  useEffect(() => {
+    fetch("https://mybanda-backend-88l2.onrender.com/users")
+        .then(resp => resp.json())
+        .then((data) => {
+            const filteredData = data.filter(user => user.role === 'delivery');
+            setDeliveryData(filteredData);
+        
+        })
+        .catch(error => {
+            console.error('Error fetching user data:', error);
+            setError(error);
+          
+        });
+  }, []);
+
+  console.log("delivery data", deliveryData)
+
 
 
   // const placeOrder = async (e) => {
@@ -173,6 +201,10 @@ const FinalCheckout = () => {
       ...deliveryInfo,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
   };
 
   return (
@@ -287,9 +319,10 @@ const FinalCheckout = () => {
                         onChange={handleChange}
                       >
                         <option value="">Select...</option>
-                        <option value="DHL">DHL</option>
-                        <option value="Wells Fargo">Wells Fargo</option>
-                        <option value="Western Union">Western Union</option>
+                        {deliveryData.map((driver) => (
+                          <option key={driver.id} value={driver.id}>{capitalizeFirstLetter(driver.username)} - {driver.location}</option>
+                        ))}
+                        
                         
                       </select>
                     </div>
@@ -314,6 +347,7 @@ const FinalCheckout = () => {
                             <p><strong>Address:</strong> {deliveryInfo.address}</p>
                             <p><strong>Region:</strong> {deliveryInfo.region}</p>
                             <p><strong>Country:</strong> {deliveryInfo.country}</p>
+                            {/* Find a way to show the drivers name instead of their Id */}
                             <p><strong>Delivery Driver:</strong> {deliveryInfo.deliveryDriver}</p>
                           </div>
                         </div>
@@ -374,7 +408,7 @@ const FinalCheckout = () => {
                   >
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/M-PESA_LOGO-01.svg/2560px-M-PESA_LOGO-01.svg.png" alt="MPesa Logo" />
                     <div className="cht-radio-input">
-                      <input id="mpesa" type="radio" name="payment" />
+                      <input id="mpesa" type="radio" name="payment"/>
                       Pay ${cart.cartTotalAmount + shippingFee} with MPesa
                     </div>
                   </label>
@@ -386,7 +420,12 @@ const FinalCheckout = () => {
                     <div className="cht-input-fields">
                       <div className="cht-column-1">
                         <label htmlFor="phone">Phone Number</label>
-                        <input type="text" id="phone" />
+                        <input 
+                        type="text" 
+                        name="mpesa_contact"
+                        id="phone" 
+                        value={deliveryInfo.mpesa_contact} 
+                        onChange={handleChange}/>
                       </div>
                     </div>
                   </div>
@@ -400,7 +439,7 @@ const FinalCheckout = () => {
 
                       <div className="cht-small-inputs">
                         <div>
-                          <label htmlFor="date">Valid thru</label>
+                          <label htmlFor="date">Valid through</label>
                           <input type="text" id="date" placeholder="MM / YY" />
                         </div>
 
@@ -424,11 +463,34 @@ const FinalCheckout = () => {
             {currentStep === 4 && (
               <div>
                 <br />
-                <button className="order-checkout-button float-end" onClick={placeOrder}>Place Order</button>
-                <h4>Thank You!</h4>
-                {/* <p>Thank you for your order!</p> */}
-                
-                 
+                {!loading && !success && (
+                    <button className="order-checkout-button float-end" onClick={placeOrder}>
+                      Place Order
+                    </button>
+                )}
+                {loading && 
+                  <div className='finalCheckout-2'>
+                    <h4>Your order is being processed...</h4>
+                    {/* <div className="finalCheckout-gif1">
+                      <img src="https://i.pinimg.com/originals/93/e3/3d/93e33d89a8cbe54ec945235d25af5607.gif" alt="" />
+
+                    </div> */}
+                  </div> 
+                }
+                {error && <h4 className="error">Error placing order, please try again later....</h4>}
+                {success && (
+                  <div className='finalCheckout-2'>
+                    <h4>Thank you for shopping with us!</h4>
+                    {showGif && (
+                      <div className="finalCheckout-gif2">
+                        <img
+                          src="https://i.pinimg.com/originals/c4/9a/20/c49a207e0f89c9290d98fd43a87a8cb0.gif"
+                          alt="Loading..."
+                        />
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             )}
           </div>

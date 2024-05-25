@@ -1,41 +1,92 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './viewDetails.css';
 
 const ViewDetailsPage = () => {
     const { orderId } = useParams();
+    const [orderDetails, setOrderDetails] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    // Mock data
-    const orderDetails = {
-        orderId: orderId,
-        products: [
-            { name: 'Jumper', quantity: 2, price: 50 },
-            { name: 'Bottle', quantity: 1, price: 100 },
-        ]
+    useEffect(() => {
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+            console.error('Authentication token not found.');
+            setError('Authentication token not found.');
+            setLoading(false);
+            return;
+        }
+
+        fetch(`https://mybanda-backend-88l2.onrender.com/order/${orderId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch order details');
+            }
+            return response.json();
+        })
+        .then(data => {
+            setOrderDetails(data);
+            setLoading(false);
+        })
+        .catch(error => {
+            console.error('Error fetching order details:', error);
+            setError(error);
+            setLoading(false);
+        });
+    }, [orderId]);
+
+    const handleMarkAsDelivered = () => {
+        const token = localStorage.getItem('access_token');
+        fetch(`https://mybanda-backend-88l2.onrender.com/order/${orderId}`, {
+            method: 'PATCH',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ status: 'completed' }),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to update order status');
+            }
+            return response.json();
+        })
+        .then(data => {
+            setOrderDetails(data);
+        })
+        .catch(error => {
+            console.error('Error updating order status:', error);
+        });
     };
 
-    const customerDetails = {
-        name: 'Rebekah Ndanu',
-        email: 'rebekah@gmail.com',
-        address: '123 Main St, Mombasa, Kenya',
-        phoneNumber: '123-456-789'
-    };
+    if (loading) {
+        return (
+            <div className='driverLoader'>
+                <img src="https://i.pinimg.com/originals/63/30/4c/63304c0ead674232ee58af3dbc63b464.gif" alt="Loading..." className='w-100'/>
+            </div>
+        );
+    }
 
-    const sellerDetails = {
-        name: 'Marie Shop',
-        email: 'marieshop@gmail.com',
-        address: '456 Market St, Nairobi, Kenya',
-        phoneNumber: '123-456-789'
-    };
+    if (error) {
+        return <div>Error loading order details: {error.message}</div>;
+    }
+
+    if (!orderDetails) {
+        return <div>No order details found</div>;
+    }
 
     return (
         <div className="details-container">
             <div className="details-row1">
                 <div className="section-container">
-                    <h2 className="order-id">Order ID: {orderDetails.orderId}</h2>
+                    <h2 className="order-id">Order ID: {orderDetails.id}</h2>
                 </div>
                 <div className="section-button-container">
-                    <button className="completed-delivery-button">Delivered</button>
+                    <button className="completed-delivery-button" onClick={handleMarkAsDelivered}>Delivered</button>
                 </div>
             </div>
             <hr />
@@ -50,13 +101,12 @@ const ViewDetailsPage = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {orderDetails.products.map((product, index) => (
+                            {orderDetails.order_items.map((item, index) => (
                                 <tr key={index}>
-                                    <td>{product.name}</td>
-                                    <td>{product.quantity}</td>
+                                    <td>{item.product.name}</td>
+                                    <td>{item.quantity}</td>
                                 </tr>
-                            )
-                        )}
+                            ))}
                         </tbody>
                     </table>
                 </div>
@@ -68,40 +118,35 @@ const ViewDetailsPage = () => {
                     <div className="details-grid">
                         <div>
                             <p className="order-dets-label">Name:</p>
-                            <p className="order-dets-text">{customerDetails.name}</p>
+                            <p className="order-dets-text">{orderDetails.buyer.username}</p>
                         </div>
                         <div>
                             <p className="order-dets-label">Email:</p>
-                            <p className="order-dets-text">{customerDetails.email}</p>
+                            <p className="order-dets-text">{orderDetails.buyer.email}</p>
                         </div>
                         <div>
                             <p className="order-dets-label">Delivery Address:</p>
-                            <p className="order-dets-text">{customerDetails.address}</p>
+                            <p className="order-dets-text">{orderDetails.buyer.location}</p>
                         </div>
                         <div>
                             <p className="order-dets-label">Phone Number:</p>
-                            <p className="order-dets-text">{customerDetails.phoneNumber}</p>
+                            <p className="order-dets-text">{orderDetails.buyer.phone_number}</p>
                         </div>
                     </div>
                 </div>
+            </div>
+            <hr />
+            <div className="details-row">
                 <div className="section-container">
-                    <h3>Seller Details</h3>
+                    <h3>Shop Details</h3>
                     <div className="details-grid">
                         <div>
-                            <p className="order-dets-label">Name:</p>
-                            <p className="order-dets-text">{sellerDetails.name}</p>
+                            <p className="order-dets-label">Shop Name:</p>
+                            <p className="order-dets-text">{orderDetails.order_items[0]?.product.shop.name || 'N/A'}</p>
                         </div>
                         <div>
-                            <p className="order-dets-label">Email:</p>
-                            <p className="order-dets-text">{sellerDetails.email}</p>
-                        </div>
-                        <div>
-                            <p className="order-dets-label">Pickup Address:</p>
-                            <p className="order-dets-text">{sellerDetails.address}</p>
-                        </div>
-                        <div>
-                            <p className="order-dets-label">Phone Number:</p>
-                            <p className="order-dets-text">{sellerDetails.phoneNumber}</p>
+                            <p className="order-dets-label">Shop Address:</p>
+                            <p className="order-dets-text">{orderDetails.order_items[0]?.product.shop.location || 'N/A'}</p>
                         </div>
                     </div>
                 </div>

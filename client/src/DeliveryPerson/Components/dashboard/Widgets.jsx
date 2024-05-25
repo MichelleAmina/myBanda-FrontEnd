@@ -1,4 +1,5 @@
-import './widgets.css'
+import React, { useState, useEffect } from 'react';
+import './widgets.css';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import PendingActionsIcon from '@mui/icons-material/PendingActions';
 import WalletIcon from '@mui/icons-material/Wallet';
@@ -6,12 +7,52 @@ import PaidIcon from '@mui/icons-material/Paid';
 import TaskIcon from '@mui/icons-material/Task';
 import { Link } from 'react-router-dom';
 
-const Widget = ({type}) => {
-    let data;
+const Widget = ({ type }) => {
+    const [count, setCount] = useState(0);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    // temporary
-    const amount = 100
-    const diff = 20
+    useEffect(() => {
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+            console.error('Authentication token not found.');
+            setError('Authentication token not found.');
+            setLoading(false);
+            return;
+        }
+
+        fetch('https://mybanda-backend-88l2.onrender.com/order', {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch orders');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (type === "Available deliveries") {
+                const availableCount = (data || []).filter(order => order.status === 'pending').length;
+                setCount(availableCount);
+            } else if (type === "Completed deliveries") {
+                const completedCount = (data || []).filter(order => order.status === 'completed').length;
+                setCount(completedCount);
+            } else if (type === "Pending deliveries") {
+                const pendingCount = (data || []).filter(order => order.status === 'assigned', 'dispatched').length;
+                setCount(pendingCount);
+            }
+            setLoading(false);
+        })
+        .catch(error => {
+            console.error('Error fetching orders:', error);
+            setError(error);
+            setLoading(false);
+        });
+    }, [type]);
+
+    let data;
 
     switch (type) {
         case "Available deliveries":
@@ -62,7 +103,7 @@ const Widget = ({type}) => {
                 />,
             };
             break;
-            case "Wallet":
+        case "Wallet":
             data = {
                 title: "Wallet",
                 isMoney: true,
@@ -77,18 +118,27 @@ const Widget = ({type}) => {
         default:
             break;
     }
-    return ( 
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+
+    return (
         <div className='widget'>
             <div className="left">
                 <span className="title">{data.title}</span>
-                <span className="count">{data.isMoney && '$'} {amount}</span>
+                <span className="count">{data.isMoney ? `$${count}` : count}</span>
                 <Link to={data.path} className="widget-link">{data.link}</Link>
             </div>
             <div className="right">
                 {data.icon}
             </div>
         </div>
-     );
+    );
 }
- 
+
 export default Widget;

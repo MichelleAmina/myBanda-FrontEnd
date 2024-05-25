@@ -30,7 +30,7 @@ function Vendors() {
             });
     }, [sellerId]);
 
-    console.log(vendor)
+    //console.log(vendor)
 
    
 
