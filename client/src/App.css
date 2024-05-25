@@ -950,6 +950,23 @@ input[type=number]{
   transform: scaleX(-1);
 }
 
+.finalCheckout-2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.finalCheckout-gif2{
+  padding-top: 20px;
+}
+
+.finalCheckout-gif2 img{
+  height: 300px;
+  width: 500px;
+}
+
 
 
   

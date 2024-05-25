@@ -463,23 +463,36 @@ const FinalCheckout = () => {
               </div>
             )} */}
             {currentStep === 4 && (
-        <div>
-          <br />
-          <button className="order-checkout-button float-end" onClick={placeOrder}>Place Order</button>
-          {loading && <p>Loading...</p>}
-          {error && <p className="error">{error}</p>}
-          {success && (
-            <div>
-              <h4>Thank You!</h4>
-              {showGif && (
-                <div className="gif-container">
-                  <img src="https://i.pinimg.com/originals/c4/9a/20/c49a207e0f89c9290d98fd43a87a8cb0.gif" alt="Loading..." />
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      )}
+              <div>
+                <br />
+                {!loading && !success && (
+                    <button className="order-checkout-button float-end" onClick={placeOrder}>
+                      Place Order
+                    </button>
+                )}
+                {loading && 
+                  <div>
+                     <p>Your order is being processed...</p>
+                    <img src="https://i.pinimg.com/originals/93/e3/3d/93e33d89a8cbe54ec945235d25af5607.gif" alt="" />
+
+                  </div> 
+                }
+                {error && <p className="error">Error placing order, please try again later....{error}</p>}
+                {success && (
+                  <div className='finalCheckout-2'>
+                    <h4>Thank you for shopping with us!</h4>
+                    {showGif && (
+                      <div className="finalCheckout-gif2">
+                        <img
+                          src="https://i.pinimg.com/originals/c4/9a/20/c49a207e0f89c9290d98fd43a87a8cb0.gif"
+                          alt="Loading..."
+                        />
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="cht-panel-footer">
