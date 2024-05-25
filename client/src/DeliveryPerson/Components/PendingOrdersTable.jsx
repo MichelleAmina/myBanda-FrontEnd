@@ -12,41 +12,31 @@ const AvailableOrders = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchOrders = async () => {
-            try {
-                const token = localStorage.getItem('access_token'); 
-                if (!token) {
-                    throw new Error('Authentication token not found.');
-                }
-    
-                const response = await fetch('https://mybanda-backend-88l2.onrender.com/order', {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-    
-                if (!response.ok) {
-                    throw new Error('Failed to fetch orders');
-                }
-    
-                const data = await response.json();
-                if (!Array.isArray(data)) {
-                    throw new Error('Data is not an array');
-                }
-    
-                const pendingOrders = data.filter(order => order.status === 'pending');
-                setOrders(pendingOrders);
-                setFilteredOrders(pendingOrders);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching orders:', error);
-                setError(error);
-                setLoading(false);
+        fetch('https://mybanda-backend-88l2.onrender.com/order', {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch orders');
             }
-        };
+            return response.json();
+        })
+        .then(data => {
+            const pendingOrders = (data || []).filter(order => order.status === 'pending');
+
+            setOrders(pendingOrders);
+            setFilteredOrders(pendingOrders);
+            setLoading(false);
+        })
+        .catch(error => {
+            console.error('Error fetching orders:', error);
+            setError(error);
+            setLoading(false);
+        });
+    }, []); 
     
-        fetchOrders();
-    }, []);
 
 
     useEffect(() => {
@@ -77,7 +67,7 @@ const AvailableOrders = () => {
         return <div>Error loading vendor data</div>;
     }
 
-    const handleAcceptOrder = (order_Id) => {
+    const handleAcceptOrder = (id) => {
         const token = localStorage.getItem('access_token');
     
         if (!token) {
@@ -85,48 +75,42 @@ const AvailableOrders = () => {
             return;
         }
     
-        console.log('Attempting to accept order:', order_Id);
+        console.log('Attempting to accept order:', id);
     
-        fetch(`https://mybanda-backend-88l2.onrender.com/order/${order_Id}`, {
+        fetch(`https://mybanda-backend-88l2.onrender.com/order/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
             },
+
             body: JSON.stringify({ status: 'assigned' }), 
         })
-        .then(async response => {
+        .then(response => {
+
             console.log('Response status:', response.status);
     
+
             if (response.ok) {
                 console.log('Order status updated successfully.');
-                setOrders(prevOrders => prevOrders.filter(order => order.id !== order_Id));
-                setFilteredOrders(prevOrders => prevOrders.filter(order => order.id !== order_Id));
+                setOrders(prevOrders => prevOrders.filter(order => order.id !== id));
+                setFilteredOrders(prevOrders => prevOrders.filter(order => order.id !== id));
             } else {
-                const errorData = await response.json();
-                console.error('Failed to update order status.', errorData);
+                return response.json().then(errorData => {
+                    console.error('Failed to update order status.', errorData);
+                    throw new Error('Failed to update order status');
+                });
             }
         })
-        .catch(error => console.error('Error updating order:', error));
+        .catch(error => {
+            console.error('Error updating order:', error);
+        });
     };
     
     
-    
-    const handleSearchChange = (event) => {
-        setSearchTerm(event.target.value);
-    };
-
     return (
         <div className='pending-deliveries-table' style={{ padding: '10px' }}>
             <Paper className='pending-deliveries-table-container' sx={{ padding: '10px' }}>
-                <TextField
-                    label="Search by Buyer"
-                    variant="outlined"
-                    value={searchTerm}
-                    onChange={handleSearchChange}
-                    fullWidth
-                    margin="normal"
-                />
                 <TableContainer sx={{ maxHeight: 450 }}>
                     <Table stickyHeader>
                         <TableHead>
@@ -146,7 +130,7 @@ const AvailableOrders = () => {
                                     <TableCell>{order.order_items[0]?.product.shop.name || 'N/A'}</TableCell>
                                     <TableCell>{order.order_items[0]?.product.shop.location || 'N/A'}</TableCell>
                                     <TableCell>
-                                        <Button variant="contained" color="primary" onClick={() => handleAcceptOrder(order.id)}>Accept</Button>
+                                        <Button className='accept-button' onClick={() => handleAcceptOrder(order.id)}>Accept</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}

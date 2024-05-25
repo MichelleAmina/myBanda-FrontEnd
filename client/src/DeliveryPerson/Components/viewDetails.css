@@ -2,7 +2,7 @@
     width: 60%;
     justify-content: center;
     align-items: center;
-    border: 2px solid #EBC606;
+    border: 2px solid #FFD700;
     border-radius: 10px;
     padding: 20px;
     margin-left: 250px;
@@ -36,15 +36,15 @@
 
 .completed-delivery-button {
     background-color: white;
-    color: #EBC606;
-    border: 1px solid #EBC606;
+    color: #FFD700;
+    border: 1px solid #FFD700;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .completed-delivery-button:hover {
-    background-color: #EBC606;
+    background-color: #FFD700;
     color: white;
 }
 
@@ -71,5 +71,5 @@
 }
 
 .dev-details-heading {
-    background-color: #EBC606;
+    background-color: #FFD700;
 }
