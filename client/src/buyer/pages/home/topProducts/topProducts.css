@@ -1,3 +1,8 @@
+.topSellingBox {
+    /* background: yellow; */
+    padding-bottom: 20px;
+}
+
 .topSellingBox h3{
     font-size: 22px;
     font-weight: 500;
@@ -31,6 +36,8 @@
     padding: 10px 0px;
     position: relative;
     transition: all 0.3s ease-in-out;
+    /* background: green; */
+
 }
 
 .topSellingBox .items:hover{
@@ -40,8 +47,14 @@
 }
 
 .topSellingBox .items .img{
-    width: 20%; /*20%*/
+    width: 25%; /*20%*/
     background: #ccc; /*#fafafa*/
+    
+}
+
+
+.topSellingBox .items .img img{
+    height: 100px;
 }
 
 .topSellingBox .items .info{
@@ -58,6 +71,10 @@
     opacity: 0.8;
     font-weight: 500;
    
+}
+
+.topSellingBox .items .info h4:hover{
+    color: #FFD700;
 }
 
 .topSellingBox .items .info svg{
