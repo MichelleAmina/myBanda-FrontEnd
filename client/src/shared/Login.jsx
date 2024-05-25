@@ -135,8 +135,6 @@ function Login(){
                 const { access_token } = data; // Extract the JWT token from the response
                 localStorage.setItem('access_token', access_token); // Store the token in local storage
                 
-                // localStroage.setItem('userId', userId )
-                
                 console.log('User logged in:', data);
                 
                 const role = data.role 

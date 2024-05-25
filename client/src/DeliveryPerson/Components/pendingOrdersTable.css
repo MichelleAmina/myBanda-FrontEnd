@@ -22,3 +22,8 @@
 .pending-title {
     font-size: 35px;
 }
+
+.accept-button {
+    background-color: #4CAF50;
+    color: darkgreen;
+}
