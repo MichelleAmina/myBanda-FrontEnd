@@ -431,7 +431,7 @@ const FinalCheckout = () => {
 
                       <div className="cht-small-inputs">
                         <div>
-                          <label htmlFor="date">Valid thru</label>
+                          <label htmlFor="date">Valid through</label>
                           <input type="text" id="date" placeholder="MM / YY" />
                         </div>
 
@@ -452,16 +452,6 @@ const FinalCheckout = () => {
               </div>
             )}
 
-            {/* {currentStep === 4 && (
-              <div>
-                <br />
-                <button className="order-checkout-button float-end" onClick={placeOrder}>Place Order</button>
-                <h4>Thank You!</h4>
-                
-                
-                 
-              </div>
-            )} */}
             {currentStep === 4 && (
               <div>
                 <br />
@@ -471,10 +461,12 @@ const FinalCheckout = () => {
                     </button>
                 )}
                 {loading && 
-                  <div>
-                     <p>Your order is being processed...</p>
-                    <img src="https://i.pinimg.com/originals/93/e3/3d/93e33d89a8cbe54ec945235d25af5607.gif" alt="" />
+                  <div className='finalCheckout-2'>
+                    <h4>Your order is being processed...</h4>
+                    <div className="finalCheckout-gif1">
+                      <img src="https://i.pinimg.com/originals/93/e3/3d/93e33d89a8cbe54ec945235d25af5607.gif" alt="" />
 
+                    </div>
                   </div> 
                 }
                 {error && <p className="error">Error placing order, please try again later....{error}</p>}
