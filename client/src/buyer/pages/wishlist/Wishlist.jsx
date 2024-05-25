@@ -49,7 +49,8 @@ function Wishlist(){
             .then((data) => {
                 const filteredData = data.filter(like => like.buyers_id === userId);
                 setProductData(filteredData)
-                setLoading(false)
+                // setLoading(false)
+                setTimeout(() => setLoading(false), 1000);
                 //console.log('Fetched wishlist:',data);
                 // console.log("wishlist data",data);
 
@@ -73,7 +74,7 @@ function Wishlist(){
     if (loading) {
         return (
             <div className="loader">
-                <img src="/wishlist.jpeg" alt="Loading..." />
+                <img src="https://i.pinimg.com/originals/c1/bc/d8/c1bcd8a8c945b53da6b29f10a2a553c0.gif" alt="Loading..." />
             </div>
         );
     }
@@ -87,7 +88,7 @@ function Wishlist(){
         <div className='container-fluid noWishlist'>
             <h4>No items in your wishlist....</h4>
             <div className="noWishlistImage">
-                <img src="https://i.pinimg.com/564x/f6/e4/64/f6e464230662e7fa4c6a4afb92631aed.jpg" alt="" />
+                <img src="/wishlist.jpeg" alt="" />
                 {/* Add wishlist image here */}
             </div>  
         </div>
