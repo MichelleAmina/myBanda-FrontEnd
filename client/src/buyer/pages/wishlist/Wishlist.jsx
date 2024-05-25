@@ -84,9 +84,10 @@ function Wishlist(){
 
     if (productData.length == 0 && loading == false){
         return (
-        <div className='container-fluid pt-3 d-flex align-items-center justify-content-center'>
+        <div className='container-fluid noWishlist'>
             <h4>No items in your wishlist....</h4>
             <div className="noWishlistImage">
+                <img src="https://i.pinimg.com/564x/f6/e4/64/f6e464230662e7fa4c6a4afb92631aed.jpg" alt="" />
                 {/* Add wishlist image here */}
             </div>  
         </div>
