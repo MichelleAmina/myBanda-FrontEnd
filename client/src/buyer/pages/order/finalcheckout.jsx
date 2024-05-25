@@ -318,7 +318,7 @@ const FinalCheckout = () => {
                       >
                         <option value="">Select...</option>
                         {deliveryData.map((driver) => (
-                          <option key={driver.id} value={driver.username}>{capitalizeFirstLetter(driver.username)} - {driver.location}</option>
+                          <option key={driver.id} value={driver.id}>{capitalizeFirstLetter(driver.username)} - {driver.location}</option>
                         ))}
                         
                         
@@ -345,6 +345,7 @@ const FinalCheckout = () => {
                             <p><strong>Address:</strong> {deliveryInfo.address}</p>
                             <p><strong>Region:</strong> {deliveryInfo.region}</p>
                             <p><strong>Country:</strong> {deliveryInfo.country}</p>
+                            {/* Find a way to show the drivers name instead of their Id */}
                             <p><strong>Delivery Driver:</strong> {deliveryInfo.deliveryDriver}</p>
                           </div>
                         </div>
