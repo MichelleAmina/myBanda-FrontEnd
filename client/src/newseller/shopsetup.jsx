@@ -7,94 +7,50 @@ import BandaLogo from "../assets/banda.png";
 const ShopSetup = () => {
   const [shopName, setShopName] = useState("");
   const [description, setDescription] = useState("");
-  const [logoFile, setLogoFile] = useState(null);
-  const [bannerFile, setBannerFile] = useState(null);
+  const [logoUrl, setLogoUrl] = useState("");
+  const [bannerUrl, setBannerUrl] = useState("");
   const [contact, setContact] = useState("");
   const [location, setLocation] = useState("");
   const navigate = useNavigate();
 
   const handleLogoChange = (e) => {
-    setLogoFile(e.target.files[0]);
+    setLogoUrl(e.target.value);
   };
 
   const handleBannerChange = (e) => {
-    setBannerFile(e.target.files[0]);
+    setBannerUrl(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Upload logo image to Cloudinary
-    const logoFormData = new FormData();
-    logoFormData.append("file", logoFile);
-    logoFormData.append("upload_preset", "e1gpxxqh"); // Your Cloudinary upload preset name
+    const shopData = {
+      name: shopName,
+      description: description,
+      logo_image_url: logoUrl,
+      banner_image_url: bannerUrl,
+      contact: contact,
+      location: location,
+      seller_id: 23, // Hardcoded seller_id
+    };
 
     try {
-      const logoResponse = await fetch(
-        "https://api.cloudinary.com/v1_1/mybanda/image/upload",
-        {
-          method: "POST",
-          body: logoFormData,
-        }
-      );
-
-      if (!logoResponse.ok) {
-        console.error("Failed to upload logo:", logoResponse.statusText);
-        return;
-      }
-
-      const logoData = await logoResponse.json();
-      const logoUrl = logoData.secure_url;
-
-      // Upload banner image to Cloudinary
-      const bannerFormData = new FormData();
-      bannerFormData.append("file", bannerFile);
-      bannerFormData.append("upload_preset", "e1gpxxqh"); // Your Cloudinary upload preset name
-
-      const bannerResponse = await fetch(
-        "https://api.cloudinary.com/v1_1/mybanda/image/upload",
-        {
-          method: "POST",
-          body: bannerFormData,
-        }
-      );
-
-      if (!bannerResponse.ok) {
-        console.error("Failed to upload banner:", bannerResponse.statusText);
-        return;
-      }
-
-      const bannerData = await bannerResponse.json();
-      const bannerUrl = bannerData.secure_url;
-
-      // Save shop details including image URLs to the database
-      const shopData = {
-        name: shopName,
-        description: description,
-        logo_image_url: logoUrl,
-        banner_image_url: bannerUrl,
-        contact: contact,
-        location: location,
-      };
-
-      const response = await fetch(
-        "https://mybanda-backend-88l2.onrender.com/shop",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(shopData),
-        }
-      );
+      const response = await fetch("https://mybanda-backend-88l2.onrender.com/shop", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(shopData),
+      });
 
       if (response.ok) {
         console.log("Shop created successfully:", shopData);
         toast.success("Shop created successfully");
         navigate("/shop-dashboard");
       } else {
-        console.error("Failed to create shop:", response.statusText);
-        toast.error("Failed to create shop");
+        const errorData = await response.json();
+        console.error("Failed to create shop:", response.statusText, errorData);
+        toast.error(`Failed to create shop: ${errorData.message || response.statusText}`);
       }
     } catch (error) {
       console.error("Error during shop creation:", error);
@@ -110,11 +66,7 @@ const ShopSetup = () => {
           <form className="shop-setup-form" onSubmit={handleSubmit}>
             <div className="form-group">
               <div className="logo-container">
-                <img
-                  src={BandaLogo}
-                  alt="Banda Logo"
-                  className="banda-logo"
-                />
+                <img src={BandaLogo} alt="Banda Logo" className="banda-logo" />
                 <h1 className="shop-name">MY BANDA</h1>
               </div>
               <div className="subheads">
@@ -146,19 +98,23 @@ const ShopSetup = () => {
 
             <div className="form-group">
               <input
-                type="file"
-                accept="image/*"
+                type="text"
+                value={logoUrl}
                 onChange={handleLogoChange}
+                placeholder="Enter logo URL"
                 required
+                className="custom-input"
               />
             </div>
 
             <div className="form-group">
               <input
-                type="file"
-                accept="image/*"
+                type="text"
+                value={bannerUrl}
                 onChange={handleBannerChange}
+                placeholder="Enter banner URL"
                 required
+                className="custom-input"
               />
             </div>
 
@@ -190,8 +146,7 @@ const ShopSetup = () => {
           </form>
         </div>
 
-        <div className="shop-setup-image">
-        </div>
+        <div className="shop-setup-image"></div>
       </div>
     </div>
   );

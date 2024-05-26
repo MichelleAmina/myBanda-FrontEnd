@@ -1,9 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThLarge } from "@fortawesome/free-solid-svg-icons";
-import BandaLogo from "../assets/banda.png";
-import dashlogo from "../assets/dashboard.png";
 import {
   faHome,
   faShoppingBag,
@@ -12,6 +9,8 @@ import {
   faSignal,
   faCog,
 } from "@fortawesome/free-solid-svg-icons";
+import BandaLogo from "../assets/banda.png";
+import dashlogo from "../assets/dashboard.png";
 import "./oldside.css";
 
 function OldSidebar() {
@@ -92,6 +91,17 @@ function OldSidebar() {
             <span className="old-link-name">Settings</span>
           </Link>
         </li>
+        <li>
+        <Link
+          to="/shopview/defaultSellerId" 
+          className={`old-sidebar-link ${
+            location.pathname === "/shopview/defaultSellerId" ? "active" : ""
+          }`}
+        >
+          <FontAwesomeIcon icon={faHome} className="old-link-icon" />
+          <span className="old-link-name">Shop</span>
+        </Link>
+      </li>      
       </ul>
     </div>
   );

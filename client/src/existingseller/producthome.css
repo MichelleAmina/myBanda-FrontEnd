@@ -128,23 +128,25 @@
   }
   
 
-.product-info {
-  padding: 10px;
-}
+  .product-info {
+    padding: 10px;
+    display: block; /* Add this line to display the product information as block elements */
+  }
+  
+  .product-info h2 {
+    font-size: 16px;
+    margin: 0 0 10px;
+    font-family: sans-serif;
+    font-weight: bold;
+  }
+  
+  .product-info p {
+    margin: 5px 0;
+    color: #555;
+    font-family: inherit;
+    font-size: 12px;
+  }
 
-.product-info h2 {
-  font-size: 16px;
-  margin: 0 0 10px;
-  font-family: sans-serif;
-  font-weight: bold !important;
-}
-
-.product-info p {
-  margin: 5px 0;
-  color: #777;
-  font-family: sans-serif;
-  font-size: 12px;
-}
 
 .status {
   position: absolute;

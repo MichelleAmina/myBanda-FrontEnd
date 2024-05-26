@@ -10,20 +10,44 @@ const ProductHome = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterOption, setFilterOption] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const productsPerPage = 16;
 
   useEffect(() => {
-    fetch("https://mybanda-backend-88l2.onrender.com/products")
-      .then((response) => response.json())
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      console.error('Authentication token not found.');
+      setError('Authentication token not found.');
+      setLoading(false);
+      return;
+    }
+
+    fetch("https://mybanda-backend-88l2.onrender.com/products", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        return response.json();
+      })
       .then((data) => {
         const productsWithImages = data.map((product) => {
           const imageUrl = product.images.length > 0 ? product.images[0].image_url : "placeholder_url"; // Replace "placeholder_url" with the URL of your placeholder image
           return { ...product, image_url: imageUrl };
         });
         setProducts(productsWithImages);
+        setLoading(false);
       })
-      .catch((error) => console.error("Error fetching products:", error));
+      .catch((error) => {
+        console.error('Error fetching products:', error);
+        setError(error);
+        setLoading(false);
+      });
   }, []);
 
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -77,6 +101,8 @@ const ProductHome = () => {
     document.body.removeChild(link);
   };
 
+
+
   return (
     <div className="product-home-container">
       <div className="productpageheader">
@@ -102,11 +128,9 @@ const ProductHome = () => {
           <input type="text" placeholder="Search Products..." value={searchQuery} onChange={handleSearch} />
         </div>
         <div className="filter-dropdown">
-       {/*} <FontAwesomeIcon icon={faFilter} className="filter-icon" /> */}
-
           <select value={filterOption} onChange={handleFilterChange}>
             <option value="">All</option>
-            <option value="low" >Low Stock </option>
+            <option value="low">Low Stock</option>
             <option value="high">High Stock</option>
           </select>
         </div>

@@ -1,0 +1,90 @@
+.shopviewBanner {
+    position: relative;
+    width: 100%;
+    padding-top: 20px;
+  }
+  
+  .shopviewBanner img {
+    width: 100%;
+    height: 250px;
+    border-radius: 4px;
+  }
+  
+  .shopviewLogo {
+    position: absolute;
+    background: white;
+    bottom: -15%;
+    left: 5%;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+  }
+  
+  .shopviewLogo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .shopviewDetails {
+    margin-top: 20px;
+    padding: 0px 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .shopviewInfo p {
+    margin-bottom: 5px;
+  }
+  
+  .shopviewFollow Button {
+    color: #000;
+    text-transform: capitalize;
+    font-size: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 5px 20px;
+    width: 100px;
+  }
+  
+  .shopviewFollow Button:hover {
+    background: #FFD700;
+  }
+  
+  .shopviewSearch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .shopviewSearchInput {
+    display: flex;
+    align-items: center;
+    width: 400px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    height: 40px;
+  }
+  
+  .shopviewSearchInput input {
+    background: transparent;
+    border: none;
+    padding: 5px 10px;
+    width: 90%;
+    outline: none;
+  }
+  
+  .shopviewProducts {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 20px;
+  }
+  
+  .shopviewProducts .item {
+    width: 16% !important;
+    padding: 0px 10px 20px 10px;
+  }
+  

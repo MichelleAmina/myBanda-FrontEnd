@@ -161,3 +161,13 @@ body {
   color: orange;
   background-color: #fff2e6;
 }
+.ordloader {
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+}
+.clickable {
+  cursor: pointer;
+  color: #007bff; /* Blue color for clickable icons */
+}

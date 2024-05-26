@@ -1,124 +1,61 @@
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faBell, faUser, faFilter } from "@fortawesome/free-solid-svg-icons";
-import "./custorders.css";
-import OldSidebar from "./oldside"; 
+import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faBell, faUser, faFilter, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import { Dropdown } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './custorders.css';
+import OldSidebar from './oldside';
 
 const CustOrders = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
+  const [orders, setOrders] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
-  const [sortOrder, setSortOrder] = useState("");
+  const [sortOrder, setSortOrder] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [selectedOrderId, setSelectedOrderId] = useState(null);
 
-  const orders = [
-    {
-      id: 1,
-      orderId: "#235334",
-      customer: "Ann Mary",
-      product: "Gas Cooker",
-      location: "Rhapta, Westlands",
-      date: "2024-05-14",
-      amount: "KES.8600",
-      status: "Delivered",
-    },
-    {
-      id: 2,
-      orderId: "#135335",
-      customer: "John Doe",
-      product: "Electric Kettle",
-      location: "CBD, Nairobi",
-      date: "2024-05-15",
-      amount: "KES.1200",
-      status: "Pending",
-    },
-    {
-      id: 3,
-      orderId: "#735336",
-      customer: "Jane Smith",
-      product: "Microwave Oven",
-      location: "Kileleshwa, Nairobi",
-      date: "2024-05-16",
-      amount: "KES.4500",
-      status: "Delivered",
-    },
-    {
-      id: 4,
-      orderId: "#335334",
-      customer: "Winnie Sei",
-      product: "Coffee Frother",
-      location: "Rhapta, Westlands",
-      date: "2024-05-14",
-      amount: "KES.8600",
-      status: "Delivered",
-    },
-    {
-      id: 5,
-      orderId: "#435337",
-      customer: "Paul Njoroge",
-      product: "Blender",
-      location: "Parklands, Nairobi",
-      date: "2024-05-17",
-      amount: "KES.3500",
-      status: "Delivered",
-    },
-    {
-      id: 6,
-      orderId: "#535338",
-      customer: "Lucy Wambui",
-      product: "Toaster",
-      location: "Langata, Nairobi",
-      date: "2024-05-18",
-      amount: "KES.2200",
-      status: "Pending",
-    },
-    {
-      id: 7,
-      orderId: "#635339",
-      customer: "Michael Kariuki",
-      product: "Juicer",
-      location: "Karen, Nairobi",
-      date: "2024-05-19",
-      amount: "KES.4100",
-      status: "Delivered",
-    },
-    {
-      id: 8,
-      orderId: "#735340",
-      customer: "Susan Karanja",
-      product: "Food Processor",
-      location: "Lavington, Nairobi",
-      date: "2024-05-20",
-      amount: "KES.5500",
-      status: "Pending",
-    },
-    {
-      id: 9,
-      orderId: "#835341",
-      customer: "Daniel Mwangi",
-      product: "Rice Cooker",
-      location: "Gigiri, Nairobi",
-      date: "2024-05-21",
-      amount: "KES.2900",
-      status: "Delivered",
-    },
-    {
-      id: 10,
-      orderId: "#935342",
-      customer: "Esther Wanjiku",
-      product: "Air Fryer",
-      location: "Kahawa West, Nairobi",
-      date: "2024-05-22",
-      amount: "KES.3800",
-      status: "Pending",
-    },
-  ];
-  
+  useEffect(() => {
+    fetchOrders();
+  }, []); 
+
+  const fetchOrders = () => {
+    setLoading(true);
+    fetch('https://mybanda-backend-88l2.onrender.com/order', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch orders');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Generate random IDs for each order
+        const ordersWithRandomIds = data.map((order, index) => ({
+          ...order,
+          id: index + 1, 
+        }));
+        setOrders(ordersWithRandomIds);
+        setFilteredOrders(ordersWithRandomIds);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching orders:', error);
+        setError(error);
+        setLoading(false);
+      });
+  };
 
   const handleSearch = (e) => {
     const term = e.target.value.toLowerCase();
     setSearchTerm(term);
-    const filtered = orders.filter((order) =>
-      order.orderId.toLowerCase().includes(term)
-    );
+    const filtered = orders.filter((order) => order.orderId.toLowerCase().includes(term));
     setFilteredOrders(filtered);
   };
 
@@ -126,21 +63,57 @@ const CustOrders = () => {
     const order = e.target.value;
     setSortOrder(order);
     const sortedOrders = [...orders].sort((a, b) => {
-      if (order === "latest") {
-        return new Date(b.date) - new Date(a.date);
-      } else if (order === "oldest") {
-        return new Date(a.date) - new Date(b.date);
+      if (order === 'latest') {
+        return new Date(b.created_at) - new Date(a.created_at);
+      } else if (order === 'oldest') {
+        return new Date(a.created_at) - new Date(b.created_at);
       }
       return 0;
     });
     setFilteredOrders(sortedOrders);
   };
 
+  const handleChangeStatus = async (orderId, status) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`https://mybanda-backend-88l2.onrender.com/order/${orderId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        },
+        body: JSON.stringify({ status }),
+      });
+      if (response.ok) {
+        const updatedOrder = await response.json();
+        const updatedOrders = filteredOrders.map((order) => (order.id === updatedOrder.id ? updatedOrder : order));
+        setFilteredOrders(updatedOrders);
+        toast(`Order status changed to ${status}`, { type: 'success' });
+      } else {
+        console.error('Failed to update order status:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error updating order status:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDropdownToggle = (orderId) => {
+    setSelectedOrderId(orderId);
+    setDropdownVisible(!dropdownVisible);
+  };
+
+  const handleDropdownSelect = (status) => {
+    handleChangeStatus(selectedOrderId, status);
+    setDropdownVisible(false);
+  };
+
   const dataToMap = searchTerm || sortOrder ? filteredOrders : orders;
 
   return (
     <div className="dashboard-container-custorders">
-      <OldSidebar activePage="orders"/>
+      <OldSidebar activePage="orders" />
       <div className="content-container-custorders">
         <div className="header-custorders">
           <h1>Orders</h1>
@@ -156,12 +129,7 @@ const CustOrders = () => {
         <div className="search-filter-container-custorders">
           <div className="search-bar-custorders">
             <FontAwesomeIcon icon={faSearch} />
-            <input
-              type="text"
-              placeholder="Search by Order ID..."
-              value={searchTerm}
-              onChange={handleSearch}
-            />
+            <input type="text" placeholder="Search by Order ID..." value={searchTerm} onChange={handleSearch} />
           </div>
           <div className="filter-bar-custorders">
             <select value={sortOrder} onChange={handleSortOrderChange}>
@@ -174,35 +142,57 @@ const CustOrders = () => {
             </button>
           </div>
         </div>
-        <table className="order-table-custorders">
-          <thead>
-            <tr>
-              <th>Order ID</th>
-              <th>Customer</th>
-              <th>Product</th>
-              <th>Location</th>
-              <th>Date</th>
-              <th>Amount</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {dataToMap.map((order) => (
-              <tr key={order.id}>
-                <td>{order.orderId}</td>
-                <td>{order.customer}</td>
-                <td>{order.product}</td>
-                <td>{order.location}</td>
-                <td>{order.date}</td>
-                <td>{order.amount}</td>
-                <td className={`order-status-custorders ${order.status.toLowerCase()}`}>
-                  {order.status}
-                </td>
+        {loading ? (
+          <img
+            src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632/04de2e31234507.564a1d23645bf.gif"
+            alt="Loading..."
+            className="ordloader"
+          />
+        ) : (
+          <table className="order-table-custorders">
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {dataToMap.map((order) => (
+                <tr key={order.id}>
+                  <td>{order.buyer.username}</td>
+                  <td>{order.order_items[0].product.name}</td>
+                  <td>{order.delivery_address}</td>
+                  <td>{order.created_at.substring(0, 10)}</td>
+                  <td>{order.total_price}</td>
+                  <td className={`order-status-custorders ${order.status.toLowerCase()}`}>
+                    {order.status}
+                  </td>
+                  <td>
+                    <FontAwesomeIcon
+                      icon={faEllipsisV}
+                      className="clickable"
+                      onClick={() => handleDropdownToggle(order.id)}
+                    />
+                    {dropdownVisible && selectedOrderId === order.id && (
+                      <Dropdown.Menu>
+                        <Dropdown.Item onClick={() => handleDropdownSelect('completed')}>Completed</Dropdown.Item>
+                        <Dropdown.Item onClick={() => handleDropdownSelect('assigned')}>Assigned</Dropdown.Item>
+                      </Dropdown.Menu>
+                    )}
+                  </td>
+                </tr>
+              ))}
+           
+              </tbody>
+          </table>
+        )}
       </div>
+      <ToastContainer />
     </div>
   );
 };

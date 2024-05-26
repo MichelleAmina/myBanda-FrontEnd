@@ -44,6 +44,7 @@ import ShopSetup from "./newseller/shopsetup";
 import AddProduct from "./newseller/addproduct";
 import ProductHome from "./existingseller/producthome";
 import OldSellerDash from "./existingseller/oldsellerdash";
+import ShopView from "./existingseller/shopview"; 
 
 function App() {
   return (
@@ -66,15 +67,12 @@ function App() {
           <Route path='wishlist' element={<Wishlist />}></Route>
         </Route>
         
-
-
         {/*Banda Admin routes start here*/}
         <Route path="/banda_admin" element={<Admin />}>
           <Route path="customers" element={<AdminCustomer />}></Route>
           <Route path="delivery" element={<AdminDelivery />}></Route>
           <Route path="shops">
             <Route index element={<List />}></Route>
-            <Route path=":sellerId" element={<Single />}></Route>
           </Route>
         </Route>
 
@@ -98,7 +96,7 @@ function App() {
         <Route path="/addprod" element={<AddProduct />} />
         <Route path="/producthome" element={<ProductHome />} />
         <Route path="/oldsellerdash" element={<OldSellerDash />} />
-      
+        <Route path="/shopview/:sellerId" element={<ShopView />} /> 
       </Routes>
     </div>
   );
