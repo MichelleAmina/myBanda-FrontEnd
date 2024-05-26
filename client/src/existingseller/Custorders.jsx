@@ -68,11 +68,10 @@ const CustOrders = () => {
         const orderItems = orderItemsArr.flatMap(orderItem => orderItem);
           
         // Filter order items where the seller_id matches the userId
-        // FROM MMICHELLE ====== THIS ONE GIVES YOU THE ORDERS THAT MATCH THE SELLER ID VERY SPECIFIC
+        // FROM MICHELLE ====== THIS ONE GIVES YOU THE ORDERS THAT MATCH THE SELLER ID VERY SPECIFIC
         const sellerOrderItems = orderItems.filter(item => item.product?.shop?.seller_id === userId);
         console.log("Filtered orders:", sellerOrderItems);
           
-      
         // FROM MICHELLE THIS FILTERES THE ORDERS PERFECTLY....USE IT!! 
         const filteredOrders = data.map(order => {
           const filteredOrderItems = order.order_items.filter(item => item.product?.shop?.seller_id === userId);

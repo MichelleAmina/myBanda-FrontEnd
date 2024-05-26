@@ -1,6 +1,7 @@
 import './orderItems.css'
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 
 function OrderItems(){
@@ -35,6 +36,8 @@ function OrderItems(){
         fetchOrder();
     }, [orderId]);
 
+    console.log("order item", order);
+
     if (loading) {
         return (
             <div className="loader">
@@ -48,8 +51,55 @@ function OrderItems(){
     }
 
     return(
-        <div className="container-fluid pt-4">
-            <h1>Order Details for Order ID: {order.id}</h1>
+        <div className="container-fluid pt-4 pb-4">
+            <div className="orderItemsWrapper mb-5">
+                <div className="orderItemsTitle">
+                    <h4>Order no: {order.id}</h4>
+                    <p>{order.created_at.substring(0,10)}</p>
+                    <p>{order.order_items.length} Items</p>
+                    <p><span>Total Price: Ksh. {order.total_price}</span></p>
+                </div>
+                <div className="orderItemsContainer pt-4">
+                    <h4>Items in your order</h4>
+                    {
+                        order.order_items.map((item) => {
+                            return(
+                                <div className="orderItems" key={item.id}>
+                                    <div className="orderItems-top">
+                                        <div className="orderItems-img">
+                                            <img src={item.product.images[0].image_url} alt=""/>
+                                        </div>
+                                        <div className="orderItems-description">
+                                            <h4>{item.product.name}</h4>
+                                            <p>{item.product.description}</p>
+                                            <p>Ksh. {item.product.price}</p>
+                                            <p><span>Qty: </span>{item.quantity}</p>
+                                        </div>
+
+                                    </div>
+                                    <div className="orderItems-bottom">
+                                        <div className="orderItems-bottomLeft">
+                                            <span><CheckCircleOutlineIcon/> Delivered</span>
+                                        </div>
+                                        <div className="orderItems-bottomRight">
+                                            <ul>
+                                                <li>View Product</li>
+                                                <span>/</span>
+                                                <li>Buy Again</li>
+                                            </ul>
+
+                                        </div>
+                            
+                                    </div>
+                                </div>
+
+                            )
+                        })
+                    }
+                    
+                </div>
+            </div>
+            
         </div>
     )
 }
