@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import './viewDetails.css';
 import { toast } from 'react-toastify';
-import { NavLink } from 'react-router-dom';
-
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const ViewDetailsPage = () => {
@@ -11,6 +9,7 @@ const ViewDetailsPage = () => {
     const [orderDetails, setOrderDetails] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [showSuccessGif, setShowSuccessGif] = useState(false);
 
     useEffect(() => {
         const token = localStorage.getItem('access_token');
@@ -60,10 +59,10 @@ const ViewDetailsPage = () => {
             return response.json();
         })
         .then(data => {
-            toast.info("You have been completed the delivery.", {
+            toast.info("You have completed the delivery.", {
                 position: "top-center",
-            })
-            setOrderDetails(data);
+            });
+            setShowSuccessGif(true);
         })
         .catch(error => {
             console.error('Error updating order status:', error);
@@ -82,16 +81,34 @@ const ViewDetailsPage = () => {
         return <div>Error loading order details: {error.message}</div>;
     }
 
+    if (showSuccessGif) {
+        return (
+            <div className='success-image'>
+                <p className='success-statement'>Thank you for completing the delivery.</p>
+                <img src="https://img.freepik.com/free-vector/messenger-concept-illustration_114360-6564.jpg?size=338&ext=jpg&ga=GA1.1.2082370165.1716163200&semt=ais_user" alt="Success" />
+                <p className='success-statement'>Total made on this trip - ${orderDetails.delivery_fee}</p>
+            </div>
+        );
+    }
+
     if (!orderDetails) {
         return <div>No order details found</div>;
     }
+
+    const uniqueShops = new Map();
+
+    orderDetails.order_items.forEach(item => {
+        if (!uniqueShops.has(item.product.shop.id)) {
+            uniqueShops.set(item.product.shop.id, item.product.shop);
+        }
+    });
 
     return (
         <div className="details-container">
             <div className="details-row1">
                 <div className="section-container">
                     <NavLink to="/pendingDeliveries">
-                        <button className='backto-table'><ArrowBackIcon />Back</button>
+                        <button className='backto-table'><ArrowBackIcon /></button>
                     </NavLink>
                     
                     <h2 className="order-id">Order ID: {orderDetails.id}</h2>
@@ -101,6 +118,53 @@ const ViewDetailsPage = () => {
                 </div>
             </div>
             <hr />
+            <div className="details-row">
+                <div className="section-container">
+                    <h3>Customer Details</h3>
+                    <div className="details-grid">
+                        <div>
+                            <p ><span className="order-dets-label">Name: </span>{orderDetails.buyer.username}</p>
+                            {/* <p className="order-dets-text"></p> */}
+                        </div>
+                        <div>
+                            <p><span className="order-dets-label">Email: </span> {orderDetails.buyer.email}</p>
+                            {/* <p className="order-dets-text"></p> */}
+                        </div>
+                        <div>
+                            <p><span className="order-dets-label"> Delivery Address: </span>{orderDetails.delivery_address}</p>
+                            {/* <p className="order-dets-text"></p> */}
+                        </div>
+                        <div>
+                            <p><span className="order-dets-label">Phone Number: </span>{orderDetails.contact}</p>
+                            {/* <p className="order-dets-text"></p> */}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            {/* <div className="details-row">
+                <div className="section-container">
+                    <h3>Pickup Location</h3>
+                    <div className="details-grid">
+                        <div>
+                            <p className="order-dets-label">Name:</p>
+                            <p className="order-dets-text">{orderDetails.order_items[0]?.product.shop.name || 'N/A'}</p>
+                        </div>
+                        <div>
+                            <p className="order-dets-label">Email:</p>
+                            <p className="order-dets-text'>{orderDetails.order_items[0]?.product.shop.seller.email}</p>
+                        </div>
+                        <div>
+                            <p className="order-dets-label">Address:</p>
+                            <p className="order-dets-text'>{orderDetails.order_items[0]?.product.shop.location || 'N/A'}</p>
+                        </div>
+                        <div>
+                            <p className="order-dets-label">Phone Number:</p>
+                            <p className="order-dets-text'>{orderDetails.order_items[0]?.product.shop.seller.contact}</p>
+                        </div>
+                    </div>
+                </div> 
+            </div> */}
             <div className="details-row">
                 <div className="section-container">
                     <h3>Order Details</h3>
@@ -124,52 +188,31 @@ const ViewDetailsPage = () => {
                     </table>
                 </div>
             </div>
-            <hr />
-            <div className="details-row">
-                <div className="section-container">
-                    <h3>Customer Details</h3>
-                    <div className="details-grid">
-                        <div>
-                            <p className="order-dets-label">Name:</p>
-                            <p className="order-dets-text">{orderDetails.buyer.username}</p>
-                        </div>
-                        <div>
-                            <p className="order-dets-label">Email:</p>
-                            <p className="order-dets-text">{orderDetails.buyer.email}</p>
-                        </div>
-                        <div>
-                            <p className="order-dets-label">Delivery Address:</p>
-                            <p className="order-dets-text">{orderDetails.delivery_address}</p>
-                        </div>
-                        <div>
-                            <p className="order-dets-label">Phone Number:</p>
-                            <p className="order-dets-text">{orderDetails.contact}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr />
+            {/* <hr /> */}
+            
             <div className="details-row">
                 <div className="section-container">
                     <h3>Pickup Location</h3>
-                    <div className="details-grid">
-                        <div>
-                            <p className="order-dets-label">Name:</p>
-                            <p className="order-dets-text">{orderDetails.order_items[0]?.product.shop.name || 'N/A'}</p>
-                        </div>
-                        <div>
-                            <p className="order-dets-label">Email:</p>
-                            <p className="order-dets-text">{orderDetails.order_items[0]?.product.shop.seller.email}</p>
-                        </div>
-                        <div>
-                            <p className="order-dets-label">Address:</p>
-                            <p className="order-dets-text">{orderDetails.order_items[0]?.product.shop.location || 'N/A'}</p>
-                        </div>
-                        <div>
-                            <p className="order-dets-label">Phone Number:</p>
-                            <p className="order-dets-text">{orderDetails.order_items[0]?.product.shop.seller.contact}</p>
-                        </div>
-                    </div>
+                    <table className="pickup-location-table">
+                        <thead>
+                            <tr>
+                                <th>Shop Name</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Phone Number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {[...uniqueShops.values()].map((shop, index) => (
+                                <tr key={index}>
+                                    <td>{shop.name}</td>
+                                    <td>{shop.seller.email}</td>
+                                    <td>{shop.location}</td>
+                                    <td>{shop.contact}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
