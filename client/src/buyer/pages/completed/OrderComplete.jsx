@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import noOrdersImage from '../../../assets/norders.jpeg';
 import { NavLink } from 'react-router-dom';
+import Button from '@mui/material/Button';
 import "./orderComplete.css"
 
 const OrderCompleted = () => {
@@ -47,6 +48,19 @@ const OrderCompleted = () => {
     }, []);
 
     console.log("the orders", orders)
+
+    const getStatusClass = (status) => {
+        switch (status) {
+            case 'completed':
+                return 'completed';
+            case 'pending':
+                return 'pending';
+            case 'dispatched':
+                return 'dispatched';
+            default:
+                return 'default';
+        }
+    };
     
     
 
@@ -87,12 +101,13 @@ const OrderCompleted = () => {
                                     <div className="orderContainer" key={order.id}>
                                         <div className="orderContainer-top">
                                             <h4>Order Id: {order.id}</h4>
-                                            <button>Status</button>
+                                            {/* <button>{order.status}</button> */}
+                                            <Button className={`status-btn ${getStatusClass(order.status)}`}>{order.status}</Button>
                                         </div>
                                         <div className="orderContainer-bottom">
                                             <div className="bottom-left">
-                                                <p>Placed On: {order.created_at}</p>
-                                                <p>Total Price: {order.total_price}</p>
+                                                <p><span>Placed On:</span> {order.created_at}</p>
+                                                <p><span>Total Price:</span> {order.total_price}</p>
                                             </div>
                                             <div className="bottom-right">
                                                 <p>View Details</p>
