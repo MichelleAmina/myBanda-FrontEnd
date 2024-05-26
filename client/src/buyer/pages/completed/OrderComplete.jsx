@@ -106,7 +106,7 @@ const OrderCompleted = () => {
                                         </div>
                                         <div className="orderContainer-bottom">
                                             <div className="bottom-left">
-                                                <p><span>Placed On:</span> {order.created_at}</p>
+                                                <p><span>Placed On:</span> {order.created_at.substring(0,10)}</p>
                                                 <p><span>Total Price:</span> Ksh. {order.total_price}</p>
                                             </div>
                                             <div className="bottom-right">
