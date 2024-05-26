@@ -119,7 +119,7 @@
 }
 
 .status-btn.pending {
-    color: orange;
+    color: gray;
 }
 
 .status-btn.dispatched {
@@ -127,7 +127,7 @@
 }
 
 .status-btn.default {
-    color: gray;
+    color: orange;
 }
 
 .orderContainer-bottom{
