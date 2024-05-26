@@ -324,6 +324,7 @@ const FinalCheckout = () => {
                         ))}
                         
                         
+                        
                       </select>
                     </div>
                   </div>
@@ -358,7 +359,7 @@ const FinalCheckout = () => {
                             <div className="cart-summary-container">
                               <h5 className="cart-summary-title">Subtotal:</h5>
                               <h3 className="cart-summary-details">
-                                <span className="cart-product-price">$ {cart.cartTotalAmount}</span>
+                                <span className="cart-product-price">Ksh {cart.cartTotalAmount}</span>
                               </h3>
                             </div>
                             <div className="d-flex align-items-center mb-4">
@@ -371,7 +372,7 @@ const FinalCheckout = () => {
                             <div className="d-flex align-items-center">
                               <h5 className="cart-summary-title">Total</h5>
                               <h3 className="cart-summary-details">
-                                <span className="cart-product-price">$ {cart.cartTotalAmount + shippingFee}</span>
+                                <span className="cart-product-price">Ksh {cart.cartTotalAmount + shippingFee}</span>
                               </h3>
                             </div>
                           </div>
@@ -396,8 +397,8 @@ const FinalCheckout = () => {
                       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/1200px-MasterCard_Logo.svg.png" alt="MasterCard Logo" />
                     </div>
                     <div className="cht-radio-input">
-                      <input id="card" type="radio" name="payment" />
-                       Pay ${cart.cartTotalAmount + shippingFee} with credit card
+                      <input id="card" type="radio" name="payment" className='me-2'/>
+                       Pay Ksh.{cart.cartTotalAmount + shippingFee} with credit card
                     </div>
                   </label>
 
@@ -408,8 +409,8 @@ const FinalCheckout = () => {
                   >
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/M-PESA_LOGO-01.svg/2560px-M-PESA_LOGO-01.svg.png" alt="MPesa Logo" />
                     <div className="cht-radio-input">
-                      <input id="mpesa" type="radio" name="payment"/>
-                      Pay ${cart.cartTotalAmount + shippingFee} with MPesa
+                      <input id="mpesa" type="radio" name="payment" className='me-2'/>
+                      Pay Ksh.{cart.cartTotalAmount + shippingFee} with MPesa
                     </div>
                   </label>
                 </div>

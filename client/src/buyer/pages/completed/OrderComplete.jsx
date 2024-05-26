@@ -67,7 +67,45 @@ const OrderCompleted = () => {
                 </div>
             </div>
             ) : (
-                <div className='container-fluid pt-3'>Your orders will be displayed here.</div>
+                <div className='container-fluid pt-5 pb-5'>
+                    <div className="orderWrapper">
+                        <div className="orderTitle">
+                            <h4>You have 6 Previous Orders</h4> 
+                            <div className="orderTitle-Status">
+                                <ul>
+                                    <li>Completed</li>
+                                    <li>Pending</li>
+                                    <li>Dispatched</li>
+                                </ul>
+
+                            </div>
+                            
+                        </div>
+                        {
+                            orders.map((order) => {
+                                return(
+                                    <div className="orderContainer" key={order.id}>
+                                        <div className="orderContainer-top">
+                                            <h4>Order Id: {order.id}</h4>
+                                            <button>Status</button>
+                                        </div>
+                                        <div className="orderContainer-bottom">
+                                            <div className="bottom-left">
+                                                <p>Placed On: {order.created_at}</p>
+                                                <p>Total Price: {order.total_price}</p>
+                                            </div>
+                                            <div className="bottom-right">
+                                                <p>View Details</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                )
+                            })
+                        }
+                        
+                    </div>
+                </div>
             )}
         </div>
     );
