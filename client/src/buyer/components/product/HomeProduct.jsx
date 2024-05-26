@@ -40,6 +40,7 @@ function HomeProduct({ item }) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
         },
         body: JSON.stringify({
             product_id: id
