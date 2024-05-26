@@ -3,5 +3,6 @@
     "cloudinary": "^2.2.0",
     "react-bootstrap": "^2.10.2",
     "react-modal": "^3.16.1"
-  }
+  },
+  "proxy": "https://mybanda-backend-88l2.onrender.com"
 }

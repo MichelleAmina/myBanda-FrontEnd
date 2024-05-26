@@ -76,3 +76,32 @@
   height: auto;
   margin-right: 10px;
 }
+
+.logout-button {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.logout-button .old-sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  color: black;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  font-weight: normal;
+}
+
+.logout-button .old-sidebar-link:hover {
+  background-color: #ffed96;
+}
+
+.logout-button .old-link-icon {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.logout-button .old-link-name {
+  font-size: 14px;
+}

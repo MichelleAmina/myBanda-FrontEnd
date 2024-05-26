@@ -4,7 +4,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-
 body {
   margin: 0;
   padding: 0;
@@ -18,7 +17,7 @@ body {
 
 .sidebar-container-custorders {
   width: 240px;
-  background-color: #FFD700;
+  background-color: #ffd700;
   color: white;
   padding: 20px;
   position: fixed;
@@ -136,7 +135,7 @@ body {
 }
 
 .order-table-custorders th {
-  background-color: #FFD700;
+  background-color: #ffd700;
   color: white;
   font-weight: 500;
 }
@@ -150,17 +149,29 @@ body {
   font-weight: bold;
   border-radius: 5px;
   padding: 5px;
+  text-transform: capitalize; 
 }
 
 .order-status-custorders.delivered {
   color: green;
-  background-color: #e6ffe6;
+  background-color: rgba(230, 255, 230, 0.25); 
 }
 
 .order-status-custorders.pending {
   color: orange;
-  background-color: #fff2e6;
+  background-color: rgba(255, 242, 230, 0.25); 
 }
+
+.order-status-custorders.completed {
+  color: green;
+  background-color: rgba(230, 255, 230, 0.25); 
+}
+
+.order-status-custorders.assigned {
+  color: blue;
+  background-color: rgba(230, 242, 255, 0.25); 
+}
+
 .ordloader {
   position: absolute;
   top: 50%;
@@ -170,4 +181,17 @@ body {
 .clickable {
   cursor: pointer;
   color: #007bff; /* Blue color for clickable icons */
+}
+.custview-button {
+  background: linear-gradient(135deg, #003366, #66ccff);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.custview-button:hover {
+  background-color: #0056b3;
 }

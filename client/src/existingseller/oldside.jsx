@@ -12,6 +12,7 @@ import {
 import BandaLogo from "../assets/banda.png";
 import dashlogo from "../assets/dashboard.png";
 import "./oldside.css";
+import LogoutIcon from '@mui/icons-material/Logout'; // Import LogoutIcon
 
 function OldSidebar() {
   const location = useLocation();
@@ -92,17 +93,24 @@ function OldSidebar() {
           </Link>
         </li>
         <li>
-        <Link
-          to="/shopview/defaultSellerId" 
-          className={`old-sidebar-link ${
-            location.pathname === "/shopview/defaultSellerId" ? "active" : ""
-          }`}
-        >
-          <FontAwesomeIcon icon={faHome} className="old-link-icon" />
-          <span className="old-link-name">Shop</span>
-        </Link>
-      </li>      
+          <Link
+            to="/shopview/defaultSellerId" 
+            className={`old-sidebar-link ${
+              location.pathname === "/shopview/defaultSellerId" ? "active" : ""
+            }`}
+          >
+            <FontAwesomeIcon icon={faHome} className="old-link-icon" />
+            <span className="old-link-name">Shop</span>
+          </Link>
+        </li>
       </ul>
+      {/* Logout button */}
+      <div className="logout-button">
+        <Link to="/login" className="old-sidebar-link">
+          <LogoutIcon className="old-link-icon" />
+          <span className="old-link-name">Logout</span>
+        </Link>
+      </div>
     </div>
   );
 }

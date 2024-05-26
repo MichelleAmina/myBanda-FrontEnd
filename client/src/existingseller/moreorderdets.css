@@ -1,0 +1,82 @@
+.dashboard-container-moreorderdets {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .content-container-moreorderdets {
+    flex: 1;
+    padding: 20px;
+    margin-left: 240px;
+  }
+  
+  .header-moreorderdets {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .header-moreorderdets h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+  }
+  
+  .back-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .order-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .order-card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .order-card p {
+    margin: 5px 0;
+  }
+  
+  .status-options {
+    margin-top: 20px;
+  }
+  
+  .status-button {
+    background: none;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .status-button:hover {
+    opacity: 0.8;
+  }
+  
+  .delivered {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .pending {
+    background-color: #ffc107;
+    color: white;
+  }
+  

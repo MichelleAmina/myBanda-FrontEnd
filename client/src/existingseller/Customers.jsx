@@ -13,6 +13,7 @@ const Customers = () => {
   const [sortOrder, setSortOrder] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [sellerId, setSellerId] = useState('');
 
   useEffect(() => {
     fetchOrders();
@@ -20,9 +21,24 @@ const Customers = () => {
 
   const fetchOrders = () => {
     setLoading(true);
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      console.error('Authentication token not found.');
+      setLoading(false);
+      return;
+    }
+  
+    // Decode the token to get the user's ID
+    const tokenPayload = token.split('.')[1];
+    const decodedToken = JSON.parse(atob(tokenPayload));
+    const userId = decodedToken.sub;
+    setSellerId(userId); 
+    
+    console.log('Seller ID:', userId);
+  
     fetch('https://mybanda-backend-88l2.onrender.com/order', {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {

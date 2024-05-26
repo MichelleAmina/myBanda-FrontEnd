@@ -19,6 +19,7 @@ import BuyerAbout from './buyer/pages/about/BuyerAbout';
 import Listing from './buyer/pages/listing/Listing';
 import ProductDetails from './buyer/components/details/ProductDetails';
 import BuyersCart from './buyer/pages/carts/BuyersCart';
+
 // import OrderProduct from './buyer/pages/order/Order';
 // import CheckoutForm from './buyer/pages/order/Order'
 import OrderCompleted from './buyer/pages/completed/OrderComplete';
@@ -45,6 +46,9 @@ import AddProduct from "./newseller/addproduct";
 import ProductHome from "./existingseller/producthome";
 import OldSellerDash from "./existingseller/oldsellerdash";
 import ShopView from "./existingseller/shopview"; 
+import MoreOrderDetails from './existingseller/MoreOrderDetails';
+
+
 
 function App() {
   return (
@@ -97,6 +101,8 @@ function App() {
         <Route path="/producthome" element={<ProductHome />} />
         <Route path="/oldsellerdash" element={<OldSellerDash />} />
         <Route path="/shopview/:sellerId" element={<ShopView />} /> 
+        <Route path="/moreorderdets/:orderId" element={<MoreOrderDetails />} />
+
       </Routes>
     </div>
   );

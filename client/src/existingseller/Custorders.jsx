@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faBell, faUser, faFilter, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
-import { Dropdown } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { faSearch, faBell, faUser, faFilter } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './custorders.css';
 import OldSidebar from './oldside';
 
@@ -15,8 +15,8 @@ const CustOrders = () => {
   const [sortOrder, setSortOrder] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [dropdownVisible, setDropdownVisible] = useState(false);
-  const [selectedOrderId, setSelectedOrderId] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchOrders();
@@ -24,9 +24,23 @@ const CustOrders = () => {
 
   const fetchOrders = () => {
     setLoading(true);
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      console.error('Authentication token not found.');
+      setLoading(false);
+      return;
+    }
+  
+    // Decode the token to get the user's ID
+    const tokenPayload = token.split('.')[1];
+    const decodedToken = JSON.parse(atob(tokenPayload));
+    const userId = decodedToken.sub;
+  
+    console.log('Seller ID:', userId);
+  
     fetch('https://mybanda-backend-88l2.onrender.com/order', {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
@@ -36,13 +50,10 @@ const CustOrders = () => {
         return response.json();
       })
       .then((data) => {
-        // Generate random IDs for each order
-        const ordersWithRandomIds = data.map((order, index) => ({
-          ...order,
-          id: index + 1, 
-        }));
-        setOrders(ordersWithRandomIds);
-        setFilteredOrders(ordersWithRandomIds);
+        // Filtering orders based on the seller's shop ID
+        const sellerShopId = data.find(order => order.seller_id === userId)?.shop_id;
+        const sellerOrders = (data || []).filter(order => order.shop_id === sellerShopId);
+        setOrders(sellerOrders);
         setLoading(false);
       })
       .catch((error) => {
@@ -73,40 +84,13 @@ const CustOrders = () => {
     setFilteredOrders(sortedOrders);
   };
 
-  const handleChangeStatus = async (orderId, status) => {
-    setLoading(true);
+  const handleViewOrder = (orderId) => {
     try {
-      const response = await fetch(`https://mybanda-backend-88l2.onrender.com/order/${orderId}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-        },
-        body: JSON.stringify({ status }),
-      });
-      if (response.ok) {
-        const updatedOrder = await response.json();
-        const updatedOrders = filteredOrders.map((order) => (order.id === updatedOrder.id ? updatedOrder : order));
-        setFilteredOrders(updatedOrders);
-        toast(`Order status changed to ${status}`, { type: 'success' });
-      } else {
-        console.error('Failed to update order status:', response.statusText);
-      }
+      navigate(`/moreorderdets/${orderId}`);
     } catch (error) {
-      console.error('Error updating order status:', error);
-    } finally {
-      setLoading(false);
+      console.error('Error navigating to order details:', error);
+      setError(error);
     }
-  };
-
-  const handleDropdownToggle = (orderId) => {
-    setSelectedOrderId(orderId);
-    setDropdownVisible(!dropdownVisible);
-  };
-
-  const handleDropdownSelect = (status) => {
-    handleChangeStatus(selectedOrderId, status);
-    setDropdownVisible(false);
   };
 
   const dataToMap = searchTerm || sortOrder ? filteredOrders : orders;
@@ -168,27 +152,25 @@ const CustOrders = () => {
                   <td>{order.order_items[0].product.name}</td>
                   <td>{order.delivery_address}</td>
                   <td>{order.created_at.substring(0, 10)}</td>
-                  <td>{order.total_price}</td>
+                  <td>Ksh. {order.total_price}</td>
                   <td className={`order-status-custorders ${order.status.toLowerCase()}`}>
-                    {order.status}
-                  </td>
+                  {order.status}
+                </td>
+                
                   <td>
-                    <FontAwesomeIcon
-                      icon={faEllipsisV}
-                      className="clickable"
-                      onClick={() => handleDropdownToggle(order.id)}
-                    />
-                    {dropdownVisible && selectedOrderId === order.id && (
-                      <Dropdown.Menu>
-                        <Dropdown.Item onClick={() => handleDropdownSelect('completed')}>Completed</Dropdown.Item>
-                        <Dropdown.Item onClick={() => handleDropdownSelect('assigned')}>Assigned</Dropdown.Item>
-                      </Dropdown.Menu>
-                    )}
+                    <button 
+                      className="custview-button"
+                      onClick={() => {
+                        console.log('Clicked VIEW button for order:', order.id);
+                        handleViewOrder(order.id);
+                      }} 
+                    >
+                      VIEW
+                    </button>
                   </td>
                 </tr>
               ))}
-           
-              </tbody>
+            </tbody>
           </table>
         )}
       </div>
