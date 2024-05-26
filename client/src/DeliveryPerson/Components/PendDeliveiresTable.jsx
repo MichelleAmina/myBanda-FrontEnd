@@ -9,6 +9,7 @@ const PendDeliveriesTable = () => {
         { id: 'buyerLocation', label: 'Buyer Location' },
         { id: 'shop', label: 'Shop' },
         { id: 'shopLocation', label: 'Shop Location' },
+        { id: 'status', label: 'Status' },
         { id: 'action', label: 'Action' }
     ];
 
@@ -26,6 +27,14 @@ const PendDeliveriesTable = () => {
             setLoading(false);
             return;
         }
+    
+        //decode the token to get the user's ID
+        const tokenPayload = token.split('.')[1]; 
+        const decodedToken = JSON.parse(atob(tokenPayload)); 
+        const deliveryPersonId = decodedToken.sub; 
+    
+        console.log('Delivery Person ID:', deliveryPersonId);
+    
 
         fetch('https://mybanda-backend-88l2.onrender.com/order', {
             headers: {
@@ -39,8 +48,9 @@ const PendDeliveriesTable = () => {
             return response.json();
         })
         .then(data => {
-            const relevantOrders = (data || []).filter(order => ['assigned', 'dispatched'].includes(order.status));
-            setOrders(relevantOrders);
+            // Filter orders based on delivery person's ID and status
+            const deliveryPersonOrders = (data || []).filter(order => order.delivery_id === deliveryPersonId && ['assigned', 'dispatched'].includes(order.status));
+            setOrders(deliveryPersonOrders);
             setLoading(false);
         })
         .catch(error => {
@@ -49,6 +59,7 @@ const PendDeliveriesTable = () => {
             setLoading(false);
         });
     }, []);
+    
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -89,12 +100,13 @@ const PendDeliveriesTable = () => {
                                 .map((order, index) => (
                                     <TableRow key={index}>
                                         <TableCell>{order.buyer.username}</TableCell>
-                                        <TableCell>{order.buyer.location}</TableCell>
+                                        <TableCell>{order.delivery_address}</TableCell>
                                         <TableCell>{order.order_items[0]?.product.shop.name || 'N/A'}</TableCell>
                                         <TableCell>{order.order_items[0]?.product.shop.location || 'N/A'}</TableCell>
+                                        <TableCell>{order.status}</TableCell>
                                         <TableCell>
                                             <Link to={`/viewDetails/${order.id}`}>
-                                                <Button >View</Button>
+                                                <Button style={{ backgroundColor: '#ffed96', color: 'black' }}>View</Button>
                                             </Link>
                                         </TableCell>
                                     </TableRow>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import noOrdersImage from '../../../assets/norders.jpeg';
 import { NavLink } from 'react-router-dom';
+import Button from '@mui/material/Button';
 import "./orderComplete.css"
 
 const OrderCompleted = () => {
@@ -47,6 +48,19 @@ const OrderCompleted = () => {
     }, []);
 
     console.log("the orders", orders)
+
+    const getStatusClass = (status) => {
+        switch (status) {
+            case 'completed':
+                return 'completed';
+            case 'pending':
+                return 'pending';
+            case 'dispatched':
+                return 'dispatched';
+            default:
+                return 'default';
+        }
+    };
     
     
 
@@ -67,7 +81,46 @@ const OrderCompleted = () => {
                 </div>
             </div>
             ) : (
-                <div className='container-fluid pt-3'>Your orders will be displayed here.</div>
+                <div className='container-fluid pt-5 pb-5'>
+                    <div className="orderWrapper">
+                        <div className="orderTitle">
+                            <h4>You have 6 Previous Orders</h4> 
+                            <div className="orderTitle-Status">
+                                <ul>
+                                    <li>Completed</li>
+                                    <li>Pending</li>
+                                    <li>Dispatched</li>
+                                </ul>
+
+                            </div>
+                            
+                        </div>
+                        {
+                            orders.map((order) => {
+                                return(
+                                    <div className="orderContainer" key={order.id}>
+                                        <div className="orderContainer-top">
+                                            <h4>Order Id: {order.id}</h4>
+                                            {/* <button>{order.status}</button> */}
+                                            <Button className={`status-btn ${getStatusClass(order.status)}`}>{order.status}</Button>
+                                        </div>
+                                        <div className="orderContainer-bottom">
+                                            <div className="bottom-left">
+                                                <p><span>Placed On:</span> {order.created_at}</p>
+                                                <p><span>Total Price:</span> {order.total_price}</p>
+                                            </div>
+                                            <div className="bottom-right">
+                                                <p>View Details</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                )
+                            })
+                        }
+                        
+                    </div>
+                </div>
             )}
         </div>
     );

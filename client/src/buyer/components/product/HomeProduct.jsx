@@ -6,6 +6,8 @@ import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import Tooltip from '@mui/material/Tooltip';
 
+import { toast } from 'react-toastify';
+
 import './homeProduct.css';
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from 'react';
@@ -38,6 +40,7 @@ function HomeProduct({ item }) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
         },
         body: JSON.stringify({
             product_id: id
@@ -46,6 +49,8 @@ function HomeProduct({ item }) {
         .then((r) => console.log(r))
         // .then(setDeleted(updateDelete))
     }
+
+    
 
     return (
         <div className='productContainer'>

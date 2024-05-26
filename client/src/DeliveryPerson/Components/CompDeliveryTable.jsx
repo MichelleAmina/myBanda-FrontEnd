@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 const CompDeliveriesTable = () => {
     const columns = [
-        // { id: 'id', label: 'ID' },
-        { id: 'deliveryLocation', label: 'Delivery Location' },
-        { id: 'deliveryDate', label: 'Delivery Date' },
+        { id: 'id', label: 'ID' },
+        // { id: 'deliveryLocation', label: 'Delivery Location' },
+        { id: 'delivery_address', label: 'Delivery Address' },
         { id: 'earnings', label: 'Earnings' },
         { id: 'status', label: 'Status' },
         { id: 'action', label: 'Action', renderCell: (order) => (            
@@ -31,6 +31,13 @@ const CompDeliveriesTable = () => {
             setLoading(false);
             return;
         }
+    
+        // decode the token to get the user's ID
+        const tokenPayload = token.split('.')[1]; 
+        const decodedToken = JSON.parse(atob(tokenPayload)); 
+        const deliveryPersonId = decodedToken.sub; 
+    
+        console.log('Delivery Person ID:', deliveryPersonId);
 
         fetch('https://mybanda-backend-88l2.onrender.com/order', {
             headers: {
@@ -44,7 +51,7 @@ const CompDeliveriesTable = () => {
             return response.json();
         })
         .then(data => {
-            const completedOrders = (data || []).filter(order => order.status === 'completed');
+            const completedOrders = (data || []).filter(order => order.delivery_id === deliveryPersonId && order.status === 'completed');
             setOrders(completedOrders);
             setLoading(false);
         })
@@ -93,10 +100,11 @@ const CompDeliveriesTable = () => {
                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                     .map((order, index) => (
                                         <TableRow key={index}>
-                                            <TableCell>{order.buyer.username}</TableCell>
-                                            <TableCell>{order.buyer.location}</TableCell>
-                                            <TableCell>{order.order_items[0]?.product.shop.name || 'N/A'}</TableCell>
-                                            <TableCell>{order.order_items[0]?.product.shop.location || 'N/A'}</TableCell>
+                                            <TableCell>{order.order_items[0]?.order_id}</TableCell>
+                                            {/* <TableCell>{order.buyer.username}</TableCell> */}
+                                            <TableCell>{order.delivery_address}</TableCell>
+                                            <TableCell>{order.delivery_fee}</TableCell>
+                                            <TableCell>{order.status}</TableCell>
                                             <TableCell>
                                                 <Link to={`/viewDetails/${order.id}`}>
                                                     <Button style={{ backgroundColor: '#ffed96', color: 'black' }}>View</Button>
