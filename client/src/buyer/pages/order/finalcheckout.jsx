@@ -23,7 +23,7 @@ const FinalCheckout = () => {
   });
 
   const cart = useSelector((state) => state.cart);  
-  //console.log("these are the items in the cart",cart)
+  console.log("these are the items in the cart",cart)
   const shippingFee = 50;  
 
   useEffect(() => {

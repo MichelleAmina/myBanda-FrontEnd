@@ -65,7 +65,11 @@ const OrderCompleted = () => {
     
 
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+            <div className="loader">
+                <img src="https://i.pinimg.com/originals/c1/bc/d8/c1bcd8a8c945b53da6b29f10a2a553c0.gif" alt="Loading..." />
+            </div>
+        );
     }
 
     return (
@@ -81,7 +85,7 @@ const OrderCompleted = () => {
                 </div>
             </div>
             ) : (
-                <div className='container-fluid pt-5 pb-5'>
+                <div className='container-fluid pt-4 pb-5'>
                     <div className="orderWrapper">
                         <div className="orderTitle">
                             <h4>You have 6 Previous Orders</h4> 
@@ -106,11 +110,11 @@ const OrderCompleted = () => {
                                         </div>
                                         <div className="orderContainer-bottom">
                                             <div className="bottom-left">
-                                                <p><span>Placed On:</span> {order.created_at}</p>
-                                                <p><span>Total Price:</span> {order.total_price}</p>
+                                                <p><span>Placed On:</span> {order.created_at.substring(0,10)}</p>
+                                                <p><span>Total Price:</span> Ksh. {order.total_price}</p>
                                             </div>
                                             <div className="bottom-right">
-                                                <p>View Details</p>
+                                                <NavLink to={`/my_banda/orders/${order.id}`}><p>View Details</p></NavLink>
                                             </div>
                                         </div>
                                     </div>
@@ -127,3 +131,5 @@ const OrderCompleted = () => {
 }
 
 export default OrderCompleted;
+
+

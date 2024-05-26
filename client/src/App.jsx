@@ -23,6 +23,7 @@ import BuyersCart from './buyer/pages/carts/BuyersCart';
 // import OrderProduct from './buyer/pages/order/Order';
 // import CheckoutForm from './buyer/pages/order/Order'
 import OrderCompleted from './buyer/pages/completed/OrderComplete';
+import OrderItems from "./buyer/pages/orderItems/OrderItems";
 import Vendors from './buyer/pages/vendors/Vendors';
 import Wishlist from './buyer/pages/wishlist/Wishlist';
 import FinalCheckout from "./buyer/pages/order/finalcheckout";
@@ -58,25 +59,35 @@ function App() {
         <Route path="/login" element={<Login />} />
         {/* buyer pages */}
         <Route path="/my_banda" element={<Buyer />}>
+
           <Route path="products">
             <Route index element={<Listing />}></Route>
             <Route path=":productId" element={<ProductDetails />}></Route>
           </Route>
+          
           <Route path='cart' element={<BuyersCart />}></Route>
           <Route path="finalcheckout" element={<FinalCheckout />} />
-          {/* Remove ndanus checkour */}
-          {/* <Route path='checkout' element={<CheckoutForm />}></Route> */}
-          <Route path='orders' element={<OrderCompleted />}></Route>
+          
+          <Route path='orders'>
+            <Route index element={<OrderCompleted />} ></Route>
+            <Route path=":orderId" element={<OrderItems/>}></Route>
+          </Route>
+
           <Route path='vendors/:sellerId' element={<Vendors />}></Route>
           <Route path='wishlist' element={<Wishlist />}></Route>
         </Route>
         
+
+
+
+
         {/*Banda Admin routes start here*/}
         <Route path="/banda_admin" element={<Admin />}>
           <Route path="customers" element={<AdminCustomer />}></Route>
           <Route path="delivery" element={<AdminDelivery />}></Route>
           <Route path="shops">
             <Route index element={<List />}></Route>
+            <Route path=":sellerId" element={<Single/>}></Route>
           </Route>
         </Route>
 
