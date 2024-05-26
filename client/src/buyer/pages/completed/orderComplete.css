@@ -116,10 +116,12 @@
 
 .status-btn.completed {
     color: green;
+    background: rgb(216, 255, 216);
 }
 
 .status-btn.pending {
-    color: gray;
+    color: rgb(80, 79, 79);
+    background: lightgray;
 }
 
 .status-btn.dispatched {
@@ -128,6 +130,7 @@
 
 .status-btn.default {
     color: orange;
+    background: rgb(251, 230, 191);
 }
 
 .orderContainer-bottom{
@@ -148,4 +151,15 @@
 
 .orderContainer-bottom .bottom-right{
     margin-top: 40px;
+}
+
+.orderContainer-bottom .bottom-right a{
+    text-decoration: none;
+    color: #000;
+    opacity: 0.5;
+}
+
+.orderContainer-bottom .bottom-right a:hover{
+    color: #000;
+    opacity: 1;
 }

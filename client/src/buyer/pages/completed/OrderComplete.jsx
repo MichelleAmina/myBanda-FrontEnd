@@ -65,7 +65,11 @@ const OrderCompleted = () => {
     
 
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+            <div className="loader">
+                <img src="https://i.pinimg.com/originals/c1/bc/d8/c1bcd8a8c945b53da6b29f10a2a553c0.gif" alt="Loading..." />
+            </div>
+        );
     }
 
     return (
@@ -110,7 +114,7 @@ const OrderCompleted = () => {
                                                 <p><span>Total Price:</span> Ksh. {order.total_price}</p>
                                             </div>
                                             <div className="bottom-right">
-                                                <p>View Details</p>
+                                                <NavLink to={`/my_banda/orders/${order.id}`}><p>View Details</p></NavLink>
                                             </div>
                                         </div>
                                     </div>
@@ -127,3 +131,5 @@ const OrderCompleted = () => {
 }
 
 export default OrderCompleted;
+
+
