@@ -56,6 +56,21 @@ function ProductDetails(){
     }, [product, productId]);
 
 
+    const handleAddToWishlist = (id) => {
+        fetch("https://mybanda-backend-88l2.onrender.com/like", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        },
+        body: JSON.stringify({
+            product_id: id
+        }),
+        })
+        .then((r) => console.log(r))
+    }
+
+
 
     if (!product) {
         return <div>Loading...</div>;
@@ -212,7 +227,7 @@ function ProductDetails(){
 
                     <Button className='addToCartBtn' onClick={()=> handleAddToCart(product)}>
                         <ShoppingCartOutlinedIcon/>Add to Cart</Button>
-                    <Button className='favoriteBtn ms-4'><FavoriteBorderOutlinedIcon/></Button>
+                    <Button className='favoriteBtn ms-4' onClick={()=> handleAddToWishlist(productId)}><FavoriteBorderOutlinedIcon/></Button>
 
                 </div>
 
