@@ -6,15 +6,15 @@ import { Link } from 'react-router-dom';
 const CompDeliveriesTable = () => {
     const columns = [
         { id: 'id', label: 'ID' },
-        // { id: 'deliveryLocation', label: 'Delivery Location' },
+        { id: 'deliveryDate', label: 'Delivery Date' },
         { id: 'delivery_address', label: 'Delivery Address' },
-        { id: 'earnings', label: 'Earnings' },
+        { id: 'earnings', label: 'Earnings(Ksh)' },
         { id: 'status', label: 'Status' },
-        { id: 'action', label: 'Action', renderCell: (order) => (            
-                <Button className='table-button' style={{ color: '#334eac', borderRadius: "10px", fontWeight: 'bold', padding: '2px' }}>
-                    View
-                </Button>
-        )}
+        // { id: 'action', label: 'Action', renderCell: (order) => (            
+        //         <Button className='table-button' style={{ color: '#334eac', borderRadius: "10px", fontWeight: 'bold', padding: '2px' }}>
+        //             View
+        //         </Button>
+        // )}
     ];
 
     const [orders, setOrders] = useState([]);
@@ -71,6 +71,8 @@ const CompDeliveriesTable = () => {
         setPage(0);
     };
 
+    const statusStyle = { color: 'green'};
+
     if (loading) {
         return (
             <div className='driverLoader'>
@@ -102,14 +104,15 @@ const CompDeliveriesTable = () => {
                                         <TableRow key={index}>
                                             <TableCell>{order.order_items[0]?.order_id}</TableCell>
                                             {/* <TableCell>{order.buyer.username}</TableCell> */}
+                                            <TableCell>N/A</TableCell>
                                             <TableCell>{order.delivery_address}</TableCell>
                                             <TableCell>{order.delivery_fee}</TableCell>
-                                            <TableCell>{order.status}</TableCell>
-                                            <TableCell>
+                                            <TableCell style={statusStyle}>{order.status}</TableCell>
+                                            {/* <TableCell>
                                                 <Link to={`/viewDetails/${order.id}`}>
                                                     <Button style={{ backgroundColor: '#ffed96', color: 'black' }}>View</Button>
                                                 </Link>
-                                            </TableCell>
+                                            </TableCell> */}
                                         </TableRow>
                                 ))}
                         </TableBody>
