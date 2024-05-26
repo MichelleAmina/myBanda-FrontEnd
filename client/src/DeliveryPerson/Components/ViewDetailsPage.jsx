@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './viewDetails.css';
+import { toast } from 'react-toastify';
+import { NavLink } from 'react-router-dom';
+
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const ViewDetailsPage = () => {
     const { orderId } = useParams();
@@ -56,6 +60,9 @@ const ViewDetailsPage = () => {
             return response.json();
         })
         .then(data => {
+            toast.info("You have been completed the delivery.", {
+                position: "top-center",
+            })
             setOrderDetails(data);
         })
         .catch(error => {
@@ -83,6 +90,10 @@ const ViewDetailsPage = () => {
         <div className="details-container">
             <div className="details-row1">
                 <div className="section-container">
+                    <NavLink to="/pendingDeliveries">
+                        <button className='backto-table'><ArrowBackIcon />Back</button>
+                    </NavLink>
+                    
                     <h2 className="order-id">Order ID: {orderDetails.id}</h2>
                 </div>
                 <div className="section-button-container">
@@ -98,6 +109,7 @@ const ViewDetailsPage = () => {
                             <tr>
                                 <th className='dev-details-heading'>Product</th>
                                 <th className='dev-details-heading'>Quantity</th>
+                                <th className='dev-details-heading'>Shop</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -105,6 +117,7 @@ const ViewDetailsPage = () => {
                                 <tr key={index}>
                                     <td>{item.product.name}</td>
                                     <td>{item.quantity}</td>
+                                    <td>{item.product.shop.name}</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -126,11 +139,11 @@ const ViewDetailsPage = () => {
                         </div>
                         <div>
                             <p className="order-dets-label">Delivery Address:</p>
-                            <p className="order-dets-text">{orderDetails.buyer.location}</p>
+                            <p className="order-dets-text">{orderDetails.delivery_address}</p>
                         </div>
                         <div>
                             <p className="order-dets-label">Phone Number:</p>
-                            <p className="order-dets-text">{orderDetails.buyer.phone_number}</p>
+                            <p className="order-dets-text">{orderDetails.contact}</p>
                         </div>
                     </div>
                 </div>
@@ -138,15 +151,23 @@ const ViewDetailsPage = () => {
             <hr />
             <div className="details-row">
                 <div className="section-container">
-                    <h3>Shop Details</h3>
+                    <h3>Pickup Location</h3>
                     <div className="details-grid">
                         <div>
-                            <p className="order-dets-label">Shop Name:</p>
+                            <p className="order-dets-label">Name:</p>
                             <p className="order-dets-text">{orderDetails.order_items[0]?.product.shop.name || 'N/A'}</p>
                         </div>
                         <div>
-                            <p className="order-dets-label">Shop Address:</p>
+                            <p className="order-dets-label">Email:</p>
+                            <p className="order-dets-text">{orderDetails.order_items[0]?.product.shop.seller.email}</p>
+                        </div>
+                        <div>
+                            <p className="order-dets-label">Address:</p>
                             <p className="order-dets-text">{orderDetails.order_items[0]?.product.shop.location || 'N/A'}</p>
+                        </div>
+                        <div>
+                            <p className="order-dets-label">Phone Number:</p>
+                            <p className="order-dets-text">{orderDetails.order_items[0]?.product.shop.seller.contact}</p>
                         </div>
                     </div>
                 </div>

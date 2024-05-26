@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, TextField } from '@mui/material';
+import { toast } from 'react-toastify';
+
 
 const AvailableOrders = () => {
     const [orders, setOrders] = useState([]);
@@ -12,9 +14,22 @@ const AvailableOrders = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+            console.error('Authentication token not found.');
+            return;
+        }
+    
+        // decode the token to get the user's ID
+        const tokenPayload = token.split('.')[1]; 
+        const decodedToken = JSON.parse(atob(tokenPayload)); 
+        const id = decodedToken.sub; 
+    
+        console.log('User ID:', id);
+
         fetch('https://mybanda-backend-88l2.onrender.com/order', {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                Authorization: `Bearer ${token}`,
             },
         })
         .then(response => {
@@ -24,8 +39,9 @@ const AvailableOrders = () => {
             return response.json();
         })
         .then(data => {
-            const pendingOrders = (data || []).filter(order => order.status === 'pending');
-
+            const pendingOrders = (data || []).filter(order => order.delivery_id === id && order.status === 'pending');
+            console.log('Pending orders:', pendingOrders);
+    
             setOrders(pendingOrders);
             setFilteredOrders(pendingOrders);
             setLoading(false);
@@ -35,7 +51,7 @@ const AvailableOrders = () => {
             setError(error);
             setLoading(false);
         });
-    }, []); 
+    }, []);
     
 
 
@@ -92,6 +108,9 @@ const AvailableOrders = () => {
     
 
             if (response.ok) {
+                toast.info("You have been assigned the order.", {
+                    position: "top-center",
+                })
                 console.log('Order status updated successfully.');
                 setOrders(prevOrders => prevOrders.filter(order => order.id !== id));
                 setFilteredOrders(prevOrders => prevOrders.filter(order => order.id !== id));
@@ -126,11 +145,11 @@ const AvailableOrders = () => {
                             {filteredOrders.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((order, index) => (
                                 <TableRow key={index}>
                                     <TableCell>{order.buyer.username}</TableCell>
-                                    <TableCell>{order.buyer.location}</TableCell>
+                                    <TableCell>{order.delivery_address}</TableCell>
                                     <TableCell>{order.order_items[0]?.product.shop.name || 'N/A'}</TableCell>
                                     <TableCell>{order.order_items[0]?.product.shop.location || 'N/A'}</TableCell>
                                     <TableCell>
-                                        <Button className='accept-button' onClick={() => handleAcceptOrder(order.id)}>Accept</Button>
+                                        <Button onClick={() => handleAcceptOrder(order.id)} style={{ backgroundColor: 'rgb(194, 251, 194)', color: 'darkgreen' }}>Accept</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}

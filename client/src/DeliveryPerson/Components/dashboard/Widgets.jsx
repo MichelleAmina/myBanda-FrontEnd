@@ -20,6 +20,12 @@ const Widget = ({ type }) => {
             setLoading(false);
             return;
         }
+        // decode the token to get the user's ID
+        const tokenPayload = token.split('.')[1]; 
+        const decodedToken = JSON.parse(atob(tokenPayload)); 
+        const id = decodedToken.sub; 
+    
+        console.log('User ID:', id);
 
         fetch('https://mybanda-backend-88l2.onrender.com/order', {
             headers: {
@@ -34,13 +40,13 @@ const Widget = ({ type }) => {
         })
         .then(data => {
             if (type === "Available deliveries") {
-                const availableCount = (data || []).filter(order => order.status === 'pending').length;
+                const availableCount = (data || []).filter(order => order.delivery_id === id && order.status === 'pending').length;
                 setCount(availableCount);
             } else if (type === "Completed deliveries") {
-                const completedCount = (data || []).filter(order => order.status === 'completed').length;
+                const completedCount = (data || []).filter(order => order.delivery_id === id && order.status === 'completed').length;
                 setCount(completedCount);
             } else if (type === "Pending deliveries") {
-                const pendingCount = (data || []).filter(order => order.status === 'assigned', 'dispatched').length;
+                const pendingCount = (data || []).filter(order => order.delivery_id === id && ['assigned', 'dispatched'].includes(order.status)).length;
                 setCount(pendingCount);
             }
             setLoading(false);
