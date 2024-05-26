@@ -129,9 +129,12 @@
     color: blue;
 }
 
-.status-btn.default {
+.status-btn.assigned {
     color: orange;
     background: rgb(251, 230, 191);
+}
+.status-btn.default{
+    color: #000;
 }
 
 .orderContainer-bottom{

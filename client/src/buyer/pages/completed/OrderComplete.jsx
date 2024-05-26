@@ -57,6 +57,8 @@ const OrderCompleted = () => {
                 return 'pending';
             case 'dispatched':
                 return 'dispatched';
+            case 'assigned':
+                return 'assigned';
             default:
                 return 'default';
         }
