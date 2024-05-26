@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 const CompDeliveriesTable = () => {
     const columns = [
-        // { id: 'id', label: 'ID' },
-        { id: 'deliveryLocation', label: 'Delivery Location' },
-        { id: 'deliveryDate', label: 'Delivery Date' },
+        { id: 'id', label: 'ID' },
+        // { id: 'deliveryLocation', label: 'Delivery Location' },
+        { id: 'delivery_address', label: 'Delivery Address' },
         { id: 'earnings', label: 'Earnings' },
         { id: 'status', label: 'Status' },
         { id: 'action', label: 'Action', renderCell: (order) => (            
@@ -100,10 +100,11 @@ const CompDeliveriesTable = () => {
                                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                     .map((order, index) => (
                                         <TableRow key={index}>
-                                            <TableCell>{order.buyer.username}</TableCell>
+                                            <TableCell>{order.order_items[0]?.order_id}</TableCell>
+                                            {/* <TableCell>{order.buyer.username}</TableCell> */}
                                             <TableCell>{order.delivery_address}</TableCell>
                                             <TableCell>{order.delivery_fee}</TableCell>
-                                            <TableCell>{order.order_items[0]?.product.shop.location || 'N/A'}</TableCell>
+                                            <TableCell>{order.status}</TableCell>
                                             <TableCell>
                                                 <Link to={`/viewDetails/${order.id}`}>
                                                     <Button style={{ backgroundColor: '#ffed96', color: 'black' }}>View</Button>
