@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTotals } from '../../../redux/cartSlice';
+import { getTotals, clearCart } from '../../../redux/cartSlice';
 import './finalcheckout.css';
 
 const FinalCheckout = () => {
@@ -65,24 +65,22 @@ const FinalCheckout = () => {
       
       })
 
-      if(res.ok){
+      if (res.ok) {
         setSuccess(true);
         setShowGif(true);
-        console.log("Success")
-      }
-      else{
+        dispatch(clearCart()); // Clear the cart
+        console.log("Success");
+      } else {
         const errorData = await res.json();
         setError("Error placing order in else statement: " + errorData.message);
         setSuccess(null);
         console.error('Error placing order:', errorData);
-      
       }
-    }
-    catch (error) {
+    } catch (error) {
       setError("Error placing order in catch error: " + error.message);
       setSuccess(null);
       console.error('Error:', error);
-    }finally {
+    } finally {
       setLoading(false);
     }
 

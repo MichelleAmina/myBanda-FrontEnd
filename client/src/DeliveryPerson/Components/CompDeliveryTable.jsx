@@ -31,6 +31,13 @@ const CompDeliveriesTable = () => {
             setLoading(false);
             return;
         }
+    
+        // decode the token to get the user's ID
+        const tokenPayload = token.split('.')[1]; 
+        const decodedToken = JSON.parse(atob(tokenPayload)); 
+        const deliveryPersonId = decodedToken.sub; 
+    
+        console.log('Delivery Person ID:', deliveryPersonId);
 
         fetch('https://mybanda-backend-88l2.onrender.com/order', {
             headers: {
@@ -44,7 +51,7 @@ const CompDeliveriesTable = () => {
             return response.json();
         })
         .then(data => {
-            const completedOrders = (data || []).filter(order => order.status === 'completed');
+            const completedOrders = (data || []).filter(order => order.delivery_id === deliveryPersonId && order.status === 'completed');
             setOrders(completedOrders);
             setLoading(false);
         })
@@ -94,8 +101,8 @@ const CompDeliveriesTable = () => {
                                     .map((order, index) => (
                                         <TableRow key={index}>
                                             <TableCell>{order.buyer.username}</TableCell>
-                                            <TableCell>{order.buyer.location}</TableCell>
-                                            <TableCell>{order.order_items[0]?.product.shop.name || 'N/A'}</TableCell>
+                                            <TableCell>{order.delivery_address}</TableCell>
+                                            <TableCell>{order.delivery_fee}</TableCell>
                                             <TableCell>{order.order_items[0]?.product.shop.location || 'N/A'}</TableCell>
                                             <TableCell>
                                                 <Link to={`/viewDetails/${order.id}`}>
