@@ -85,7 +85,7 @@ function Login(){
                 } else if (role === 'seller'){
                     navigate('/sellerdash')
                 } else if (role === 'delivery'){
-                    navigate('/driverhomepage')
+                    navigate('/driverAnalytics')
                 } else{
                     console.log("Message after all roles")
                     //navigate('/banda_admin')

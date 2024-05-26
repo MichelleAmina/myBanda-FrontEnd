@@ -7,7 +7,7 @@ const PendDeliveriesTable = () => {
     const columns = [
         { id: 'buyer', label: 'Buyer' },
         { id: 'buyerLocation', label: 'Buyer Location' },
-        { id: 'shop', label: 'Shop' },
+        // { id: 'shop', label: 'Shop' },
         { id: 'shopLocation', label: 'Shop Location' },
         { id: 'status', label: 'Status' },
         { id: 'action', label: 'Action' }
@@ -59,7 +59,6 @@ const PendDeliveriesTable = () => {
             setLoading(false);
         });
     }, []);
-    
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -68,6 +67,17 @@ const PendDeliveriesTable = () => {
     const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
+    };
+
+    const getStatusStyle = (status) => {
+        switch (status) {
+            case 'assigned':
+                return { color: 'darkorange' };
+            case 'dispatched':
+                return { color: 'darkblue' };
+            default:
+                return {};
+        }
     };
 
     if (loading) {
@@ -101,9 +111,9 @@ const PendDeliveriesTable = () => {
                                     <TableRow key={index}>
                                         <TableCell>{order.buyer.username}</TableCell>
                                         <TableCell>{order.delivery_address}</TableCell>
-                                        <TableCell>{order.order_items[0]?.product.shop.name || 'N/A'}</TableCell>
+                                        {/* <TableCell>{order.order_items[0]?.product.shop.name || 'N/A'}</TableCell> */}
                                         <TableCell>{order.order_items[0]?.product.shop.location || 'N/A'}</TableCell>
-                                        <TableCell>{order.status}</TableCell>
+                                        <TableCell style={getStatusStyle(order.status)}>{order.status}</TableCell>
                                         <TableCell>
                                             <Link to={`/viewDetails/${order.id}`}>
                                                 <Button style={{ backgroundColor: '#ffed96', color: 'black' }}>View</Button>
