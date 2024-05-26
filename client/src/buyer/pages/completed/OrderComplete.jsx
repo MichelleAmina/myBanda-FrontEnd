@@ -81,7 +81,7 @@ const OrderCompleted = () => {
                 </div>
             </div>
             ) : (
-                <div className='container-fluid pt-5 pb-5'>
+                <div className='container-fluid pt-4 pb-5'>
                     <div className="orderWrapper">
                         <div className="orderTitle">
                             <h4>You have 6 Previous Orders</h4> 
@@ -107,7 +107,7 @@ const OrderCompleted = () => {
                                         <div className="orderContainer-bottom">
                                             <div className="bottom-left">
                                                 <p><span>Placed On:</span> {order.created_at}</p>
-                                                <p><span>Total Price:</span> {order.total_price}</p>
+                                                <p><span>Total Price:</span> Ksh. {order.total_price}</p>
                                             </div>
                                             <div className="bottom-right">
                                                 <p>View Details</p>

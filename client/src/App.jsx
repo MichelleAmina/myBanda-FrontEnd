@@ -25,6 +25,7 @@ import OrderCompleted from './buyer/pages/completed/OrderComplete';
 import Vendors from './buyer/pages/vendors/Vendors';
 import Wishlist from './buyer/pages/wishlist/Wishlist';
 import FinalCheckout from "./buyer/pages/order/finalcheckout";
+import SingleComplete from "./buyer/pages/completed-single/SingleComplete";
 
 // Banda Admin
 import Admin from "./admin/Admin";
@@ -46,6 +47,7 @@ import ProductHome from "./existingseller/producthome";
 import OldSellerDash from "./existingseller/oldsellerdash";
 import ShopView from "./existingseller/shopview"; 
 
+
 function App() {
   return (
     <div>
@@ -62,7 +64,10 @@ function App() {
           <Route path="finalcheckout" element={<FinalCheckout />} />
           {/* Remove ndanus checkour */}
           {/* <Route path='checkout' element={<CheckoutForm />}></Route> */}
-          <Route path='orders' element={<OrderCompleted />}></Route>
+          <Route path='orders'>
+            <Route index element={<OrderCompleted />}></Route>
+            <Route path=":orderId" element={<SingleComplete />}></Route>
+          </Route>
           <Route path='vendors/:sellerId' element={<Vendors />}></Route>
           <Route path='wishlist' element={<Wishlist />}></Route>
         </Route>
