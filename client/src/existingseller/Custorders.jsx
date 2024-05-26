@@ -51,9 +51,37 @@ const CustOrders = () => {
       })
       .then((data) => {
         // Filtering orders based on the seller's shop ID
-        const sellerShopId = data.find(order => order.seller_id === userId)?.shop_id;
-        const sellerOrders = (data || []).filter(order => order.shop_id === sellerShopId);
-        setOrders(sellerOrders);
+        // const sellerShopId = data.find(order => order.seller_id === userId)?.shop_id;
+        // const sellerOrders = (data || []).filter(order => order.shop_id === sellerShopId);
+        // const orderItemsArr = data.map(order => order.order_items)
+        // const orderItems = orderItemsArr.flatMap(orderItem => orderItem);
+        // const sellerIds = orderItems.map(item => item.product?.shop?.seller_id).filter(sellerId => sellerId === userId);
+        // console.log("seller ids", sellerIds)
+
+        // const filteredData = data.filter(sellerId => sellerId === userId)
+        // console.log("filteredData", filteredData)
+
+
+
+        // Flatten the order items from all orders
+        const orderItemsArr = data.map(order => order.order_items);
+        const orderItems = orderItemsArr.flatMap(orderItem => orderItem);
+          
+        // Filter order items where the seller_id matches the userId
+        // FROM MMICHELLE ====== THIS ONE GIVES YOU THE ORDERS THAT MATCH THE SELLER ID VERY SPECIFIC
+        const sellerOrderItems = orderItems.filter(item => item.product?.shop?.seller_id === userId);
+        console.log("Filtered orders:", sellerOrderItems);
+          
+      
+        // FROM MICHELLE THIS FILTERES THE ORDERS PERFECTLY....USE IT!! 
+        const filteredOrders = data.map(order => {
+          const filteredOrderItems = order.order_items.filter(item => item.product?.shop?.seller_id === userId);
+          return { ...order, order_items: filteredOrderItems };
+        }).filter(order => order.order_items.length > 0);
+  
+        console.log("Filtered Orders with matching Order Items:", filteredOrders);
+
+        setOrders(filteredOrders)
         setLoading(false);
       })
       .catch((error) => {
@@ -62,6 +90,8 @@ const CustOrders = () => {
         setLoading(false);
       });
   };
+  console.log("All orders", orders)
+
 
   const handleSearch = (e) => {
     const term = e.target.value.toLowerCase();
