@@ -83,7 +83,7 @@ function App() {
           <Route path="delivery" element={<AdminDelivery />}></Route>
           <Route path="shops">
             <Route index element={<List />}></Route>
-            <Route path=":shopId" element={<Single/>}></Route>
+            <Route path=":sellerId" element={<Single/>}></Route>
           </Route>
         </Route>
 

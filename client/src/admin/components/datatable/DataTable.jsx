@@ -64,7 +64,7 @@ import { useState } from 'react';
 
 function DataTable({ rows, role }) {
     const [tableRows, setTableRows] = useState(rows);
-    // https://mybanda-backend-88l2.onrender.com/del_user/${id}
+    
 
     const handleDelete = async (id) => {
         try {
@@ -95,6 +95,7 @@ function DataTable({ rows, role }) {
             width: 150,
             renderCell: (params) => {
                 const sellerId = params.row.id;
+                console.log("this is the seller id", sellerId)
                 return (
                     <div className="cellAction">
                         {role === 'seller' && params.row.shop && (
@@ -102,6 +103,7 @@ function DataTable({ rows, role }) {
                                 <div className="viewButton">View</div>
                             </NavLink>
                         )}
+                        
                         <div
                             className="deleteButton"
                             onClick={() => handleDelete(params.row.id)}
