@@ -100,8 +100,8 @@ function App() {
         <Route path="/availableDeliveries" element={<AvailableDeliveries />} />
         <Route path="/completedDeliveries" element={<CompletedDeliveries />} />
         <Route path="/pendingDeliveries" element={<PendingDeliveries />} />
-        {/* <Route path="/viewDetails/:orderId" element={<ViewDetails />} /> */}
-        {/* <Route path="/maps" element={<RouteCalculator />} /> */}
+        <Route path="/viewDetails/:orderId" element={<ViewDetails />} />
+        <Route path="/maps" element={<RouteCalculator />} />
 
         {/*Seller routes */}
         <Route path="/sellerdash" element={<Sellerdash />} />
