@@ -1,5 +1,5 @@
 import React from "react";
-import { Doughnut, Bar } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import "chart.js/auto";
 import OldSidebar from "./oldside";
 import SplineAreaChart from "./SplineAreaChart";
@@ -14,6 +14,17 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 
+// Sample customer data
+const customers = [
+  { name: "Customer A", totalSales: 2000 },
+  { name: "Customer B", totalSales: 3000 },
+  { name: "Customer C", totalSales: 1500 },
+  // Add more customer data as needed
+];
+
+// Calculate average sales
+const averageSales = customers.reduce((acc, customer) => acc + customer.totalSales, 0) / customers.length;
+
 const doughnutData = {
   labels: ["Loss", "Profit"],
   datasets: [
@@ -24,36 +35,12 @@ const doughnutData = {
   ],
 };
 
-const barData = {
-  labels: [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ],
-  datasets: [
-    {
-      label: "Online Sales",
-      data: [300, 500, 400, 600, 700, 800, 600, 700, 800, 900, 1000, 1200],
-      backgroundColor: "#36A2EB",
-    },
-    {
-      label: "Offline Sales",
-      data: [200, 300, 400, 300, 400, 500, 400, 500, 600, 700, 800, 900],
-      backgroundColor: "#4BC0C0",
-    },
-  ],
-};
+const Oldsellerdash = () => {
+  // Read from localStorage
+  const totalOrders = localStorage.getItem('totalOrders') || 0;
+  const totalCustomers = localStorage.getItem('totalCustomers') || 0;
+  const totalRevenue = localStorage.getItem('totalRevenue') || 0;
 
-function Oldsellerdash() {
   const total = doughnutData.datasets[0].data.reduce((acc, value) => acc + value, 0);
 
   return (
@@ -83,31 +70,38 @@ function Oldsellerdash() {
           <div className="stat-card">
             <div>
               <h3>Total Revenue</h3>
-              <p>KES.190,000</p>
-              <span>431 more to break</span>
+              <p>KES.{totalRevenue}</p>
+              <span>Ksh.500 from target sales</span>
             </div>
-            <FontAwesomeIcon icon={faDollarSign} />
+
           </div>
           <div className="stat-card yellow">
             <div>
               <h3>Total Orders</h3>
-              <p>356</p>
-              <span>Target 3k/month</span>
+              <p>{totalOrders}</p>
+              <span>Target 20 per month</span>
             </div>
             <FontAwesomeIcon icon={faShoppingCart}  color= "black"/>
           </div>
           <div className="stat-card">
             <div>
               <h3>Total Customers</h3>
-              <p>206</p>
-              <span>Target 3k/month</span>
+              <p>{totalCustomers}</p>
+              <span>Target 2 per /month</span>
             </div>
             <FontAwesomeIcon icon={faUsers} />
+          </div>
+          <div className="stat-card">
+            <div>
+              <h3>Average Sales</h3>
+              <p>KES. {averageSales.toFixed(2)}</p> {/* Display average sales */}
+              <span>Based on customer data</span>
+            </div>
           </div>
           <div className="stat-cardt">
             <h3>Earnings</h3>
             <div className="doughnut-chart-container">
-              <div className="doughnut-chart">
+              <div className="doughnut-chart" >
                 <Doughnut data={doughnutData} options={{
                   plugins: {
                     legend: {

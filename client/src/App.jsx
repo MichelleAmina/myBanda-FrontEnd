@@ -43,11 +43,12 @@ import Sellerproducts from "./newseller/Sellerproducts";
 import Newsellercustomers from "./newseller/Newsellercustomers";
 import Newsellerorders from "./newseller/Newsellerorders";
 import ShopSetup from "./newseller/shopsetup";
-import AddProduct from "./newseller/addproduct";
+import AddProduct from "./existingseller/addproduct";
 import ProductHome from "./existingseller/producthome";
 import OldSellerDash from "./existingseller/oldsellerdash";
 import ShopView from "./existingseller/shopview"; 
 import MoreOrderDetails from './existingseller/MoreOrderDetails';
+
 
 
 
@@ -113,6 +114,7 @@ function App() {
         <Route path="/oldsellerdash" element={<OldSellerDash />} />
         <Route path="/shopview/:sellerId" element={<ShopView />} /> 
         <Route path="/moreorderdets/:orderId" element={<MoreOrderDetails />} />
+
 
       </Routes>
     </div>

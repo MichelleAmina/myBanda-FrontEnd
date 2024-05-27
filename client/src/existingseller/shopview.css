@@ -1,90 +1,221 @@
-.shopviewBanner {
-    position: relative;
-    width: 100%;
-    padding-top: 20px;
-  }
-  
-  .shopviewBanner img {
-    width: 100%;
-    height: 250px;
-    border-radius: 4px;
-  }
-  
-  .shopviewLogo {
-    position: absolute;
-    background: white;
-    bottom: -15%;
-    left: 5%;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    z-index: 100;
-  }
-  
-  .shopviewLogo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .shopviewDetails {
-    margin-top: 20px;
-    padding: 0px 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .shopviewInfo p {
-    margin-bottom: 5px;
-  }
-  
-  .shopviewFollow Button {
-    color: #000;
-    text-transform: capitalize;
-    font-size: 16px;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    padding: 5px 20px;
-    width: 100px;
-  }
-  
-  .shopviewFollow Button:hover {
-    background: #FFD700;
-  }
-  
-  .shopviewSearch {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .shopviewSearchInput {
-    display: flex;
-    align-items: center;
-    width: 400px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    border-radius: 4px;
-    height: 40px;
-  }
-  
-  .shopviewSearchInput input {
-    background: transparent;
-    border: none;
-    padding: 5px 10px;
-    width: 90%;
-    outline: none;
-  }
-  
-  .shopviewProducts {
-    display: flex;
-    flex-wrap: wrap;
-    padding-top: 20px;
-  }
-  
-  .shopviewProducts .item {
-    width: 16% !important;
-    padding: 0px 10px 20px 10px;
-  }
-  
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.shop-view {
+  display: flex;
+  margin-left: 250px;
+}
+
+.sidebar-shop {
+  width: 250px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.shop-view-content {
+  flex: 1;
+  padding: 20px;
+  margin-left: 0;
+}
+
+.shop-banner {
+  position: relative;
+  width: 100%;
+  padding-top: 20px;
+  margin-bottom: 0px;
+  overflow: hidden;
+}
+
+.banner-img {
+  width: 100%;
+  height: 320px;
+  border-radius: 4px;
+}
+
+.shop-logo-container {
+  position: absolute;
+  top: 70%;
+  left: 20px;
+  transform: translateY(-50%);
+  width: 100px;
+  height: 100px;
+  border: 3px solid white;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.shop-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.shop-details {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  padding: 20px;
+  /* background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  width: 400px;
+}
+
+.shop-info p {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+.shop-actions Button {
+  color: #000;
+  text-transform: capitalize;
+  font-size: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 5px 20px;
+  width: 120px;
+}
+
+.shop-actions Button:hover {
+  background: #ffd700;
+}
+
+.spbsearch-export {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.spbsearch-box {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 5px 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  width: 400px; /* Increased the width */
+}
+
+.spbsearch-box input {
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  width: 100%;
+}
+
+.spbsearch-box input::placeholder {
+  color: #bbb;
+}
+
+.spbsearchicon {
+  margin-right: 5px;
+  color: #555;
+}
+
+.filter-dropdown {
+  margin-left: 20px; 
+}
+
+.filter-dropdown select {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.shop-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.quantity-tag {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  padding: 3px 6px;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.quantity-tag.running-low {
+  background-color: #e74c3c;
+}
+
+.quantity-tag.available {
+  background-color: #2ecc71;
+}
+
+.product-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
+.product-info {
+  padding: 10px 15px;
+}
+
+.product-info h5 {
+  font-size: 16px;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+}
+
+.product-info p {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.view-more {
+  display: flex;
+  justify-content: left;
+  margin-top: 20px;
+}
+
+.view-more Button {
+  background-color: #ffd700;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 40px;
+
+}
+
+.view-more Button:hover {
+  background-color: #e5c700;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+

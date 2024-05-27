@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,14 +8,23 @@ import {
   faUsers,
   faSignal,
   faCog,
+  faChevronDown,
+  faChevronUp,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import BandaLogo from "../assets/banda.png";
 import dashlogo from "../assets/dashboard.png";
 import "./oldside.css";
-import LogoutIcon from '@mui/icons-material/Logout'; // Import LogoutIcon
+import LogoutIcon from "@mui/icons-material/Logout";
 
 function OldSidebar() {
   const location = useLocation();
+  const [showProducts, setShowProducts] = useState(false);
+
+  const toggleProducts = (e) => {
+    e.preventDefault();
+    setShowProducts(!showProducts);
+  };
 
   return (
     <div className="old-sidebar-container">
@@ -50,17 +59,6 @@ function OldSidebar() {
         </li>
         <li>
           <Link
-            to="/producthome"
-            className={`old-sidebar-link ${
-              location.pathname === "/producthome" ? "active" : ""
-            }`}
-          >
-            <FontAwesomeIcon icon={faBox} className="old-link-icon" />
-            <span className="old-link-name">Products</span>
-          </Link>
-        </li>
-        <li>
-          <Link
             to="/customers"
             className={`old-sidebar-link ${
               location.pathname === "/customers" ? "active" : ""
@@ -69,6 +67,53 @@ function OldSidebar() {
             <FontAwesomeIcon icon={faUsers} className="old-link-icon" />
             <span className="old-link-name">Customers</span>
           </Link>
+        </li>
+        <li>
+          <div
+            className={`old-sidebar-link ${showProducts ? "active" : ""}`}
+            onClick={(e) => e.preventDefault()}
+          >
+            <Link
+              to="/shopview/defaultSellerId"
+              className={`old-sidebar-link ${
+                location.pathname === "/shopview/defaultSellerId" ? "active" : ""
+              }`}
+            >
+              <FontAwesomeIcon icon={faHome} className="old-link-icon" />
+              <span className="old-link-name">Shop</span>
+            </Link>
+            <FontAwesomeIcon
+              icon={showProducts ? faChevronUp : faChevronDown}
+              className="old-link-icon-dropdown"
+              onClick={toggleProducts}
+            />
+          </div>
+          {showProducts && (
+            <ul className="old-submenu">
+              <li>
+                <Link
+                  to="/producthome"
+                  className={`old-sidebar-link ${
+                    location.pathname === "/producthome" ? "active" : ""
+                  }`}
+                >
+                  <FontAwesomeIcon icon={faBox} className="old-link-icon" />
+                  <span className="old-link-name">Products</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/addprod"
+                  className={`old-sidebar-link ${
+                    location.pathname === "/addprod" ? "active" : ""
+                  }`}
+                >
+                  <FontAwesomeIcon icon={faPlus} className="old-link-icon" />
+                  <span className="old-link-name">Add Product</span>
+                </Link>
+              </li>
+            </ul>
+          )}
         </li>
         <li>
           <Link
@@ -90,17 +135,6 @@ function OldSidebar() {
           >
             <FontAwesomeIcon icon={faCog} className="old-link-icon" />
             <span className="old-link-name">Settings</span>
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/shopview/defaultSellerId" 
-            className={`old-sidebar-link ${
-              location.pathname === "/shopview/defaultSellerId" ? "active" : ""
-            }`}
-          >
-            <FontAwesomeIcon icon={faHome} className="old-link-icon" />
-            <span className="old-link-name">Shop</span>
           </Link>
         </li>
       </ul>

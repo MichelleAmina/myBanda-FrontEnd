@@ -4,7 +4,7 @@
   left: 0;
   width: 240px;
   height: 100%;
-  background-color: #FFD700;
+  background-color: #ffd700;
   color: black;
   overflow-x: hidden;
   white-space: nowrap;
@@ -21,7 +21,7 @@
   display: flex;
   align-items: center;
   margin-top: 15px;
-  margin-bottom: 10px
+  margin-bottom: 10px;
 }
 
 .old-logo-image {
@@ -67,6 +67,12 @@
   margin-right: 10px;
 }
 
+.old-link-icon-dropdown {
+  font-size: 12px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
 .old-link-name {
   font-size: 14px;
 }
@@ -104,4 +110,10 @@
 
 .logout-button .old-link-name {
   font-size: 14px;
+}
+
+.old-submenu {
+  list-style-type: none;
+  padding-left: 20px;
+  margin-top: 5px;
 }

@@ -15,6 +15,8 @@ const CustOrders = () => {
   const [sortOrder, setSortOrder] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ordersPerPage = 7;
 
   const navigate = useNavigate();
 
@@ -37,6 +39,8 @@ const CustOrders = () => {
     const userId = decodedToken.sub;
   
     console.log('Seller ID:', userId);
+
+    
   
     fetch('https://mybanda-backend-88l2.onrender.com/order', {
       headers: {
@@ -96,9 +100,10 @@ const CustOrders = () => {
   const handleSearch = (e) => {
     const term = e.target.value.toLowerCase();
     setSearchTerm(term);
-    const filtered = orders.filter((order) => order.orderId.toLowerCase().includes(term));
+    const filtered = orders.filter((order) => order.buyer.username.toLowerCase().includes(term));
     setFilteredOrders(filtered);
   };
+  
 
   const handleSortOrderChange = (e) => {
     const order = e.target.value;
@@ -123,7 +128,13 @@ const CustOrders = () => {
     }
   };
 
-  const dataToMap = searchTerm || sortOrder ? filteredOrders : orders;
+  // Pagination logic
+  const indexOfLastOrder = currentPage * ordersPerPage;
+  const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
+  const currentOrders = (searchTerm || sortOrder ? filteredOrders : orders).slice(indexOfFirstOrder, indexOfLastOrder);
+
+  // Function to change current page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="dashboard-container-custorders">
@@ -143,7 +154,7 @@ const CustOrders = () => {
         <div className="search-filter-container-custorders">
           <div className="search-bar-custorders">
             <FontAwesomeIcon icon={faSearch} />
-            <input type="text" placeholder="Search by Order ID..." value={searchTerm} onChange={handleSearch} />
+            <input type="text" placeholder="Search by name..." value={searchTerm} onChange={handleSearch} />
           </div>
           <div className="filter-bar-custorders">
             <select value={sortOrder} onChange={handleSortOrderChange}>
@@ -163,45 +174,56 @@ const CustOrders = () => {
             className="ordloader"
           />
         ) : (
-          <table className="order-table-custorders">
-            <thead>
-              <tr>
-                <th>Customer</th>
-                <th>Product</th>
-                <th>Location</th>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {dataToMap.map((order) => (
-                <tr key={order.id}>
-                  <td>{order.buyer.username}</td>
-                  <td>{order.order_items[0].product.name}</td>
-                  <td>{order.delivery_address}</td>
-                  <td>{order.created_at.substring(0, 10)}</td>
-                  <td>Ksh. {order.total_price}</td>
-                  <td className={`order-status-custorders ${order.status.toLowerCase()}`}>
-                  {order.status}
-                </td>
-                
-                  <td>
-                    <button 
-                      className="custview-button"
-                      onClick={() => {
-                        console.log('Clicked VIEW button for order:', order.id);
-                        handleViewOrder(order.id);
-                      }} 
-                    >
-                      VIEW
-                    </button>
-                  </td>
+          <div>
+            <table className="order-table-custorders">
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Product</th>
+                  <th>Location</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Action</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {currentOrders.map((order) => (
+                  <tr key={order.id}>
+                    <td>{order.buyer.username || "Not Specified"}</td>
+                    <td>{order.order_items[0].product.name || "Not Specified"}</td>
+                    <td>{order.delivery_address || "Not Specified"}</td>
+                    <td>{order.created_at.substring(0, 10)}</td>
+                    <td>Ksh. {order.total_price}</td>
+                    <td className={`order-status-custorders ${order.status.toLowerCase()}`}>
+                      {order.status}
+                    </td>
+                    <td>
+                      <button 
+                        className="custview-button"
+                        onClick={() => {
+                          console.log('Clicked VIEW button for order:', order.id);
+                          handleViewOrder(order.id);
+                        }} 
+                      >
+                        view
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            {/* Pagination */}
+            <ul className="pagination">
+              {Array(Math.ceil((searchTerm || sortOrder ? filteredOrders : orders).length / ordersPerPage))
+                .fill()
+                .map((_, index) => (
+                  <li key={index} className={currentPage === index + 1 ? 'active' : ''}>
+                    <button onClick={() => paginate(index + 1)}>{index + 1}</button>
+                  </li>
+                ))}
+            </ul>
+          </div>
         )}
       </div>
       <ToastContainer />

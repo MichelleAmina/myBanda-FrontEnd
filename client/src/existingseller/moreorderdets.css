@@ -1,82 +1,79 @@
-.dashboard-container-moreorderdets {
-    display: flex;
-    height: 100vh;
-  }
-  
-  .content-container-moreorderdets {
-    flex: 1;
-    padding: 20px;
-    margin-left: 240px;
-  }
-  
-  .header-moreorderdets {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .header-moreorderdets h1 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: 500;
-  }
-  
-  .back-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .back-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .order-card {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .order-card h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .order-card p {
-    margin: 5px 0;
-  }
-  
-  .status-options {
-    margin-top: 20px;
-  }
-  
-  .status-button {
-    background: none;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .status-button:hover {
-    opacity: 0.8;
-  }
-  
-  .delivered {
-    background-color: #28a745;
-    color: white;
-  }
-  
-  .pending {
-    background-color: #ffc107;
-    color: white;
-  }
-  
+/* moreOrderDetails.css */
+
+.dashboard-container-moreorderdetails {
+  display: flex;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.content-container-moreorderdetails {
+  flex: 1;
+  padding: 40px;
+}
+
+.header-moreorderdetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-left: 240px;
+}
+
+.header-moreorderdetails h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.order-card {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.order-details {
+  margin-bottom: 30px;
+}
+
+.order-details h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.order-details p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.order-details h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.error-message {
+  color: #ff0000;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+/* Additional styles for the "Dispatch Order" button */
+.order-details button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.order-details button:hover {
+  background-color: #0056b3;
+}

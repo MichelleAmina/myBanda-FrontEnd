@@ -1,38 +1,52 @@
-
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import OldSidebar from './oldside';
-import ProductHome from './producthome';
+import OldSellerSidebar from "./oldside";
 import "./shopview.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons"; 
 
 function ShopView() {
-  const { sellerId } = useParams(); 
-  const [shopView, setShopView] = useState(null);
+  const navigate = useNavigate();
+  const [shopData, setShopData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [authenticated, setAuthenticated] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filterOption, setFilterOption] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const productsPerPage = 16;
 
   useEffect(() => {
     const fetchShopData = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`https://mybanda-backend-88l2.onrender.com/user/${sellerId}`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('access_token')}`, // Fetch access token from local storage
-          },
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+          throw new Error('Authentication token not found.');
+        }
+
+        const tokenPayload = token.split('.')[1];
+        const decodedToken = JSON.parse(atob(tokenPayload));
+        const userId = decodedToken.sub;
+
+        const response = await fetch(`https://mybanda-backend-88l2.onrender.com/shop`, {
+          headers: { Authorization: `Bearer ${token}` },
         });
 
         if (!response.ok) {
-          throw new Error('Failed to fetch shop data');
+          throw new Error(`Failed to fetch shop data: ${response.statusText}`);
         }
 
         const data = await response.json();
-        setShopView(data);
-        setAuthenticated(true); // If successful response, set authenticated to true
+        const userShopData = data.find(shop => shop.seller_id === userId);
+
+        if (!userShopData) {
+          throw new Error('Shop data not found for the logged-in user');
+        }
+
+        setShopData(userShopData);
       } catch (error) {
-        console.error('Error fetching shop data:', error);
         setError(error);
       } finally {
         setLoading(false);
@@ -40,7 +54,32 @@ function ShopView() {
     };
 
     fetchShopData();
-  }, [sellerId]);
+  }, []);
+
+  console.log("shop data", shopData);
+
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    navigate('/login');
+  };
+
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+    setCurrentPage(1); // Reset pagination when performing a new search
+  };
+
+  const handleFilterChange = (e) => {
+    setFilterOption(e.target.value);
+    setCurrentPage(1); // Reset pagination when changing the filter option
+  };
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const filteredProducts = shopData?.products.filter(product =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+    (filterOption === "" || (filterOption === "low" && product.quantity_available < 5) || (filterOption === "high" && product.quantity_available >= 5))
+  ) || [];
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
   if (loading) {
     return (
@@ -54,58 +93,74 @@ function ShopView() {
     return <div>Error loading shop data: {error.message}</div>;
   }
 
-  if (!authenticated) {
-    return <div>You are not authenticated</div>;
-  }
-
-  if (!shopView) {
+  if (!shopData) {
     return <div>No shop data available</div>;
   }
 
   return (
-    <div className="shopview mb-5">
-      <OldSidebar />
-      <div className="shopviewWrapper">
-        <div className="container-fluid">
-          <div className="shopviewBanner">
-            <img src={shopView.shop.banner_image_url} alt="Shop Banner" className="w-100" />
-            <div className="shopviewLogo">
-              <img src={shopView.shop.logo_image_url} alt="Shop Logo" />
-            </div>
+    <div className="shop-view">
+      <OldSellerSidebar /> 
+      <div className="shop-view-content">
+        <div className="shop-banner">
+          <img src={shopData.banner_image_url} alt="Shop Banner" className="banner-img" />
+          <div className="shop-logo-container">
+            <img src={shopData.logo_image_url} alt="Shop Logo" className="shop-logo" />
           </div>
         </div>
-        <br />
-      </div>
 
-      <div className="container-fluid pt-3">
-        <div className="shopviewDetails">
-          <div className="shopviewInfo">
-            <h4>{shopView.shop.name}</h4>
-            <p>{shopView.shop.description}</p>
-            <p><strong>Phone / Email :</strong> {shopView.shop.contact}, {shopView.email}</p>
+        <div className="shop-details">
+          <div className="shop-info">
+            <h4>{shopData.name}</h4>
+            <p>{shopData.description}</p>
+            <p>Contact :{shopData.contact} {shopData.email}</p>
           </div>
-          <div className="shopviewFollow">
-            <Button>Follow</Button>
+         {/* <div className="shop-actions">
+            <Button onClick={() => navigate('/edit-profile')}>Edit Profile</Button>
           </div>
+  */}
         </div>
         <hr />
 
-        <div className="shopviewSearch">
-          <div className="shopviewSearchInput">
-            <input type="text" placeholder='Search for products...' />
-            <SearchOutlinedIcon />
+        <div className="spbsearch-export">
+          <div className="spbsearch-box">
+            <FontAwesomeIcon icon={faSearch} className="spbsearchicon" />
+            <input type="text" placeholder="Search Products..." value={searchQuery} onChange={handleSearch} />
           </div>
-          <div className="shopviewFilter">
-            Filter By
-          </div>
+         {/*<div className="filter-dropdown">
+            <select value={filterOption} onChange={handleFilterChange}>
+              <option value="">All</option>
+              <option value="low">Low Stock</option>
+              <option value="high">High Stock</option>
+            </select>
+  </div> */}
         </div>
 
-        <div className="shopviewProducts">
-          {shopView.shop.products.map((item, index) => (
-            <div className="item" key={index}>
-              <ProductHome item={item} />
+        <div className="shop-products">
+          {currentProducts.map((product, index) => (
+            <div className="product-card" key={index}>
+              {product.quantity_available < 5 && (
+                <div className="quantity-tag running-low">
+                  {product.quantity_available === 0 ? "Out of Stock" : "Running Low"}
+                </div>
+              )}
+              {product.quantity_available >= 5 && (
+                <div className="quantity-tag available">Available</div>
+              )}
+              <div className="product-image">
+                <img src={product.images[0].image_url} alt={product.name} />
+              </div>
+              <div className="product-info">
+                <h5>{product.name.charAt(0).toUpperCase() + product.name.slice(1)}</h5>
+                <p>Quantity: {product.quantity_available}</p>
+                <p>Category: {product.category}</p>
+                <p>Price: Ksh.{product.price}</p>
+              </div>
             </div>
           ))}
+        </div>
+
+        <div className="view-more">
+          <Button onClick={() => navigate('/products')}>View More </Button>
         </div>
       </div>
     </div>

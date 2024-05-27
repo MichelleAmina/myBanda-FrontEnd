@@ -10,44 +10,42 @@ const ProductHome = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterOption, setFilterOption] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const productsPerPage = 16;
 
   useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    if (!token) {
-      console.error('Authentication token not found.');
-      setError('Authentication token not found.');
-      setLoading(false);
-      return;
-    }
-
-    fetch("https://mybanda-backend-88l2.onrender.com/products", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Failed to fetch products');
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const token = localStorage.getItem('access_token');
+        if (!token) {
+          throw new Error('Authentication token not found.');
         }
-        return response.json();
-      })
-      .then((data) => {
+
+        const response = await fetch("https://mybanda-backend-88l2.onrender.com/products", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch products: ${response.statusText}`);
+        }
+
+        const data = await response.json();
         const productsWithImages = data.map((product) => {
           const imageUrl = product.images.length > 0 ? product.images[0].image_url : "placeholder_url"; // Replace "placeholder_url" with the URL of your placeholder image
           return { ...product, image_url: imageUrl };
         });
         setProducts(productsWithImages);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching products:', error);
+      } catch (error) {
         setError(error);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchProducts();
   }, []);
 
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -101,7 +99,17 @@ const ProductHome = () => {
     document.body.removeChild(link);
   };
 
+  {/*if (loading) {
+    return (
+      <div className="loader">
+        <img src="https://i.pinimg.com/originals/c1/bc/d8/c1bcd8a8c945b53da6b29f10a2a553c0.gif" alt="Loading" />
+      </div>
+    );
+  } */}
 
+  if (error) {
+    return <div>Error loading products: {error.message}</div>;
+  }
 
   return (
     <div className="product-home-container">

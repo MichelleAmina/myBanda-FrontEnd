@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./addproduct.css";
-import NewSellerSidebar from "./sellersidebar";
+import OldSidebar from './oldside';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingBag, faPlus, faFileImport, faSearch, faBell, faUser } from "@fortawesome/free-solid-svg-icons";
 import storeIcon from '../assets/store-2.png';
@@ -9,7 +9,7 @@ const AddProduct = () => {
   const [productName, setProductName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [imageUrls, setImageUrls] = useState([""]); // Initialize with one empty string
+  const [imageUrls, setImageUrls] = useState([""]); 
   const [quantity, setQuantity] = useState("");
   const [category, setCategory] = useState("");
   const [sizes, setSizes] = useState([]);
@@ -67,6 +67,7 @@ const AddProduct = () => {
 
   return (
     <div className="add-product-container">
+      <OldSidebar />
       <div className="prodheader">
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <img src={storeIcon} alt="Store Icon" style={{ width: '20px', height: 'auto' }} />
@@ -200,7 +201,6 @@ const AddProduct = () => {
           </div>
         </div>
       </div>
-      <NewSellerSidebar />
     </div>
   );
 };

@@ -8,18 +8,17 @@ import OldSidebar from './oldside';
 
 const Customers = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [orders, setOrders] = useState([]);
-  const [filteredOrders, setFilteredOrders] = useState([]);
+  const [customers, setCustomers] = useState([]);
+  const [filteredCustomers, setFilteredCustomers] = useState([]);
   const [sortOrder, setSortOrder] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [sellerId, setSellerId] = useState('');
 
   useEffect(() => {
-    fetchOrders();
-  }, []); 
+    fetchCustomers();
+  }, []);
 
-  const fetchOrders = () => {
+  const fetchCustomers = () => {
     setLoading(true);
     const token = localStorage.getItem('access_token');
     if (!token) {
@@ -27,15 +26,13 @@ const Customers = () => {
       setLoading(false);
       return;
     }
-  
-    // Decode the token to get the user's ID
+
     const tokenPayload = token.split('.')[1];
     const decodedToken = JSON.parse(atob(tokenPayload));
     const userId = decodedToken.sub;
-    setSellerId(userId); 
-    
+
     console.log('Seller ID:', userId);
-  
+
     fetch('https://mybanda-backend-88l2.onrender.com/order', {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -48,13 +45,39 @@ const Customers = () => {
         return response.json();
       })
       .then((data) => {
-        // Generate random IDs for each order
-        const ordersWithRandomIds = data.map((order, index) => ({
-          ...order,
-          id: index + 1, // Assuming index starts from 0
+        console.log('Fetched data:', data);
+
+        const orders = data.filter(order => order.order_items.some(item => item.product.shop.seller_id === userId));
+        console.log('Filtered orders:', orders);
+
+        const customersData = orders.map(order => ({
+          ...order.buyer,
+          number_of_orders: orders.filter(o => o.buyer.id === order.buyer.id).length,
+          total_spend: orders.filter(o => o.buyer.id === order.buyer.id).reduce((sum, o) => sum + o.total_price, 0),
+          last_order_date: orders.filter(o => o.buyer.id === order.buyer.id).sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0].created_at,
+          delivery_address: order.delivery_address,
+          status: order.status // Assuming you have a status field
         }));
-        setOrders(ordersWithRandomIds);
-        setFilteredOrders(ordersWithRandomIds);
+        console.log('Customers data:', customersData);
+
+        const uniqueCustomers = customersData.filter((customer, index, self) =>
+          index === self.findIndex((c) => c.username === customer.username)
+        );
+        console.log('Unique customers:', uniqueCustomers);
+
+        setCustomers(uniqueCustomers);
+        setFilteredCustomers(uniqueCustomers);
+
+        // Calculate stats
+        const totalOrders = orders.length;
+        const totalCustomers = uniqueCustomers.length;
+        const totalRevenue = uniqueCustomers.reduce((sum, customer) => sum + customer.total_spend, 0);
+
+        // Store in localStorage
+        localStorage.setItem('totalOrders', totalOrders);
+        localStorage.setItem('totalCustomers', totalCustomers);
+        localStorage.setItem('totalRevenue', totalRevenue);
+
         setLoading(false);
       })
       .catch((error) => {
@@ -67,14 +90,14 @@ const Customers = () => {
   const handleSearch = (e) => {
     const term = e.target.value.toLowerCase();
     setSearchTerm(term);
-    const filtered = orders.filter((order) => order.buyer.username.toLowerCase().includes(term));
-    setFilteredOrders(filtered);
+    const filtered = customers.filter((customer) => customer.username.toLowerCase().includes(term));
+    setFilteredCustomers(filtered);
   };
 
   const handleSortOrderChange = (e) => {
     const order = e.target.value;
     setSortOrder(order);
-    const sortedOrders = [...orders].sort((a, b) => {
+    const sortedCustomers = [...customers].sort((a, b) => {
       if (order === 'latest') {
         return new Date(b.created_at) - new Date(a.created_at);
       } else if (order === 'oldest') {
@@ -82,10 +105,10 @@ const Customers = () => {
       }
       return 0;
     });
-    setFilteredOrders(sortedOrders);
+    setFilteredCustomers(sortedCustomers);
   };
 
-  const dataToMap = searchTerm || sortOrder ? filteredOrders : orders;
+  const dataToMap = searchTerm || sortOrder ? filteredCustomers : customers;
 
   return (
     <div className="customers-dashboard">
@@ -130,20 +153,20 @@ const Customers = () => {
               <tr>
                 <th>Customer</th>
                 <th>Email</th>
-                <th>Contact</th>
-               {/*<th>Address</th> */}
-                <th>Spent</th>
+                <th>Location</th>
+                <th>Number of Orders</th>
+                <th>Total Spend</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {dataToMap.map((order) => (
-                <tr key={order.id}>
-                  <td>{order.buyer.username}</td>
-                  <td>{order.buyer.email}</td>
-              {/*<td>{order.buyer.contact}</td> */}
-                  <td>{order.buyer.spent}</td>
-                  <td>{order.total_price}</td>
+              {dataToMap.map((customer, index) => (
+                <tr key={index}>
+                  <td>{customer.username || 'Not Specified'}</td>
+                  <td>{customer.email || 'Not Specified'}</td>
+                  <td>{customer.location || 'Not Specified'}</td>
+                  <td>{customer.number_of_orders || 'Not Specified'}</td>
+                  <td>{customer.total_spend ? `Ksh. ${customer.total_spend}` : 'Not Specified'}</td>
                   <td>
                     <FontAwesomeIcon icon={faEdit} className="edit-icon" />
                   </td>
@@ -152,8 +175,9 @@ const Customers = () => {
             </tbody>
           </table>
         )}
+        {error && <p className="error-message">Error: {error.message}</p>}
+        <ToastContainer />
       </div>
-      <ToastContainer />
     </div>
   );
 };

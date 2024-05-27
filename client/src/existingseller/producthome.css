@@ -188,13 +188,13 @@
   }
   
   .running-low {
-    background-color: rgba(255, 204, 204, 0.7); 
-    color: #ff0000;
+    background-color: rgba(255, 204, 204, 0.7) !important; 
+    color: #ff0000 !important;
   }
   
   .available {
-    background-color: rgba(204, 255, 204, 0.7); 
-    color: #00ff00; 
+    background-color: rgba(204, 255, 204, 0.7) !important; 
+    color: #00ff00 !important; 
   }
   .pagination {
     display: flex;
