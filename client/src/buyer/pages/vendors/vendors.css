@@ -41,6 +41,10 @@
     
 }
 
+.vendorInfo h4{
+    text-transform: capitalize;
+}
+
 .vendorInfo p{
     margin-bottom: 5px;
 }
@@ -58,11 +62,11 @@
     background: #FFD700;
 }
 
-.vendorSearch{
+/* .vendorSearch{
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
+} */
 
 .vendorSearchInput{
     display: flex;
@@ -71,6 +75,7 @@
     border: 1px solid rgba(0 ,0 ,0 ,0.5);
     border-radius: 4px;
     height: 40px;
+    margin: 30px 0px 10px 10px;
 }
 
 .vendorSearchInput input{

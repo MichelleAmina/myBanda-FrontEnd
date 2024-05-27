@@ -55,6 +55,8 @@ function ProductDetails(){
         }
     }, [product, productId]);
 
+    console.log()
+
 
     const handleAddToWishlist = (id) => {
         fetch("https://mybanda-backend-88l2.onrender.com/like", {
