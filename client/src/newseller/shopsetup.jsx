@@ -15,10 +15,14 @@ const ShopSetup = () => {
 
   const navigate = useNavigate();
 
-  const getCurrentUserId = () => {
-    const currentUser = getCurrentUser();
-    return currentUser ? currentUser.id : null;
-  };
+  const accessToken = localStorage.getItem('access_token');
+  //Decoding the JWT token to get the payload
+  const tokenParts = accessToken.split('.');
+  const payload = JSON.parse(atob(tokenParts[1]));
+
+  //Extracting the user ID from the payload
+  const userId = payload.sub;
+  console.log('User ID:', userId);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +34,7 @@ const ShopSetup = () => {
       banner_image_url: banner,
       contact: contact,
       location: location,
-      seller_id: getCurrentUserId(),
+      seller_id: userId,
     };
 
     try {
@@ -48,7 +52,7 @@ const ShopSetup = () => {
       if (response.ok) {
         const data = await response.json();
         console.log("Shop created successfully:", data);
-        navigate("/shop-dashboard");
+        navigate("/oldsellerdash");
       } else {
         console.error("Failed to create shop:", response.statusText);
       }
