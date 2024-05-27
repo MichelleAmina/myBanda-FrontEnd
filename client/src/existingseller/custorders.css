@@ -226,3 +226,73 @@ body {
 .pagination button:hover {
   color: #a8b5c4;
 }
+
+
+.dashboard-container-custorders {
+  display: flex;
+}
+
+.content-container-custorders {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.ordloader {
+  display: block;
+  margin: 0 auto;
+}
+
+.first-ndorders-container h1 {
+  margin-bottom: 20px !important;
+  font-size: 20px !important;
+  text-align: left;
+  margin-left: 20px;
+}
+
+.ndorders-container {
+  border: 1px solid rgb(215, 215, 215);
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 20px;
+  height: 500px;
+}
+
+
+
+.ndorder-img {
+  width: 500px;
+  animation: bounce 2s infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+
+
+.no-order-img {
+  width: 500px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}

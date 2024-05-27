@@ -15,16 +15,9 @@ const AddProduct = () => {
   const [sizes, setSizes] = useState([]);
 
   const handleImageChange = (index, event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const newImageUrls = [...imageUrls];
-        newImageUrls[index] = e.target.result;
-        setImageUrls(newImageUrls);
-      };
-      reader.readAsDataURL(file);
-    }
+    const newImageUrls = [...imageUrls];
+    newImageUrls[index] = event.target.value;
+    setImageUrls(newImageUrls);
   };
 
   {
@@ -171,19 +164,16 @@ const AddProduct = () => {
         </div>
         <div className="right-column">
           <div className="form-section gray-container">
-            <h2>Upload Images</h2>
+            <h2>Input Image URLs</h2>
             <div className="image-upload-container">
               {imageUrls.map((url, index) => (
                 <div key={index} className="image-preview">
                   <input
-                    type="file"
+                    type="text"
+                    placeholder={`Image URL ${index + 1}`}
+                    value={url}
                     onChange={(e) => handleImageChange(index, e)}
                   />
-                  {url && (
-                    <div className="image-thumb">
-                      <img src={url} alt={`Preview ${index}`} />
-                    </div>
-                  )}
                 </div>
               ))}
               {imageUrls.length < 5 && (
@@ -192,7 +182,7 @@ const AddProduct = () => {
                   className="add-more-button"
                   onClick={addMoreImages}
                 >
-                  <FontAwesomeIcon icon={faPlus} /> Add More
+                  <FontAwesomeIcon icon={faPlus} className="adpbtn" style={{ color: 'white' }} /> Add More
                 </button>
               )}
             </div>

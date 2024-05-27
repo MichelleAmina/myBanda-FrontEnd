@@ -34,7 +34,7 @@ const ProductHome = () => {
 
         const data = await response.json();
         const productsWithImages = data.map((product) => {
-          const imageUrl = product.images.length > 0 ? product.images[0].image_url : "placeholder_url"; // Replace "placeholder_url" with the URL of your placeholder image
+          const imageUrl = product.images.length > 0 ? product.images[0].image_url : "placeholder_url"; 
           return { ...product, image_url: imageUrl };
         });
         setProducts(productsWithImages);
@@ -99,18 +99,6 @@ const ProductHome = () => {
     document.body.removeChild(link);
   };
 
-  {/*if (loading) {
-    return (
-      <div className="loader">
-        <img src="https://i.pinimg.com/originals/c1/bc/d8/c1bcd8a8c945b53da6b29f10a2a553c0.gif" alt="Loading" />
-      </div>
-    );
-  } */}
-
-  if (error) {
-    return <div>Error loading products: {error.message}</div>;
-  }
-
   return (
     <div className="product-home-container">
       <div className="productpageheader">
@@ -148,6 +136,13 @@ const ProductHome = () => {
         </button>
       </div>
       <div className="product-grid">
+        {loading && (
+          <div id="loading-container">
+            <div className="loader">
+              <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" alt="Loading" />
+            </div>
+          </div>
+        )}
         {currentProducts.map((product) => (
           <div key={product.id} className="product-card">
             {product.quantity_available < 5 && (
@@ -165,7 +160,7 @@ const ProductHome = () => {
               <h2>{product.name.charAt(0).toUpperCase() + product.name.slice(1)}</h2>
               <p>Quantity: {product.quantity_available}</p>
               <p>Category: {product.category}</p>
-              <p>Price: {product.price}</p>
+              <p>Price: Ksh{product.price}</p>
             </div>
           </div>
         ))}
