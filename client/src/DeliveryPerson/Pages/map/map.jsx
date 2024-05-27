@@ -99,7 +99,10 @@ function RouteCalculator() {
           <button 
             className="map-icon-button" 
             aria-label="center back" 
-            onClick={() => map.panTo(center)}>
+            onClick={() => {
+              map.panTo(center) 
+              map.setZoom(15)
+              }}>
             <NearMeIcon />
           </button>
         </div>

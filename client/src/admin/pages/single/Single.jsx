@@ -151,7 +151,7 @@ function Single() {
                         <AdminChart aspect={3 / 1} title="Sales (Last 6 Months)" />
                     </div>
                 </div>
-{/* 
+
                 <div className="bottom">
                     <h1 className="title" style={{ fontSize: "20px" }}>Previous Orders</h1>
                     <Paper className='adminTable'>
@@ -165,34 +165,31 @@ function Single() {
                               </TableRow>
                             </TableHead>
                             <TableBody>
-                              {users
-                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                .map((user) => (
-                                  <TableRow key={user.id}>
-                                    {columns.map((column) => (
-                                      <TableCell key={column.id}>
-                                        {column.id === 'location' && user.role === 'seller' 
-                                          ? user.shop?.location 
-                                          : user[column.id]
-                                        }
-                                      </TableCell>
-                                    ))}
-                                  </TableRow>
-                                ))}
-                            </TableBody>
+                                    {orders
+                                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                        .map((order, index) => (
+                                            <TableRow key={index}>
+                                                <TableCell>{order.order_id}</TableCell>
+                                                <TableCell>{order.product.id}</TableCell>
+                                                <TableCell>{order.quantity}</TableCell>
+                                                <TableCell>{order.product.price}</TableCell>
+                                                <TableCell>{(order.quantity * order.product.price)}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                </TableBody>
                           </Table>
                         </TableContainer>
                         <TablePagination
                           rowsPerPageOptions={[5, 10, 25]}
                           page={page}
-                          count={users.length}
+                          count={orders.length}
                           rowsPerPage={rowsPerPage}
                           component='div'
                           onPageChange={handleChangePage}
                           onRowsPerPageChange={handleRowsPerPageChange}
                         />
                     </Paper>
-                </div> */}
+                </div> 
 
                 
             </div>
