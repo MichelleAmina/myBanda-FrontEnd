@@ -48,6 +48,11 @@ const Widget = ({ type }) => {
             } else if (type === "Pending deliveries") {
                 const pendingCount = (data || []).filter(order => order.delivery_id === id && ['assigned', 'dispatched'].includes(order.status)).length;
                 setCount(pendingCount);
+            } else if (type === "Earnings") {
+                const totalEarnings = (data || [])
+                    .filter(order => order.delivery_id === id && order.status === 'completed')
+                    .reduce((total, order) => total + parseFloat(order.delivery_fee || 0), 0);
+                setCount(totalEarnings);
             }
             setLoading(false);
         })
@@ -90,7 +95,7 @@ const Widget = ({ type }) => {
                 title: "Earnings",
                 isMoney: true,
                 link: "View net earnings",
-                path: "",
+                path: "/completedDeliveries",
                 icon: <PaidIcon 
                 className='icon' 
                 style={{color: "green"}}
