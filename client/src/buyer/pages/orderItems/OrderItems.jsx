@@ -102,7 +102,7 @@ function OrderItems(){
                                         <div className="orderItems-bottomRight">
                                             <ul>
                                                 <NavLink style={{textDecoration:"none", color:"#000"}}><li>View Product</li></NavLink>
-                                                <span>/</span>
+                                                <span>|</span>
                                                 <NavLink style={{textDecoration:"none", color:"#000"}}><li>Buy Again</li></NavLink>
                                             </ul>
 
