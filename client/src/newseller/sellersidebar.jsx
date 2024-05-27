@@ -103,10 +103,10 @@ function NewSellerSidebar() {
         </li>
       </ul>
 
-      <button className="logout-button" onClick={handleLogout}>
+      <div className="new-logout-button" onClick={handleLogout}>
         <FontAwesomeIcon icon={faSignOutAlt} className="logout-icon" />
         <span className="logout-text">Logout</span>
-      </button>
+      </div>
     </div>
   );
 }
