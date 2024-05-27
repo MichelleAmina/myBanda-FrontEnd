@@ -2,7 +2,7 @@ import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import "chart.js/auto";
 import OldSidebar from "./oldside";
-import SplineAreaChart from "./SplineAreaChart";
+import SplineAreaChart from "./SplineAreaChart"; 
 import "./oldsellerdash.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -35,7 +35,7 @@ const doughnutData = {
   ],
 };
 
-const Oldsellerdash = () => {
+const SellerDash = () => {
   // Read from localStorage
   const totalOrders = localStorage.getItem('totalOrders') || 0;
   const totalCustomers = localStorage.getItem('totalCustomers') || 0;
@@ -79,7 +79,7 @@ const Oldsellerdash = () => {
             <div>
               <h3>Total Orders</h3>
               <p>{totalOrders}</p>
-              <span>Target 20 per month</span>
+              <span>Target 20/month</span>
             </div>
             <FontAwesomeIcon icon={faShoppingCart}  color= "black"/>
           </div>
@@ -87,65 +87,31 @@ const Oldsellerdash = () => {
             <div>
               <h3>Total Customers</h3>
               <p>{totalCustomers}</p>
-              <span>Target 2 per /month</span>
+              <span>Target 2/month</span>
             </div>
             <FontAwesomeIcon icon={faUsers} />
           </div>
           <div className="stat-card">
             <div>
-              <h3>Average Sales</h3>
-              <p>KES. {averageSales.toFixed(2)}</p> {/* Display average sales */}
-              <span>Based on customer data</span>
+              <h3>Total Customers</h3>
+              <p>{totalCustomers}</p>
+              <span>Target 2/month</span>
             </div>
+            <FontAwesomeIcon icon={faUsers} />
           </div>
+
           <div className="stat-cardt">
             <h3>Earnings</h3>
             <div className="doughnut-chart-container">
-              <div className="doughnut-chart" >
-                <Doughnut data={doughnutData} options={{
-                  plugins: {
-                    legend: {
-                      display: false
-                    },
-                    tooltip: {
-                      callbacks: {
-                        label: function (context) {
-                          let label = context.label || '';
-                          if (label) {
-                            label += ': ';
-                          }
-                          if (context.parsed !== null) {
-                            label += context.parsed;
-                          }
-                          return label;
-                        }
-                      }
-                    }
-                  }
-                }} />
-                <div className="doughnut-center">
-                  <span>Total</span>
-                  <span className="doughnut-total">{total}</span>
-                </div>
-              </div>
-              <div className="doughnut-labels">
-                <div className="doughnut-label">
-                  <span style={{ color: "#FF0000" }}>● Loss</span>
-                  <span>1.1k</span>
-                </div>
-                <div className="doughnut-label">
-                  <span style={{ color: "#008000" }}>● Profit</span>
-                  <span>2.3k</span>
-                </div>
-              </div>
+            
             </div>
           </div>
         </div>
         <div className="charts-section">
-          <SplineAreaChart />
-          {/*<div className="chart-card">
-            <Bar data={barData} />
-          </div>*/}
+          <SplineAreaChart /> 
+          <div className="chart-card">
+        
+          </div>
         </div>
         <div className="new-list">
           <h3>Recent Orders</h3>
@@ -160,7 +126,7 @@ const Oldsellerdash = () => {
             </div>
           </div>
           <div className="new-list-item">
-            <img src="https://www.thewarehouse.co.nz/dw/image/v2/BDMG_PRD/on/demandware.static/-/Sites-twl-master-catalog/default/dw385ddb29/images/hi-res/B5/B3/R2897764_20.jpg?sw=765&sh=765" alt="sale" />
+            <img src="https://www.thewarehouse.co.nz/dw/image/v2/BDMG_PRD/on/dw385ddb29/images/hi-res/B5/B3/R2897764_20.jpg?sw=765&sh=765" alt="sale" />
             <div className="new-list-details">
               <div className="new-list-orders">
                 <h4>Alice Wanjera</h4>
@@ -175,4 +141,5 @@ const Oldsellerdash = () => {
   );
 }
 
-export default Oldsellerdash;
+export default SellerDash;
+

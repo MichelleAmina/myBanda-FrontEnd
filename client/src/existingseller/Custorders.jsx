@@ -40,8 +40,6 @@ const CustOrders = () => {
   
     console.log('Seller ID:', userId);
 
-    
-  
     fetch('https://mybanda-backend-88l2.onrender.com/order', {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -54,29 +52,14 @@ const CustOrders = () => {
         return response.json();
       })
       .then((data) => {
-        // Filtering orders based on the seller's shop ID
-        // const sellerShopId = data.find(order => order.seller_id === userId)?.shop_id;
-        // const sellerOrders = (data || []).filter(order => order.shop_id === sellerShopId);
-        // const orderItemsArr = data.map(order => order.order_items)
-        // const orderItems = orderItemsArr.flatMap(orderItem => orderItem);
-        // const sellerIds = orderItems.map(item => item.product?.shop?.seller_id).filter(sellerId => sellerId === userId);
-        // console.log("seller ids", sellerIds)
-
-        // const filteredData = data.filter(sellerId => sellerId === userId)
-        // console.log("filteredData", filteredData)
-
-
-
         // Flatten the order items from all orders
         const orderItemsArr = data.map(order => order.order_items);
         const orderItems = orderItemsArr.flatMap(orderItem => orderItem);
           
         // Filter order items where the seller_id matches the userId
-        // FROM MICHELLE ====== THIS ONE GIVES YOU THE ORDERS THAT MATCH THE SELLER ID VERY SPECIFIC
         const sellerOrderItems = orderItems.filter(item => item.product?.shop?.seller_id === userId);
         console.log("Filtered orders:", sellerOrderItems);
           
-        // FROM MICHELLE THIS FILTERES THE ORDERS PERFECTLY....USE IT!! 
         const filteredOrders = data.map(order => {
           const filteredOrderItems = order.order_items.filter(item => item.product?.shop?.seller_id === userId);
           return { ...order, order_items: filteredOrderItems };
@@ -132,96 +115,81 @@ const CustOrders = () => {
   const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
   const currentOrders = (searchTerm || sortOrder ? filteredOrders : orders).slice(indexOfFirstOrder, indexOfLastOrder);
 
-  // Function to change current page
+ 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="dashboard-container-custorders">
-      <OldSidebar activePage="orders" />
-      <div className="content-container-custorders">
-        <div className="header-custorders">
-          <h1>Orders</h1>
-          <div className="header-icons-custorders">
-            <FontAwesomeIcon icon={faSearch} />
-            <FontAwesomeIcon icon={faBell} />
-            <FontAwesomeIcon icon={faUser} />
-          </div>
-        </div>
-        <div className="sub-header-custorders">
-          <p>See below all your orders!</p>
-        </div>
-        <div className="search-filter-container-custorders">
-          <div className="search-bar-custorders">
-            <FontAwesomeIcon icon={faSearch} />
-            <input type="text" placeholder="Search by name..." value={searchTerm} onChange={handleSearch} />
-          </div>
-          <div className="filter-bar-custorders">
-            <select value={sortOrder} onChange={handleSortOrderChange}>
-              <option value="">Sort by Date</option>
-              <option value="latest">Latest</option>
-              <option value="oldest">Oldest</option>
-            </select>
-            <button onClick={handleSortOrderChange}>
-              <FontAwesomeIcon icon={faFilter} /> Filter
-            </button>
-          </div>
-        </div>
-        {loading ? (
-          <img
-            src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632/04de2e31234507.564a1d23645bf.gif"
-            alt="Loading..."
-            className="ordloader"
-          />
-        ) : (
-          <div>
-            <table className="order-table-custorders">
-              <thead>
-                <tr>
-                  <th>Customer</th>
-                  <th>Product</th>
-                  <th>Location</th>
-                  <th>Date</th>
-                  <th>Amount</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {currentOrders.map((order) => (
-                  <tr key={order.id}>
-                    <td>{order.buyer.username || "Not Specified"}</td>
-                    <td>{order.order_items[0].product.name || "Not Specified"}</td>
-                    <td>{order.delivery_address || "Not Specified"}</td>
-                    <td>{order.created_at.substring(0, 10)}</td>
-                    <td>Ksh. {order.total_price}</td>
-                    <td className={`order-status-custorders ${order.status.toLowerCase()}`}>
-                      {order.status}
-                    </td>
-                    <td>
-                      <button 
-                        className="custview-button"
-                        onClick={() => {
-                          console.log('Clicked VIEW button for order:', order.id);
-                          handleViewOrder(order.id);
-                        }} 
-                      >
-                        view
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            {/* Pagination */}
-            <ul className="pagination">
-              {Array(Math.ceil((searchTerm || sortOrder ? filteredOrders : orders).length / ordersPerPage))
-                .fill()
-                .map((_, index) => (
-                  <li key={index} className={currentPage === index + 1 ? 'active' : ''}>
-                    <button onClick={() => paginate(index + 1)}>{index + 1}</button>
-                  </li>
-                ))}
-            </ul>
+    <OldSidebar activePage="orders" />
+    <div className="content-container-custorders">
+      {loading ? (
+        <img
+          src="https://i.gifer.com/7YQl.gif"
+          alt="Loading..."
+          className="ordloader"
+        />
+      ) : (
+
+            <div className="first-ndorders-container">
+              <h1>You have no orders.</h1>
+              {currentOrders.length === 0 ? (
+                <div className="ndorders-container">
+                  <img className='ndorder-img' src="https://img.freepik.com/premium-vector/young-girl-is-standing-mobile-phone-girl-tap-screen-denial-access_530883-354.jpg?size=626&ext=jpg&uid=R101083988&ga=GA1.1.1434105621.1716803206&semt=ais_user" alt="Empty orders" />
+                  <h4 >All order related information will be displayed here.</h4>
+                  <p>For further assistance, please contact support.</p>
+                </div>
+            ) : (
+              <div>
+                <table className="order-table-custorders">
+                  <thead>
+                    <tr>
+                      <th>Customer</th>
+                      <th>Product</th>
+                      <th>Location</th>
+                      <th>Date</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {currentOrders.map((order) => (
+                      <tr key={order.id}>
+                        <td>{order.buyer.username || "Not Specified"}</td>
+                        <td>{order.order_items[0].product.name || "Not Specified"}</td>
+                        <td>{order.delivery_address || "Not Specified"}</td>
+                        <td>{order.created_at.substring(0, 10)}</td>
+                        <td>Ksh. {order.total_price}</td>
+                        <td className={`order-status-custorders ${order.status.toLowerCase()}`}>
+                          {order.status}
+                        </td>
+                        <td>
+                          <button 
+                            className="custview-button"
+                            onClick={() => {
+                              console.log('Clicked VIEW button for order:', order.id);
+                              handleViewOrder(order.id);
+                            }} 
+                          >
+                            view
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                {/* Pagination */}
+                <ul className="pagination">
+                  {Array(Math.ceil((searchTerm || sortOrder ? filteredOrders : orders).length / ordersPerPage))
+                    .fill()
+                    .map((_, index) => (
+                      <li key={index} className={currentPage === index + 1 ? 'active' : ''}>
+                        <button onClick={() => paginate(index + 1)}>{index + 1}</button>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            )}
           </div>
         )}
       </div>

@@ -114,39 +114,50 @@ const Customers = () => {
     <div className="customers-dashboard">
       <OldSidebar activePage="customers" />
       <div className="customers-content">
-        <div className="customers-header">
-          <h1>Customers</h1>
-          <div className="customers-header-icons">
-            <FontAwesomeIcon icon={faSearch} />
-            <FontAwesomeIcon icon={faBell} />
-            <FontAwesomeIcon icon={faUser} />
+        {dataToMap.length > 0 && (
+          <>
+            <div className="customers-header">
+              <h1>Customers</h1>
+              <div className="customers-header-icons">
+                <FontAwesomeIcon icon={faSearch} />
+                <FontAwesomeIcon icon={faBell} />
+                <FontAwesomeIcon icon={faUser} />
+              </div>
+            </div>
+            <div className="customers-sub-header">
+              <p>See below all your customers!</p>
+            </div>
+            <div className="customers-search-bar-container">
+              <div className="customers-search-bar">
+                <FontAwesomeIcon icon={faSearch} />
+                <input type="text" placeholder="Search by Customer Name..." className="search-input" value={searchTerm} onChange={handleSearch} />
+              </div>
+              <div className="customers-filter-bar">
+                <select value={sortOrder} onChange={handleSortOrderChange} className="sort-select">
+                  <option value="">Sort by Date</option>
+                  <option value="latest">Latest</option>
+                  <option value="oldest">Oldest</option>
+                </select>
+                <button onClick={handleSortOrderChange} className="filter-button">
+                  <FontAwesomeIcon icon={faFilter} /> Filter
+                </button>
+              </div>
+            </div>
+          </>
+        )}
+        {dataToMap.length === 0 ? (
+          <div className="nocustomers-container">
+            <div className="custtitle">
+              <h1>No customers found</h1>
+            </div>
+            <img
+              src="https://img.freepik.com/free-vector/hand-drawn-no-data-illustration_23-2150696455.jpg"
+              alt="No customers found"
+              className="nocustomer-img"
+            />
+            <h4>All customer-related information will be displayed here.</h4>
+            <p>For further assistance, please contact support.</p>
           </div>
-        </div>
-        <div className="customers-sub-header">
-          <p>See below all your customers!</p>
-        </div>
-        <div className="customers-search-bar-container">
-          <div className="customers-search-bar">
-            <FontAwesomeIcon icon={faSearch} />
-            <input type="text" placeholder="Search by Customer Name..." className="search-input" value={searchTerm} onChange={handleSearch} />
-          </div>
-          <div className="customers-filter-bar">
-            <select value={sortOrder} onChange={handleSortOrderChange} className="sort-select">
-              <option value="">Sort by Date</option>
-              <option value="latest">Latest</option>
-              <option value="oldest">Oldest</option>
-            </select>
-            <button onClick={handleSortOrderChange} className="filter-button">
-              <FontAwesomeIcon icon={faFilter} /> Filter
-            </button>
-          </div>
-        </div>
-        {loading ? (
-          <img
-            src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632/04de2e31234507.564a1d23645bf.gif"
-            alt="Loading..."
-            className="customer-loader"
-          />
         ) : (
           <table className="customers-table">
             <thead>
@@ -175,7 +186,6 @@ const Customers = () => {
             </tbody>
           </table>
         )}
-        {error && <p className="error-message">Error: {error.message}</p>}
         <ToastContainer />
       </div>
     </div>
