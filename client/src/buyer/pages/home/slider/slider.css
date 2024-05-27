@@ -50,7 +50,7 @@
 }
 
 .slick-arrow:hover{
-    background: #EBC606!important;
+    background: #FFD700 !important;
 }
 
 .slick-arrow:hover::before{
@@ -71,7 +71,7 @@
 }
 
 .slick-active button::before{
-    color:  #EBC606!important;
+    color:  #FFD700 !important;
 }
 
 

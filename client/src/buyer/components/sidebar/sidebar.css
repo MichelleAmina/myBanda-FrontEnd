@@ -1,14 +1,14 @@
 .sidebar .btn{
     text-transform: capitalize;
     font-size: 16px;
-    background:#EBC606;
+    background:#FFD700 ;
     color:white;
     width: 100%;
    
 }
 
 .sidebar .btn:hover{
-    background: #ebc50695;
+    background: #ffeb86;
 }
 
 .sidebar .btn svg{

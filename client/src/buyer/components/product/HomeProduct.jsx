@@ -46,8 +46,15 @@ function HomeProduct({ item }) {
             product_id: id
         }),
         })
-        .then((r) => console.log(r))
-        // .then(setDeleted(updateDelete))
+        // .then((r) => console.log(r))
+        // // .then(setDeleted(updateDelete))
+        .then((response) => {
+            if (response.ok) {
+                toast.success('Item added to wishlist!', {position: "top-center"});
+            } else {
+                throw new Error('Failed to add item to wishlist' , {position: "top-center"});
+            }
+        })
     }
 
     

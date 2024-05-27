@@ -19,7 +19,7 @@
 }
 
 .filterTab li:hover a, .filterTab li a.active{
-    color: #EBC606;
+    color: #FFD700 ;
     transform: translateY(-10px);
     cursor: pointer;
     

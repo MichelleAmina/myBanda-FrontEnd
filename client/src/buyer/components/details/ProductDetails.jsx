@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import Sidebar from '../sidebar/Sidebar'
 import HomeProduct from '../product/HomeProduct';
 import { addToCart, decreaseCart } from '../../../redux/cartSlice';
+import { toast } from 'react-toastify';
 
 import Slider from 'react-slick'
 import Rating from '@mui/material/Rating';
@@ -69,7 +70,14 @@ function ProductDetails(){
             product_id: id
         }),
         })
-        .then((r) => console.log(r))
+        // .then((r) => console.log(r))
+        .then((response) => {
+            if (response.ok) {
+                toast.success('Item added to wishlist!', {position: "top-center"});
+            } else {
+                throw new Error('Failed to add item to wishlist' , {position: "top-center"});
+            }
+        })
     }
 
 
