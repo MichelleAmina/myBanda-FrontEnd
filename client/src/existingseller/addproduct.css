@@ -167,7 +167,7 @@
 
 .add-more-button {
   background-color: #f2ca00;
-  color: white;
+  color: black !important;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -177,6 +177,7 @@
   align-items: center;
   gap: 5px;
   justify-content: center;
+  width: 160px;
 }
 
 .add-more-button:hover {
@@ -196,7 +197,7 @@
 
 .add-new-product-button {
   background-color: #FFD700 ;
-  color: white;
+  color: black ;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -233,4 +234,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.adpbtn{
+  color:white;
 }

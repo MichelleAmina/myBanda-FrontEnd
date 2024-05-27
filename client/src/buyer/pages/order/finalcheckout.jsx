@@ -1,9 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTotals, clearCart } from '../../../redux/cartSlice';
 import './finalcheckout.css';
+import { useJsApiLoader, Autocomplete } from '@react-google-maps/api';
+
+const libraries = ["places"];
 
 const FinalCheckout = () => {
+
+  const {isLoaded} = useJsApiLoader({
+    googleMapsApiKey: "AIzaSyBQxT3xBni2UvXtvfH4nhqKuUVrY5gte1s",
+    libraries: libraries,
+  })
+
   const dispatch = useDispatch();
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedMethod, setSelectedMethod] = useState('');
@@ -205,6 +214,23 @@ const FinalCheckout = () => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
   };
 
+  const addressRef = useRef();
+
+  useEffect(() => {
+    if (isLoaded && addressRef.current) {
+      const autocomplete = new window.google.maps.places.Autocomplete(addressRef.current);
+      autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace();
+        if (place && place.formatted_address) {
+          setDeliveryInfo({
+            ...deliveryInfo,
+            address: place.formatted_address,
+          });
+        }
+      });
+    }
+  }, [isLoaded]);
+
   return (
     <div className="finalcheckout-html">
       <div className="finalcheckout-body">
@@ -273,14 +299,20 @@ const FinalCheckout = () => {
                   </div>
                   <div className="col-md-12">
                     <div className="form-group mb-3">
-                      <label>Full Address</label>
-                      <textarea
-                        rows="3"
-                        name="address"
-                        className="form-control"
-                        value={deliveryInfo.address}
-                        onChange={handleChange}
-                      ></textarea>
+                    <label>Full Address</label>
+                      {isLoaded && (
+                        <Autocomplete>
+                          <textarea
+                            rows="3"
+                            name="address"
+                            className="form-control"
+                            ref={addressRef}
+                            value={deliveryInfo.address}
+                            onChange={handleChange}
+                          ></textarea>
+                        </Autocomplete>
+                      )}
+                      
                     </div>
                   </div>
                   <div className="col-md-6">

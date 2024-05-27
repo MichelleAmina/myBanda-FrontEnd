@@ -84,7 +84,7 @@ function ShopView() {
   if (loading) {
     return (
       <div className="loader">
-        <img src="https://i.pinimg.com/originals/c1/bc/d8/c1bcd8a8c945b53da6b29f10a2a553c0.gif" alt="Loading" />
+        <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" alt="Loading" />
       </div>
     );
   }
@@ -160,7 +160,7 @@ function ShopView() {
         </div>
 
         <div className="view-more">
-          <Button onClick={() => navigate('/products')}>View More </Button>
+          <Button onClick={() => navigate('/producthome')}>View More </Button>
         </div>
       </div>
     </div>
