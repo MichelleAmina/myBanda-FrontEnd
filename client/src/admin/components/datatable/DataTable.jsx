@@ -61,6 +61,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { shopColumns } from '../../dataTableSource';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 function DataTable({ rows, role }) {
     const [tableRows, setTableRows] = useState(rows);
@@ -78,10 +79,10 @@ function DataTable({ rows, role }) {
 
             if (response.ok) {
                 setTableRows(tableRows.filter((row) => row.id !== id));
-                alert('User deleted successfully');
+                toast.success("User deleted successfully ", {position: "top-center"})
             } else {
                 const errorData = await response.json();
-                alert(`Error deleting user: ${errorData.message}`);
+                toast.error("Failed to delete", {position: "top-center"})
             }
         } catch (error) {
             alert(`Error: ${error.message}`);

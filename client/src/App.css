@@ -552,13 +552,13 @@ ul.breadcrumb li a.active{
 }
 
 .zoomSlider .item{
-  border: 1px solid #EBC606 !important;
+  /* border: 1px solid #FFD700 !important; */
   overflow: hidden;
   border-radius: 15px;
 }
 
 .zoomSlider .slick-current .item{
-  border: 1px solid #EBC606 !important;
+  border: 1px solid #FFD700  !important;
  
 }
 /*
@@ -567,7 +567,7 @@ ul.breadcrumb li a.active{
 }
 
 .zoomSlider .slick-current .item{
-  border: 1px solid #EBC606;
+  border: 1px solid #FFD700 ;
 }*/
 
 .zoomSlider .slick-arrow{
@@ -665,7 +665,7 @@ input[type=number]{
 
 .addCartSection .addToCartBtn{
   /*background: #0e6efb;*/
-  background: #EBC606 ;
+  background: #FFD700  ;
   /*color: white;*/
   color: #000;
   text-transform: capitalize;
@@ -698,14 +698,14 @@ input[type=number]{
 
 .addCartSection .favoriteBtn{
   /*border: 1px solid rgba(0, 0, 0, 0.2);*/
-  border: 1px solid #EBC606;
+  border: 1px solid #FFD700 ;
   border-radius: 10px;
   padding: 10px 15px;
 
 }
 
 .addCartSection .favoriteBtn:hover{
-  background: #EBC606;
+  background: #FFD700 ;
 }
 
 .addCartSection .favoriteBtn:hover svg{
@@ -739,7 +739,7 @@ input[type=number]{
 }
 
 .detailsPage .customTabs ul li button.active{
-  color:  #EBC606 ;
+  color:  #FFD700  ;
 }
 
 .vendorsCard{
@@ -845,7 +845,7 @@ input[type=number]{
 }
 
 .reviewForm .form-group button{
-  background:  #EBC606;
+  background:  #FFD700 ;
   /*color: white;*/
   color: #000;
   text-transform: capitalize;

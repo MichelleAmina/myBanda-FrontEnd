@@ -32,14 +32,14 @@
     top: 0px;
     right: 0px; 
     height: 60px !important;
-    background: #EBC606;
+    background: #FFD700 ;
     font-size: 18px !important;
     text-transform: capitalize !important;
     font-weight: 400 !important;
 }
 
 .newsLetterBanner button:hover{
-    background: #ebc50695;
+    background: #ffeb86;
 }
 
 .newsLetterBanner svg{

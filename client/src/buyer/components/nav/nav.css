@@ -11,8 +11,8 @@
     font-size: 16px;
     text-transform: capitalize !important;
     padding: 8px 20px !important;
-    /*border: 1px solid #EBC606;
-    background: #EBC606;*/
+    /*border: 1px solid #FFD700 ;
+    background: #FFD700 ;*/
     border: 1px solid  #FFD700; 
     background:  #FFD700;
     color: #000 !important;
@@ -20,8 +20,8 @@
 }
 
 .buyerNav .browseButton:hover{
-    background: #ebc506b9;
-    border: 1px solid #EBC606;
+    background: #ffeb86;
+    border: 1px solid #FFD700 ;
 }
 
 .buyerNav .part1{
@@ -59,7 +59,7 @@
 .buyerNav nav ul li .navButton{
     text-transform: capitalize !important;
     padding: 21px 25px !important;
-    /*color: #EBC606; /*change this to remove color*/ 
+    /*color: #FFD700 ; /*change this to remove color*/ 
     color:  #FFD700;
 }
 
@@ -125,7 +125,7 @@
 
 nav .dropdown_menu li button:hover{
     /*background-color: #f1f1f1 !important;*/
-    background: #ebc50695 !important ;
+    background: #ffeb86 !important ;
 }
 
 
