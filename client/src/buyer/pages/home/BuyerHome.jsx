@@ -173,25 +173,7 @@ function BuyerHome(props){
                             <TopProducts title="Top New" tag="new" products={prodData} />
                         </div>
                         
-                        {/* <div className="col">
-                            <TopProducts title="Top Selling"/>
-
-                        </div>
-
-                        <div className="col">
-                            <TopProducts title="Trending Products"/>
-                            
-                        </div>
-
-                        {/* <div className="col">
-                            <TopProducts title="Recently Added"/>
-                            
-                        </div> *
-
-                        <div className="col">
-                            <TopProducts title="Top New"/>
-                            
-                        </div> */}
+                        
                     </div>
                 </div>
             </section>
@@ -201,15 +183,15 @@ function BuyerHome(props){
                 <div className="container-fluid">
                     <div className="box d-flex align-items-center">
                         <div className="info">
-                            <h2>Lorem ipsum dolor sit amet <br/>
-                            consectetur adipis</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur.</p>
+                            <h2>Experience the best in online <br/>
+                             shopping today</h2>
+                            <p>Enjoy fast and reliable delivery on every order.</p>
                             <br />
                             <Newsletter/>
                         </div>
 
                         <div className="img">
-                            <img src="./deliveryman.png" alt="" className='w-100'/>
+                            <img src="/deliveryman.png" alt="" className='w-100'/>
                         </div>
                     </div>
                 </div>
