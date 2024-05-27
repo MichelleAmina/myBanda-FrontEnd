@@ -27,6 +27,9 @@ const AddProduct = () => {
     }
   };
 
+  {
+    /* */
+  }
   const addMoreImages = () => {
     if (imageUrls.length < 5) {
       setImageUrls([...imageUrls, ""]);
