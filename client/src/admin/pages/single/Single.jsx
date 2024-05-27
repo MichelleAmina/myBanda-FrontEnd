@@ -16,13 +16,16 @@ function Single() {
     const { sellerId } = useParams();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [orders, setOrders] = useState([])
     const [error, setError] = useState(null);
 
     const columns = [
-        { id: 'id', label: 'Order Id', minWidth: 170 },
-        { id: '', label: 'Role', minWidth: 170 },
-        { id: 'location', label: 'Location', minWidth: 170 },
-        { id: 'email', label: 'Email', minWidth: 170 },
+        { id: 'order_id', label: 'Order Id', minWidth: 170 },
+        { id: 'product_id', label: 'Product Id', minWidth: 170 },
+        { id: 'quantity', label: 'Quantity', minWidth: 170 },
+        { id: 'product.price', label: 'Price', minWidth: 170 },
+        { id: '', label: 'Total', minWidth: 170 },
+        
       ];
     
       const handleChangePage = (event, newPage) => {
@@ -51,6 +54,46 @@ function Single() {
                 setLoading(false);
             });
     }, [sellerId]);
+
+
+    useEffect(() => {
+      fetch('https://mybanda-backend-88l2.onrender.com/order', {
+          headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+          },
+      })
+      .then((response) => response.json())
+      .then((data) => {
+          // console.log("Fetched data:", data);
+
+          const orderItemsArr = data.map(order => order.order_items);
+          const orderItems = orderItemsArr.flatMap(orderItem => orderItem);
+
+          // console.log("Flattened orderItems:", orderItems);
+
+          // Convert sellerId to a string if necessary
+          const sellerIdString = sellerId.toString();
+
+          // Filter order items where the seller_id matches the sellerId
+          const sellerOrderItems = orderItems.filter(item => {
+              const itemSellerId = item.product?.shop?.seller_id?.toString();
+              // console.log("Comparing item seller_id:", itemSellerId, "with sellerId:", sellerIdString);
+              return itemSellerId === sellerIdString;
+          });
+
+          console.log("Filtered sellerOrderItems:", sellerOrderItems);
+          setOrders(sellerOrderItems);
+      })
+      .catch((error) => {
+          console.error('Error fetching orders:', error);
+      });
+  }, [sellerId]);
+
+  console.log("the orders", orders)
+
+
+
 
 
     if(loading){
@@ -108,7 +151,7 @@ function Single() {
                         <AdminChart aspect={3 / 1} title="Sales (Last 6 Months)" />
                     </div>
                 </div>
-{/* 
+
                 <div className="bottom">
                     <h1 className="title" style={{ fontSize: "20px" }}>Previous Orders</h1>
                     <Paper className='adminTable'>
@@ -122,34 +165,31 @@ function Single() {
                               </TableRow>
                             </TableHead>
                             <TableBody>
-                              {users
-                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                .map((user) => (
-                                  <TableRow key={user.id}>
-                                    {columns.map((column) => (
-                                      <TableCell key={column.id}>
-                                        {column.id === 'location' && user.role === 'seller' 
-                                          ? user.shop?.location 
-                                          : user[column.id]
-                                        }
-                                      </TableCell>
-                                    ))}
-                                  </TableRow>
-                                ))}
-                            </TableBody>
+                                    {orders
+                                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                        .map((order, index) => (
+                                            <TableRow key={index}>
+                                                <TableCell>{order.order_id}</TableCell>
+                                                <TableCell>{order.product.id}</TableCell>
+                                                <TableCell>{order.quantity}</TableCell>
+                                                <TableCell>{order.product.price}</TableCell>
+                                                <TableCell>{(order.quantity * order.product.price)}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                </TableBody>
                           </Table>
                         </TableContainer>
                         <TablePagination
                           rowsPerPageOptions={[5, 10, 25]}
                           page={page}
-                          count={users.length}
+                          count={orders.length}
                           rowsPerPage={rowsPerPage}
                           component='div'
                           onPageChange={handleChangePage}
                           onRowsPerPageChange={handleRowsPerPageChange}
                         />
                     </Paper>
-                </div> */}
+                </div> 
 
                 
             </div>

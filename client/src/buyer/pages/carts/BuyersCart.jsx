@@ -69,7 +69,7 @@ const BuyersCart = () => {
                                         {cart.cartItems.map((cartItem) => (
                                             <tr key={cartItem.id}>
                                                 <td>
-                                                    <div className="product-info">
+                                                    <div className="Product-Info">
                                                         <div className="product-img">
                                                             <img src={cartItem.images[0]?.image_url} alt={cartItem.name}/>
                                                         </div>

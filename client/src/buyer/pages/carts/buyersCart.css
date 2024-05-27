@@ -75,7 +75,7 @@
     text-align: center;
 }
 
-.product-info {
+.Product-Info {
     display: flex;
     align-items: center;
     padding-left: 15px;
@@ -97,6 +97,7 @@
 .product-name h4 {
     color: rgba(0,0,0,0.7);
     font-size: 20px;
+    text-transform: capitalize;
 }
 
 .product-name a {

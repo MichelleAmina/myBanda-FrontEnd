@@ -26,7 +26,7 @@ hover{
 }
 
 .text-y{
-  color: #EBC606;
+  color: #FFD700;
 }
 
 .text-hover{
@@ -34,7 +34,7 @@ hover{
 }
 
 .btn-y{
-  background:  #EBC606;
+  background:  #FFD700;
   color: white;
   text-transform: capitalize;
   font-size: 16px;
@@ -100,7 +100,7 @@ hover{
     padding: 1ch 1.5ch;
     border-radius: .3ch;
     box-shadow: 0 1em 2em -.5em rgba(0, 0, 0, 0.35);
-    background: #EBC606;
+    background: #FFD700;
     color: #000;
     z-index: 1000; /* absurdity 2 */
   }
@@ -122,7 +122,7 @@ hover{
   [tooltip][flow^="up"]::before {
     bottom: 100%;
     border-bottom-width: 0;
-    border-top-color:#EBC606;
+    border-top-color:#FFD700;
   }
   [tooltip]:not([flow])::after,
   [tooltip][flow^="up"]::after {
@@ -155,7 +155,7 @@ hover{
   [tooltip][flow^="left"]::before {
     top: 50%;
     border-right-width: 0;
-    border-left-color:#EBC606;
+    border-left-color:#FFD700;
     left: calc(0em - 5px);
     transform: translate(-.5em, -50%);
   }
@@ -169,7 +169,7 @@ hover{
   [tooltip][flow^="right"]::before {
     top: 50%;
     border-left-width: 0;
-    border-right-color:#EBC606;
+    border-right-color:#FFD700;
     right: calc(0em - 5px);
     transform: translate(.5em, -50%);
   }
@@ -496,6 +496,7 @@ ul.breadcrumb li a.active{
   font-size: 40px;
   font-weight: 400;
   color: #000;
+  text-transform: capitalize;
 
 
 }
@@ -757,6 +758,11 @@ input[type=number]{
   width: 100px;
   height: 100px;
   border-radius: 50%;
+}
+
+.vendorsCard .vendorTop .vendorTitle a h3{
+  text-transform: capitalize;
+
 }
 
 .vendorsCard .vendorTop .vendorTitle a{

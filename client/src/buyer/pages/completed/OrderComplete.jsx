@@ -57,6 +57,8 @@ const OrderCompleted = () => {
                 return 'pending';
             case 'dispatched':
                 return 'dispatched';
+            case 'assigned':
+                return 'assigned';
             default:
                 return 'default';
         }
@@ -85,8 +87,8 @@ const OrderCompleted = () => {
                 </div>
             </div>
             ) : (
-                <div className='container-fluid pt-4 pb-5'>
-                    <div className="orderWrapper">
+                <div className='container-fluid pt-4'>
+                    <div className="orderWrapper mb-5">
                         <div className="orderTitle">
                             <h4>You have 6 Previous Orders</h4> 
                             <div className="orderTitle-Status">

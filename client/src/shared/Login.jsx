@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useJsApiLoader, Autocomplete } from '@react-google-maps/api';
 import './Login.css'
 
+const libraries = ["places"];
+
 function Login(){
+
+    const {isLoaded} = useJsApiLoader({
+        googleMapsApiKey: "AIzaSyBQxT3xBni2UvXtvfH4nhqKuUVrY5gte1s",
+        libraries: libraries,
+    })
+
     const [addclass, setaddclass] = useState("")
     const [showLocationInput, setShowLocationInput] = useState(false);
     const [showContactInput, setShowContactInput] = useState(false);
@@ -72,7 +81,7 @@ function Login(){
             if (response.ok) {
                 const data = await response.json();
                 toast.success("Account created successfully!", { position: "top-right", className: "toast-message"  });
-                console.log("this is the data", data)
+                console.log("this is the data when signing up", data)
                 const { access_token } = data; // Extract the JWT token from the response
                 localStorage.setItem('access_token', access_token); // Store the token in local storage
                 console.log('User registered:', data);
@@ -80,17 +89,17 @@ function Login(){
                 const role = data.name
                 console.log("this is the role", role)
 
-                if (role === 'buyer'){
-                    navigate('/my_banda')
-                } else if (role === 'seller'){
-                    navigate('/sellerdash')
-                } else if (role === 'delivery'){
-                    navigate('/driverhomepage')
-                } else{
-                    console.log("Message after all roles")
-                    //navigate('/banda_admin')
-                }
-                // navigate('/driverhomepage');
+                // if (role === 'buyer'){
+                //     navigate('/my_banda')
+                // } else if (role === 'seller'){
+                //     navigate('/sellerdash')
+                // } else if (role === 'delivery'){
+                //     navigate('/driverAnalytics')
+                // } else{
+                //     console.log("Message after all roles")
+                //     //navigate('/banda_admin')
+                // }
+                // // navigate('/driverhomepage');
                 console.log('Successful');
             } else {
                 toast.error("Signup failed. Please try again.", { position: "top-right", className: "toast-message"  });
@@ -138,15 +147,23 @@ function Login(){
                 const role = data.role 
                 console.log("this is the role", role)
 
+                const newSeller = data.isNewSeller
+                console.log("newSeller", newSeller)
+
+
+
                 if (role === 'buyer'){
                     navigate('/my_banda')
-                } else if (role === 'seller'){
+                } else if (role === 'seller' && newSeller){
+                    navigate('/sellerdash')
+                } else if (role === 'seller' && !newSeller){
                     navigate('/oldsellerdash')
-                } else if (role === 'delivery'){
-                    navigate('/driverhomepage')
-                } else{
-                    
+                }else if (role === 'delivery'){
+                    navigate('/driverAnalytics')
+                } else if(role === 'banda_admin'){
                     navigate('/banda_admin')
+                } else {
+                    console.log("this user has no route")
                 }
                 
                 console.log('Successful');
@@ -230,15 +247,19 @@ function Login(){
                     {showLocationInput && (
                         <>
                             <label id="form-label" htmlFor="location">Location:</label>
-                            <input 
-                                type="text" 
-                                name="location" 
-                                id="location" 
-                                placeholder="Location" 
-                                value={formData.location} 
-                                onChange={handleChange} 
-                                required 
-                            />
+                            {isLoaded && (
+                                <Autocomplete>
+                                    <input 
+                                        type="text" 
+                                        name="location" 
+                                        id="location" 
+                                        placeholder="Location" 
+                                        value={formData.location} 
+                                        onChange={handleChange} 
+                                        required 
+                                    />
+                                </Autocomplete>
+                            )}
                         </>
                     )}
                     {showContactInput && (

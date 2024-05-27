@@ -64,7 +64,7 @@ function AdminTable({ users }) {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
+        rowsPerPageOptions={[5, 10, 25, 50]}
         page={page}
         count={users.length}
         rowsPerPage={rowsPerPage}

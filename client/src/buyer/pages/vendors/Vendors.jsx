@@ -85,9 +85,9 @@ function Vendors() {
                         <input type="text" placeholder='Search for products...' />
                         <SearchOutlinedIcon />
                     </div>
-                    <div className="vendorFilter">
+                    {/* <div className="vendorFilter">
                         Filter By
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="vendorProducts">
