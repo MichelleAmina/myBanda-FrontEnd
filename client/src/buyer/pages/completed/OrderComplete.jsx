@@ -92,11 +92,11 @@ const OrderCompleted = () => {
                         <div className="orderTitle">
                             <h4>You have 6 Previous Orders</h4> 
                             <div className="orderTitle-Status">
-                                <ul>
+                                {/* <ul>
                                     <li>Completed</li>
                                     <li>Pending</li>
                                     <li>Dispatched</li>
-                                </ul>
+                                </ul> */}
 
                             </div>
                             
