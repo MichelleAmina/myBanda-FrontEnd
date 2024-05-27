@@ -38,6 +38,55 @@ function ProductDetails(){
     const [activeTabs, setActiveTabs] = useState(0)
 
     const zoomSlider = useRef()
+
+    const accessToken = localStorage.getItem('access_token');
+
+    //Decoding the JWT token to get the payload
+    const tokenParts = accessToken.split('.');
+    const payload = JSON.parse(atob(tokenParts[1]));
+
+    //Extracting the user ID from the payload
+    const userId = payload.sub;
+    console.log('User ID:', userId);
+
+    const initialReviewInfo = {
+        content: '',
+        rating: 0
+    };
+
+    const [reviewInfo, setReviewInfo] = useState(initialReviewInfo);
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        console.log("sending the review")
+
+        try {
+            const res = await fetch('https://mybanda-backend-88l2.onrender.com/review', {
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'application/json',
+                    Authorization: `Bearer ${accessToken}`
+                },
+                body: JSON.stringify({
+                    content: reviewInfo.content,
+                    rating: reviewInfo.rating,
+                    product_id: productId,
+                    user_id: userId
+                }),
+            })
+
+            if(res.ok){
+                console.log("Review sent successfully")
+            } else {
+                const errorData = await res.json();
+                console.log("error placing review", errorData)
+            }
+        } catch (error){
+            console.log("Error:", error)
+        }
+
+    }
+
     
     // If unable to get data using useLocation, fetch it directly from the database 
     useEffect(() => {
@@ -56,7 +105,7 @@ function ProductDetails(){
         }
     }, [product, productId]);
 
-    console.log()
+    console.log("the product", product)
 
 
     const handleAddToWishlist = (id) => {
@@ -85,6 +134,30 @@ function ProductDetails(){
     if (!product) {
         return <div>Loading...</div>;
     }
+
+    // handle content change 
+    const handleChange = (event, newValue) => {
+        if (event.target) {
+            const { name, value } = event.target;
+            setReviewInfo((prevInfo) => ({
+                ...prevInfo,
+                [name]: value
+            }));
+        } else {
+            setReviewInfo((prevInfo) => ({
+                ...prevInfo,
+                rating: newValue
+            }));
+        }
+    };
+
+    //  handle rating change 
+    const handleRatingChange = (event, newValue) => {
+        setReviewInfo((prevInfo) => ({
+            ...prevInfo,
+            rating: newValue
+        }));
+    };
 
     // Calculate average rating
     const calculateAverageRating = () => {
@@ -442,14 +515,16 @@ function ProductDetails(){
                                                         </div>
                                                         <div className="info ps-4">
                                                             <div className="d-flex align-items-center">
-                                                                <h5>{new Date(review.date).toLocaleString()}</h5>
+                                                                {/* <h5>{new Date(review.date).toLocaleString()}</h5> */}
+                                                                <h5>{review.date.substring(0,10)}</h5>
                                                                 <div className="ms-auto">
                                                                     <Rating
+                                                                    
                                                                         name="half-rating-read"
                                                                         defaultValue={review.rating}
                                                                         precision={0.5}
                                                                         readOnly
-                                                                        style={{ fontSize: '17px' }}
+                                                                        style={{ fontSize: '17px', color:"gold" }}
                                                                     />
                                                                 </div>
                                                             </div>
@@ -465,14 +540,25 @@ function ProductDetails(){
                                     <br />
                         
 
-                                        <form action="" className='reviewForm'>
+                                        <form onSubmit={handleSubmit} className='reviewForm'>
                                             <h4>Add A Review</h4>
-                                            <Rating name="half-rating" defaultValue={0} precision={0.5} />
+                                            {/* <Rating name="half-rating" defaultValue={0} precision={0.5}/> */}
+                                            <Rating
+                                                name="rating"
+                                                value={reviewInfo.rating}
+                                                precision={0.5}
+                                                onChange={handleRatingChange}
+                                            />
                                             <div className="form-group pt-3">
-                                                <textarea className='form-control' name="" id="" placeholder='Write a Review'></textarea>
+                                                <textarea 
+                                                className='form-control' 
+                                                name="content" 
+                                                valie={reviewInfo.content} 
+                                                onChange={handleChange}
+                                                placeholder='Write a Review'></textarea>
                                             </div>
 
-                                            <div className="row">
+                                            {/* <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
                                                         <input type="text" className='form-control' placeholder='Username'/>
@@ -484,18 +570,10 @@ function ProductDetails(){
                                                         <input type="date" className='form-control'/>
                                                     </div>
                                                 </div>
-                                            </div>
-
-                                            
-                                             
-
+                                            </div> */}
                                             <div className="form-group mt-4">
-                                                <Button>Submit Review</Button>
+                                                <Button onClick={handleSubmit}>Submit Review</Button>
                                             </div>
-
-
-
-                                            
                                             
                                         </form>
                                     </div>

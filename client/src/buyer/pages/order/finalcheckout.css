@@ -287,6 +287,20 @@ input[type='password']:focus {
 
 }
 
+.cart-summary-container{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-summary-title{
+  font-size: 20px;
+}
+
+.cart-summary-details{
+  font-size: 18px;
+}
+
 .cht-small-inputs {
   display: flex;
   margin-top: 20px;

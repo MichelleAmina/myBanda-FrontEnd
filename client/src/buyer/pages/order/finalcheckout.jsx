@@ -352,7 +352,7 @@ const FinalCheckout = () => {
                         </div>
                         <div className="col-md-6">
                           <div className="card p-4">
-                            <h3>Cart Summary</h3>
+                            <h5>Cart Summary</h5>
                             <hr />
                             <div className="cart-summary-container">
                               <h5 className="cart-summary-title">Subtotal:</h5>
@@ -360,15 +360,15 @@ const FinalCheckout = () => {
                                 <span className="cart-product-price">Ksh {cart.cartTotalAmount}</span>
                               </h3>
                             </div>
-                            <div className="d-flex align-items-center mb-4">
+                            <div className="cart-summary-container">
                               <h5 className="cart-summary-title">Shipping:</h5>
                               <h3 className="cart-summary-details">
-                                <span className="cart-product-unit-price">{shippingFee}</span>
+                                <span className="cart-product-unit-price">Ksh {shippingFee}</span>
                               </h3>
                             </div>
                             <hr />
-                            <div className="d-flex align-items-center">
-                              <h5 className="cart-summary-title">Total</h5>
+                            <div className="cart-summary-container">
+                              <h5 className="cart-summary-title">Total:</h5>
                               <h3 className="cart-summary-details">
                                 <span className="cart-product-price">Ksh {cart.cartTotalAmount + shippingFee}</span>
                               </h3>
