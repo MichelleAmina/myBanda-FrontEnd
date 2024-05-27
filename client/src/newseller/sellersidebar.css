@@ -91,24 +91,27 @@
   height: auto;
   margin-right: 10px;
 }
-/* 
-.logout-button{
-  /* width: 120px; 
-  margin-left: 30px;
-  margin-bottom: 40px;
-  border: none;
+
+.new-logout-button {
+  position: absolute;
+  bottom: 70px;
+  left: 50px;
+  padding: 11px 0px 11px 10px;
   background: none;
-  
+  border: none;
+
 }
 
-
-.logout-button:hover{
-  background: #ffed96;
-  padding: 12px;
+.new-logout-button:hover{
+  background-color: #ffed96;
+  width: 200px;
 }
 
-.logout-button svg{
-  margin-right: 5px;
-  
-} */
+.new-logout-button .logout-icon {
+  font-size: 18px;
+  margin-right: 10px;
+}
 
+.new-logout-button .logout-text {
+  font-size: 16px;
+} 

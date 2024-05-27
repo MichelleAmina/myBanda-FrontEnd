@@ -85,8 +85,10 @@
 
 .logout-button {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
+  bottom: 50px;
+  left: 50px;
+  padding: 10px 0px 10px 10px;
+
 }
 
 .logout-button .old-sidebar-link {
@@ -99,8 +101,13 @@
   font-weight: normal;
 }
 
-.logout-button .old-sidebar-link:hover {
+/* .logout-button .old-sidebar-link:hover {
   background-color: #ffed96;
+} */
+
+.logout-button:hover{
+  background-color: #ffed96;
+  width: 200px;
 }
 
 .logout-button .old-link-icon {
@@ -109,7 +116,7 @@
 }
 
 .logout-button .old-link-name {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .old-submenu {
