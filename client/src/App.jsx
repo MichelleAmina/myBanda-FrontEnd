@@ -12,6 +12,7 @@ import DeliveryDriverAnalytics from './DeliveryPerson/Pages/DeliveryAnalytics';
 import AvailableDeliveries from './DeliveryPerson/Pages/AvailableDeliveries';
 import PendingDeliveries from './DeliveryPerson/Pages/PendingDeliveries';
 import ViewDetails from './DeliveryPerson/Pages/ViewDetails';
+import RouteCalculator from "./DeliveryPerson/Pages/map/map";
 
 // Buyer import 
 import Buyer from './buyer/Buyer';
@@ -48,6 +49,7 @@ import ProductHome from "./existingseller/producthome";
 import OldSellerDash from "./existingseller/oldsellerdash";
 import ShopView from "./existingseller/shopview"; 
 import MoreOrderDetails from './existingseller/MoreOrderDetails';
+
 
 
 
@@ -99,6 +101,7 @@ function App() {
         <Route path="/driverAnalytics" element={<DeliveryDriverAnalytics />} />
         <Route path="/pendingDeliveries" element={<PendingDeliveries />} />
         <Route path="/viewDetails/:orderId" element={<ViewDetails />} />
+        <Route path="/maps" element={<RouteCalculator />} />
 
         {/*Seller routes */}
         <Route path="/sellerdash" element={<Sellerdash />} />
