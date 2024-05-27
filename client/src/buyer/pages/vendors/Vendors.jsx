@@ -10,17 +10,15 @@ function Vendors() {
     const [vendor, setVendor] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [searchinput, setsearchinput] = useState('');
 
-    
 
     useEffect(() => {
         // Fetch vendor data based on sellerId
         fetch(`https://mybanda-backend-88l2.onrender.com/user/${sellerId}`)
             .then(resp => resp.json())
             .then(data => {
-                //console.log('Fetched vendor data:', data);
                 setVendor(data);
-                //setLoading(false);
                 setTimeout(() => setLoading(false), 1000);
             })
             .catch(error => {
@@ -30,18 +28,12 @@ function Vendors() {
             });
     }, [sellerId]);
 
-    //console.log(vendor)
-
-   
-
-
-
-    if(loading) {
-        return(
+    if (loading) {
+        return (
             <div className="loader">
                 <img src="https://i.pinimg.com/originals/c1/bc/d8/c1bcd8a8c945b53da6b29f10a2a553c0.gif" alt="" />
             </div>
-        )
+        );
     }
 
     if (error) {
@@ -51,6 +43,14 @@ function Vendors() {
     if (!vendor) {
         return <div>No vendor data available</div>;
     }
+
+    const handleSearchChange = (e) => {
+        setsearchinput(e.target.value);
+    };
+
+    const filteredProducts = vendor.shop.products.filter((product) =>
+        product.name.toLowerCase().includes(searchinput.toLowerCase())
+    );
 
     return (
         <div className="vendors mb-5">
@@ -72,7 +72,6 @@ function Vendors() {
                         <h4>{vendor.shop.name}</h4>
                         <p>{vendor.shop.description}</p>
                         <p><strong>Phone / Email :</strong> {vendor.shop.contact}, {vendor.email}</p>
-                       
                     </div>
                     <div className="vendorFollow">
                         <Button>Follow</Button>
@@ -82,26 +81,25 @@ function Vendors() {
 
                 <div className="vendorSearch">
                     <div className="vendorSearchInput">
-                        <input type="text" placeholder='Search for products...' />
+                        <input
+                            type="text"
+                            placeholder='Search for products...'
+                            value={searchinput}
+                            onChange={handleSearchChange}
+                        />
                         <SearchOutlinedIcon />
                     </div>
-                    {/* <div className="vendorFilter">
-                        Filter By
-                    </div> */}
                 </div>
 
                 <div className="vendorProducts">
-                    {vendor.shop.products.map((item, index) => {
-                        item.shop = vendor.shop
-                        return(
+                    {filteredProducts.map((item, index) => {
+                        item.shop = vendor.shop;
+                        return (
                             <div className="item" key={index}>
                                 <HomeProduct item={item} />
-                                {/* {console.log("vendors", item)} */}
                             </div>
-                            
-                        )
+                        );
                     })}
-                    
                 </div>
             </div>
         </div>
@@ -109,5 +107,3 @@ function Vendors() {
 }
 
 export default Vendors;
-
-             
