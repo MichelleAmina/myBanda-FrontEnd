@@ -222,10 +222,10 @@ const FinalCheckout = () => {
       autocomplete.addListener("place_changed", () => {
         const place = autocomplete.getPlace();
         if (place && place.formatted_address) {
-          setDeliveryInfo({
-            ...deliveryInfo,
+          setDeliveryInfo(prevInfo => ({
+            ...prevInfo,
             address: place.formatted_address,
-          });
+          }));
         }
       });
     }
