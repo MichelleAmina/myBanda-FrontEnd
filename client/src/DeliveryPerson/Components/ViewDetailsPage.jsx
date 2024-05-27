@@ -114,6 +114,9 @@ const ViewDetailsPage = () => {
                     <h2 className="order-id">Order ID: {orderDetails.id}</h2>
                 </div>
                 <div className="section-button-container">
+                    <NavLink to='/maps'>
+                        <button className="completed-delivery-button">View Map</button>
+                    </NavLink>
                     <button className="completed-delivery-button" onClick={handleMarkAsDelivered}>Delivered</button>
                 </div>
             </div>

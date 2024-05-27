@@ -16,6 +16,11 @@
     align-items: center;
 }
 
+.section-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .section-container h3{
     font-size: 20px;
     font-weight: bold;
@@ -26,7 +31,7 @@
 .order-id {
     font-size: 24px;
     font-weight: bold;
-    margin-top: 20px;
+    /* margin-top: 10px; */
     /* color: #FFD700; */
 }
 
@@ -42,6 +47,7 @@
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    margin-left: 20px;
 }
 
 .completed-delivery-button:hover {
@@ -91,7 +97,7 @@
 .backto-table {
     background-color: white;
     border-radius: 4px;
-    padding: 5px ;
+    padding-bottom: 5px ;
     border: none;
 }
 

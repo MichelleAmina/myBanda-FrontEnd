@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useJsApiLoader, Autocomplete } from '@react-google-maps/api';
 import './Login.css'
 
+const libraries = ["places"];
+
 function Login(){
+
+    const {isLoaded} = useJsApiLoader({
+        googleMapsApiKey: "AIzaSyBQxT3xBni2UvXtvfH4nhqKuUVrY5gte1s",
+        libraries: libraries,
+    })
+
     const [addclass, setaddclass] = useState("")
     const [showLocationInput, setShowLocationInput] = useState(false);
     const [showContactInput, setShowContactInput] = useState(false);
@@ -230,15 +239,19 @@ function Login(){
                     {showLocationInput && (
                         <>
                             <label id="form-label" htmlFor="location">Location:</label>
-                            <input 
-                                type="text" 
-                                name="location" 
-                                id="location" 
-                                placeholder="Location" 
-                                value={formData.location} 
-                                onChange={handleChange} 
-                                required 
-                            />
+                            {isLoaded && (
+                                <Autocomplete>
+                                    <input 
+                                        type="text" 
+                                        name="location" 
+                                        id="location" 
+                                        placeholder="Location" 
+                                        value={formData.location} 
+                                        onChange={handleChange} 
+                                        required 
+                                    />
+                                </Autocomplete>
+                            )}
                         </>
                     )}
                     {showContactInput && (
