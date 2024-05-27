@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -18,6 +18,7 @@ import "./oldside.css";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 function OldSidebar() {
+  const navigate = useNavigate();
   const location = useLocation();
   const [showProducts, setShowProducts] = useState(false);
 
@@ -25,6 +26,12 @@ function OldSidebar() {
     e.preventDefault();
     setShowProducts(!showProducts);
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    console.log("user logged out")
+    navigate('/login'); 
+};
 
   return (
     <div className="old-sidebar-container">
@@ -142,7 +149,7 @@ function OldSidebar() {
       <div className="logout-button">
         <Link to="/login" className="old-sidebar-link">
           <LogoutIcon className="old-link-icon" />
-          <span className="old-link-name">Logout</span>
+          <span className="old-link-name" onClick={handleLogout}>Logout</span>
         </Link>
       </div>
     </div>
