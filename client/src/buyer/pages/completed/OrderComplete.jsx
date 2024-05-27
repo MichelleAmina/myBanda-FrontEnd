@@ -90,7 +90,7 @@ const OrderCompleted = () => {
                 <div className='container-fluid pt-4'>
                     <div className="orderWrapper mb-5">
                         <div className="orderTitle">
-                            <h4>You have 6 Previous Orders</h4> 
+                            <h4>You have {orders.length} Previous Order(s)</h4> 
                             <div className="orderTitle-Status">
                                 {/* <ul>
                                     <li>Completed</li>
@@ -116,7 +116,7 @@ const OrderCompleted = () => {
                                                 <p><span>Total Price:</span> Ksh. {order.total_price}</p>
                                             </div>
                                             <div className="bottom-right">
-                                                <NavLink to={`/my_banda/orders/${order.id}`}><p>View Details</p></NavLink>
+                                                <NavLink to={`/my_banda/orders/${order.id}`}><Button>View Details</Button></NavLink>
                                             </div>
                                         </div>
                                     </div>

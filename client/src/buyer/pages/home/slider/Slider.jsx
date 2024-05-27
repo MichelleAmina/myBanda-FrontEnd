@@ -23,20 +23,20 @@ function HomeSlider(){
                     <img src="/slider1.jpg" alt="" className='w-100' style={{height:'500px'}}/>
                     <div className="sliderInfo">
                         <h2 className="mb-4">
-                            Lorem, ipsum dolor<br/>
-                            amet consectetur
+                            Exclusive collections,<br/>
+                            just for you
                         </h2>
-                        <p>Lorem ipsum dolor sit amet.</p>
+                        <p>Subscribe for firsthand deals</p>
                     </div>
                 </div>
                 <div className="sliderItem">
                     <img src="/slider2.jpg" alt="" className='w-100' style={{height:'500px'}}/>
                     <div className="sliderInfo">
                         <h2 className="mb-3">
-                            Lorem Ipsum Dolor<br/>
-                            amet consectetur
+                            From our store<br/>
+                            to your door
                         </h2>
-                        <p>Lorem ipsum dolor sit amet.</p>
+                        <p>Sit back and let MyHandle it</p>
                     </div>
                 </div>
                 
