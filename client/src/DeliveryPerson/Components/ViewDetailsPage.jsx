@@ -104,27 +104,27 @@ const ViewDetailsPage = () => {
     });
 
     return (
-        <div className="details-container">
-            <div className="details-row1">
-                <div className="section-container">
+        <div className="view-details-container">
+            <div className="view-details-row1">
+                <div className="view-section-container">
                     <NavLink to="/pendingDeliveries">
                         <button className='backto-table'><ArrowBackIcon /></button>
                     </NavLink>
                     
                     <h2 className="order-id">Order ID: {orderDetails.id}</h2>
                 </div>
-                <div className="section-button-container">
+                <div className="view-section-button-container">
                     <NavLink to='/maps'>
-                        <button className="completed-delivery-button">View Map</button>
+                        <button className="view-completed-delivery-button">View Map</button>
                     </NavLink>
-                    <button className="completed-delivery-button" onClick={handleMarkAsDelivered}>Delivered</button>
+                    <button className="view-completed-delivery-button" onClick={handleMarkAsDelivered}>Delivered</button>
                 </div>
             </div>
             <hr />
-            <div className="details-row">
-                <div className="section-container">
+            <div className="view-details-row">
+                <div className="view-section-container">
                     <h3>Customer Details</h3>
-                    <div className="details-grid">
+                    <div className="view-details-grid">
                         <div>
                             <p ><span className="order-dets-label">Name: </span>{orderDetails.buyer.username}</p>
                             {/* <p className="order-dets-text"></p> */}
@@ -168,10 +168,10 @@ const ViewDetailsPage = () => {
                     </div>
                 </div> 
             </div> */}
-            <div className="details-row">
-                <div className="section-container">
+            <div className="view-details-row">
+                <div className="view-section-container">
                     <h3>Order Details</h3>
-                    <table className="details-table">
+                    <table className="view-details-table">
                         <thead>
                             <tr>
                                 <th className='dev-details-heading'>Product</th>
@@ -193,10 +193,10 @@ const ViewDetailsPage = () => {
             </div>
             {/* <hr /> */}
             
-            <div className="details-row">
-                <div className="section-container">
+            <div className="view-details-row">
+                <div className="view-section-container">
                     <h3>Pickup Location</h3>
-                    <table className="pickup-location-table">
+                    <table className="view-pickup-location-table">
                         <thead>
                             <tr>
                                 <th>Shop Name</th>

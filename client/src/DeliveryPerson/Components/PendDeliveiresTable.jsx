@@ -69,7 +69,7 @@ const PendDeliveriesTable = () => {
         setPage(0);
     };
 
-    const getStatusStyle = (status) => {
+    const getStatusStyles = (status) => {
         switch (status) {
             case 'assigned':
                 return { color: 'darkorange' };
@@ -113,7 +113,7 @@ const PendDeliveriesTable = () => {
                                         <TableCell>{order.delivery_address}</TableCell>
                                         {/* <TableCell>{order.order_items[0]?.product.shop.name || 'N/A'}</TableCell> */}
                                         <TableCell>{order.order_items[0]?.product.shop.location || 'N/A'}</TableCell>
-                                        <TableCell style={getStatusStyle(order.status)}>{order.status}</TableCell>
+                                        <TableCell style={getStatusStyles(order.status)}>{order.status}</TableCell>
                                         <TableCell>
                                             <Link to={`/viewDetails/${order.id}`}>
                                                 <Button style={{ backgroundColor: '#ffed96', color: 'black' }}>View</Button>
