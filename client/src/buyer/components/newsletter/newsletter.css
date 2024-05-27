@@ -23,6 +23,10 @@
 
 }
 
+.newsLetterBanner .newsLetterBanner-input::placeholder{
+    font-size: 18px;
+}
+
 .newsLetterBanner button{
     padding: 10px 40px !important;
     border-radius: 30px !important;

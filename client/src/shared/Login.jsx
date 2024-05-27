@@ -168,7 +168,7 @@ function Login(){
                 
                 console.log('Successful');
             } else {
-                toast.error("You have failed", {
+                toast.error("Login failed. Please check your credentials.", {
                     position: "top-right",
                     className: "toast-message" 
                 })
