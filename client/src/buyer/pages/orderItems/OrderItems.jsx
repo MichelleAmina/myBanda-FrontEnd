@@ -51,7 +51,7 @@ function OrderItems(){
         
     }
 
-    const getStatusClass = (status) => {
+    const getStatusColor = (status) => {
         switch (status) {
             case 'completed':
                 return 'completed';
@@ -97,7 +97,7 @@ function OrderItems(){
                                     </div>
                                     <div className="orderItems-bottom">
                                         <div className="orderItems-bottomLeft">
-                                            <span><CheckCircleOutlineIcon className={`orderItems-status-icon ${getStatusClass(order.status)}`}/> {order.status}</span>
+                                            <span><CheckCircleOutlineIcon className={`orderItems-status-icon ${getStatusColor(order.status)}`}/> {order.status}</span>
                                         </div>
                                         <div className="orderItems-bottomRight">
                                             <ul>

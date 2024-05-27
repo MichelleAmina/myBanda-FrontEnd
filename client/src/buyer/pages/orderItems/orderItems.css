@@ -90,7 +90,7 @@
     margin-right: 5px;
 }
 
-.orderItems-sstatus-icon.completed {
+/* .orderItems-sstatus-icon.completed {
     color: green;
     font-weight: 600;
 }
@@ -108,7 +108,7 @@
 .orderItems-status-icon.assigned {
     color: orange;
     font-weight: 600;
-}
+} */
 
 .status-icon.default{
     color: #000;

@@ -104,13 +104,16 @@ function App() {
         <Route path="/maps" element={<RouteCalculator />} />
 
         {/*Seller routes */}
+        {/* NEW SELLER */}
         <Route path="/sellerdash" element={<Sellerdash />} />
         <Route path="/orders" element={<Custorders />} />
-        <Route path="/customers" element={<Customers />} />
         <Route path="/sellerproducts" element={<Sellerproducts />} />
         <Route path="/newsellercustomers" element={<Newsellercustomers />} />
         <Route path="/newsellerorders" element={<Newsellerorders />} />
         <Route path="/shopsetup" element={<ShopSetup />} />
+        
+        {/* OLD SELLER */}
+        <Route path="/customers" element={<Customers />} />
         <Route path="/addprod" element={<AddProduct />} />
         <Route path="/producthome" element={<ProductHome />} />
         <Route path="/oldsellerdash" element={<OldSellerDash />} />

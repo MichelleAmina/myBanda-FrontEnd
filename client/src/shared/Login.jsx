@@ -147,16 +147,23 @@ function Login(){
                 const role = data.role 
                 console.log("this is the role", role)
 
+                const newSeller = data.isNewSeller
+                console.log("newSeller", newSeller)
+
+
 
                 if (role === 'buyer'){
                     navigate('/my_banda')
-                } else if (role === 'seller'){
+                } else if (role === 'seller' && newSeller){
+                    navigate('/sellerdash')
+                } else if (role === 'seller' && !newSeller){
                     navigate('/oldsellerdash')
-                } else if (role === 'delivery'){
+                }else if (role === 'delivery'){
                     navigate('/driverAnalytics')
-                } else{
-                    
+                } else if(role === 'banda_admin'){
                     navigate('/banda_admin')
+                } else {
+                    console.log("this user has no route")
                 }
                 
                 console.log('Successful');
