@@ -10,19 +10,37 @@ const AddProduct = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [imageUrls, setImageUrls] = useState([""]); 
+  const [image, setImage] = useState(undefined)
   const [quantity, setQuantity] = useState("");
   const [category, setCategory] = useState("");
   const [sizes, setSizes] = useState([]);
 
+
+
   const handleImageChange = (index, event) => {
-    const newImageUrls = [...imageUrls];
-    newImageUrls[index] = event.target.value;
-    setImageUrls(newImageUrls);
+    const file = event.target.files[0];
+    setImage(file)
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const newImageUrls = [...imageUrls];
+        newImageUrls[index] = e.target.result;
+        setImageUrls(newImageUrls);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
-  {
-    /* */
-  }
+  const formData = new FormData();
+  formData.append('productName', productName)
+  formData.append('description', description)
+  formData.append('price', price)
+  formData.append('imageUrls', image)
+  formData.append('quantity', quantity)
+  formData.append('category', category)
+  formData.append('sizes', sizes)
+  
+
   const addMoreImages = () => {
     if (imageUrls.length < 5) {
       setImageUrls([...imageUrls, ""]);
@@ -55,11 +73,22 @@ const AddProduct = () => {
       description,
       price,
       imageUrls,
+      image,
       quantity,
       category,
       sizes,
     });
+    fetch("https://mybanda-backend-88l2.onrender.com/products", {
+    method: "POST",
+    headers: {
+        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+    },
+    body: formData
+    })
+    .then((r) => r.json())
+    .then(data => console.log(data))
   };
+
 
   return (
     <div className="add-product-container">
@@ -164,16 +193,19 @@ const AddProduct = () => {
         </div>
         <div className="right-column">
           <div className="form-section gray-container">
-            <h2>Input Image URLs</h2>
+            <h2>Upload Images</h2>
             <div className="image-upload-container">
               {imageUrls.map((url, index) => (
                 <div key={index} className="image-preview">
                   <input
-                    type="text"
-                    placeholder={`Image URL ${index + 1}`}
-                    value={url}
+                    type="file"
                     onChange={(e) => handleImageChange(index, e)}
                   />
+                  {url && (
+                    <div className="image-thumb">
+                      <img src={url} alt={`Preview ${index}`} />
+                    </div>
+                  )}
                 </div>
               ))}
               {imageUrls.length < 5 && (
@@ -182,7 +214,7 @@ const AddProduct = () => {
                   className="add-more-button"
                   onClick={addMoreImages}
                 >
-                  <FontAwesomeIcon icon={faPlus} className="adpbtn" style={{ color: 'white' }} /> Add More
+                  <FontAwesomeIcon icon={faPlus} /> Add More
                 </button>
               )}
             </div>
