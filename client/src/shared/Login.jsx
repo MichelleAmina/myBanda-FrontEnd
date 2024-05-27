@@ -89,17 +89,17 @@ function Login(){
                 const role = data.name
                 console.log("this is the role", role)
 
-                if (role === 'buyer'){
-                    navigate('/my_banda')
-                } else if (role === 'seller'){
-                    navigate('/sellerdash')
-                } else if (role === 'delivery'){
-                    navigate('/driverAnalytics')
-                } else{
-                    console.log("Message after all roles")
-                    //navigate('/banda_admin')
-                }
-                // navigate('/driverhomepage');
+                // if (role === 'buyer'){
+                //     navigate('/my_banda')
+                // } else if (role === 'seller'){
+                //     navigate('/sellerdash')
+                // } else if (role === 'delivery'){
+                //     navigate('/driverAnalytics')
+                // } else{
+                //     console.log("Message after all roles")
+                //     //navigate('/banda_admin')
+                // }
+                // // navigate('/driverhomepage');
                 console.log('Successful');
             } else {
                 toast.error("Signup failed. Please try again.", { position: "top-right", className: "toast-message"  });
@@ -152,7 +152,7 @@ function Login(){
                 } else if (role === 'seller'){
                     navigate('/oldsellerdash')
                 } else if (role === 'delivery'){
-                    navigate('/driverhomepage')
+                    navigate('/driverAnalytics')
                 } else{
                     
                     navigate('/banda_admin')

@@ -95,10 +95,10 @@ function App() {
 
         {/* set it to this so that I can change it once we decide on the initial landing page*/}
         <Route path="*" element={<Navigate to="/login" />} />
+        <Route path="/driverAnalytics" element={<DeliveryDriverAnalytics />} />
         <Route path="/driverhomepage" element={<DeliveryDashboard />} />
         <Route path="/availableDeliveries" element={<AvailableDeliveries />} />
         <Route path="/completedDeliveries" element={<CompletedDeliveries />} />
-        <Route path="/driverAnalytics" element={<DeliveryDriverAnalytics />} />
         <Route path="/pendingDeliveries" element={<PendingDeliveries />} />
         <Route path="/viewDetails/:orderId" element={<ViewDetails />} />
         <Route path="/maps" element={<RouteCalculator />} />
