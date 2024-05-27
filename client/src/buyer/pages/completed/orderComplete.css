@@ -94,7 +94,7 @@
     border-radius: 4px;
     margin: 10px 0px;
     padding: 10px 20px;
-    height: 130px;
+    height: 150px;
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -110,7 +110,7 @@
 }
 
 .orderContainer-top .status-btn{
-    width: 100px;
+    width: 120px;
     text-transform: capitalize;
     font-size: 16px;
 }
@@ -156,15 +156,24 @@
 
 .orderContainer-bottom .bottom-right{
     margin-top: 40px;
+    /* background: green; */
 }
 
 .orderContainer-bottom .bottom-right a{
     text-decoration: none;
     color: #000;
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 .orderContainer-bottom .bottom-right a:hover{
     color: #000;
     opacity: 1;
+}
+
+.orderContainer-bottom .bottom-right a button{
+    text-transform: capitalize;
+    color: #000 !important;
+    font-size: 16px;
+    width: 120px;
+    border: 1px dotted rgba(128, 128, 128, 0.718);
 }

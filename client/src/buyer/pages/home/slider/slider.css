@@ -82,7 +82,7 @@
 
 .home_slider_main .sliderItem .sliderInfo{
     position: absolute;
-    top: 15%;
+    top: 20%;
     left: 10%;
     z-index: 100;
 }
@@ -92,6 +92,7 @@
     /*font-weight: lighter;*/
     font-weight: 400;
     color: rgba(0,0,0,0.8);
+    line-height: 70px;
 }
 
 .home_slider_main .sliderItem .sliderInfo p{
