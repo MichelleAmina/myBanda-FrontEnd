@@ -145,7 +145,7 @@ function OldSidebar() {
           </Link>
         </li>
       </ul>
-      {/* Logout button */}
+
       <div className="logout-button">
         <Link to="/login" className="old-sidebar-link">
           <LogoutIcon className="old-link-icon" />

@@ -12,6 +12,7 @@
   flex: 1 !important;
   padding: 20px !important;
   padding-left: 280px !important;
+  margin-left: 20px;
 }
 
 .header-icons {
@@ -64,7 +65,8 @@
 }
 
 .setup-guide-container {
-  background-color: #ffffff !important;
+  background-color: #edebeb !important;
+
   padding: 20px;
   border-radius: 10px;
   width: 1150px !important;
