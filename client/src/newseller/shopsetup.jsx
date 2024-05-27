@@ -4,16 +4,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import "./shopsetup.css";
 import BandaLogo from "../assets/banda.png";
-import { useJsApiLoader, Autocomplete } from '@react-google-maps/api';
+import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 
 const libraries = ["places"];
 
 const ShopSetup = () => {
-
-  const {isLoaded} = useJsApiLoader({
+  const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBQxT3xBni2UvXtvfH4nhqKuUVrY5gte1s",
     libraries: libraries,
-  })
+  });
 
   const [shopName, setShopName] = useState("");
   const [description, setDescription] = useState("");
@@ -24,14 +23,14 @@ const ShopSetup = () => {
 
   const navigate = useNavigate();
 
-  const accessToken = localStorage.getItem('access_token');
+  const accessToken = localStorage.getItem("access_token");
   //Decoding the JWT token to get the payload
-  const tokenParts = accessToken.split('.');
+  const tokenParts = accessToken.split(".");
   const payload = JSON.parse(atob(tokenParts[1]));
 
   //Extracting the user ID from the payload
   const userId = payload.sub;
-  console.log('User ID:', userId);
+  console.log("User ID:", userId);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -78,7 +77,11 @@ const ShopSetup = () => {
           <form className="sets-shop-setup-form" onSubmit={handleSubmit}>
             <div className="sets-form-group">
               <div className="sets-logo-container">
-                <img src={BandaLogo} alt="Banda Logo" className="sets-banda-logo" />
+                <img
+                  src={BandaLogo}
+                  alt="Banda Logo"
+                  className="sets-banda-logo"
+                />
                 <h1 className="sets-shop-name">MY BANDA</h1>
               </div>
               <div className="sets-subheads">
@@ -151,7 +154,9 @@ const ShopSetup = () => {
               {isLoaded && (
                 <Autocomplete
                   onPlaceChanged={() => {
-                    const place = window.google.maps.places.AutocompleteService().getPlace();
+                    const place = window.google.maps.places
+                      .AutocompleteService()
+                      .getPlace();
                     if (place) {
                       setLocation(place.formatted_address);
                     }

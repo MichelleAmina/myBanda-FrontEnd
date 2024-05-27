@@ -3,6 +3,7 @@ import { Doughnut } from "react-chartjs-2";
 import "chart.js/auto";
 import OldSidebar from "./oldside";
 import SplineAreaChart from "./SplineAreaChart"; 
+import PieChart from "./PieChart";
 import "./oldsellerdash.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -100,17 +101,14 @@ const SellerDash = () => {
             <FontAwesomeIcon icon={faUsers} />
           </div>
 
-          <div className="stat-cardt">
-            <h3>Earnings</h3>
-            <div className="doughnut-chart-container">
-            
-            </div>
-          </div>
+         
+
         </div>
         <div className="charts-section">
           <SplineAreaChart /> 
           <div className="chart-card">
-        
+          <PieChart />
+
           </div>
         </div>
         <div className="new-list">
@@ -142,4 +140,3 @@ const SellerDash = () => {
 }
 
 export default SellerDash;
-
