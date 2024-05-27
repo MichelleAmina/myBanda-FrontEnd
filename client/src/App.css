@@ -496,6 +496,7 @@ ul.breadcrumb li a.active{
   font-size: 40px;
   font-weight: 400;
   color: #000;
+  text-transform: capitalize;
 
 
 }
@@ -757,6 +758,11 @@ input[type=number]{
   width: 100px;
   height: 100px;
   border-radius: 50%;
+}
+
+.vendorsCard .vendorTop .vendorTitle a h3{
+  text-transform: capitalize;
+
 }
 
 .vendorsCard .vendorTop .vendorTitle a{
