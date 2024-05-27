@@ -81,7 +81,7 @@ function Login(){
             if (response.ok) {
                 const data = await response.json();
                 toast.success("Account created successfully!", { position: "top-right", className: "toast-message"  });
-                console.log("this is the data", data)
+                console.log("this is the data when signing up", data)
                 const { access_token } = data; // Extract the JWT token from the response
                 localStorage.setItem('access_token', access_token); // Store the token in local storage
                 console.log('User registered:', data);
@@ -146,6 +146,7 @@ function Login(){
                 
                 const role = data.role 
                 console.log("this is the role", role)
+
 
                 if (role === 'buyer'){
                     navigate('/my_banda')

@@ -90,22 +90,22 @@
     margin-right: 5px;
 }
 
-.status-icon.completed {
+.orderItems-sstatus-icon.completed {
     color: green;
     font-weight: 600;
 }
 
-.status-icon.pending {
+.orderItems-status-icon.pending {
     color: rgb(80, 79, 79);
     font-weight: 600;
 }
 
-.status-icon.dispatched {
+.orderItems-status-icon.dispatched {
     color: blue;
     font-weight: 600;
 }
 
-.status-icon.assigned {
+.orderItems-status-icon.assigned {
     color: orange;
     font-weight: 600;
 }
