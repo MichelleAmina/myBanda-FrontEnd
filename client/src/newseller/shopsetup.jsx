@@ -4,8 +4,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import "./shopsetup.css";
 import BandaLogo from "../assets/banda.png";
+import { useJsApiLoader, Autocomplete } from '@react-google-maps/api';
+
+const libraries = ["places"];
 
 const ShopSetup = () => {
+
+  const {isLoaded} = useJsApiLoader({
+    googleMapsApiKey: "AIzaSyBQxT3xBni2UvXtvfH4nhqKuUVrY5gte1s",
+    libraries: libraries,
+  })
+
   const [shopName, setShopName] = useState("");
   const [description, setDescription] = useState("");
   const [logoUrl, setLogoUrl] = useState("");
@@ -139,15 +148,26 @@ const ShopSetup = () => {
             </div>
 
             <div className="sets-form-group">
-              <input
-                type="text"
-                id="location"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                placeholder="Enter location"
-                required
-                className="sets-custom-input"
-              />
+              {isLoaded && (
+                <Autocomplete
+                  onPlaceChanged={() => {
+                    const place = window.google.maps.places.AutocompleteService().getPlace();
+                    if (place) {
+                      setLocation(place.formatted_address);
+                    }
+                  }}
+                >
+                  <input
+                    type="text"
+                    id="location"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                    placeholder="Enter location"
+                    required
+                    className="sets-custom-input"
+                  />
+                </Autocomplete>
+              )}
             </div>
 
             <button type="submit" className="sets-setup-shop-button">
