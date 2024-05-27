@@ -95,7 +95,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #EBC606;
+  background-color: #FFD700 ;
 }
 
 .size-button.selected {
@@ -195,7 +195,7 @@
 }
 
 .add-new-product-button {
-  background-color: #f2ca00;
+  background-color: #FFD700 ;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -205,7 +205,7 @@
 }
 
 .add-new-product-button:hover {
-  background-color: #ffdb4d;
+  background-color: #ffeb86;
 }
 
 .add-new-product-button:active {

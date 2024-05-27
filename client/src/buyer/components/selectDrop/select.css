@@ -63,13 +63,13 @@
 .selectDrop .searchResults li:hover{
     /*background: rgba(255, 255, 0, 0.209) ;*/
     
-    background:  #ebc50695 ;
+    background:  #ffeb86 ;
 
 }
 
 
 .selectDrop .searchResults li.active{
-    background:  #EBC606 ; 
+    background:  #FFD700  ; 
      /* #f1f1f1f1*/
 
 }
