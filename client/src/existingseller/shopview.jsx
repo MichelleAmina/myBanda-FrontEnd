@@ -160,7 +160,7 @@ function ShopView() {
         </div>
 
         <div className="view-more">
-          <Button onClick={() => navigate('/products')}>View More </Button>
+          <Button onClick={() => navigate('/producthome')}>View More </Button>
         </div>
       </div>
     </div>

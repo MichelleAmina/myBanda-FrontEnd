@@ -1,20 +1,30 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation,useNavigate } from "react-router-dom"; // Removed useHistory from here
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThLarge } from "@fortawesome/free-solid-svg-icons";
-import BandaLogo from "../assets/banda.png";
-import dashlogo from "../assets/dashboard.png";
 import {
+  faThLarge,
   faShoppingBag,
   faBox,
   faUsers,
   faSignal,
   faCog,
+  faSignOutAlt // Import the logout icon
 } from "@fortawesome/free-solid-svg-icons";
+import BandaLogo from "../assets/banda.png";
+import dashlogo from "../assets/dashboard.png";
 import "./sellersidebar.css";
 
 function NewSellerSidebar() {
+  const navigate = useNavigate();
   const location = useLocation();
+
+  // Function to handle logout
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    
+    // Redirect the user to the login page
+    navigate("/login");
+  };
 
   return (
     <div className="new-sidebar-container">
@@ -92,6 +102,11 @@ function NewSellerSidebar() {
           </Link>
         </li>
       </ul>
+
+      <button className="logout-button" onClick={handleLogout}>
+        <FontAwesomeIcon icon={faSignOutAlt} className="logout-icon" />
+        <span className="logout-text">Logout</span>
+      </button>
     </div>
   );
 }
