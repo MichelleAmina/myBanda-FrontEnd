@@ -111,6 +111,13 @@ function Single() {
     // Extract shop information from the user object
     const shop = user.shop || {};
 
+    function truncateText(text, maxLength) {
+        if (text.length <= maxLength) {
+            return text;
+        }
+        return text.substring(0, maxLength) + '...';
+    }
+
     
 
     return (
@@ -125,7 +132,7 @@ function Single() {
                             <div className="details">
                                 <h2 className="itemTitle">{shop.name}</h2>
                                 <div className="itemDescription">
-                                    <p>{shop.description}</p>
+                                    <p>{truncateText(shop.description, 70)}</p>
                                 </div>
                                 <div className="detailItem">
                                     <span className='itemKey'>Email:</span>
