@@ -72,8 +72,11 @@ function Footer(){
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-md-4 part1">
-                                <NavLink to='/my_banda' style={{textDecoration:"none"}}><h2>My Banda</h2></NavLink>
-                                <br /><br />
+                                <NavLink to='/my_banda' style={{textDecoration:"none"}} className='d-flex align-items-center '>
+                                    <img src="/Logo.jpeg" alt="" style={{height:"60px"}}/>
+                                    <h1 style={{fontSize:"30px", opacity:"0.9", marginTop:"10px", color:"#000"}}>MyBanda</h1>
+                                </NavLink>
+                                <br />
 
                                 <p><LocationOnOutlinedIcon/> <strong>Address:</strong> 5128 W Manchester Str, Kent 51327 Gonghzou China</p>
                                 <p><AddIcCallOutlinedIcon/> <strong>Call us:</strong> (+254)-123-456-778</p>

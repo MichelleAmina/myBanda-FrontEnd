@@ -111,7 +111,11 @@ function Header(props){
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-2 part1 d-flex align-items-center">
-                        <NavLink className='header-logo' to='/my_banda'><h1>MyBanda</h1></NavLink>
+                        <NavLink className='header-logo d-flex align-items-center' to='/my_banda'>
+                            <img src="/Logo.jpeg" alt="" style={{height:"50px"}}/>
+                            <h1 style={{fontSize:"25px", opacity:"0.8", marginTop:"10px"}}>MyBanda</h1>
+                        </NavLink>
+                        
                         {/* {
                             windowWidth < 992 &&
                             <div className="ms-auto d-flex align-items-center">
