@@ -196,13 +196,13 @@ const ViewDetailsPage = () => {
             <div className="view-details-row">
                 <div className="view-section-container">
                     <h3>Pickup Location</h3>
-                    <table className="view-pickup-location-table">
+                    <table className="view-details-table">
                         <thead>
                             <tr>
-                                <th>Shop Name</th>
-                                <th>Email</th>
-                                <th>Address</th>
-                                <th>Phone Number</th>
+                                <th className='dev-details-heading'>Shop Name</th>
+                                <th className='dev-details-heading'>Email</th>
+                                <th className='dev-details-heading'>Address</th>
+                                <th className='dev-details-heading'>Phone Number</th>
                             </tr>
                         </thead>
                         <tbody>

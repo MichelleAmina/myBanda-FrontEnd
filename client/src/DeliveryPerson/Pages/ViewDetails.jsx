@@ -8,7 +8,7 @@ const ViewDetails = () => {
         <div className="order-details">
             <DeliverySidebar />
             <div className="order-details-container">
-                <DeliveryNavbar />
+                {/* <DeliveryNavbar /> */}
                 <div className="order-dets">
                     <ViewDetailsPage />
                 </div>

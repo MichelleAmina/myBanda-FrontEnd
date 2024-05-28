@@ -31,7 +31,7 @@
 .map-input-group {
     display: flex;
     justify-content: space-between;
-    /* gap: 16px; */
+    gap: 16px;
 }
   
 .map-input {
