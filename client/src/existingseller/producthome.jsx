@@ -4,6 +4,9 @@ import OldSellerSidebar from "./oldside";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faBell, faUser, faFileImport, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import storeIcon from "../assets/store-2.png";
+import { toast } from 'react-toastify';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Button from '@mui/material/Button';
 
 const ProductHome = () => {
   const [products, setProducts] = useState([]);
@@ -14,6 +17,28 @@ const ProductHome = () => {
   const [error, setError] = useState(null);
 
   const productsPerPage = 16;
+
+  const handleDelete = async (id) => {
+    try {
+        const response = await fetch(`https://mybanda-backend-88l2.onrender.com/product/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+            },
+        });
+
+        if (response.ok) {
+            console.log("product deleted successfully")
+            toast.success("User deleted successfully ", {position: "top-center"})
+        } else {
+            const errorData = await response.json();
+            toast.error("Failed to delete", {position: "top-center"})
+        }
+    } catch (error) {
+        alert(`Error: ${error.message}`);
+    }
+};
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -57,6 +82,8 @@ const ProductHome = () => {
   
     fetchProducts();
   }, []);
+
+  console.log("the products", products)
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -166,12 +193,23 @@ const ProductHome = () => {
             <div className="product-image">
               <img src={product.image_url} alt="Product" />
             </div>
-            <div className="product-info">
-              <h2>{product.name.charAt(0).toUpperCase() + product.name.slice(1)}</h2>
-              <p>Quantity: {product.quantity_available}</p>
-              <p>Category: {product.category}</p>
-              <p>Price: Ksh{product.price}</p>
+            <div className="new-product-div">
+              <div className="product-info">
+                <h2>{product.name.charAt(0).toUpperCase() + product.name.slice(1)}</h2>
+                <p>Quantity: {product.quantity_available}</p>
+                <p>Category: {product.category}</p>
+                <p>Price: Ksh{product.price}</p>
+                
+              </div>
+              <div className="product-delete">
+                <DeleteIcon onClick={() => handleDelete(product.id)} className="delete-icon me-auto"/>
+                
+                {/* <button className="float-end" onClick={() => handleDelete(product.id)}>Delete</button> */}
+              </div>
+
             </div>
+            
+            
           </div>
         ))}
       </div>

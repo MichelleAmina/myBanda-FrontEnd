@@ -122,9 +122,28 @@
   object-fit: contain;
 }
 
+.new-product-div{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-delete {
+  margin-right: 10px;
+} 
+
+.product-delete .delete-icon{
+  font-size: 20px;
+  opacity: 0.5;
+  margin-top: 70px;
+  cursor: pointer;
+  
+}
+
 .product-info {
   padding: 10px;
   display: block; /* Add this line to display the product information as block elements */
+ 
 }
 
 .product-info h2 {
