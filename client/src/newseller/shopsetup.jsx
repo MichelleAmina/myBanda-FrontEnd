@@ -27,37 +27,30 @@ const ShopSetup = () => {
   const tokenParts = accessToken.split('.');
   const payload = JSON.parse(atob(tokenParts[1]));
   const userId = payload.sub;
+  console.log('User ID:', userId);
 
-  const autocompleteRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('name', shopName);
-    formData.append('description', description);
-    formData.append('logo', logo);
-    formData.append('banner', banner);
-    formData.append('contact', contact);
-    formData.append('location', location);
-    formData.append('seller_id', userId);
-
-    console.log("Form Data:", {
-      name: shopName,
-      description: description,
-      logo: logo,
-      banner: banner,
-      contact: contact,
-      location: location,
-      seller_id: userId
-    });
+    formData.append('name', shopName)
+    formData.append('description', description)
+    formData.append('logo_image', logoUrl)
+    formData.append('banner_image', banner)
+    formData.append('contact', contact)
+    formData.append('location', location)
+    formData.append('seller_id', userId)
 
     try {
       const response = await fetch(
         "https://mybanda-backend-88l2.onrender.com/shop",
         {
           method: "POST",
-          body: formData,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+          },
+          body: formData
         }
       );
 
@@ -145,9 +138,8 @@ const ShopSetup = () => {
               <label htmlFor="logo">Upload Logo:</label>
               <input
                 type="file"
-                id="logo"
-                accept="image/*"
-                onChange={(e) => setLogo(e.target.files[0])}
+                id="logoUrl"
+                onChange={(e) => setLogoUrl(e.target.files[0])}
                 className="sets-custom-input"
               />
             </div>
@@ -158,7 +150,6 @@ const ShopSetup = () => {
               <input
                 type="file"
                 id="banner"
-                accept="image/*"
                 onChange={(e) => setBanner(e.target.files[0])}
                 className="sets-custom-input"
               />
