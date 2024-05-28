@@ -36,8 +36,8 @@ const ShopSetup = () => {
     const formData = new FormData();
     formData.append('name', shopName)
     formData.append('description', description)
-    formData.append('logo_image', logoUrl)
-    formData.append('banner_image', banner)
+    formData.append('logo_image_url', logo)
+    formData.append('banner_image_url', banner)
     formData.append('contact', contact)
     formData.append('location', location)
     formData.append('seller_id', userId)
@@ -139,7 +139,7 @@ const ShopSetup = () => {
               <input
                 type="file"
                 id="logoUrl"
-                onChange={(e) => setLogoUrl(e.target.files[0])}
+                onChange={(e) => setLogo(e.target.files[0])}
                 className="sets-custom-input"
               />
             </div>
