@@ -82,6 +82,7 @@ function OldSidebar() {
           >
             <Link
               to="/shopview/defaultSellerId"
+              style={{textDecoration:"none"}}
               className={`${
                 location.pathname === "/shopview/defaultSellerId" ? "active" : ""
               }`}
