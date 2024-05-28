@@ -33,18 +33,18 @@ const ShopSetup = () => {
   const userId = payload.sub;
   console.log('User ID:', userId);
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const shopData = {
-      name: shopName,
-      description: description,
-      logo_image_url: logoUrl,
-      banner_image_url: banner,
-      contact: contact,
-      location: location,
-      seller_id: userId,
-    };
+    const formData = new FormData();
+    formData.append('name', shopName)
+    formData.append('description', description)
+    formData.append('logo_image', logoUrl)
+    formData.append('banner_image', banner)
+    formData.append('contact', contact)
+    formData.append('location', location)
+    formData.append('seller_id', userId)
 
     try {
       const response = await fetch(
@@ -52,9 +52,9 @@ const ShopSetup = () => {
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
           },
-          body: JSON.stringify(shopData),
+          body: formData
         }
       );
 
@@ -112,12 +112,9 @@ const ShopSetup = () => {
 
             <div className="sets-form-group">
               <input
-                type="text"
+                type="file"
                 id="logoUrl"
-                value={logoUrl}
-                onChange={(e) => setLogoUrl(e.target.value)}
-                placeholder="Enter logo URL"
-                required
+                onChange={(e) => setLogoUrl(e.target.files[0])}
                 className="sets-custom-input"
               />
             </div>
@@ -125,12 +122,9 @@ const ShopSetup = () => {
             {/* Banner */}
             <div className="sets-form-group">
               <input
-                type="text"
+                type="file"
                 id="banner"
-                value={banner}
-                onChange={(e) => setBanner(e.target.value)}
-                placeholder="Enter banner URL"
-                required
+                onChange={(e) => setBanner(e.target.files[0])}
                 className="sets-custom-input"
               />
             </div>
