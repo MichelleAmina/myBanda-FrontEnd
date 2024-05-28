@@ -3,7 +3,6 @@ import { Pie } from "react-chartjs-2";
 
 const PieChart = () => {
   const pieData = {
-    
     labels: ["Dispatched", "Pending", "Delivered"],
     datasets: [
       {
@@ -14,10 +13,25 @@ const PieChart = () => {
     ],
   };
 
-  return (
-    <div className="pie-chart-container">
+  const options = {
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom',
+        labels: {
+          boxWidth: 15,
+          padding: 20,
+        },
+      },
+    },
+  };
 
-      <Pie data={pieData} />
+  return (
+    <div className="pie-chart-container" style={{ position: "relative", height: "400px" }}>
+      <h2 className="chart-header" style={{ fontSize: "16px", margin: "10px 0", textAlign: "left", position: "absolute", top: "0px", left: "10px" }}>Order Status</h2>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Pie data={pieData} options={options} />
+      </div>
     </div>
   );
 };

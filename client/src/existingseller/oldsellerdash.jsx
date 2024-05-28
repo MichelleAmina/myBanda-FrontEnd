@@ -12,15 +12,16 @@ import {
   faUsers,
   faSearch,
   faBell,
+  faCreditCard,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 
-// Sample customer data
+
 const customers = [
   { name: "Customer A", totalSales: 2000 },
   { name: "Customer B", totalSales: 3000 },
   { name: "Customer C", totalSales: 1500 },
-  // Add more customer data as needed
+
 ];
 
 // Calculate average sales
@@ -74,6 +75,7 @@ const SellerDash = () => {
               <p>KES.{totalRevenue}</p>
               <span>Ksh.500 from target sales</span>
             </div>
+            <FontAwesomeIcon icon={faCreditCard} color="black" />
 
           </div>
           <div className="stat-card yellow">
@@ -94,11 +96,13 @@ const SellerDash = () => {
           </div>
           <div className="stat-card">
             <div>
-              <h3>Total Customers</h3>
-              <p>{totalCustomers}</p>
-              <span>Target 2/month</span>
+            <h3>Average Sales</h3>
+            <p>KES.{totalRevenue / totalOrders}</p>
+            <span>Per Order</span>
             </div>
-            <FontAwesomeIcon icon={faUsers} />
+            <FontAwesomeIcon icon={faCreditCard} color="black" />
+
+      
           </div>
 
          
@@ -124,12 +128,12 @@ const SellerDash = () => {
             </div>
           </div>
           <div className="new-list-item">
-            <img src="https://www.thewarehouse.co.nz/dw/image/v2/BDMG_PRD/on/dw385ddb29/images/hi-res/B5/B3/R2897764_20.jpg?sw=765&sh=765" alt="sale" />
+            <img src="https://i5.walmartimages.com/seo/Meridian-Furniture-Margo-Cognac-Velvet-Sofa_616513c2-b2b6-484e-bcb5-d6494414337c.d0ea796746afeb2ba1cac5f80806e522.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF" alt="sale" />
             <div className="new-list-details">
               <div className="new-list-orders">
-                <h4>Alice Wanjera</h4>
-                <p>KES. 2500.00</p>
-                <span>12/05/2024</span>
+                <h4>Mary Wambui</h4>
+                <p>KES. 25000.00</p>
+                <span>24/02/2024</span>
               </div>
             </div>
           </div>

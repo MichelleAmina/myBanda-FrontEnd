@@ -81,17 +81,6 @@ function NewSellerSidebar() {
         </li>
         <li>
           <Link
-            to="/analytics"
-            className={`new-sidebar-link ${
-              location.pathname === "/analytics" ? "active" : ""
-            }`}
-          >
-            <FontAwesomeIcon icon={faSignal} className="new-link-icon" />
-            <span className="new-link-name">Analytics</span>
-          </Link>
-        </li>
-        <li>
-          <Link
             to="/settings"
             className={`new-sidebar-link ${
               location.pathname === "/settings" ? "active" : ""

@@ -1,58 +1,91 @@
-/* moreOrderDetails.css */
+/* MoreOrderDetails.css */
 
-.dashboard-container-moreorderdetails {
+.dashboard-container-more-order-details {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #f5f5f5;
 }
 
-.content-container-moreorderdetails {
+.content-container-more-order-details {
   flex: 1;
   padding: 40px;
 }
 
-.header-moreorderdetails {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-  margin-left: 240px;
-}
-
-.header-moreorderdetails h1 {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-}
-
-.order-card {
-  background-color: #ffffff;
-  padding: 30px;
+.order-details-card {
+  background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .order-details {
-  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .order-details h2 {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
-  margin-bottom: 15px;
   color: #333;
-}
-
-.order-details p {
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 10px;
+  margin: 0;
 }
 
 .order-details h3 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
-  margin-bottom: 15px;
+  color: #333;
+  margin: 0;
+}
+
+.details-row {
+  margin-bottom: 30px;
+}
+
+.details-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.details-heading {
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+  padding: 8px 0;
+}
+
+.details-label {
+  font-weight: bold;
+}
+
+.details-text {
+  color: #666;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 10px;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loader-image {
+  width: 100px;
+  height: 100px;
+}
+
+.no-order-message {
+  font-size: 20px;
+  font-weight: bold;
   color: #333;
 }
 
@@ -60,20 +93,4 @@
   color: #ff0000;
   font-size: 16px;
   margin-top: 20px;
-}
-
-/* Additional styles for the "Dispatch Order" button */
-.order-details button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.order-details button:hover {
-  background-color: #0056b3;
 }

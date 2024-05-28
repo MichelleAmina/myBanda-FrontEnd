@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import "./shopsetup.css";
 import BandaLogo from "../assets/banda.png";
-import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
+import { useJsApiLoader, Autocomplete } from '@react-google-maps/api';
 
 const libraries = ["places"];
 
@@ -14,46 +14,50 @@ const ShopSetup = () => {
     libraries: libraries,
   });
 
-  const [shopName, setShopName] = useState("");
-  const [description, setDescription] = useState("");
-  const [logoUrl, setLogoUrl] = useState("");
-  const [banner, setBanner] = useState("");
-  const [contact, setContact] = useState("");
-  const [location, setLocation] = useState("");
+  const [shopName, setShopName] = useState("Shoe Store");
+  const [description, setDescription] = useState("Sells high-quality shoes");
+  const [logo, setLogo] = useState(null);
+  const [banner, setBanner] = useState(null);
+  const [contact, setContact] = useState("0700000000");
+  const [location, setLocation] = useState("Nairobi");
 
   const navigate = useNavigate();
 
-  const accessToken = localStorage.getItem("access_token");
-  //Decoding the JWT token to get the payload
-  const tokenParts = accessToken.split(".");
+  const accessToken = localStorage.getItem('access_token');
+  const tokenParts = accessToken.split('.');
   const payload = JSON.parse(atob(tokenParts[1]));
-
-  //Extracting the user ID from the payload
   const userId = payload.sub;
-  console.log("User ID:", userId);
+
+  const autocompleteRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const shopData = {
+    const formData = new FormData();
+    formData.append('name', shopName);
+    formData.append('description', description);
+    formData.append('logo', logo);
+    formData.append('banner', banner);
+    formData.append('contact', contact);
+    formData.append('location', location);
+    formData.append('seller_id', userId);
+
+    console.log("Form Data:", {
       name: shopName,
       description: description,
-      logo_image_url: logoUrl,
-      banner_image_url: banner,
+      logo: logo,
+      banner: banner,
       contact: contact,
       location: location,
-      seller_id: userId,
-    };
+      seller_id: userId
+    });
 
     try {
       const response = await fetch(
         "https://mybanda-backend-88l2.onrender.com/shop",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(shopData),
+          body: formData,
         }
       );
 
@@ -69,6 +73,34 @@ const ShopSetup = () => {
     }
   };
 
+  const handlePlaceChanged = () => {
+    if (autocompleteRef.current) {
+      const place = autocompleteRef.current.getPlace();
+      if (place && place.formatted_address) {
+        setLocation(place.formatted_address);
+      }
+    }
+  };
+
+  // Fetch data from backend and log it
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://mybanda-backend-88l2.onrender.com/shop");
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Data from backend:", data);
+        } else {
+          console.error("Failed to fetch data from backend:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error fetching data from backend:", error);
+      }
+    };
+
+    fetchData();
+  }, []); 
+
   return (
     <div className="sets-shop-setup-container">
       <div className="sets-background-container"></div>
@@ -77,11 +109,7 @@ const ShopSetup = () => {
           <form className="sets-shop-setup-form" onSubmit={handleSubmit}>
             <div className="sets-form-group">
               <div className="sets-logo-container">
-                <img
-                  src={BandaLogo}
-                  alt="Banda Logo"
-                  className="sets-banda-logo"
-                />
+                <img src={BandaLogo} alt="Banda Logo" className="sets-banda-logo" />
                 <h1 className="sets-shop-name">MY BANDA</h1>
               </div>
               <div className="sets-subheads">
@@ -114,26 +142,24 @@ const ShopSetup = () => {
             </div>
 
             <div className="sets-form-group">
+              <label htmlFor="logo">Upload Logo:</label>
               <input
-                type="text"
-                id="logoUrl"
-                value={logoUrl}
-                onChange={(e) => setLogoUrl(e.target.value)}
-                placeholder="Enter logo URL"
-                required
+                type="file"
+                id="logo"
+                accept="image/*"
+                onChange={(e) => setLogo(e.target.files[0])}
                 className="sets-custom-input"
               />
             </div>
 
             {/* Banner */}
             <div className="sets-form-group">
+              <label htmlFor="banner">Upload Banner:</label>
               <input
-                type="text"
+                type="file"
                 id="banner"
-                value={banner}
-                onChange={(e) => setBanner(e.target.value)}
-                placeholder="Enter banner URL"
-                required
+                accept="image/*"
+                onChange={(e) => setBanner(e.target.files[0])}
                 className="sets-custom-input"
               />
             </div>
@@ -153,14 +179,10 @@ const ShopSetup = () => {
             <div className="sets-form-group">
               {isLoaded && (
                 <Autocomplete
-                  onPlaceChanged={() => {
-                    const place = window.google.maps.places
-                      .AutocompleteService()
-                      .getPlace();
-                    if (place) {
-                      setLocation(place.formatted_address);
-                    }
+                  onLoad={(autocomplete) => {
+                    autocompleteRef.current = autocomplete;
                   }}
+                  onPlaceChanged={handlePlaceChanged}
                 >
                   <input
                     type="text"

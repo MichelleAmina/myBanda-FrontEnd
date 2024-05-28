@@ -122,17 +122,7 @@ function OldSidebar() {
             </ul>
           )}
         </li>
-        <li>
-          <Link
-            to="/analytics"
-            className={`old-sidebar-link ${
-              location.pathname === "/analytics" ? "active" : ""
-            }`}
-          >
-            <FontAwesomeIcon icon={faSignal} className="old-link-icon" />
-            <span className="old-link-name">Analytics</span>
-          </Link>
-        </li>
+       
         <li>
           <Link
             to="/settings"

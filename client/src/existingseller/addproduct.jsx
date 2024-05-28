@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./addproduct.css";
 import OldSidebar from './oldside';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faBell, faUser, faPlus } from "@fortawesome/free-solid-svg-icons";
-
+import { faPlus, faSearch, faBell, faUser } from "@fortawesome/free-solid-svg-icons";
 import storeIcon from '../assets/store-2.png';
 
 const AddProduct = () => {
@@ -11,16 +13,15 @@ const AddProduct = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [imageUrls, setImageUrls] = useState([""]); 
-  const [image, setImage] = useState(undefined)
+  const [image, setImage] = useState(undefined);
   const [quantity, setQuantity] = useState("");
   const [category, setCategory] = useState("");
   const [sizes, setSizes] = useState([]);
-
-
+  const navigate = useNavigate();
 
   const handleImageChange = (index, event) => {
     const file = event.target.files[0];
-    setImage(file)
+    setImage(file);
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -31,16 +32,6 @@ const AddProduct = () => {
       reader.readAsDataURL(file);
     }
   };
-
-  const formData = new FormData();
-  formData.append('productName', productName)
-  formData.append('description', description)
-  formData.append('price', price)
-  formData.append('imageUrls', image)
-  formData.append('quantity', quantity)
-  formData.append('category', category)
-  formData.append('sizes', sizes)
-  
 
   const addMoreImages = () => {
     if (imageUrls.length < 5) {
@@ -68,28 +59,34 @@ const AddProduct = () => {
   };
 
   const handleSubmit = () => {
-    // Handle the product submission
-    console.log("Product submitted", {
-      productName,
-      description,
-      price,
-      imageUrls,
-      image,
-      quantity,
-      category,
-      sizes,
-    });
+    const formData = new FormData();
+    formData.append('productName', productName);
+    formData.append('description', description);
+    formData.append('price', price);
+    formData.append('imageUrls', image);
+    formData.append('quantity', quantity);
+    formData.append('category', category);
+    formData.append('sizes', sizes);
+
     fetch("https://mybanda-backend-88l2.onrender.com/products", {
-    method: "POST",
-    headers: {
+      method: "POST",
+      headers: {
         Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-    },
-    body: formData
+      },
+      body: formData
     })
     .then((r) => r.json())
-    .then(data => console.log(data))
+    .then(data => {
+      toast.success("Product has been successfully added!");
+      setTimeout(() => {
+        navigate("/producthome");
+      }, 2000); // Adjust the delay as needed
+    })
+    .catch(error => {
+      console.error(error);
+      toast.error("Failed to add product. Please try again.");
+    });
   };
-
 
   return (
     <div className="add-product-container">
@@ -100,7 +97,6 @@ const AddProduct = () => {
           <h1 style={{ fontSize: '24px', marginLeft: '10px', verticalAlign: 'middle' }}>Add a New Product</h1>
         </div>
       </div>
-
       <div className="form-sections-container">
         <div className="left-column">
           <div className="header-icons">
@@ -117,7 +113,7 @@ const AddProduct = () => {
           <div className="form-section gray-container">
             <h2>General Information</h2>
             <div className="add-form-group">
-              <label> Product Name </label>
+              <label>Product Name</label>
               <input
                 type="text"
                 value={productName}
@@ -125,9 +121,8 @@ const AddProduct = () => {
                 maxLength="20"
               />
             </div>
-
             <div className="add-form-group">
-              <label>Product Description </label>
+              <label>Product Description</label>
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -227,6 +222,7 @@ const AddProduct = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

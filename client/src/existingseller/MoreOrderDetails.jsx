@@ -85,41 +85,41 @@ const MoreOrderDetails = () => {
 
   if (loading) {
     return (
-      <div className="driverLoader">
+      <div className="loader-container">
         <img
-          src="https://i.pinimg.com/originals/63/30/4c/63304c0ead674232ee58af3dbc63b464.gif"
+          src="https://i.gifer.com/7YQl.gif"
           alt="Loading..."
-          className="w-100"
+          className="loader-image"
         />
       </div>
     );
   }
 
-  if (error) {
-    return <div>Error loading order details: {error.message}</div>;
-  }
+  // if (error) {
+  //   return <div className="error-message">Error loading order details: {error.message}</div>;
+  // }
 
   if (!orderDetails) {
-    return <div>No order details found</div>;
+    return <div className="no-order-message">No order details found</div>;
   }
 
   return (
-    <div className="dashboard-container-moreorderdetails">
-
+    <div className="dashboard-container-more-order-details">
       <OldSidebar activePage="orders" />
-      <div className="content-container-moreorderdetails">
-        <div className="header-moreorderdetails">
-          <h1>Order Details</h1>
-          <Button variant="contained" onClick={handleBack}>
-            Back
-          </Button>
-        </div>
-        <div className="details-container">
-          <div className="details-row1">
-            <div className="section-container">
-              <h2 className="order-id">Order ID: {orderDetails.id}</h2>
+      <div className="content-container-more-order-details">
+        <div className="order-details-card">
+          <div className="order-details">
+            <h2>Order Details  📦</h2>
+            <Button variant="contained" onClick={handleBack}>
+              Back
+            </Button>
+          </div>
+          <hr />
+          <div className="details-row">
+            <div className="order-id-section">
+              <h3>Order ID: {orderDetails.id}</h3>
             </div>
-            <div className="section-button-container">
+            <div className="dispatch-button-section">
               {orderDetails.status === 'assigned' && (
                 <Button variant="contained" onClick={handleDispatchOrder}>
                   Dispatch Order
@@ -129,14 +129,14 @@ const MoreOrderDetails = () => {
           </div>
           <hr />
           <div className="details-row">
-            <div className="section-container">
-              <h3>Order Details</h3>
+            <div className="order-details-section">
+              <h3>Order Details </h3>
               <table className="details-table">
                 <thead>
                   <tr>
-                    <th className="dev-details-heading">Product</th>
-                    <th className="dev-details-heading">Quantity</th>
-                    <th className="dev-details-heading">Shop</th>
+                    <th className="details-heading">Product</th>
+                    <th className="details-heading">Quantity</th>
+                    <th className="details-heading">Shop</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -153,54 +153,54 @@ const MoreOrderDetails = () => {
           </div>
           <hr />
           <div className="details-row">
-            <div className="section-container">
+            <div className="customer-details-section">
               <h3>Customer Details</h3>
               <div className="details-grid">
                 <div>
-                  <p className="order-dets-label">Name:</p>
-                  <p className="order-dets-text">{orderDetails.buyer.username}</p>
+                  <p className="details-label">Name:</p>
+                  <p className="details-text">{orderDetails.buyer.username}</p>
                 </div>
                 <div>
-                  <p className="order-dets-label">Email:</p>
-                  <p className="order-dets-text">{orderDetails.buyer.email}</p>
+                  <p className="details-label">Email:</p>
+                  <p className="details-text">{orderDetails.buyer.email}</p>
                 </div>
                 <div>
-                  <p className="order-dets-label">Delivery Address:</p>
-                  <p className="order-dets-text">{orderDetails.delivery_address}</p>
+                  <p className="details-label">Delivery Address:</p>
+                  <p className="details-text">{orderDetails.delivery_address}</p>
                 </div>
                 <div>
-                  <p className="order-dets-label">Phone Number:</p>
-                  <p className="order-dets-text">{orderDetails.contact}</p>
+                  <p className="details-label">Phone Number:</p>
+                  <p className="details-text">{orderDetails.contact}</p>
                 </div>
               </div>
             </div>
           </div>
           <hr />
           <div className="details-row">
-            <div className="section-container">
+            <div className="pickup-location-section">
               <h3>Pickup Location</h3>
               <div className="details-grid">
                 <div>
-                  <p className="order-dets-label">Name:</p>
-                  <p className="order-dets-text">
+                  <p className="details-label">Name:</p>
+                  <p className="details-text">
                     {orderDetails.order_items[0]?.product.shop.name || 'N/A'}
                   </p>
                 </div>
                 <div>
-                  <p className="order-dets-label">Email:</p>
-                  <p className="order-dets-text">
+                  <p className="details-label">Email:</p>
+                  <p className="details-text">
                     {orderDetails.order_items[0]?.product.shop.seller.email}
                   </p>
                 </div>
                 <div>
-                  <p className="order-dets-label">Address:</p>
-                  <p className="order-dets-text">
+                  <p className="details-label">Address:</p>
+                  <p className="details-text">
                     {orderDetails.order_items[0]?.product.shop.location || 'N/A'}
                   </p>
                 </div>
                 <div>
-                  <p className="order-dets-label">Phone Number:</p>
-                  <p className="order-dets-text">
+                  <p className="details-label">Phone Number:</p>
+                  <p className="details-text">
                     {orderDetails.order_items[0]?.product.shop.seller.contact}
                   </p>
                 </div>

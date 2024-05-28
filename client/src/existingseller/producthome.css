@@ -338,3 +338,27 @@
   margin-bottom: 5px;
   margin-top: 5px;
 }
+
+
+.quantity-tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 20px;
+  padding: 4px 8px;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 1;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.running-low {
+  background-color: rgba(255, 204, 204, 0.7); 
+  color: #ff0000;
+}
+
+.available {
+  background-color: rgba(204, 255, 204, 0.7); 
+  color: #00ff00; 
+}

@@ -65,7 +65,7 @@ function ShopView() {
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
-    setCurrentPage(1); // Reset pagination when performing a new search
+    setCurrentPage(1); 
   };
 
   const handleFilterChange = (e) => {
