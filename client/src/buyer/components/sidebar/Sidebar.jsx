@@ -18,6 +18,22 @@ function Sidebar({categories, setCategoryFilter, setPriceRange, priceRange }) {
     
     const [value, setValue] = React.useState([0, 1000]);
 
+    const categoryImages = {
+        "Home decor": "/home-decor.png",
+        "Clothing": "/clothing.png",
+        "Appliances": "/appliances.png",
+        // "Shoes": "/images/shoes.png",
+        "Accessories": "/jewelry.png",
+        "Tools and Hardware": "/tools.png",
+        "Beauty and Skincare": "/skin-care.png",
+        "Outdoor Gear": "/outdoor-gear.png",
+        "Electronics": "/electronics.png",
+        "Health and Wellness": "/spa.png",
+        "Toys and Games": "/toys.png",
+        "Books and Stationary": "/stationary.png",
+        "Food and Beverages": "/fast-food.png",
+    };
+
     React.useEffect(() => {
         if (priceRange && priceRange.length === 2) {
             setValue([priceRange[0], priceRange[1]]);
@@ -41,7 +57,7 @@ function Sidebar({categories, setCategoryFilter, setPriceRange, priceRange }) {
                     <div className="catList">
                         {categories.map((category, index) => (
                             <div className="catItem d-flex align-items-center" key={index} onClick={() => handleCategoryFilter((category))}>
-                                <span className='img'><img src="/spa.png" alt="" width={35} /></span>
+                                <span className='img'><img src={categoryImages[category] || '/spa.png'} alt="" width={30} /></span>
                                 <h4 className='mb-0 ml-3 mr-3' >{category}</h4>
                                 {/* <span className='d-flex align-items-center justify-content-center rounded-circle ms-auto'>30</span> */}
                             </div>
