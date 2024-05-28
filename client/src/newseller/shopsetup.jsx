@@ -17,12 +17,12 @@ const ShopSetup = () => {
     libraries: libraries,
   });
 
-  const [shopName, setShopName] = useState("Shoe Store");
-  const [description, setDescription] = useState("Sells high-quality shoes");
+  const [shopName, setShopName] = useState("");
+  const [description, setDescription] = useState("");
   const [logo, setLogo] = useState(null);
   const [banner, setBanner] = useState(null);
-  const [contact, setContact] = useState("0700000000");
-  const [location, setLocation] = useState("Nairobi");
+  const [contact, setContact] = useState("");
+  const [location, setLocation] = useState("");
 
   const navigate = useNavigate();
 
@@ -39,8 +39,8 @@ const ShopSetup = () => {
     const formData = new FormData();
     formData.append('name', shopName)
     formData.append('description', description)
-    formData.append('logo_image_url', logo)
-    formData.append('banner_image_url', banner)
+    formData.append('logo_image', logo)
+    formData.append('banner_image', banner)
     formData.append('contact', contact)
     formData.append('location', location)
     formData.append('seller_id', userId)
