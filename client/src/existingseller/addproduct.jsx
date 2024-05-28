@@ -77,6 +77,7 @@ const AddProduct = () => {
     })
     .then((r) => r.json())
     .then(data => {
+      console.log(data);
       toast.success("Product has been successfully added!");
       setTimeout(() => {
         navigate("/producthome");
