@@ -1,7 +1,7 @@
 
 .productThumb{
     width: 100%;
-    height: auto; /*300px*/
+    height: 320px; /*auto*/
     border: 1px solid rgba(0, 0, 0, 0.2);
     overflow: hidden;
     border-radius: 10px; /*4px*/
@@ -113,6 +113,7 @@
     color:#000;
     opacity: 0.8;
     font-size: 12px;
+    margin-top: 5px;
     text-transform: capitalize;
 }
 
