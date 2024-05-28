@@ -14,7 +14,7 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 function Sidebar({categories, setCategoryFilter, setPriceRange, priceRange }) {
 
-    //console.log("sidebar", priceRange)
+    console.log("sidebar", categories)
     
     const [value, setValue] = React.useState([0, 1000]);
 
