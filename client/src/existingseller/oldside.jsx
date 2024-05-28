@@ -122,7 +122,7 @@ function OldSidebar() {
             </ul>
           )}
         </li>
-       
+        
         <li>
           <Link
             to="/settings"
@@ -137,7 +137,7 @@ function OldSidebar() {
       </ul>
 
       <div className="logout-button">
-        
+      
           <LogoutIcon className="old-link-icon" />
           <span className="old-link-name" onClick={handleLogout}>Logout</span>
   
