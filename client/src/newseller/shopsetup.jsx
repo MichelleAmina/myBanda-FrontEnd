@@ -9,6 +9,9 @@ import { useJsApiLoader, Autocomplete } from '@react-google-maps/api';
 const libraries = ["places"];
 
 const ShopSetup = () => {
+
+  const autocompleteRef = useRef(null);
+  
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyBQxT3xBni2UvXtvfH4nhqKuUVrY5gte1s",
     libraries: libraries,
