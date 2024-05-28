@@ -9,7 +9,7 @@ const BuyersCart = () => {
     const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
     
-    const shippingFee = 50; 
+    const shippingFee = 200; 
 
     useEffect(() => {
         dispatch(setShippingFee(shippingFee)); 

@@ -6,7 +6,7 @@ import './order.css';
 const CheckoutForm = () => {
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);  
-    const shippingFee = 50;  
+    const shippingFee = 200;  
 
     useEffect(() => {
         dispatch(getTotals());

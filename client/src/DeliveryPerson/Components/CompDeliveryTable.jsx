@@ -104,7 +104,7 @@ const CompDeliveriesTable = () => {
                                         <TableRow key={index}>
                                             <TableCell>{order.order_items[0]?.order_id}</TableCell>
                                             {/* <TableCell>{order.buyer.username}</TableCell> */}
-                                            <TableCell>N/A</TableCell>
+                                            <TableCell>28/06/2024</TableCell>
                                             <TableCell>{order.delivery_address}</TableCell>
                                             <TableCell>{order.delivery_fee}</TableCell>
                                             <TableCell style={statusStyle}>{order.status}</TableCell>
